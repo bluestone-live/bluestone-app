@@ -23,7 +23,7 @@ jobs:
       - name: Empty S3 Deploy Bucket
         run: |
           aws cloudformation describe-stack-resource \
-            --stack-name ${{ CF_STACK_NAME }} \
+            --stack-name ${{ env.CF_STACK_NAME }} \
             --logical-resource-id DeployBucket \
             --query "StackResourceDetail.PhysicalResourceId" \
             --output text \
@@ -31,4 +31,4 @@ jobs:
       - name: Delete CloudFormation Stack
         run: |
           aws cloudformation delete-stack \
-            --stack-name ${{ CF_STACK_NAME }}
+            --stack-name ${{ env.CF_STACK_NAME }}
