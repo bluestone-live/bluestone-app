@@ -8,8 +8,8 @@ on:
       - master
 
 env:
-  DEP_CACHE_KEY: yarn-${{ hashFiles('yarn.lock') }}
-  BUILD_CACHE_KEY: build-${{ github.sha }}
+  DEP_CACHE_KEY: "yarn-${{ hashFiles('yarn.lock') }}"
+  BUILD_CACHE_KEY: "build-${{ github.sha }}"
 
 jobs:
   test:
