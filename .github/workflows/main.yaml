@@ -1,12 +1,10 @@
-name: Production
+name: Main
 
 on: pull_request
 
-defaults:
-  runs-on: ubuntu-latest
-
 jobs:
   test:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,6 +27,7 @@ jobs:
 
   build:
     needs: test
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -51,6 +50,7 @@ jobs:
 
   deploy:
     needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
