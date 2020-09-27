@@ -1,0 +1,94 @@
+name: Production
+
+on: pull_request
+
+defaults:
+  runs-on: ubuntu-latest
+
+jobs:
+  test:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+      - name: Retrieve Cached Dependencies
+        # if the cache key doesn't exist, it will create one when the job completes
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: yarn test
+
+  build:
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+      - name: Retrieve Cached Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Build
+        run: yarn build
+      - name: Cache Build
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: build-${{ GITHUB_REF }}-${{ GITHUB_RUN_ID }}
+
+  deploy:
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Retrieve Cached Build
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: build-${{ GITHUB_REF }}-${{ GITHUB_RUN_ID }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy CloudFormation Stack
+        id: deployStack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: beta-bluestone-live-${{ GITHUB_REF }}
+          template: cloudFormationTemplate.yaml
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: >-
+            ApplicationDomain=${{ GITHUB_REF }}.beta.bluestone.live
+      - name: Copy Build To S3
+        run: |
+          aws cloudformation describe-stack-resource
+            --stack-name ${{ steps.deployStack.outputs.stack-id }}
+            --logical-resource-id DeployBucket
+            --query "StackResourceDetail.PhysicalResourceId"
+            --output text
+          | xargs -I % aws s3 sync build s3://%
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudformation describe-stack-resource
+            --stack-name ${{ steps.deployStack.outputs.stack-id }}
+            --logical-resource-id Distribution
+            --query "StackResourceDetail.PhysicalResourceId"
+            --output text
+          | xargs -I % aws cloudfront create-invalidation
+            --distribution-id %
+            --paths "/*"
