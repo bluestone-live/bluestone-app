@@ -8,7 +8,6 @@ on:
       - master
 
 env:
-  DEP_CACHE_KEY: "yarn-${{ hashFiles('yarn.lock') }}"
   BUILD_CACHE_KEY: "build-${{ github.sha }}"
 
 jobs:
@@ -27,7 +26,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ env.DEP_CACHE_KEY }}
+          key: yarn-${{ hashFiles('yarn.lock') }}
       - name: Install Dependencies
         if: steps.cacheDep.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
@@ -48,8 +47,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ env.DEP_CACHE_KEY }}
-      - name: Cache Build
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Retrieve Cached Build
+        # if the cache key doesn't exist, it will create one when the job completes
         id: cacheBuild
         uses: actions/cache@v2
         with:
