@@ -1,6 +1,7 @@
 name: Main
 
 on:
+  # triggered on all pull requests and push events to the master branch
   pull_request:
   push:
     branches:
@@ -50,7 +51,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: build
-          key: build-${{ github.ref }}-${{ github.run_id }}
+          key: build-${{ github.run_id }}
 
   deploy:
     needs: build
@@ -62,22 +63,29 @@ jobs:
         uses: actions/cache@v2
         with:
           path: build
-          key: build-${{ github.ref }}-${{ github.run_id }}
+          key: build-${{ github.run_id }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+      - name: Get Environment Name
+        id: envName
+        uses: haya14busa/action-cond@v1
+        with:
+          cond: ${{ github.event_name == "pull_request" }}
+          if_true: pr-${{ github.head_ref }}
+          if_false: "prod"
       - name: Deploy CloudFormation Stack
         id: deployStack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: beta-bluestone-live-${{ github.ref }}
+          name: beta-bluestone-live-${{ steps.envName.outputs.value }}
           template: cloudFormationTemplate.yaml
           no-fail-on-empty-changeset: "1"
           parameter-overrides: >-
-            ApplicationDomain=${{ github.ref }}.beta.bluestone.live
+            ApplicationDomain=${{ steps.envName.outputs.value }}.beta.bluestone.live
       - name: Copy Build To S3
         run: |
           aws cloudformation describe-stack-resource \
