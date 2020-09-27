@@ -7,6 +7,10 @@ on:
     branches:
       - master
 
+env:
+  DEP_CACHE_KEY: yarn-${{ hashFiles('yarn.lock') }}
+  BUILD_CACHE_KEY: build-${{ github.sha }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,13 +23,13 @@ jobs:
           node-version: "12"
       - name: Retrieve Cached Dependencies
         # if the cache key doesn't exist, it will create one when the job completes
-        id: cache
+        id: cacheDep
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ env.DEP_CACHE_KEY }}
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cacheDep.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Test
         run: yarn test
@@ -44,14 +48,16 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: yarn-${{ hashFiles('yarn.lock') }}
-      - name: Build
-        run: yarn build
+          key: ${{ env.DEP_CACHE_KEY }}
       - name: Cache Build
+        id: cacheBuild
         uses: actions/cache@v2
         with:
           path: build
-          key: build-${{ github.run_id }}
+          key: ${{ env.BUILD_CACHE_KEY }}
+      - name: Build
+        if: steps.cacheBuild.outputs.cache-hit != 'true'
+        run: yarn build
 
   deploy:
     needs: build
@@ -63,7 +69,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: build
-          key: build-${{ github.run_id }}
+          key: ${{ env.BUILD_CACHE_KEY }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
