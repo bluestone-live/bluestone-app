@@ -76,19 +76,19 @@ jobs:
             ApplicationDomain=${{ github.head_ref }}.beta.bluestone.live
       - name: Copy Build To S3
         run: |
-          aws cloudformation describe-stack-resource
-            --stack-name ${{ steps.deployStack.outputs.stack-id }}
-            --logical-resource-id DeployBucket
-            --query "StackResourceDetail.PhysicalResourceId"
-            --output text
+          aws cloudformation describe-stack-resource \
+            --stack-name ${{ steps.deployStack.outputs.stack-id }} \
+            --logical-resource-id DeployBucket \
+            --query "StackResourceDetail.PhysicalResourceId" \
+            --output text \
           | xargs -I % aws s3 sync build s3://%
       - name: Invalidate CloudFront Distribution
         run: |
-          aws cloudformation describe-stack-resource
-            --stack-name ${{ steps.deployStack.outputs.stack-id }}
-            --logical-resource-id Distribution
-            --query "StackResourceDetail.PhysicalResourceId"
-            --output text
-          | xargs -I % aws cloudfront create-invalidation
-            --distribution-id %
+          aws cloudformation describe-stack-resource \
+            --stack-name ${{ steps.deployStack.outputs.stack-id }} \
+            --logical-resource-id Distribution \
+            --query "StackResourceDetail.PhysicalResourceId" \
+            --output text \
+          | xargs -I % aws cloudfront create-invalidation \
+            --distribution-id % \
             --paths "/*"
