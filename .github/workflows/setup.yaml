@@ -1,4 +1,4 @@
-name: Main
+name: Setup
 
 on:
   # triggered on all pull requests and push events to the master branch
