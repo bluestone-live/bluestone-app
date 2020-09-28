@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Bluestone
+          Learn React Bluestone More
         </a>
       </header>
     </div>
