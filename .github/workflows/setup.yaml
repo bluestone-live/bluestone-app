@@ -1,0 +1,112 @@
+name: Setup
+
+on:
+  # triggered on all pull requests and push events to the master branch
+  pull_request:
+  push:
+    branches:
+      - master
+
+env:
+  BUILD_CACHE_KEY: "build-${{ github.sha }}"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - name: Retrieve Cached Dependencies
+        # if the cache key doesn't exist, it will create one when the job completes
+        id: cacheDep
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Install Dependencies
+        if: steps.cacheDep.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: yarn test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - name: Retrieve Cached Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Retrieve Cached Build
+        # if the cache key doesn't exist, it will create one when the job completes
+        id: cacheBuild
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ env.BUILD_CACHE_KEY }}
+      - name: Build
+        if: steps.cacheBuild.outputs.cache-hit != 'true'
+        run: yarn build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Retrieve Cached Build
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ env.BUILD_CACHE_KEY }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Get Environment Name
+        id: envName
+        uses: haya14busa/action-cond@v1
+        with:
+          cond: ${{ github.event_name == 'pull_request' }}
+          if_true: pr-${{ github.head_ref }}
+          if_false: "prod"
+      - name: Deploy CloudFormation Stack
+        id: deployStack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: beta-bluestone-live-${{ steps.envName.outputs.value }}
+          template: cloudFormationTemplate.yaml
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: >-
+            ApplicationDomain=${{ steps.envName.outputs.value }}.beta.bluestone.live
+      - name: Copy Build To S3
+        run: |
+          aws cloudformation describe-stack-resource \
+            --stack-name ${{ steps.deployStack.outputs.stack-id }} \
+            --logical-resource-id DeployBucket \
+            --query "StackResourceDetail.PhysicalResourceId" \
+            --output text \
+          | xargs -I % aws s3 sync build s3://%
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudformation describe-stack-resource \
+            --stack-name ${{ steps.deployStack.outputs.stack-id }} \
+            --logical-resource-id Distribution \
+            --query "StackResourceDetail.PhysicalResourceId" \
+            --output text \
+          | xargs -I % aws cloudfront create-invalidation \
+            --distribution-id % \
+            --paths "/*"
