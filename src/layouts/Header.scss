@@ -1,0 +1,23 @@
+@import '../theme.scss';
+
+header {
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  
+  .logo {
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    // display: none;
+
+    > a {
+      margin-left: 16px;
+      color: white;
+      color: $text-color;
+    }
+  }
+}
