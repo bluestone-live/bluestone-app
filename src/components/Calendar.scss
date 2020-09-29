@@ -47,4 +47,8 @@ $color: #555;
       }
     }
   }
+
+  .rdrDayToday .rdrDayNumber span:after {
+    background: $accent-color;
+  }
 }
