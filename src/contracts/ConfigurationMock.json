@@ -1,0 +1,4554 @@
+{
+  "contractName": "ConfigurationMock",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IPriceOracle",
+          "name": "priceOracle",
+          "type": "address"
+        }
+      ],
+      "name": "setPriceOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "interestReserveAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setInterestReserveAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "protocolReserveRatio",
+          "type": "uint256"
+        }
+      ],
+      "name": "setProtocolReserveRatio",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balanceCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "setBalanceCap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInterestReserveAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "interestReserveAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getProtocolReserveRatio",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "protocolReserveRatio",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getPriceOracleAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "priceOracleAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "depositDistributorFeeRatio",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "loanDistributorFeeRatio",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxDistributorFeeRatios",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxDistributorFeeRatios",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "depositDistributorFeeRatio",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "loanDistributorFeeRatio",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getBalanceCap",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balanceCap",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "enableDepositToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "term",
+          "type": "uint256"
+        }
+      ],
+      "name": "enableDepositTerm",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"}],\"name\":\"enableDepositTerm\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"enableDepositToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"getBalanceCap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balanceCap\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getInterestReserveAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"interestReserveAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getMaxDistributorFeeRatios\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"depositDistributorFeeRatio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"loanDistributorFeeRatio\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"getPriceOracleAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"priceOracleAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getProtocolReserveRatio\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"protocolReserveRatio\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"balanceCap\",\"type\":\"uint256\"}],\"name\":\"setBalanceCap\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"interestReserveAddress\",\"type\":\"address\"}],\"name\":\"setInterestReserveAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"depositDistributorFeeRatio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"loanDistributorFeeRatio\",\"type\":\"uint256\"}],\"name\":\"setMaxDistributorFeeRatios\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"contract IPriceOracle\",\"name\":\"priceOracle\",\"type\":\"address\"}],\"name\":\"setPriceOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"protocolReserveRatio\",\"type\":\"uint256\"}],\"name\":\"setProtocolReserveRatio\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/mock/ConfigurationMock.sol\":\"ConfigurationMock\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/common/lib/DateTime.sol\":{\"keccak256\":\"0xf27674d2faa3d1320876456a8510ec8f696f606ce4f0f2b74f606700d135103b\",\"urls\":[\"bzz-raw://7464c8bbcd5d03fb95bbc3a25540122831a56c5f795150b7a99de347d1ca4872\",\"dweb:/ipfs/Qmb6BMYhzNQnpfvPuSExtLvNju1jBB4EtsCxS2dyKoqnRb\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol\":{\"keccak256\":\"0x42c495a83bb5c2c10bacfd3066eda87fe1a91c6511683ebc60d12effacee1510\",\"urls\":[\"bzz-raw://931f4a8bf80c3ed00fbe94639695273e7ecd343b3ee317cf2852100b7eeb4a98\",\"dweb:/ipfs/Qmdtk2ZnkwCMRxe1YznF5KEyrS52Gkicogmom2Z1vs5zz1\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol\":{\"keccak256\":\"0x8aa6dd24e9b3ad458c5ebf0fc6f8496fc07eb54930145b92c5b9bf58403be55f\",\"urls\":[\"bzz-raw://c46260f06a3b9ab376b81916a9406d862882704d6b4046fb0fa25680f27b523a\",\"dweb:/ipfs/QmPJUMtTMrBnKrW2aVpw43gemehm8Xh5hzjNZ1SP2PEXAZ\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IStruct.sol\":{\"keccak256\":\"0x4babc8a75883bd5b7073408010b66c891e45a18d997c8e3ce62e6961452688e4\",\"urls\":[\"bzz-raw://3b1e97080a2c6beadae1c17960b58473bc5f3d45573cc5e4cf380e5e0db059ea\",\"dweb:/ipfs/Qmcwftpuzc8hPHmPd8rRk2qppqYNJCESQtAahqwxuscA9h\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/Configuration.sol\":{\"keccak256\":\"0xdebedcb50c9881d1ae0e72e276af1b06bbb442f7ef02017025f24b98ef7a2547\",\"urls\":[\"bzz-raw://b852473274518792e5f3e19cceab98ae7064b000de2b5f56bbb1524821d950c8\",\"dweb:/ipfs/QmY3dPFmd6JUgrP44P4XSac5LGBBMX8EarodyE2mB2rvrb\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/DepositManager.sol\":{\"keccak256\":\"0xfff5b3878e15f893e1a9f9661513d381724243affd85ca520378250268ee6319\",\"urls\":[\"bzz-raw://4efca0005052219be5025dae528264a7ecca37c4887957d38717f99a3cd527f5\",\"dweb:/ipfs/QmVt7rihAuuec15jQ6Vch4FwkMp9pNUo22Syh3tCBRerkt\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LiquidityPools.sol\":{\"keccak256\":\"0x988aa0a2147eb28322f74e756b7c122d25fbf7beba5c4acfa68c555548995fd3\",\"urls\":[\"bzz-raw://34a49ae29a25c30f6b67d77d47da3a42ab6b9fba3ae2060721627ce57b183f15\",\"dweb:/ipfs/QmZ1adWjf35vSGgJHfZLeYZyU5oRo92FvFVJoNGNjhTVKA\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LoanManager.sol\":{\"keccak256\":\"0x6d60def5047c0ce389dd246d490ee43f752e04e006957efb1597479257c08346\",\"urls\":[\"bzz-raw://41909b261d48c0e9a6075b368f0098716db2ca899bcca2105f870e089e6e0979\",\"dweb:/ipfs/QmVh4Wv2hFdf9PrwoPn3cpddr4yekfnXr5fhMTEp4KFrnR\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/mock/ConfigurationMock.sol\":{\"keccak256\":\"0x613fad14891948abb81abd0a08ecae853753c2864a81d5d1c9cc7a250e27b114\",\"urls\":[\"bzz-raw://3cbebf9f631c6c5555838c2d9a434f4188e207bdfb33a2e476d75b552fc2a440\",\"dweb:/ipfs/Qmd9McRgnkzNF8Yck8GtYTo8JRSfvMfmG4ssAQZA11TZmJ\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x0de74dfa6b37943c1b834cbd8fb7a8d052e5ff80c7adb33692102dd6cd2985e9\",\"urls\":[\"bzz-raw://9d2d827fcf4a838f5821732c0acd6a40d21c2a5a2cfe2563feec91465f47bb60\",\"dweb:/ipfs/Qmex3wMKf5Sghbfvr288RUg1kP2uAyTMf11w83WbMbpQQc\"]},\"@openzeppelin/contracts/math/Math.sol\":{\"keccak256\":\"0x50280546205978ca6573541955e15453b4c07a19e6c8ec4f6785a5ae0d7343fb\",\"urls\":[\"bzz-raw://6463c7833ba4b3cbc3b56d50b56e7ce870aaec674633d7897a459b234478fa3e\",\"dweb:/ipfs/QmRkfjwTpA5E4SxUoHw8Qb7g6eXahtgmLrWWtTGH2TDZLj\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x04d34b3cd5677bea25f8dfceb6dec0eaa071d4d4b789a43f13fe0c415ba4c296\",\"urls\":[\"bzz-raw://e7e8b526a6839e5ba14f0d23a830387fec47f7043ce01d42c9f285b709a9d080\",\"dweb:/ipfs/QmXmhhFmX5gcAvVzNiDPAGA35iHMPNaYtQkACswRHBVTNw\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x3211de52f707a62a356a34fdea9d6a7bed46402d5ce45f1891a16fe2132fbb47\",\"urls\":[\"bzz-raw://45dfe794ad43a3674fab38a378c57eb6ed3353949f6529ccad4a4cbc91d45fc5\",\"dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x6cc1cb934a3ac2137a7dcaed018af9e235392236ceecfd3687259702b9c767ad\",\"urls\":[\"bzz-raw://0055fa88138cd1c3c6440370f8580f85857f8fe9dec41c99af9eafbeb8d9c3ce\",\"dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xa27d8d0bf389702f2b124fff3d86238b17ec0abd47d1401e81dc48a1509dbb9a\",\"urls\":[\"bzz-raw://899c25b79e783c1e4ccdd06928e332e2b37f3ecaa487f49ef68ef9fde6b18f82\",\"dweb:/ipfs/QmV3rZDWabetVSmZ2iviS5tajKzvR3AEwsicKZao4ptTg2\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x5f7da58ee3d9faa9b8999a93d49c8ff978f1afc88ae9bcfc6f9cbb44da011c2b\",\"urls\":[\"bzz-raw://4f089d954b3ecaa26949412fe63e9a184b056562c6c13dd4a0529a5d9a2e685a\",\"dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506105d0806100206000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c8063a461279e11610071578063a461279e146101a2578063cebe314c146101c3578063d30f7b39146101cb578063ddd99eeb146101f1578063e064e81714610217578063ebd7445f14610243576100b4565b806307a7f159146100b957806327efcbfe146100f157806367a74ddc1461011057806383f991571461013e57806394a68ef714610162578063a04360b61461017f575b600080fd5b6100df600480360360208110156100cf57600080fd5b50356001600160a01b0316610269565b60408051918252519081900360200190f35b61010e6004803603602081101561010757600080fd5b5035610284565b005b61010e6004803603604081101561012657600080fd5b506001600160a01b03813581169160200135166102f6565b610146610379565b604080516001600160a01b039092168252519081900360200190f35b61010e6004803603602081101561017857600080fd5b5035610388565b61010e6004803603604081101561019557600080fd5b50803590602001356103e8565b6101aa610446565b6040805192835260208301919091528051918290030190f35b6100df610450565b610146600480360360208110156101e157600080fd5b50356001600160a01b0316610456565b61010e6004803603602081101561020757600080fd5b50356001600160a01b0316610474565b61010e6004803603604081101561022d57600080fd5b506001600160a01b0381351690602001356104d3565b61010e6004803603602081101561025957600080fd5b50356001600160a01b0316610539565b6001600160a01b031660009081526005602052604090205490565b60408051636fdbf96d60e11b815260006004820181905260248201849052915173__Configuration_________________________9263dfb7f2da9260448082019391829003018186803b1580156102db57600080fd5b505af41580156102ef573d6000803e3d6000fd5b5050505050565b60408051635562758f60e01b81526000600482018190526001600160a01b03808616602484015284166044830152915173__Configuration_________________________92635562758f9260648082019391829003018186803b15801561035d57600080fd5b505af4158015610371573d6000803e3d6000fd5b505050505050565b6003546001600160a01b031690565b60408051630e273fb560e31b8152600960048201526007602482015260448101839052905173__DepositManager________________________91637139fda8916064808301926000929190829003018186803b1580156102db57600080fd5b60408051632b05cfad60e01b81526000600482018190526024820185905260448201849052915173__Configuration_________________________92632b05cfad9260648082019391829003018186803b15801561035d57600080fd5b6000546001549091565b60025490565b6001600160a01b039081166000908152600460205260409020541690565b6040805163044b515960e31b81526000600482018190526001600160a01b0384166024830152915173__Configuration_________________________9263225a8ac89260448082019391829003018186803b1580156102db57600080fd5b60408051633b7dd5d560e21b81526000600482018190526001600160a01b038516602483015260448201849052915173__Configuration_________________________9263edf757549260648082019391829003018186803b15801561035d57600080fd5b6040805163486f118960e11b8152600960048201526001600160a01b0383166024820152905173__DepositManager________________________916390de2312916044808301926000929190829003018186803b1580156102db57600080fdfea2646970667358221220461926a0658b543078284ba1edb67d1bcba47d09648470f65fd0dd6b4621ffc864736f6c63430006070033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100b45760003560e01c8063a461279e11610071578063a461279e146101a2578063cebe314c146101c3578063d30f7b39146101cb578063ddd99eeb146101f1578063e064e81714610217578063ebd7445f14610243576100b4565b806307a7f159146100b957806327efcbfe146100f157806367a74ddc1461011057806383f991571461013e57806394a68ef714610162578063a04360b61461017f575b600080fd5b6100df600480360360208110156100cf57600080fd5b50356001600160a01b0316610269565b60408051918252519081900360200190f35b61010e6004803603602081101561010757600080fd5b5035610284565b005b61010e6004803603604081101561012657600080fd5b506001600160a01b03813581169160200135166102f6565b610146610379565b604080516001600160a01b039092168252519081900360200190f35b61010e6004803603602081101561017857600080fd5b5035610388565b61010e6004803603604081101561019557600080fd5b50803590602001356103e8565b6101aa610446565b6040805192835260208301919091528051918290030190f35b6100df610450565b610146600480360360208110156101e157600080fd5b50356001600160a01b0316610456565b61010e6004803603602081101561020757600080fd5b50356001600160a01b0316610474565b61010e6004803603604081101561022d57600080fd5b506001600160a01b0381351690602001356104d3565b61010e6004803603602081101561025957600080fd5b50356001600160a01b0316610539565b6001600160a01b031660009081526005602052604090205490565b60408051636fdbf96d60e11b815260006004820181905260248201849052915173__Configuration_________________________9263dfb7f2da9260448082019391829003018186803b1580156102db57600080fd5b505af41580156102ef573d6000803e3d6000fd5b5050505050565b60408051635562758f60e01b81526000600482018190526001600160a01b03808616602484015284166044830152915173__Configuration_________________________92635562758f9260648082019391829003018186803b15801561035d57600080fd5b505af4158015610371573d6000803e3d6000fd5b505050505050565b6003546001600160a01b031690565b60408051630e273fb560e31b8152600960048201526007602482015260448101839052905173__DepositManager________________________91637139fda8916064808301926000929190829003018186803b1580156102db57600080fd5b60408051632b05cfad60e01b81526000600482018190526024820185905260448201849052915173__Configuration_________________________92632b05cfad9260648082019391829003018186803b15801561035d57600080fd5b6000546001549091565b60025490565b6001600160a01b039081166000908152600460205260409020541690565b6040805163044b515960e31b81526000600482018190526001600160a01b0384166024830152915173__Configuration_________________________9263225a8ac89260448082019391829003018186803b1580156102db57600080fd5b60408051633b7dd5d560e21b81526000600482018190526001600160a01b038516602483015260448201849052915173__Configuration_________________________9263edf757549260648082019391829003018186803b15801561035d57600080fd5b6040805163486f118960e11b8152600960048201526001600160a01b0383166024820152905173__DepositManager________________________916390de2312916044808301926000929190829003018186803b1580156102db57600080fdfea2646970667358221220461926a0658b543078284ba1edb67d1bcba47d09648470f65fd0dd6b4621ffc864736f6c63430006070033",
+  "immutableReferences": {},
+  "sourceMap": "217:2764:22:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;217:2764:22;;;;;;;",
+  "deployedSourceMap": "217:2764:22:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;217:2764:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;2512:186:22;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;2512:186:22;-1:-1:-1;;;;;2512:186:22;;:::i;:::-;;;;;;;;;;;;;;;;963:149;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;963:149:22;;:::i;:::-;;608:166;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;;;;;;608:166:22;;;;;;;;;;:::i;1269:181::-;;;:::i;:::-;;;;-1:-1:-1;;;;;1269:181:22;;;;;;;;;;;;;;2856:123;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;2856:123:22;;:::i;1855:312::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1855:312:22;;;;;;;:::i;2173:333::-;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1456:175;;;:::i;1637:212::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1637:212:22;-1:-1:-1;;;;;1637:212:22;;:::i;780:177::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;780:177:22;-1:-1:-1;;;;;780:177:22;;:::i;1118:145::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;;;;;;1118:145:22;;;;;;;;:::i;2726:124::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;2726:124:22;-1:-1:-1;;;;;2726:124:22;;:::i;2512:186::-;-1:-1:-1;;;;;2645:46:22;2604:18;2645:46;;;:32;:46;;;;;;;2512:186::o;963:149::-;1045:60;;;-1:-1:-1;;;1045:60:22;;:14;:60;;;;;;;;;;;;;;:38;;;;:60;;;;;;;;;;;:38;:60;;;2:2:-1;;;;27:1;24;17:12;2:2;1045:60:22;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1045:60:22;;;;963:149;:::o;608:166::-;711:56;;;-1:-1:-1;;;711:56:22;;:14;:56;;;;;;-1:-1:-1;;;;;711:56:22;;;;;;;;;;;;;;;:29;;;;:56;;;;;;;;;;;:29;:56;;;2:2:-1;;;;27:1;24;17:12;2:2;711:56:22;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;711:56:22;;;;608:166;;:::o;1269:181::-;1406:37;;-1:-1:-1;;;;;1406:37:22;1269:181;:::o;2856:123::-;2916:56;;;-1:-1:-1;;;2916:56:22;;:15;:56;;;;2950:15;2916:56;;;;;;;;;;;;:33;;;;:56;;;;;-1:-1:-1;;2916:56:22;;;;;;;:33;:56;;;2:2:-1;;;;27:1;24;17:12;1855:312:22;2020:140;;;-1:-1:-1;;;2020:140:22;;:14;:140;;;;;;;;;;;;;;;;;;;;:41;;;;:140;;;;;;;;;;;:41;:140;;;2:2:-1;;;;27:1;24;17:12;2173:333:22;2271:34;2396:41;2451:38;;2173:333;;:::o;1456:175::-;1589:35;;1456:175;:::o;1637:212::-;-1:-1:-1;;;;;1794:47:22;;;1737:26;1794:47;;;:33;:47;;;;;;;;1637:212::o;780:177::-;886:64;;;-1:-1:-1;;;886:64:22;;:14;:64;;;;;;-1:-1:-1;;;;;886:64:22;;;;;;;;:40;;;;:64;;;;;;;;;;;:40;:64;;;2:2:-1;;;;27:1;24;17:12;1118:145:22;1202:54;;;-1:-1:-1;;;1202:54:22;;:14;:54;;;;;;-1:-1:-1;;;;;1202:54:22;;;;;;;;;;;;;;:28;;;;:54;;;;;;;;;;;:28;:54;;;2:2:-1;;;;27:1;24;17:12;2726:124:22;2795:48;;;-1:-1:-1;;;2795:48:22;;:15;:48;;;;-1:-1:-1;;;;;2795:48:22;;;;;;;;:34;;;;:48;;;;;-1:-1:-1;;2795:48:22;;;;;;;:34;:48;;;2:2:-1;;;;27:1;24;17:12",
+  "source": "pragma solidity ^0.6.7;\n\nimport '../../oracle/interface/IPriceOracle.sol';\nimport '../lib/Configuration.sol';\nimport '../lib/LiquidityPools.sol';\nimport '../lib/DepositManager.sol';\nimport '../lib/LoanManager.sol';\n\n\ncontract ConfigurationMock {\n    using Configuration for Configuration.State;\n    using LiquidityPools for LiquidityPools.State;\n    using DepositManager for DepositManager.State;\n    using LoanManager for LoanManager.State;\n\n    Configuration.State _configuration;\n    LiquidityPools.State _liquidityPools;\n    DepositManager.State _depositManager;\n    LoanManager.State _loanManager;\n\n    function setPriceOracle(address tokenAddress, IPriceOracle priceOracle)\n        external\n    {\n        _configuration.setPriceOracle(tokenAddress, priceOracle);\n    }\n\n    function setInterestReserveAddress(address payable interestReserveAddress)\n        external\n    {\n        _configuration.setInterestReserveAddress(interestReserveAddress);\n    }\n\n    function setProtocolReserveRatio(uint256 protocolReserveRatio) external {\n        _configuration.setProtocolReserveRatio(protocolReserveRatio);\n    }\n\n    function setBalanceCap(address tokenAddress, uint256 balanceCap) external {\n        _configuration.setBalanceCap(tokenAddress, balanceCap);\n    }\n\n    function getInterestReserveAddress()\n        external\n        view\n        returns (address interestReserveAddress)\n    {\n        return _configuration.interestReserveAddress;\n    }\n\n    function getProtocolReserveRatio()\n        external\n        view\n        returns (uint256 protocolReserveRatio)\n    {\n        return _configuration.protocolReserveRatio;\n    }\n\n    function getPriceOracleAddress(address tokenAddress)\n        external\n        view\n        returns (address priceOracleAddress)\n    {\n        return address(_configuration.priceOracleByToken[tokenAddress]);\n    }\n\n    function setMaxDistributorFeeRatios(\n        uint256 depositDistributorFeeRatio,\n        uint256 loanDistributorFeeRatio\n    ) external {\n        return\n            _configuration.setMaxDistributorFeeRatios(\n                depositDistributorFeeRatio,\n                loanDistributorFeeRatio\n            );\n    }\n\n    function getMaxDistributorFeeRatios()\n        external\n        view\n        returns (\n            uint256 depositDistributorFeeRatio,\n            uint256 loanDistributorFeeRatio\n        )\n    {\n        return (\n            _configuration.depositDistributorFeeRatio,\n            _configuration.loanDistributorFeeRatio\n        );\n    }\n\n    function getBalanceCap(address tokenAddress)\n        external\n        view\n        returns (uint256 balanceCap)\n    {\n        return _configuration.balanceCapByToken[tokenAddress];\n    }\n\n    // -- Helpers --\n\n    function enableDepositToken(address tokenAddress) external {\n        _depositManager.enableDepositToken(tokenAddress);\n    }\n\n    function enableDepositTerm(uint256 term) external {\n        _depositManager.enableDepositTerm(_liquidityPools, term);\n    }\n}\n",
+  "sourcePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/mock/ConfigurationMock.sol",
+  "ast": {
+    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/mock/ConfigurationMock.sol",
+    "exportedSymbols": {
+      "ConfigurationMock": [
+        7901
+      ]
+    },
+    "id": 7902,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7721,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+        "file": "../../oracle/interface/IPriceOracle.sol",
+        "id": 7722,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 1625,
+        "src": "25:49:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/Configuration.sol",
+        "file": "../lib/Configuration.sol",
+        "id": 7723,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 3468,
+        "src": "75:34:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LiquidityPools.sol",
+        "file": "../lib/LiquidityPools.sol",
+        "id": 7724,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 5435,
+        "src": "110:35:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/DepositManager.sol",
+        "file": "../lib/DepositManager.sol",
+        "id": 7725,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 4795,
+        "src": "146:35:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LoanManager.sol",
+        "file": "../lib/LoanManager.sol",
+        "id": 7726,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 7720,
+        "src": "182:32:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7901,
+        "linearizedBaseContracts": [
+          7901
+        ],
+        "name": "ConfigurationMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 7729,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7727,
+              "name": "Configuration",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3467,
+              "src": "256:13:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Configuration_$3467",
+                "typeString": "library Configuration"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "250:44:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7728,
+              "name": "Configuration.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3269,
+              "src": "274:19:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3269_storage_ptr",
+                "typeString": "struct Configuration.State"
+              }
+            }
+          },
+          {
+            "id": 7732,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7730,
+              "name": "LiquidityPools",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5434,
+              "src": "305:14:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_LiquidityPools_$5434",
+                "typeString": "library LiquidityPools"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "299:46:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7731,
+              "name": "LiquidityPools.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4813,
+              "src": "324:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$4813_storage_ptr",
+                "typeString": "struct LiquidityPools.State"
+              }
+            }
+          },
+          {
+            "id": 7735,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7733,
+              "name": "DepositManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4794,
+              "src": "356:14:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DepositManager_$4794",
+                "typeString": "library DepositManager"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "350:46:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7734,
+              "name": "DepositManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3520,
+              "src": "375:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3520_storage_ptr",
+                "typeString": "struct DepositManager.State"
+              }
+            }
+          },
+          {
+            "id": 7738,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7736,
+              "name": "LoanManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7719,
+              "src": "407:11:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_LoanManager_$7719",
+                "typeString": "library LoanManager"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "401:40:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7737,
+              "name": "LoanManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5483,
+              "src": "423:17:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$5483_storage_ptr",
+                "typeString": "struct LoanManager.State"
+              }
+            }
+          },
+          {
+            "constant": false,
+            "id": 7740,
+            "mutability": "mutable",
+            "name": "_configuration",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "447:34:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$3269_storage",
+              "typeString": "struct Configuration.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7739,
+              "name": "Configuration.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3269,
+              "src": "447:19:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3269_storage_ptr",
+                "typeString": "struct Configuration.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7742,
+            "mutability": "mutable",
+            "name": "_liquidityPools",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "487:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$4813_storage",
+              "typeString": "struct LiquidityPools.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7741,
+              "name": "LiquidityPools.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4813,
+              "src": "487:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$4813_storage_ptr",
+                "typeString": "struct LiquidityPools.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7744,
+            "mutability": "mutable",
+            "name": "_depositManager",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "529:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$3520_storage",
+              "typeString": "struct DepositManager.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7743,
+              "name": "DepositManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3520,
+              "src": "529:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3520_storage_ptr",
+                "typeString": "struct DepositManager.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7746,
+            "mutability": "mutable",
+            "name": "_loanManager",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "571:30:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$5483_storage",
+              "typeString": "struct LoanManager.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7745,
+              "name": "LoanManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5483,
+              "src": "571:17:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$5483_storage_ptr",
+                "typeString": "struct LoanManager.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 7760,
+              "nodeType": "Block",
+              "src": "701:73:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7756,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7748,
+                        "src": "741:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7757,
+                        "name": "priceOracle",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7750,
+                        "src": "755:11:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7753,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "711:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7755,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setPriceOracle",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3339,
+                      "src": "711:29:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_$_t_contract$_IPriceOracle_$1624_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address,contract IPriceOracle)"
+                      }
+                    },
+                    "id": 7758,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "711:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7759,
+                  "nodeType": "ExpressionStatement",
+                  "src": "711:56:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "67a74ddc",
+            "id": 7761,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPriceOracle",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7751,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7748,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7761,
+                  "src": "632:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7747,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "632:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7750,
+                  "mutability": "mutable",
+                  "name": "priceOracle",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7761,
+                  "src": "654:24:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                    "typeString": "contract IPriceOracle"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 7749,
+                    "name": "IPriceOracle",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1624,
+                    "src": "654:12:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                      "typeString": "contract IPriceOracle"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "631:48:22"
+            },
+            "returnParameters": {
+              "id": 7752,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "701:0:22"
+            },
+            "scope": 7901,
+            "src": "608:166:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7772,
+              "nodeType": "Block",
+              "src": "876:81:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7769,
+                        "name": "interestReserveAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7763,
+                        "src": "927:22:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7766,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "886:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7768,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setInterestReserveAddress",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3369,
+                      "src": "886:40:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_payable_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address payable)"
+                      }
+                    },
+                    "id": 7770,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "886:64:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7771,
+                  "nodeType": "ExpressionStatement",
+                  "src": "886:64:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "ddd99eeb",
+            "id": 7773,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setInterestReserveAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7764,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7763,
+                  "mutability": "mutable",
+                  "name": "interestReserveAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7773,
+                  "src": "815:38:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 7762,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "815:15:22",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "814:40:22"
+            },
+            "returnParameters": {
+              "id": 7765,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "876:0:22"
+            },
+            "scope": 7901,
+            "src": "780:177:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7784,
+              "nodeType": "Block",
+              "src": "1035:77:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7781,
+                        "name": "protocolReserveRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7775,
+                        "src": "1084:20:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7778,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "1045:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7780,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setProtocolReserveRatio",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3412,
+                      "src": "1045:38:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,uint256)"
+                      }
+                    },
+                    "id": 7782,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1045:60:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7783,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1045:60:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "27efcbfe",
+            "id": 7785,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setProtocolReserveRatio",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7775,
+                  "mutability": "mutable",
+                  "name": "protocolReserveRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7785,
+                  "src": "996:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7774,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "996:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "995:30:22"
+            },
+            "returnParameters": {
+              "id": 7777,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1035:0:22"
+            },
+            "scope": 7901,
+            "src": "963:149:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7799,
+              "nodeType": "Block",
+              "src": "1192:71:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7795,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7787,
+                        "src": "1231:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7796,
+                        "name": "balanceCap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7789,
+                        "src": "1245:10:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7792,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "1202:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7794,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setBalanceCap",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3466,
+                      "src": "1202:28:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address,uint256)"
+                      }
+                    },
+                    "id": 7797,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1202:54:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7798,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1202:54:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "e064e817",
+            "id": 7800,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBalanceCap",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7790,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7787,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7800,
+                  "src": "1141:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7786,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1141:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7789,
+                  "mutability": "mutable",
+                  "name": "balanceCap",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7800,
+                  "src": "1163:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7788,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1163:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1140:42:22"
+            },
+            "returnParameters": {
+              "id": 7791,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1192:0:22"
+            },
+            "scope": 7901,
+            "src": "1118:145:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7808,
+              "nodeType": "Block",
+              "src": "1389:61:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 7805,
+                      "name": "_configuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7740,
+                      "src": "1406:14:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_State_$3269_storage",
+                        "typeString": "struct Configuration.State storage ref"
+                      }
+                    },
+                    "id": 7806,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "interestReserveAddress",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 3258,
+                    "src": "1406:37:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 7804,
+                  "id": 7807,
+                  "nodeType": "Return",
+                  "src": "1399:44:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "83f99157",
+            "id": 7809,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getInterestReserveAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7801,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1303:2:22"
+            },
+            "returnParameters": {
+              "id": 7804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7803,
+                  "mutability": "mutable",
+                  "name": "interestReserveAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7809,
+                  "src": "1353:30:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7802,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1353:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1352:32:22"
+            },
+            "scope": 7901,
+            "src": "1269:181:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7817,
+              "nodeType": "Block",
+              "src": "1572:59:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 7814,
+                      "name": "_configuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7740,
+                      "src": "1589:14:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_State_$3269_storage",
+                        "typeString": "struct Configuration.State storage ref"
+                      }
+                    },
+                    "id": 7815,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "protocolReserveRatio",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 3256,
+                    "src": "1589:35:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7813,
+                  "id": 7816,
+                  "nodeType": "Return",
+                  "src": "1582:42:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "cebe314c",
+            "id": 7818,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProtocolReserveRatio",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7810,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1488:2:22"
+            },
+            "returnParameters": {
+              "id": 7813,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7812,
+                  "mutability": "mutable",
+                  "name": "protocolReserveRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7818,
+                  "src": "1538:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7811,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1538:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1537:30:22"
+            },
+            "scope": 7901,
+            "src": "1456:175:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7833,
+              "nodeType": "Block",
+              "src": "1769:80:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 7827,
+                            "name": "_configuration",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7740,
+                            "src": "1794:14:22",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_State_$3269_storage",
+                              "typeString": "struct Configuration.State storage ref"
+                            }
+                          },
+                          "id": 7828,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "priceOracleByToken",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 3262,
+                          "src": "1794:33:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IPriceOracle_$1624_$",
+                            "typeString": "mapping(address => contract IPriceOracle)"
+                          }
+                        },
+                        "id": 7830,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 7829,
+                          "name": "tokenAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7820,
+                          "src": "1828:12:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1794:47:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      ],
+                      "id": 7826,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "1786:7:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_address_$",
+                        "typeString": "type(address)"
+                      },
+                      "typeName": {
+                        "id": 7825,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1786:7:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": null,
+                          "typeString": null
+                        }
+                      }
+                    },
+                    "id": 7831,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1786:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 7824,
+                  "id": 7832,
+                  "nodeType": "Return",
+                  "src": "1779:63:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "d30f7b39",
+            "id": 7834,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPriceOracleAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7821,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7820,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7834,
+                  "src": "1668:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7819,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1668:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1667:22:22"
+            },
+            "returnParameters": {
+              "id": 7824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7823,
+                  "mutability": "mutable",
+                  "name": "priceOracleAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7834,
+                  "src": "1737:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7822,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1737:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1736:28:22"
+            },
+            "scope": 7901,
+            "src": "1637:212:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7847,
+              "nodeType": "Block",
+              "src": "1991:176:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7843,
+                        "name": "depositDistributorFeeRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7836,
+                        "src": "2079:26:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7844,
+                        "name": "loanDistributorFeeRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7838,
+                        "src": "2123:23:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7841,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "2020:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7842,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setMaxDistributorFeeRatios",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3441,
+                      "src": "2020:41:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_uint256_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,uint256,uint256)"
+                      }
+                    },
+                    "id": 7845,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2020:140:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "functionReturnParameters": 7840,
+                  "id": 7846,
+                  "nodeType": "Return",
+                  "src": "2001:159:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "a04360b6",
+            "id": 7848,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMaxDistributorFeeRatios",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7839,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7836,
+                  "mutability": "mutable",
+                  "name": "depositDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7848,
+                  "src": "1900:34:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7835,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1900:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7838,
+                  "mutability": "mutable",
+                  "name": "loanDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7848,
+                  "src": "1944:31:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7837,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1944:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1890:91:22"
+            },
+            "returnParameters": {
+              "id": 7840,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1991:0:22"
+            },
+            "scope": 7901,
+            "src": "1855:312:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7861,
+              "nodeType": "Block",
+              "src": "2365:141:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 7855,
+                          "name": "_configuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7740,
+                          "src": "2396:14:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_State_$3269_storage",
+                            "typeString": "struct Configuration.State storage ref"
+                          }
+                        },
+                        "id": 7856,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "depositDistributorFeeRatio",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3252,
+                        "src": "2396:41:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 7857,
+                          "name": "_configuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7740,
+                          "src": "2451:14:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_State_$3269_storage",
+                            "typeString": "struct Configuration.State storage ref"
+                          }
+                        },
+                        "id": 7858,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "loanDistributorFeeRatio",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3254,
+                        "src": "2451:38:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 7859,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "2382:117:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                      "typeString": "tuple(uint256,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 7854,
+                  "id": 7860,
+                  "nodeType": "Return",
+                  "src": "2375:124:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "a461279e",
+            "id": 7862,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMaxDistributorFeeRatios",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7849,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2208:2:22"
+            },
+            "returnParameters": {
+              "id": 7854,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7851,
+                  "mutability": "mutable",
+                  "name": "depositDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7862,
+                  "src": "2271:34:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7850,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2271:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7853,
+                  "mutability": "mutable",
+                  "name": "loanDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7862,
+                  "src": "2319:31:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7852,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2319:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2257:103:22"
+            },
+            "scope": 7901,
+            "src": "2173:333:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7874,
+              "nodeType": "Block",
+              "src": "2628:70:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7869,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "2645:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7870,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balanceCapByToken",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3266,
+                      "src": "2645:32:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 7872,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 7871,
+                      "name": "tokenAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7864,
+                      "src": "2678:12:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2645:46:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7868,
+                  "id": 7873,
+                  "nodeType": "Return",
+                  "src": "2638:53:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "07a7f159",
+            "id": 7875,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBalanceCap",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7865,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7864,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7875,
+                  "src": "2535:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7863,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2535:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2534:22:22"
+            },
+            "returnParameters": {
+              "id": 7868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7867,
+                  "mutability": "mutable",
+                  "name": "balanceCap",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7875,
+                  "src": "2604:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7866,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2604:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2603:20:22"
+            },
+            "scope": 7901,
+            "src": "2512:186:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7886,
+              "nodeType": "Block",
+              "src": "2785:65:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7883,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7877,
+                        "src": "2830:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7880,
+                        "name": "_depositManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7744,
+                        "src": "2795:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3520_storage",
+                          "typeString": "struct DepositManager.State storage ref"
+                        }
+                      },
+                      "id": 7882,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "enableDepositToken",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3911,
+                      "src": "2795:34:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3520_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_State_$3520_storage_ptr_$",
+                        "typeString": "function (struct DepositManager.State storage pointer,address)"
+                      }
+                    },
+                    "id": 7884,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2795:48:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7885,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2795:48:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "ebd7445f",
+            "id": 7887,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableDepositToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7877,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7887,
+                  "src": "2754:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7876,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2754:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2753:22:22"
+            },
+            "returnParameters": {
+              "id": 7879,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2785:0:22"
+            },
+            "scope": 7901,
+            "src": "2726:124:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7899,
+              "nodeType": "Block",
+              "src": "2906:73:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7895,
+                        "name": "_liquidityPools",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7742,
+                        "src": "2950:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$4813_storage",
+                          "typeString": "struct LiquidityPools.State storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7896,
+                        "name": "term",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7889,
+                        "src": "2967:4:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_State_$4813_storage",
+                          "typeString": "struct LiquidityPools.State storage ref"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7892,
+                        "name": "_depositManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7744,
+                        "src": "2916:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3520_storage",
+                          "typeString": "struct DepositManager.State storage ref"
+                        }
+                      },
+                      "id": 7894,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "enableDepositTerm",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3790,
+                      "src": "2916:33:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3520_storage_ptr_$_t_struct$_State_$4813_storage_ptr_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3520_storage_ptr_$",
+                        "typeString": "function (struct DepositManager.State storage pointer,struct LiquidityPools.State storage pointer,uint256)"
+                      }
+                    },
+                    "id": 7897,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2916:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7898,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2916:56:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "94a68ef7",
+            "id": 7900,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableDepositTerm",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7889,
+                  "mutability": "mutable",
+                  "name": "term",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7900,
+                  "src": "2883:12:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7888,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2883:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2882:14:22"
+            },
+            "returnParameters": {
+              "id": 7891,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2906:0:22"
+            },
+            "scope": 7901,
+            "src": "2856:123:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7902,
+        "src": "217:2764:22"
+      }
+    ],
+    "src": "0:2982:22"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/mock/ConfigurationMock.sol",
+    "exportedSymbols": {
+      "ConfigurationMock": [
+        7901
+      ]
+    },
+    "id": 7902,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7721,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+        "file": "../../oracle/interface/IPriceOracle.sol",
+        "id": 7722,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 1625,
+        "src": "25:49:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/Configuration.sol",
+        "file": "../lib/Configuration.sol",
+        "id": 7723,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 3468,
+        "src": "75:34:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LiquidityPools.sol",
+        "file": "../lib/LiquidityPools.sol",
+        "id": 7724,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 5435,
+        "src": "110:35:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/DepositManager.sol",
+        "file": "../lib/DepositManager.sol",
+        "id": 7725,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 4795,
+        "src": "146:35:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/lib/LoanManager.sol",
+        "file": "../lib/LoanManager.sol",
+        "id": 7726,
+        "nodeType": "ImportDirective",
+        "scope": 7902,
+        "sourceUnit": 7720,
+        "src": "182:32:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7901,
+        "linearizedBaseContracts": [
+          7901
+        ],
+        "name": "ConfigurationMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 7729,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7727,
+              "name": "Configuration",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3467,
+              "src": "256:13:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Configuration_$3467",
+                "typeString": "library Configuration"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "250:44:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7728,
+              "name": "Configuration.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3269,
+              "src": "274:19:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3269_storage_ptr",
+                "typeString": "struct Configuration.State"
+              }
+            }
+          },
+          {
+            "id": 7732,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7730,
+              "name": "LiquidityPools",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5434,
+              "src": "305:14:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_LiquidityPools_$5434",
+                "typeString": "library LiquidityPools"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "299:46:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7731,
+              "name": "LiquidityPools.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4813,
+              "src": "324:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$4813_storage_ptr",
+                "typeString": "struct LiquidityPools.State"
+              }
+            }
+          },
+          {
+            "id": 7735,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7733,
+              "name": "DepositManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4794,
+              "src": "356:14:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DepositManager_$4794",
+                "typeString": "library DepositManager"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "350:46:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7734,
+              "name": "DepositManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3520,
+              "src": "375:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3520_storage_ptr",
+                "typeString": "struct DepositManager.State"
+              }
+            }
+          },
+          {
+            "id": 7738,
+            "libraryName": {
+              "contractScope": null,
+              "id": 7736,
+              "name": "LoanManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7719,
+              "src": "407:11:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_LoanManager_$7719",
+                "typeString": "library LoanManager"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "401:40:22",
+            "typeName": {
+              "contractScope": null,
+              "id": 7737,
+              "name": "LoanManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5483,
+              "src": "423:17:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$5483_storage_ptr",
+                "typeString": "struct LoanManager.State"
+              }
+            }
+          },
+          {
+            "constant": false,
+            "id": 7740,
+            "mutability": "mutable",
+            "name": "_configuration",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "447:34:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$3269_storage",
+              "typeString": "struct Configuration.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7739,
+              "name": "Configuration.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3269,
+              "src": "447:19:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3269_storage_ptr",
+                "typeString": "struct Configuration.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7742,
+            "mutability": "mutable",
+            "name": "_liquidityPools",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "487:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$4813_storage",
+              "typeString": "struct LiquidityPools.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7741,
+              "name": "LiquidityPools.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4813,
+              "src": "487:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$4813_storage_ptr",
+                "typeString": "struct LiquidityPools.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7744,
+            "mutability": "mutable",
+            "name": "_depositManager",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "529:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$3520_storage",
+              "typeString": "struct DepositManager.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7743,
+              "name": "DepositManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3520,
+              "src": "529:20:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$3520_storage_ptr",
+                "typeString": "struct DepositManager.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7746,
+            "mutability": "mutable",
+            "name": "_loanManager",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 7901,
+            "src": "571:30:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_State_$5483_storage",
+              "typeString": "struct LoanManager.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 7745,
+              "name": "LoanManager.State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5483,
+              "src": "571:17:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_State_$5483_storage_ptr",
+                "typeString": "struct LoanManager.State"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 7760,
+              "nodeType": "Block",
+              "src": "701:73:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7756,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7748,
+                        "src": "741:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7757,
+                        "name": "priceOracle",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7750,
+                        "src": "755:11:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7753,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "711:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7755,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setPriceOracle",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3339,
+                      "src": "711:29:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_$_t_contract$_IPriceOracle_$1624_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address,contract IPriceOracle)"
+                      }
+                    },
+                    "id": 7758,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "711:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7759,
+                  "nodeType": "ExpressionStatement",
+                  "src": "711:56:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "67a74ddc",
+            "id": 7761,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPriceOracle",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7751,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7748,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7761,
+                  "src": "632:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7747,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "632:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7750,
+                  "mutability": "mutable",
+                  "name": "priceOracle",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7761,
+                  "src": "654:24:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                    "typeString": "contract IPriceOracle"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 7749,
+                    "name": "IPriceOracle",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1624,
+                    "src": "654:12:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                      "typeString": "contract IPriceOracle"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "631:48:22"
+            },
+            "returnParameters": {
+              "id": 7752,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "701:0:22"
+            },
+            "scope": 7901,
+            "src": "608:166:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7772,
+              "nodeType": "Block",
+              "src": "876:81:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7769,
+                        "name": "interestReserveAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7763,
+                        "src": "927:22:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7766,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "886:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7768,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setInterestReserveAddress",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3369,
+                      "src": "886:40:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_payable_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address payable)"
+                      }
+                    },
+                    "id": 7770,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "886:64:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7771,
+                  "nodeType": "ExpressionStatement",
+                  "src": "886:64:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "ddd99eeb",
+            "id": 7773,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setInterestReserveAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7764,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7763,
+                  "mutability": "mutable",
+                  "name": "interestReserveAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7773,
+                  "src": "815:38:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 7762,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "815:15:22",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "814:40:22"
+            },
+            "returnParameters": {
+              "id": 7765,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "876:0:22"
+            },
+            "scope": 7901,
+            "src": "780:177:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7784,
+              "nodeType": "Block",
+              "src": "1035:77:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7781,
+                        "name": "protocolReserveRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7775,
+                        "src": "1084:20:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7778,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "1045:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7780,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setProtocolReserveRatio",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3412,
+                      "src": "1045:38:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,uint256)"
+                      }
+                    },
+                    "id": 7782,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1045:60:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7783,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1045:60:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "27efcbfe",
+            "id": 7785,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setProtocolReserveRatio",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7775,
+                  "mutability": "mutable",
+                  "name": "protocolReserveRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7785,
+                  "src": "996:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7774,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "996:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "995:30:22"
+            },
+            "returnParameters": {
+              "id": 7777,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1035:0:22"
+            },
+            "scope": 7901,
+            "src": "963:149:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7799,
+              "nodeType": "Block",
+              "src": "1192:71:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7795,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7787,
+                        "src": "1231:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7796,
+                        "name": "balanceCap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7789,
+                        "src": "1245:10:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7792,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "1202:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7794,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setBalanceCap",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3466,
+                      "src": "1202:28:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_address_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,address,uint256)"
+                      }
+                    },
+                    "id": 7797,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1202:54:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7798,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1202:54:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "e064e817",
+            "id": 7800,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBalanceCap",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7790,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7787,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7800,
+                  "src": "1141:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7786,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1141:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7789,
+                  "mutability": "mutable",
+                  "name": "balanceCap",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7800,
+                  "src": "1163:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7788,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1163:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1140:42:22"
+            },
+            "returnParameters": {
+              "id": 7791,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1192:0:22"
+            },
+            "scope": 7901,
+            "src": "1118:145:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7808,
+              "nodeType": "Block",
+              "src": "1389:61:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 7805,
+                      "name": "_configuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7740,
+                      "src": "1406:14:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_State_$3269_storage",
+                        "typeString": "struct Configuration.State storage ref"
+                      }
+                    },
+                    "id": 7806,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "interestReserveAddress",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 3258,
+                    "src": "1406:37:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 7804,
+                  "id": 7807,
+                  "nodeType": "Return",
+                  "src": "1399:44:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "83f99157",
+            "id": 7809,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getInterestReserveAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7801,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1303:2:22"
+            },
+            "returnParameters": {
+              "id": 7804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7803,
+                  "mutability": "mutable",
+                  "name": "interestReserveAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7809,
+                  "src": "1353:30:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7802,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1353:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1352:32:22"
+            },
+            "scope": 7901,
+            "src": "1269:181:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7817,
+              "nodeType": "Block",
+              "src": "1572:59:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 7814,
+                      "name": "_configuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7740,
+                      "src": "1589:14:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_State_$3269_storage",
+                        "typeString": "struct Configuration.State storage ref"
+                      }
+                    },
+                    "id": 7815,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "protocolReserveRatio",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 3256,
+                    "src": "1589:35:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7813,
+                  "id": 7816,
+                  "nodeType": "Return",
+                  "src": "1582:42:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "cebe314c",
+            "id": 7818,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProtocolReserveRatio",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7810,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1488:2:22"
+            },
+            "returnParameters": {
+              "id": 7813,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7812,
+                  "mutability": "mutable",
+                  "name": "protocolReserveRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7818,
+                  "src": "1538:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7811,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1538:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1537:30:22"
+            },
+            "scope": 7901,
+            "src": "1456:175:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7833,
+              "nodeType": "Block",
+              "src": "1769:80:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 7827,
+                            "name": "_configuration",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7740,
+                            "src": "1794:14:22",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_State_$3269_storage",
+                              "typeString": "struct Configuration.State storage ref"
+                            }
+                          },
+                          "id": 7828,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "priceOracleByToken",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 3262,
+                          "src": "1794:33:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IPriceOracle_$1624_$",
+                            "typeString": "mapping(address => contract IPriceOracle)"
+                          }
+                        },
+                        "id": 7830,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 7829,
+                          "name": "tokenAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7820,
+                          "src": "1828:12:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1794:47:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                          "typeString": "contract IPriceOracle"
+                        }
+                      ],
+                      "id": 7826,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "1786:7:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_address_$",
+                        "typeString": "type(address)"
+                      },
+                      "typeName": {
+                        "id": 7825,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1786:7:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": null,
+                          "typeString": null
+                        }
+                      }
+                    },
+                    "id": 7831,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1786:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 7824,
+                  "id": 7832,
+                  "nodeType": "Return",
+                  "src": "1779:63:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "d30f7b39",
+            "id": 7834,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPriceOracleAddress",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7821,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7820,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7834,
+                  "src": "1668:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7819,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1668:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1667:22:22"
+            },
+            "returnParameters": {
+              "id": 7824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7823,
+                  "mutability": "mutable",
+                  "name": "priceOracleAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7834,
+                  "src": "1737:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7822,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1737:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1736:28:22"
+            },
+            "scope": 7901,
+            "src": "1637:212:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7847,
+              "nodeType": "Block",
+              "src": "1991:176:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7843,
+                        "name": "depositDistributorFeeRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7836,
+                        "src": "2079:26:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7844,
+                        "name": "loanDistributorFeeRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7838,
+                        "src": "2123:23:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7841,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "2020:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7842,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "setMaxDistributorFeeRatios",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3441,
+                      "src": "2020:41:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3269_storage_ptr_$_t_uint256_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3269_storage_ptr_$",
+                        "typeString": "function (struct Configuration.State storage pointer,uint256,uint256)"
+                      }
+                    },
+                    "id": 7845,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2020:140:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "functionReturnParameters": 7840,
+                  "id": 7846,
+                  "nodeType": "Return",
+                  "src": "2001:159:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "a04360b6",
+            "id": 7848,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMaxDistributorFeeRatios",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7839,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7836,
+                  "mutability": "mutable",
+                  "name": "depositDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7848,
+                  "src": "1900:34:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7835,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1900:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7838,
+                  "mutability": "mutable",
+                  "name": "loanDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7848,
+                  "src": "1944:31:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7837,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1944:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1890:91:22"
+            },
+            "returnParameters": {
+              "id": 7840,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1991:0:22"
+            },
+            "scope": 7901,
+            "src": "1855:312:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7861,
+              "nodeType": "Block",
+              "src": "2365:141:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 7855,
+                          "name": "_configuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7740,
+                          "src": "2396:14:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_State_$3269_storage",
+                            "typeString": "struct Configuration.State storage ref"
+                          }
+                        },
+                        "id": 7856,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "depositDistributorFeeRatio",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3252,
+                        "src": "2396:41:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 7857,
+                          "name": "_configuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7740,
+                          "src": "2451:14:22",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_State_$3269_storage",
+                            "typeString": "struct Configuration.State storage ref"
+                          }
+                        },
+                        "id": 7858,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "loanDistributorFeeRatio",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3254,
+                        "src": "2451:38:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 7859,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "2382:117:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                      "typeString": "tuple(uint256,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 7854,
+                  "id": 7860,
+                  "nodeType": "Return",
+                  "src": "2375:124:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "a461279e",
+            "id": 7862,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMaxDistributorFeeRatios",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7849,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2208:2:22"
+            },
+            "returnParameters": {
+              "id": 7854,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7851,
+                  "mutability": "mutable",
+                  "name": "depositDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7862,
+                  "src": "2271:34:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7850,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2271:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7853,
+                  "mutability": "mutable",
+                  "name": "loanDistributorFeeRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7862,
+                  "src": "2319:31:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7852,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2319:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2257:103:22"
+            },
+            "scope": 7901,
+            "src": "2173:333:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7874,
+              "nodeType": "Block",
+              "src": "2628:70:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7869,
+                        "name": "_configuration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7740,
+                        "src": "2645:14:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3269_storage",
+                          "typeString": "struct Configuration.State storage ref"
+                        }
+                      },
+                      "id": 7870,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balanceCapByToken",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3266,
+                      "src": "2645:32:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 7872,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 7871,
+                      "name": "tokenAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7864,
+                      "src": "2678:12:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2645:46:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7868,
+                  "id": 7873,
+                  "nodeType": "Return",
+                  "src": "2638:53:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "07a7f159",
+            "id": 7875,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBalanceCap",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7865,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7864,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7875,
+                  "src": "2535:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7863,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2535:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2534:22:22"
+            },
+            "returnParameters": {
+              "id": 7868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7867,
+                  "mutability": "mutable",
+                  "name": "balanceCap",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7875,
+                  "src": "2604:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7866,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2604:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2603:20:22"
+            },
+            "scope": 7901,
+            "src": "2512:186:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7886,
+              "nodeType": "Block",
+              "src": "2785:65:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7883,
+                        "name": "tokenAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7877,
+                        "src": "2830:12:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7880,
+                        "name": "_depositManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7744,
+                        "src": "2795:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3520_storage",
+                          "typeString": "struct DepositManager.State storage ref"
+                        }
+                      },
+                      "id": 7882,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "enableDepositToken",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3911,
+                      "src": "2795:34:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3520_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_State_$3520_storage_ptr_$",
+                        "typeString": "function (struct DepositManager.State storage pointer,address)"
+                      }
+                    },
+                    "id": 7884,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2795:48:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7885,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2795:48:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "ebd7445f",
+            "id": 7887,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableDepositToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7877,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7887,
+                  "src": "2754:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7876,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2754:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2753:22:22"
+            },
+            "returnParameters": {
+              "id": 7879,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2785:0:22"
+            },
+            "scope": 7901,
+            "src": "2726:124:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7899,
+              "nodeType": "Block",
+              "src": "2906:73:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 7895,
+                        "name": "_liquidityPools",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7742,
+                        "src": "2950:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$4813_storage",
+                          "typeString": "struct LiquidityPools.State storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 7896,
+                        "name": "term",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7889,
+                        "src": "2967:4:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_State_$4813_storage",
+                          "typeString": "struct LiquidityPools.State storage ref"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 7892,
+                        "name": "_depositManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7744,
+                        "src": "2916:15:22",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_State_$3520_storage",
+                          "typeString": "struct DepositManager.State storage ref"
+                        }
+                      },
+                      "id": 7894,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "enableDepositTerm",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3790,
+                      "src": "2916:33:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_delegatecall_nonpayable$_t_struct$_State_$3520_storage_ptr_$_t_struct$_State_$4813_storage_ptr_$_t_uint256_$returns$__$bound_to$_t_struct$_State_$3520_storage_ptr_$",
+                        "typeString": "function (struct DepositManager.State storage pointer,struct LiquidityPools.State storage pointer,uint256)"
+                      }
+                    },
+                    "id": 7897,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2916:56:22",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7898,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2916:56:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "94a68ef7",
+            "id": 7900,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableDepositTerm",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7889,
+                  "mutability": "mutable",
+                  "name": "term",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7900,
+                  "src": "2883:12:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7888,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2883:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2882:14:22"
+            },
+            "returnParameters": {
+              "id": 7891,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2906:0:22"
+            },
+            "scope": 7901,
+            "src": "2856:123:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7902,
+        "src": "217:2764:22"
+      }
+    ],
+    "src": "0:2982:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.7+commit.b8d736ae.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-09-15T02:50:37.535Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

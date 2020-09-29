@@ -1,0 +1,774 @@
+{
+  "contractName": "FixedPriceOracle",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "updatePriceIfNeeded",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updatePriceIfNeeded\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{},\"title\":\"Price oracle that returns a fixed price in USD.\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/FixedPriceOracle.sol\":\"FixedPriceOracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/FixedPriceOracle.sol\":{\"keccak256\":\"0xbbd3b85e61790d9070bb3aa84b929e528700f71edc031cf81f3dfe0ba7dca859\",\"urls\":[\"bzz-raw://0e3750322a6b26618790a3e58ab084714d6d6cd7fd87d9f83b42d8cfeb97fe63\",\"dweb:/ipfs/QmbPfjyx1wHXVcobENcZsPgBiaibK7DbLxZ7e4x3Nxpxe9\"]},\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol\":{\"keccak256\":\"0x42c495a83bb5c2c10bacfd3066eda87fe1a91c6511683ebc60d12effacee1510\",\"urls\":[\"bzz-raw://931f4a8bf80c3ed00fbe94639695273e7ecd343b3ee317cf2852100b7eeb4a98\",\"dweb:/ipfs/Qmdtk2ZnkwCMRxe1YznF5KEyrS52Gkicogmom2Z1vs5zz1\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100db3803806100db8339818101604052602081101561003357600080fd5b50516000556095806100466000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c806398d5fdca146037578063f62fb7d214604f575b600080fd5b603d6057565b60408051918252519081900360200190f35b6055605d565b005b60005490565b56fea2646970667358221220e9e74c67be53c352e2dedfd8bcd6fd61457cc4f06e4e1fe3e39e0de65f95fc7e64736f6c63430006070033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c806398d5fdca146037578063f62fb7d214604f575b600080fd5b603d6057565b60408051918252519081900360200190f35b6055605d565b005b60005490565b56fea2646970667358221220e9e74c67be53c352e2dedfd8bcd6fd61457cc4f06e4e1fe3e39e0de65f95fc7e64736f6c63430006070033",
+  "immutableReferences": {},
+  "sourceMap": "125:319:10:-:0;;;202:65;5:9:-1;2:2;;;27:1;24;17:12;2:2;202:65:10;;;;;;;;;;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;202:65:10;246:6;:14;125:319;;;;;;",
+  "deployedSourceMap": "125:319:10:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;125:319:10;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;351:91:10;;;:::i;:::-;;;;;;;;;;;;;;;;273:72;;;:::i;:::-;;351:91;403:7;429:6;351:91;:::o;273:72::-;:::o",
+  "source": "pragma solidity ^0.6.7;\n\nimport './interface/IPriceOracle.sol';\n\n\n/// @title Price oracle that returns a fixed price in USD.\ncontract FixedPriceOracle is IPriceOracle {\n    uint256 private _price;\n\n    constructor(uint256 price) public {\n        _price = price;\n    }\n\n    function updatePriceIfNeeded() external override {\n        return;\n    }\n\n    function getPrice() external override view returns (uint256) {\n        return _price;\n    }\n}\n",
+  "sourcePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/FixedPriceOracle.sol",
+  "ast": {
+    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/FixedPriceOracle.sol",
+    "exportedSymbols": {
+      "FixedPriceOracle": [
+        1559
+      ]
+    },
+    "id": 1560,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1527,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+        "file": "./interface/IPriceOracle.sol",
+        "id": 1528,
+        "nodeType": "ImportDirective",
+        "scope": 1560,
+        "sourceUnit": 1625,
+        "src": "25:38:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1530,
+              "name": "IPriceOracle",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1624,
+              "src": "154:12:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                "typeString": "contract IPriceOracle"
+              }
+            },
+            "id": 1531,
+            "nodeType": "InheritanceSpecifier",
+            "src": "154:12:10"
+          }
+        ],
+        "contractDependencies": [
+          1624
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1529,
+          "nodeType": "StructuredDocumentation",
+          "src": "66:59:10",
+          "text": "@title Price oracle that returns a fixed price in USD."
+        },
+        "fullyImplemented": true,
+        "id": 1559,
+        "linearizedBaseContracts": [
+          1559,
+          1624
+        ],
+        "name": "FixedPriceOracle",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 1533,
+            "mutability": "mutable",
+            "name": "_price",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1559,
+            "src": "173:22:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1532,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "173:7:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 1542,
+              "nodeType": "Block",
+              "src": "236:31:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1540,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1538,
+                      "name": "_price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1533,
+                      "src": "246:6:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1539,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1535,
+                      "src": "255:5:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "246:14:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1541,
+                  "nodeType": "ExpressionStatement",
+                  "src": "246:14:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1543,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1536,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1535,
+                  "mutability": "mutable",
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1543,
+                  "src": "214:13:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1534,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:15:10"
+            },
+            "returnParameters": {
+              "id": 1537,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "236:0:10"
+            },
+            "scope": 1559,
+            "src": "202:65:10",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              1617
+            ],
+            "body": {
+              "id": 1548,
+              "nodeType": "Block",
+              "src": "322:23:10",
+              "statements": [
+                {
+                  "expression": null,
+                  "functionReturnParameters": 1546,
+                  "id": 1547,
+                  "nodeType": "Return",
+                  "src": "332:7:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "f62fb7d2",
+            "id": 1549,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updatePriceIfNeeded",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1545,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "313:8:10"
+            },
+            "parameters": {
+              "id": 1544,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "301:2:10"
+            },
+            "returnParameters": {
+              "id": 1546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "322:0:10"
+            },
+            "scope": 1559,
+            "src": "273:72:10",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "baseFunctions": [
+              1623
+            ],
+            "body": {
+              "id": 1557,
+              "nodeType": "Block",
+              "src": "412:30:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1555,
+                    "name": "_price",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1533,
+                    "src": "429:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1554,
+                  "id": 1556,
+                  "nodeType": "Return",
+                  "src": "422:13:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "98d5fdca",
+            "id": 1558,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPrice",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1551,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "380:8:10"
+            },
+            "parameters": {
+              "id": 1550,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "368:2:10"
+            },
+            "returnParameters": {
+              "id": 1554,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1553,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1558,
+                  "src": "403:7:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1552,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "403:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "402:9:10"
+            },
+            "scope": 1559,
+            "src": "351:91:10",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1560,
+        "src": "125:319:10"
+      }
+    ],
+    "src": "0:445:10"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/FixedPriceOracle.sol",
+    "exportedSymbols": {
+      "FixedPriceOracle": [
+        1559
+      ]
+    },
+    "id": 1560,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1527,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+        "file": "./interface/IPriceOracle.sol",
+        "id": 1528,
+        "nodeType": "ImportDirective",
+        "scope": 1560,
+        "sourceUnit": 1625,
+        "src": "25:38:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1530,
+              "name": "IPriceOracle",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1624,
+              "src": "154:12:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IPriceOracle_$1624",
+                "typeString": "contract IPriceOracle"
+              }
+            },
+            "id": 1531,
+            "nodeType": "InheritanceSpecifier",
+            "src": "154:12:10"
+          }
+        ],
+        "contractDependencies": [
+          1624
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1529,
+          "nodeType": "StructuredDocumentation",
+          "src": "66:59:10",
+          "text": "@title Price oracle that returns a fixed price in USD."
+        },
+        "fullyImplemented": true,
+        "id": 1559,
+        "linearizedBaseContracts": [
+          1559,
+          1624
+        ],
+        "name": "FixedPriceOracle",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 1533,
+            "mutability": "mutable",
+            "name": "_price",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1559,
+            "src": "173:22:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1532,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "173:7:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 1542,
+              "nodeType": "Block",
+              "src": "236:31:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1540,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1538,
+                      "name": "_price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1533,
+                      "src": "246:6:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1539,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1535,
+                      "src": "255:5:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "246:14:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1541,
+                  "nodeType": "ExpressionStatement",
+                  "src": "246:14:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1543,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1536,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1535,
+                  "mutability": "mutable",
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1543,
+                  "src": "214:13:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1534,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:15:10"
+            },
+            "returnParameters": {
+              "id": 1537,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "236:0:10"
+            },
+            "scope": 1559,
+            "src": "202:65:10",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              1617
+            ],
+            "body": {
+              "id": 1548,
+              "nodeType": "Block",
+              "src": "322:23:10",
+              "statements": [
+                {
+                  "expression": null,
+                  "functionReturnParameters": 1546,
+                  "id": 1547,
+                  "nodeType": "Return",
+                  "src": "332:7:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "f62fb7d2",
+            "id": 1549,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updatePriceIfNeeded",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1545,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "313:8:10"
+            },
+            "parameters": {
+              "id": 1544,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "301:2:10"
+            },
+            "returnParameters": {
+              "id": 1546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "322:0:10"
+            },
+            "scope": 1559,
+            "src": "273:72:10",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "baseFunctions": [
+              1623
+            ],
+            "body": {
+              "id": 1557,
+              "nodeType": "Block",
+              "src": "412:30:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1555,
+                    "name": "_price",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1533,
+                    "src": "429:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1554,
+                  "id": 1556,
+                  "nodeType": "Return",
+                  "src": "422:13:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "98d5fdca",
+            "id": 1558,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPrice",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1551,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "380:8:10"
+            },
+            "parameters": {
+              "id": 1550,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "368:2:10"
+            },
+            "returnParameters": {
+              "id": 1554,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1553,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1558,
+                  "src": "403:7:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1552,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "403:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "402:9:10"
+            },
+            "scope": 1559,
+            "src": "351:91:10",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1560,
+        "src": "125:319:10"
+      }
+    ],
+    "src": "0:445:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.7+commit.b8d736ae.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-09-15T02:50:37.463Z",
+  "devdoc": {
+    "methods": {},
+    "title": "Price oracle that returns a fixed price in USD."
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
