@@ -1,9 +1,9 @@
-import { BigNumber, Contract, ethers } from 'ethers';
-import { observable } from 'mobx';
-import { IDistributionFeeRatios, IPool, IToken, IViewModel } from './Types';
-import dayjs from 'dayjs';
-import BaseViewModel from './BaseViewModel';
-import { DistributorAddress, ETHAddress } from '../services/Constants';
+import { BigNumber, ethers } from "ethers";
+import { observable } from "mobx";
+import { IPool, IToken, IViewModel } from "./Types";
+import dayjs from "dayjs";
+import BaseViewModel from "./BaseViewModel";
+import { DistributorAddress, ETHAddress } from "../services/Constants";
 
 interface IDepositViewModel extends IViewModel {
   tokens: IToken[];
@@ -16,7 +16,7 @@ export default class DepositViewModel extends BaseViewModel {
   @observable selectedDays = 1;
   @observable apr = 0;
   @observable term = 0;
-  @observable maturityDate = dayjs().format('YYYY-MM-DD');
+  @observable maturityDate = dayjs().format("YYYY-MM-DD");
   @observable currentToken!: IToken;
   @observable recommends: { days: number; apr: number }[] = [];
   @observable loading = true;
@@ -41,9 +41,7 @@ export default class DepositViewModel extends BaseViewModel {
   }
 
   selectToken = async (name: string) => {
-    this.currentToken = this.params.tokens.find(
-      (t) => t.name.toLowerCase() === name.toLowerCase(),
-    )!;
+    this.currentToken = this.params.tokens.find((t) => t.name.toLowerCase() === name.toLowerCase())!;
 
     if (this.currentToken.pools) return;
     this.loading = true;
@@ -68,14 +66,14 @@ export default class DepositViewModel extends BaseViewModel {
 
   peekTerm = (date: Date) => {
     if (this.minDate === date) return;
-    const term = dayjs(date).diff(this.now, 'd');
-    const accurate = dayjs(date).diff(this.now, 'minute');
+    const term = dayjs(date).diff(this.now, "d");
+    const accurate = dayjs(date).diff(this.now, "minute");
 
     const targetPool = this.currentToken?.pools?.[term];
 
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.lendAPR ?? 0;
-    this.maturityDate = dayjs(date).format('YYYY-MM-DD');
+    this.maturityDate = dayjs(date).format("YYYY-MM-DD");
 
     return targetPool;
   };
@@ -99,12 +97,12 @@ export default class DepositViewModel extends BaseViewModel {
   deposit = async () => {
     const { protocol } = this.params;
     const token = this.currentToken;
-    const tokenWei = ethers.utils.parseUnits(this.inputValue ?? '0', token.decimals).toString();
+    const tokenWei = ethers.utils.parseUnits(this.inputValue ?? "0", token.decimals).toString();
 
     if (!token.allowance?.gte(tokenWei)) {
       await token.contract?.approve(
         protocol.address,
-        '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
       );
     }
 
@@ -112,12 +110,12 @@ export default class DepositViewModel extends BaseViewModel {
 
     const tx = await protocol.deposit(
       token.address,
-      isETH ? '0' : tokenWei,
+      isETH ? "0" : tokenWei,
       this.selectedPool!.term.toString(),
       DistributorAddress,
       {
-        value: isETH ? tokenWei : '0',
-      },
+        value: isETH ? tokenWei : "0",
+      }
     );
 
     this.sending = true;
