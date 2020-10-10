@@ -175,7 +175,7 @@ export class ViewModelLocator extends EventEmitter {
       return this._loanVM;
     }
 
-    if (!this.depositTerms) return;
+    if (!this.depositTerms) return undefined;
 
     const maxTerm = this.depositTerms.map((t) => t.toNumber()).sort()[this.depositTerms.length - 1];
     this._loanVM = new LoanViewModel({

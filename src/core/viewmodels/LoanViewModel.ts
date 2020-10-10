@@ -1,10 +1,10 @@
-import { BigNumber, Contract, ethers } from "ethers";
+import { ethers } from "ethers";
 import { computed, observable } from "mobx";
-import { IDistributionFeeRatios, ILoanPair, IPool, IToken, IViewModel } from "./Types";
+import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import dayjs from "dayjs";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 import BaseViewModel from "./BaseViewModel";
-import { calcCollateralAmount, calcCollateralRatio } from "../services/Math";
+import { calcCollateralRatio } from "../services/Math";
 
 interface ILoanViewModel extends IViewModel {
   loanPairs: ILoanPair[];
