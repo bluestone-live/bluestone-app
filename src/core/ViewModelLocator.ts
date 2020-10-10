@@ -1,0 +1,163 @@
+import { Metamask } from 'ethpay.core';
+import ethers, { BigNumber, Contract } from 'ethers';
+import { abi as ProtocolAbi } from '../contracts/Protocol.json';
+import { abi as ERC20Abi } from '../contracts/ERC20.json';
+import { abi as InterestModelAbi } from '../contracts/InterestModel.json';
+import { IDistributionFeeRatios, IToken } from './viewmodels/Types';
+import { EventEmitter } from 'events';
+import { ETHAddress } from './services/Constants';
+
+export class ViewModelLocator extends EventEmitter {
+  static readonly instance = new ViewModelLocator();
+
+  private provider!: ethers.providers.Web3Provider;
+  private signer!: ethers.providers.JsonRpcSigner;
+  private initialized = false;
+
+  initFinished = false;
+
+  account!: string;
+  balance!: BigNumber;
+  protocolInfo!: IProtocolInfo;
+  protocol!: Contract;
+  interestModel!: Contract;
+  nativeEther!: IPlainToken;
+  depositTokens!: IToken[];
+  loanPairs!: {
+    loanToken: IToken;
+    collateralToken: IToken;
+    minCollateralCoverageRatio: BigNumber;
+  }[];
+  maxLoanTerm!: BigNumber;
+  depositTerms!: BigNumber[];
+
+  maxDistributorFeeRatios!: IDistributionFeeRatios;
+  protocolReserveRatio!: BigNumber;
+
+  private async watchAccount() {
+    const provider = await Metamask.getProvider();
+    if (!provider) return;
+
+    provider.on('accountsChanged', (_) => {
+      this.initialized = false;
+      this.init();
+    });
+  }
+
+  async init() {
+    if (this.initialized) return true;
+    if (!(await this.initApp())) return false;
+
+    this.initialized = true;
+
+    await this.initProtocol();
+    await this.watchAccount();
+    await this.initAccount();
+
+    this.initFinished = true;
+    super.emit('init');
+
+    return true;
+  }
+
+  private async initApp() {
+    const [account] = await Metamask.enable();
+    if (!account) return false;
+    this.account = account;
+
+    this.provider = new ethers.providers.Web3Provider(window['ethereum']);
+    this.signer = this.provider.getSigner();
+
+    await this.provider.getBalance(account);
+
+    try {
+      this.protocolInfo = require(`../../../networks/${this.provider.network.name}`) as IProtocolInfo;
+    } catch (error) {
+      return false;
+    }
+
+    this.protocol = new Contract(
+      this.protocolInfo.contracts.Protocol,
+      ProtocolAbi as any,
+      this.signer,
+    );
+
+    this.interestModel = new Contract(
+      this.protocolInfo.contracts.InterestModel,
+      InterestModelAbi as any,
+      this.signer,
+    );
+
+    this.depositTokens = Object.getOwnPropertyNames(this.protocolInfo.tokens).map((t) => {
+      const token = this.protocolInfo.tokens[t];
+
+      return {
+        name: t.toLowerCase(),
+        address: token.address,
+        contract:
+          token.address === ETHAddress
+            ? undefined
+            : new Contract(token.address, ERC20Abi, this.signer),
+      };
+    });
+
+    this.nativeEther = this.protocolInfo.tokens['ETH'];
+    return true;
+  }
+
+  private async initProtocol() {
+    const enabledDepositTokens = await this.protocol.getDepositTokens();
+    this.depositTokens = enabledDepositTokens.map((addr) =>
+      this.depositTokens.find((t) => t.address.toLowerCase() === addr.toLowerCase()),
+    );
+
+    Promise.all(
+      this.depositTokens.map(async (token) => {
+        token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
+        token.balance = await token.contract?.balanceOf(this.account);
+        token.decimals = await token.contract?.decimals();
+        token.interestParams = await this.interestModel.getLoanParameters(token.address);
+      }),
+    );
+
+    const pairs = await this.protocol.getLoanAndCollateralTokenPairs();
+    this.loanPairs = pairs.map((p) => {
+      return {
+        loanToken: this.depositTokens.find(
+          (t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase(),
+        ),
+        collateralToken: this.depositTokens.find(
+          (t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase(),
+        ),
+        ...p,
+      };
+    });
+
+    this.maxLoanTerm = await this.protocol.getMaxLoanTerm();
+    this.depositTerms = await this.protocol.getDepositTerms();
+    this.maxDistributorFeeRatios = await this.protocol.getMaxDistributorFeeRatios();
+    this.protocolReserveRatio = await this.protocol.getProtocolReserveRatio();
+  }
+
+  private async initAccount() {
+    this.balance = await this.provider.getBalance(this.account);
+  }
+
+}
+
+export default ViewModelLocator.instance;
+
+interface IProtocolInfo {
+  contracts: {
+    Protocol: string;
+    InterestModel: string;
+  };
+
+  tokens: { [key: string]: IPlainToken };
+}
+
+interface IPlainToken {
+  name: string;
+  address: string;
+  priceOracleAddress: string;
+}

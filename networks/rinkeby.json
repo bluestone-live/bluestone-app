@@ -1,0 +1,23 @@
+{
+  "contracts": {
+    "Protocol": "0x10Fbc2d0448fEB7dFEd9D88d2d7186c8A55Beabe",
+    "InterestModel": "0x333aBd6055F05A15965af49b65F3E2b8258Ab377"
+  },
+  "tokens": {
+    "DAI": {
+      "name": "Dai",
+      "address": "0x47F937AC6560b9e0F580dAE69cf0352A6EE2463A",
+      "priceOracleAddress": "0x2bee5Fec374961Db41179D9E08d442faEB799422"
+    },
+    "USDT": {
+      "name": "Tether",
+      "address": "0x11ddA316d3B49B02bc4B9e2c00879B9f4E415091",
+      "priceOracleAddress": "0x4404d91Bc3aE09132c5333a10DD9B967a7E84b3e"
+    },
+    "ETH": {
+      "name": "Native Ether",
+      "address": "0x0000000000000000000000000000000000000001",
+      "priceOracleAddress": "0x9F0C6DE1153D29Cd512A55C92B4fB7e4b5501B89"
+    }
+  }
+}

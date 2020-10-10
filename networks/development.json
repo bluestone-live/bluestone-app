@@ -1,0 +1,29 @@
+{
+  "contracts": {
+    "Protocol": "0xE6293F5Cfbf89358De55dd9fC7Ff10c1Cb5A5773",
+    "InterestModel": "0xbf5bb9df2acbBadc9028bDCF8974d495A121743B",
+    "OwnedUpgradeabilityProxy": "0xB2239365DFBE33f1618D3a3bB7328AeF683E0acF"
+  },
+  "tokens": {
+    "DAI": {
+      "name": "Dai",
+      "address": "0x6d4e84Af4014D43486C227af6309b6Afb4c0CE2D",
+      "priceOracleAddress": "0xd27d773AD1E7C97609e1eaaA60a3E6e357fAE331"
+    },
+    "USDT": {
+      "name": "Tether",
+      "address": "0xc36464717F9F96C1f7E0E4f050acf4dfC9Ca3cAB",
+      "priceOracleAddress": "0x3F205AB02314c0B6F2A23442E11aa9347D161ED6"
+    },
+    "ETH": {
+      "name": "Native Ether",
+      "address": "0x0000000000000000000000000000000000000001",
+      "priceOracleAddress": "0x0Bd51B2B8Ac028D4F21d745764ACdF593104DbbB"
+    },
+    "USDC": {
+      "name": "USDC",
+      "address": "0x4E8A4E116E411b77CdEc13De8f8D672C64D44A62",
+      "priceOracleAddress": "0x3F205AB02314c0B6F2A23442E11aa9347D161ED6"
+    }
+  }
+}
