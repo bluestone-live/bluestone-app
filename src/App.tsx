@@ -3,7 +3,7 @@ import "./App.scss";
 import { Header, Footer } from "./layouts";
 import { Router, Route, Switch } from "react-router-dom";
 import { inject } from "mobx-react";
-import { Home } from "./pages";
+import { Home, LendPage } from "./pages";
 import { History } from "history";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -23,6 +23,7 @@ export default class App extends React.Component<IApp, {}> {
           </div>
 
           <Switch>
+            <Route component={LendPage} path="/lend" />
             <Route component={Home} />
           </Switch>
 

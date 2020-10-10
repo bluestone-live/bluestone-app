@@ -1,0 +1,51 @@
+.lend.page,
+.loan.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 12px;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    div.form {
+      min-width: 280px;
+      width: 325px;
+      padding: 22px 16px;
+      padding-bottom: 4px;
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 1px solid #f0f0f0;
+      color: #849095;
+      font-size: 14px;
+
+      > .items {
+        margin-bottom: 24px;
+        > .item {
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+
+          span:last-child {
+            font-weight: 600;
+          }
+
+          > div {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .rdrDateDisplayWrapper {
+    display: none;
+  }
+}
