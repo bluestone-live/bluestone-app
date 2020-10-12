@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs';
 import { BigNumber, Contract } from 'ethers';
 
 export interface IToken {
@@ -49,4 +50,29 @@ export interface ILoanPair {
   loanToken: IToken;
   collateralTokens: IToken[];
   minCollateralCoverageRatio: BigNumber;
+}
+
+export interface ITerm {
+  text: string;
+  value: number;
+}
+
+export enum RecordType {
+  Deposit = 'deposit',
+  Borrow = 'borrow',
+}
+
+export interface IDepositRecord {
+  recordId: string;
+  tokenAddress: string;
+  depositTerm: ITerm;
+  depositAmount: string;
+  poolId: string;
+  createdAt: Dayjs;
+  withdrewAt: Dayjs;
+  isMatured: boolean;
+  isWithdrawn: boolean;
+  interest: string;
+  recordType: RecordType;
+  isEarlyWithdrawable?: boolean;
 }
