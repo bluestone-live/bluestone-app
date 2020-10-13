@@ -1,5 +1,5 @@
-import { Dayjs } from 'dayjs';
-import { BigNumber, Contract } from 'ethers';
+import { Dayjs } from "dayjs";
+import { BigNumber, Contract } from "ethers";
 
 export interface IToken {
   name: string;
@@ -19,6 +19,7 @@ export interface IViewModel {
   interestModel: Contract;
   distributionFeeRatios: IDistributionFeeRatios;
   protocolReserveRatio: BigNumber;
+  tokens: IToken[];
 }
 
 export interface IInterestModelParameters {
@@ -58,8 +59,12 @@ export interface ITerm {
 }
 
 export enum RecordType {
-  Deposit = 'deposit',
-  Borrow = 'borrow',
+  Deposit = "deposit",
+  Borrow = "borrow",
+}
+
+export interface IRecordUI extends IDepositRecord, ILoanRecord {
+  token: string;
 }
 
 export interface IDepositRecord {
@@ -75,4 +80,26 @@ export interface IDepositRecord {
   interest: string;
   recordType: RecordType;
   isEarlyWithdrawable?: boolean;
+}
+
+export interface ILoanRecord {
+  recordId: string;
+  loanTokenAddress: string;
+  collateralTokenAddress: string;
+  loanAmount: string;
+  collateralAmount: string;
+  loanTerm: ITerm;
+  annualInterestRate: string;
+  interest: string;
+  collateralCoverageRatio: string;
+  minCollateralCoverageRatio: string;
+  alreadyPaidAmount: string;
+  soldCollateralAmount: string;
+  liquidatedAmount: string;
+  remainingDebt: string;
+  createdAt: Dayjs;
+  dueAt: Dayjs;
+  isOverDue: boolean;
+  isClosed: boolean;
+  recordType: RecordType;
 }

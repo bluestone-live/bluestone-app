@@ -1,25 +1,57 @@
-import React, { Component } from 'react';
-import './History.scss';
-import Currency from '../components/Currency';
-import { inject } from 'mobx-react';
-import { History } from 'history';
+import React, { Component } from "react";
+import "./History.scss";
+import Currency from "../components/Currency";
+import { inject, observer } from "mobx-react";
+import { History } from "history";
+import { ViewModelLocator } from "../core/ViewModelLocator";
+import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
 
 interface IProps {
   history: History;
+  locator: ViewModelLocator;
 }
 
-@inject('history')
-class HistoryPage extends Component<IProps, {}> {
+interface IState {
+  vm?: HistoryViewModel;
+}
+
+const types = [
+  { label: "Active", value: "active" },
+  { label: "Deposit", value: "deposit" },
+  { label: "Borrow", value: "loan" },
+  { label: "Closed", value: "closed" },
+];
+
+@inject("history")
+@inject("locator")
+@observer
+class HistoryPage extends Component<IProps, IState> {
+  state: IState = {};
+
+  componentDidMount() {
+    this.setState({ vm: this.props.locator.historyVM });
+    this.props.locator.once("init", () => this.setState({ vm: this.props.locator.historyVM }));
+
+    if (this.props.locator.initFinished) {
+      this.props.locator.historyVM.refresh();
+    }
+  }
+
   render() {
+    const { vm } = this.state;
+
     return (
       <div className="history page">
         <div className="categories">
           <h1>History</h1>
           <div className="nav">
-            <div className="item active">Active</div>
-            <div className="item">Deposit</div>
-            <div className="item">Borrow</div>
-            <div className="item">ALL</div>
+            {types.map((t) => {
+              return (
+                <div key={t.value} className={`item ${vm?.type === t.value ? "active" : ""}`}>
+                  {t.label}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -39,7 +71,7 @@ class HistoryPage extends Component<IProps, {}> {
           </thead>
 
           <tbody>
-            <tr onClick={(_) => this.props.history.push('/record/abc')}>
+            <tr onClick={(_) => this.props.history.push("/record/abc")}>
               <td className="token">
                 <div>
                   <Currency symbol="dai" />
