@@ -53,11 +53,6 @@ export interface ILoanPair {
   minCollateralCoverageRatio: BigNumber;
 }
 
-export interface ITerm {
-  text: string;
-  value: number;
-}
-
 export enum RecordType {
   Deposit = "deposit",
   Borrow = "borrow",
@@ -65,20 +60,24 @@ export enum RecordType {
 
 export interface IRecordUI extends IDepositRecord, ILoanRecord {
   token: string;
+  amount: string;
+  apr: string;
+  term: number;
+  maturityDate: string;
+  type: string;
 }
 
 export interface IDepositRecord {
   recordId: string;
   tokenAddress: string;
-  depositTerm: ITerm;
+  depositTerm: BigNumber;
   depositAmount: string;
   poolId: string;
-  createdAt: Dayjs;
-  withdrewAt: Dayjs;
+  createdAt: BigNumber;
+  withdrewAt: BigNumber;
   isMatured: boolean;
   isWithdrawn: boolean;
   interest: string;
-  recordType: RecordType;
   isEarlyWithdrawable?: boolean;
 }
 
@@ -88,7 +87,7 @@ export interface ILoanRecord {
   collateralTokenAddress: string;
   loanAmount: string;
   collateralAmount: string;
-  loanTerm: ITerm;
+  loanTerm: BigNumber;
   annualInterestRate: string;
   interest: string;
   collateralCoverageRatio: string;
@@ -97,9 +96,8 @@ export interface ILoanRecord {
   soldCollateralAmount: string;
   liquidatedAmount: string;
   remainingDebt: string;
-  createdAt: Dayjs;
-  dueAt: Dayjs;
+  createdAt: BigNumber;
+  dueAt: BigNumber;
   isOverDue: boolean;
   isClosed: boolean;
-  recordType: RecordType;
 }

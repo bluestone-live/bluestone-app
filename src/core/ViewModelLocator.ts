@@ -196,6 +196,8 @@ export class ViewModelLocator extends EventEmitter {
   get historyVM() {
     if (this._historyVM) return this._historyVM;
 
+    if (!this.initFinished) return undefined;
+    
     this._historyVM = new HistoryViewModel({
       account: this.account,
       protocol: this.protocol,

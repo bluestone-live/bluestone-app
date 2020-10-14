@@ -5,6 +5,7 @@ import { inject, observer } from "mobx-react";
 import { History } from "history";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
+import Loading from "../components/Loading";
 
 interface IProps {
   history: History;
@@ -30,10 +31,13 @@ class HistoryPage extends Component<IProps, IState> {
 
   componentDidMount() {
     this.setState({ vm: this.props.locator.historyVM });
-    this.props.locator.once("init", () => this.setState({ vm: this.props.locator.historyVM }));
+    this.props.locator.once("init", () => {
+      this.setState({ vm: this.props.locator.historyVM });
+      this.props.locator.historyVM!.refresh();
+    });
 
     if (this.props.locator.initFinished) {
-      this.props.locator.historyVM.refresh();
+      this.props.locator.historyVM!.refresh();
     }
   }
 
@@ -47,7 +51,11 @@ class HistoryPage extends Component<IProps, IState> {
           <div className="nav">
             {types.map((t) => {
               return (
-                <div key={t.value} className={`item ${vm?.type === t.value ? "active" : ""}`}>
+                <div
+                  key={t.value}
+                  className={`item ${vm?.type === t.value ? "active" : ""}`}
+                  onClick={() => vm?.switch(t.value as any)}
+                >
                   {t.label}
                 </div>
               );
@@ -61,46 +69,65 @@ class HistoryPage extends Component<IProps, IState> {
               <th className="token">
                 <div>Token</div>
               </th>
+              <th>Type</th>
               <th>Amount</th>
               <th>Interest</th>
               <th>APR</th>
               <th>Term</th>
               <th>Maturity Date</th>
-              <th>Status</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr onClick={(_) => this.props.history.push("/record/abc")}>
-              <td className="token">
-                <div>
-                  <Currency symbol="dai" />
-                  DAI
-                  <span className="lend">↓</span>
-                </div>
-              </td>
-              <td>12,345 DAI</td>
-              <td>20 DAI</td>
-              <td>5%</td>
-              <td>90 Days</td>
-              <td>2020-09-01</td>
-              <td>Matured</td>
-            </tr>
-            <tr>
-              <td className="token">
-                <div>
-                  <Currency symbol="usdc" />
-                  USDC
-                  <span className="loan">↑</span>
-                </div>
-              </td>
-              <td>500 USDC</td>
-              <td>12 USDC</td>
-              <td>8%</td>
-              <td>30 Days</td>
-              <td>2020-09-01</td>
-              <td>Matured</td>
-            </tr>
+            {vm && !vm.loading
+              ? vm.currentRecords.map((r, i) => {
+                  return (
+                    <tr key={i} onClick={(_) => this.props.history.push(`/record/${r.recordId}`)}>
+                      <td className="token">
+                        <div>
+                          <Currency symbol={r.token} />
+                          {r.token}
+                          {/* <span className="lend">↓</span> */}
+                        </div>
+                      </td>
+                      <td className="type">{r.type}</td>
+                      <td className="amount">{`${r.amount} ${r.token}`}</td>
+                      <td className="interest">{`${r.interest} ${r.token}`}</td>
+                      <td>{r.apr}%</td>
+                      <td>{r.term} Days</td>
+                      <td>{r.maturityDate}</td>
+                    </tr>
+                  );
+                })
+              : new Array(6).fill(1).map((_, i) => {
+                  return (
+                    <tr key={i}>
+                      <td className="token">
+                        <div>
+                          <Loading />
+                        </div>
+                      </td>
+                      <td className="type">
+                        <Loading />
+                      </td>
+                      <td className="amount">
+                        <Loading />
+                      </td>
+                      <td className="interest">
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </div>
