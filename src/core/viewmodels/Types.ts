@@ -65,10 +65,10 @@ export interface IRecordUI extends IDepositRecord, ILoanRecord {
   term: number;
   maturityDate: string;
   type: string;
+  id: string;
 }
 
 export interface IDepositRecord {
-  recordId: string;
   tokenAddress: string;
   depositTerm: BigNumber;
   depositAmount: string;
@@ -82,7 +82,6 @@ export interface IDepositRecord {
 }
 
 export interface ILoanRecord {
-  recordId: string;
   loanTokenAddress: string;
   collateralTokenAddress: string;
   loanAmount: string;

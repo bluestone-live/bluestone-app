@@ -33,6 +33,7 @@ export default class HistoryViewModel extends BaseViewModel {
             t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
         )!;
 
+        console.log(r);
         const apr = r["annualInterestRate"]
           ? Number.parseFloat(ethers.utils.formatUnits(r["annualInterestRate"].mul(100), 18))
           : ((r.interest as unknown) as BigNumber)
@@ -58,6 +59,7 @@ export default class HistoryViewModel extends BaseViewModel {
 
         return {
           ...r,
+          id: r["depositId"] || r["loanId"],
           token: token.name,
           amount: ethers.utils.formatUnits(
             (r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount,

@@ -82,7 +82,7 @@ class HistoryPage extends Component<IProps, IState> {
             {vm && !vm.loading
               ? vm.currentRecords.map((r, i) => {
                   return (
-                    <tr key={i} onClick={(_) => this.props.history.push(`/record/${r.recordId}`)}>
+                    <tr key={i} onClick={(_) => this.props.history.push(`/record/${r.id}`)}>
                       <td className="token">
                         <div>
                           <Currency symbol={r.token} />
@@ -99,7 +99,7 @@ class HistoryPage extends Component<IProps, IState> {
                     </tr>
                   );
                 })
-              : new Array(6).fill(1).map((_, i) => {
+              : new Array(7).fill(1).map((_, i) => {
                   return (
                     <tr key={i}>
                       <td className="token">
