@@ -3,12 +3,13 @@ import ethers, { BigNumber, Contract } from "ethers";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import { abi as ERC20Abi } from "../contracts/ERC20.json";
 import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
-import { IDistributionFeeRatios, ILoanPair, IToken } from "./viewmodels/Types";
+import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
 import DepositViewModel from "./viewmodels/DepositViewModel";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import { EventEmitter } from "events";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
+import RecordViewModel from "./viewmodels/RecordViewModel";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -197,7 +198,7 @@ export class ViewModelLocator extends EventEmitter {
     if (this._historyVM) return this._historyVM;
 
     if (!this.initFinished) return undefined;
-    
+
     this._historyVM = new HistoryViewModel({
       account: this.account,
       protocol: this.protocol,
@@ -205,8 +206,35 @@ export class ViewModelLocator extends EventEmitter {
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
       tokens: this.depositTokens,
+      locator: this,
     });
     return this._historyVM;
+  }
+
+  recordVM?: RecordViewModel;
+  
+  selectRecord(record: IRecordUI) {
+    this.recordVM = new RecordViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+      tokens: this.depositTokens,
+      record,
+    });
+  }
+
+  selectRecordById(id: string) {
+    this.recordVM = new RecordViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+      tokens: this.depositTokens,
+      id,
+    });
   }
 }
 

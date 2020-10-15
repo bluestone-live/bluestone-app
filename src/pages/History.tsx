@@ -6,6 +6,7 @@ import { History } from "history";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
 import Loading from "../components/Loading";
+import { IRecordUI } from "../core/viewmodels/Types";
 
 interface IProps {
   history: History;
@@ -40,6 +41,11 @@ class HistoryPage extends Component<IProps, IState> {
       this.props.locator.historyVM!.refresh();
     }
   }
+
+  selectRecord = (record: IRecordUI) => {
+    this.state.vm?.selectRecord(record);
+    this.props.history.push(`/record/${record.id}`);
+  };
 
   render() {
     const { vm } = this.state;
@@ -82,7 +88,7 @@ class HistoryPage extends Component<IProps, IState> {
             {vm && !vm.loading
               ? vm.currentRecords.map((r, i) => {
                   return (
-                    <tr key={i} onClick={(_) => this.props.history.push(`/record/${r.id}`)}>
+                    <tr key={i} onClick={(_) => this.selectRecord(r)}>
                       <td className="token">
                         <div>
                           <Currency symbol={r.token} />

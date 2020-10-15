@@ -3,7 +3,7 @@ import "./App.scss";
 import { Header, Footer } from "./layouts";
 import { Router, Route, Switch } from "react-router-dom";
 import { inject } from "mobx-react";
-import { Home, LendPage, LoanPage, HistoryPage } from "./pages";
+import { Home, LendPage, LoanPage, HistoryPage, RecordPage } from "./pages";
 import { History } from "history";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -26,7 +26,7 @@ export default class App extends React.Component<IApp, {}> {
             <Route component={LendPage} path="/lend" />
             <Route component={LoanPage} path="/loan" />
             <Route component={HistoryPage} path="/history" />
-
+            <Route component={RecordPage} path="/record/:id" />
             <Route component={Home} />
           </Switch>
 
