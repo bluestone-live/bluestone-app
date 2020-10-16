@@ -66,7 +66,8 @@ export interface IRecordUI extends IDepositRecord, ILoanRecord {
   maturityDate: string;
   type: string;
   id: string;
-  collateralizationRatio:string;
+  collateralizationRatio: string;
+  collateralToken?: IToken;
 }
 
 export interface IDepositRecord {

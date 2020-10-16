@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers, utils } from "ethers";
 import { computed, observable } from "mobx";
 import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import dayjs from "dayjs";
@@ -29,6 +29,7 @@ export default class LoanViewModel extends BaseViewModel {
   @observable inputLoanValue?: string;
   @observable inputCollateralValue?: string;
   @observable sending = false;
+  @observable maxCollateralAmount?: string;
 
   @computed get loanToken() {
     return this.currentLoanPair?.loanToken;
@@ -68,6 +69,11 @@ export default class LoanViewModel extends BaseViewModel {
     this.selectedCollateralToken =
       this.currentLoanPair.collateralTokens.find((t) => t.name.toLowerCase() === name.toLowerCase()) ||
       this.selectedCollateralToken;
+
+    this.maxCollateralAmount = utils.formatUnits(
+      this.selectedCollateralToken.balance!,
+      this.selectedCollateralToken.decimals!
+    );
   };
 
   peekTerm = (date: Date) => {
@@ -91,6 +97,8 @@ export default class LoanViewModel extends BaseViewModel {
     this.selectedDate = date;
     const targetPool = this.peekTerm(date);
     this.selectedPool = targetPool;
+
+    this.inputLoan(this.inputLoanValue);
   };
 
   restoreTerm = () => {

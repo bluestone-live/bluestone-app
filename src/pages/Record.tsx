@@ -31,12 +31,7 @@ class Record extends Component<IProps, IState> {
       this.props.locator.once("init", () => {
         locator.selectRecordById(id);
         this.setState({ vm: locator.recordVM });
-        this.props.locator.recordVM?.refresh();
       });
-    }
-
-    if (this.props.locator.initFinished) {
-      this.props.locator.recordVM?.refresh();
     }
   }
 
@@ -94,56 +89,71 @@ class Record extends Component<IProps, IState> {
             ) : undefined}
           </div>
 
-          <div className="detail">
-            <div className="head">
-              <h3>Debt</h3>
-              <span></span>
-            </div>
+          {record?.type === RecordType.Borrow ? (
+            <div className="detail">
+              <div className="head">
+                <h3>Debt</h3>
+                <span></span>
+              </div>
 
-            <div className="item">
-              <span>Remaining Debt:</span>
-              <span>12, 345.67 DAI</span>
-            </div>
+              <div className="item">
+                <span>Remaining Debt:</span>
+                <span className="uppercase">{`${record.remainingDebt} ${record.token}`}</span>
+              </div>
 
-            <div className="form">
-              <NumBox title="Repay Amount" />
-              <button>Repay</button>
+              <div className="form">
+                <NumBox title="Repay Amount" />
+                <button>Repay</button>
+              </div>
             </div>
-          </div>
+          ) : undefined}
 
-          <div className="detail">
-            <div className="head">
-              <h3>Withdraw Collateral</h3>
-              <span></span>
-            </div>
+          {record?.type === RecordType.Borrow ? (
+            <div className="detail">
+              <div className="head">
+                <h3>Withdraw Collateral</h3>
+                <span></span>
+              </div>
 
-            <div className="item">
-              <span>Total Collateral:</span>
-              <span>5 ETH</span>
-            </div>
+              <div className="item">
+                <span>Total Collateral:</span>
+                <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
+              </div>
 
-            <div className="form">
-              <NumBox title="Withdraw Amount" secondTitle={`New CCR: ${220}%`} />
-              <button>Withdraw</button>
+              <div className="form">
+                <NumBox
+                  title="Withdraw Amount"
+                  secondTitle={`New CCR: ${vm?.newWithdrawCR}%`}
+                  onChange={vm?.updateWithdrawCollateralAmount}
+                />
+                <button>Withdraw</button>
+              </div>
             </div>
-          </div>
+          ) : undefined}
 
-          <div className="detail">
-            <div className="head">
-              <h3>Deposit Collateral</h3>
-              <span></span>
-            </div>
+          {record?.type === RecordType.Borrow ? (
+            <div className="detail">
+              <div className="head">
+                <h3>Deposit Collateral</h3>
+                <span></span>
+              </div>
 
-            <div className="item">
-              <span>Total Collateral:</span>
-              <span>5 ETH</span>
-            </div>
+              <div className="item">
+                <span>Total Collateral:</span>
+                <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
+              </div>
 
-            <div className="form">
-              <NumBox title="Deposit Amount" secondTitle="New CCR: 220%" secondDesc="New Collateral Coverage Ratio" />
-              <button>Deposit</button>
+              <div className="form">
+                <NumBox
+                  title="Deposit Amount"
+                  secondTitle={`New CCR: ${vm?.newDepositCR}%`}
+                  secondDesc="New Collateral Coverage Ratio"
+                  onChange={vm?.updateDepositCollateralAmount}
+                />
+                <button>Deposit</button>
+              </div>
             </div>
-          </div>
+          ) : undefined}
         </div>
 
         <div className="transactions">

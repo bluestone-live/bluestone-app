@@ -7,6 +7,7 @@ export function calcCollateralRatio(
   collateralPrice: BigNumber,
   loanPrice: BigNumber
 ) {
+  
   const ratio =
     ((Number.parseFloat(collateralAmount) * Number.parseFloat(utils.formatUnits(collateralPrice, 18))) /
       Number.parseFloat(utils.formatUnits(loanPrice, 18)) /

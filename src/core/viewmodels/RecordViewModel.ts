@@ -2,8 +2,8 @@ import { observable } from "mobx";
 import BaseViewModel from "./BaseViewModel";
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
 import dayjs from "dayjs";
-import { getTimestampByPoolId } from "../services/Math";
-import { BigNumber, ethers } from "ethers";
+import { calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
+import { BigNumber, ethers, utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -12,6 +12,8 @@ interface IRecordViewModel extends IViewModel {
 
 export default class RecordViewModel extends BaseViewModel {
   @observable record?: IRecordUI;
+  @observable newWithdrawCR?: string;
+  @observable newDepositCR?: string;
 
   constructor(params: IRecordViewModel) {
     super(params);
@@ -33,9 +35,11 @@ export default class RecordViewModel extends BaseViewModel {
     }
 
     if (!r) return;
-    console.log(r);
 
     const ui = RecordViewModel.fetchUIData(r, this.tokens);
+
+    this.newWithdrawCR = this.newDepositCR = ui.collateralizationRatio;
+
     this.record = {
       ...r,
       ...ui,
@@ -48,6 +52,10 @@ export default class RecordViewModel extends BaseViewModel {
         t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
         t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
     )!;
+
+    const collateralToken = tokens.find(
+      (t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase()
+    );
 
     const apr = r["annualInterestRate"]
       ? Number.parseFloat(ethers.utils.formatUnits(r["annualInterestRate"].mul(100), 18))
@@ -79,6 +87,14 @@ export default class RecordViewModel extends BaseViewModel {
       ? Number.parseFloat(ethers.utils.formatUnits(r["soldCollateralAmount"], token.decimals)).toFixed(2)
       : "0";
 
+    const remainingDebt = isLoan
+      ? Number.parseFloat(ethers.utils.formatUnits(r["remainingDebt"], token.decimals)).toFixed(4)
+      : "0";
+
+    const collateralAmount = isLoan
+      ? Number.parseFloat(ethers.utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18)).toFixed(4)
+      : "0";
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -93,8 +109,35 @@ export default class RecordViewModel extends BaseViewModel {
       maturityDate,
       collateralizationRatio,
       soldCollateralAmount,
+      remainingDebt,
+      collateralAmount,
+      collateralToken,
     };
   }
 
-  refresh() {}
+  updateWithdrawCollateralAmount = (value: string) => {
+    const newAmount = Number.parseFloat(this.record!.collateralAmount) - Number.parseFloat(value);
+    this.newWithdrawCR = this.calcNewRatio(`${newAmount}`);
+  };
+
+  updateDepositCollateralAmount = (value: string) => {
+    const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
+    this.newDepositCR = this.calcNewRatio(`${newAmount}`);
+  };
+
+  calcNewRatio(value: string) {
+    const debt = this.record!.remainingDebt;
+
+    const loanToken = this.tokens.find(
+      (t) =>
+        t.address.toLowerCase() === this.record?.loanTokenAddress?.toLowerCase() ||
+        t.address.toLowerCase() === this.record?.tokenAddress?.toLowerCase()
+    )!;
+
+    const collateralToken = this.tokens.find(
+      (t) => t.address.toLowerCase() === this.record?.collateralTokenAddress?.toLowerCase()
+    );
+
+    return calcCollateralRatio(value, `${debt || 1}`, collateralToken?.price!, loanToken.price!).toFixed(2);
+  }
 }
