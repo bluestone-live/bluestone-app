@@ -3,7 +3,7 @@ import BaseViewModel from "./BaseViewModel";
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
 import dayjs from "dayjs";
 import { calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
-import { BigNumber, ethers, utils } from "ethers";
+import { BigNumber, utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -14,24 +14,28 @@ export default class RecordViewModel extends BaseViewModel {
   @observable record?: IRecordUI;
   @observable newWithdrawCR?: string;
   @observable newDepositCR?: string;
+  maxDepositCollateral?: string;
+  maxWithdrawCollateral?: string;
 
   constructor(params: IRecordViewModel) {
     super(params);
 
     this.record = params.record;
-    if (params.id) {
-      this.init(params.id);
-    }
+    this.init(params);
   }
 
-  private async init(id: string) {
-    let r!: IDepositRecord | ILoanRecord;
-    try {
-      r = await this.protocol.getDepositRecordById(id);
-    } catch (error) {
+  private async init(params: IRecordViewModel) {
+    const id = params.id;
+    let r = params.record;
+
+    if (id) {
       try {
-        r = await this.protocol.getLoanRecordById(id);
-      } catch (error) {}
+        r = await this.protocol.getDepositRecordById(id);
+      } catch (error) {
+        try {
+          r = await this.protocol.getLoanRecordById(id);
+        } catch (error) {}
+      }
     }
 
     if (!r) return;
@@ -39,80 +43,13 @@ export default class RecordViewModel extends BaseViewModel {
     const ui = RecordViewModel.fetchUIData(r, this.tokens);
 
     this.newWithdrawCR = this.newDepositCR = ui.collateralizationRatio;
+    this.maxDepositCollateral = ui.maxCollateralAmount;
+    this.maxWithdrawCollateral = ui.collateralAmount;
 
     this.record = {
       ...r,
       ...ui,
     } as IRecordUI;
-  }
-
-  static fetchUIData(r: ILoanRecord | IDepositRecord, tokens: IToken[]) {
-    const token = tokens.find(
-      (t) =>
-        t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
-        t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
-    )!;
-
-    const collateralToken = tokens.find(
-      (t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase()
-    );
-
-    const apr = r["annualInterestRate"]
-      ? Number.parseFloat(ethers.utils.formatUnits(r["annualInterestRate"].mul(100), 18))
-      : ((r.interest as unknown) as BigNumber)
-          .div(
-            ((((r as IDepositRecord).depositAmount || (r as ILoanRecord).remainingDebt) as unknown) as BigNumber).div(
-              (((r as IDepositRecord).depositTerm || (r as ILoanRecord).loanTerm) as unknown) as BigNumber
-            )
-          )
-          .mul(365)
-          .mul(100)
-          .toNumber();
-
-    const isLoan = r["collateralTokenAddress"] ? true : false;
-
-    let maturityDate = "";
-    if (isLoan) {
-      maturityDate = dayjs((r as ILoanRecord).dueAt.mul(1000).toNumber(), { utc: true }).format("YYYY-MM-DD HH:mm");
-    } else {
-      const poolId = (r as IDepositRecord).poolId;
-      maturityDate = dayjs.utc(getTimestampByPoolId(poolId)).local().format("YYYY-MM-DD HH:mm");
-    }
-
-    const collateralizationRatio = isLoan
-      ? Number.parseFloat(ethers.utils.formatUnits(r["collateralCoverageRatio"].mul(100), 18)).toFixed(2)
-      : "0";
-
-    const soldCollateralAmount = isLoan
-      ? Number.parseFloat(ethers.utils.formatUnits(r["soldCollateralAmount"], token.decimals)).toFixed(2)
-      : "0";
-
-    const remainingDebt = isLoan
-      ? Number.parseFloat(ethers.utils.formatUnits(r["remainingDebt"], token.decimals)).toFixed(4)
-      : "0";
-
-    const collateralAmount = isLoan
-      ? Number.parseFloat(ethers.utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18)).toFixed(4)
-      : "0";
-
-    return {
-      id: r["depositId"] || r["loanId"],
-      token: token.name,
-      amount: ethers.utils.formatUnits(
-        (r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount,
-        token.decimals
-      ),
-      type: isLoan ? RecordType.Borrow : RecordType.Deposit,
-      interest: Number.parseFloat(ethers.utils.formatUnits(r.interest, token.decimals)).toFixed(4),
-      apr: apr.toFixed(2),
-      term: (r as IDepositRecord).depositTerm?.toNumber() || (r as ILoanRecord).loanTerm?.toNumber(),
-      maturityDate,
-      collateralizationRatio,
-      soldCollateralAmount,
-      remainingDebt,
-      collateralAmount,
-      collateralToken,
-    };
   }
 
   updateWithdrawCollateralAmount = (value: string) => {
@@ -139,5 +76,75 @@ export default class RecordViewModel extends BaseViewModel {
     );
 
     return calcCollateralRatio(value, `${debt || 1}`, collateralToken?.price!, loanToken.price!).toFixed(2);
+  }
+
+  static fetchUIData(r: ILoanRecord | IDepositRecord, tokens: IToken[]) {
+    const token = tokens.find(
+      (t) =>
+        t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
+        t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
+    )!;
+
+    const collateralToken = tokens.find(
+      (t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase()
+    );
+
+    const apr = r["annualInterestRate"]
+      ? Number.parseFloat(utils.formatUnits(r["annualInterestRate"].mul(100), 18))
+      : ((r.interest as unknown) as BigNumber)
+          .div(
+            ((((r as IDepositRecord).depositAmount || (r as ILoanRecord).remainingDebt) as unknown) as BigNumber).div(
+              (((r as IDepositRecord).depositTerm || (r as ILoanRecord).loanTerm) as unknown) as BigNumber
+            )
+          )
+          .mul(365)
+          .mul(100)
+          .toNumber();
+
+    const isLoan = r["collateralTokenAddress"] ? true : false;
+
+    let maturityDate = "";
+    if (isLoan) {
+      maturityDate = dayjs((r as ILoanRecord).dueAt.mul(1000).toNumber(), { utc: true }).format("YYYY-MM-DD HH:mm");
+    } else {
+      const poolId = (r as IDepositRecord).poolId;
+      maturityDate = dayjs.utc(getTimestampByPoolId(poolId)).local().format("YYYY-MM-DD HH:mm");
+    }
+
+    const collateralizationRatio = isLoan
+      ? Number.parseFloat(utils.formatUnits(r["collateralCoverageRatio"].mul(100), 18)).toFixed(2)
+      : "0";
+
+    const soldCollateralAmount = isLoan ? utils.formatUnits(r["soldCollateralAmount"], token.decimals) : "0";
+
+    const remainingDebt = isLoan ? utils.formatUnits(r["remainingDebt"], token.decimals) : "0";
+
+    const collateralAmount = isLoan
+      ? utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18)
+      : "0";
+
+    const maxCollateralAmount = collateralToken
+      ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals)
+      : "0";
+
+    return {
+      id: r["depositId"] || r["loanId"],
+      token: token.name,
+      amount: utils.formatUnits(
+        (r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount,
+        token.decimals
+      ),
+      type: isLoan ? RecordType.Borrow : RecordType.Deposit,
+      interest: Number.parseFloat(utils.formatUnits(r.interest, token.decimals)).toFixed(4),
+      apr: apr.toFixed(2),
+      term: (r as IDepositRecord).depositTerm?.toNumber() || (r as ILoanRecord).loanTerm?.toNumber(),
+      maturityDate,
+      collateralizationRatio,
+      soldCollateralAmount,
+      remainingDebt,
+      collateralAmount,
+      collateralToken,
+      maxCollateralAmount,
+    };
   }
 }

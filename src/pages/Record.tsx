@@ -102,7 +102,7 @@ class Record extends Component<IProps, IState> {
               </div>
 
               <div className="form">
-                <NumBox title="Repay Amount" />
+                <NumBox title="Repay Amount" maxValue={record.remainingDebt} />
                 <button>Repay</button>
               </div>
             </div>
@@ -125,6 +125,8 @@ class Record extends Component<IProps, IState> {
                   title="Withdraw Amount"
                   secondTitle={`New CCR: ${vm?.newWithdrawCR}%`}
                   onChange={vm?.updateWithdrawCollateralAmount}
+                  maxValue={vm?.maxWithdrawCollateral}
+                  onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
                 />
                 <button>Withdraw</button>
               </div>
@@ -149,6 +151,8 @@ class Record extends Component<IProps, IState> {
                   secondTitle={`New CCR: ${vm?.newDepositCR}%`}
                   secondDesc="New Collateral Coverage Ratio"
                   onChange={vm?.updateDepositCollateralAmount}
+                  maxValue={vm?.maxDepositCollateral}
+                  onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
                 />
                 <button>Deposit</button>
               </div>
