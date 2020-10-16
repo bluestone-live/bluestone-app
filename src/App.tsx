@@ -12,14 +12,26 @@ interface IApp {
   history?: History;
 }
 
+interface IState {
+  isHome?: boolean;
+}
+
 @inject("history")
 export default class App extends React.Component<IApp, {}> {
+  state: IState = {};
+
+  componentDidMount() {
+    window.addEventListener("popstate", (_) => {
+      this.setState({ isHome: window.location.pathname?.length <= 1 });
+    });
+  }
+
   render() {
     return (
       <Router history={this.props.history!}>
         <div className="App">
           <div className="top">
-            <Header />
+            <Header isHome={this.state.isHome} />
           </div>
 
           <Switch>

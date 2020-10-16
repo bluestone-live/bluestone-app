@@ -75,6 +75,10 @@ export default class RecordViewModel extends BaseViewModel {
       ? Number.parseFloat(ethers.utils.formatUnits(r["collateralCoverageRatio"].mul(100), 18)).toFixed(2)
       : "0";
 
+    const soldCollateralAmount = isLoan
+      ? Number.parseFloat(ethers.utils.formatUnits(r["soldCollateralAmount"], token.decimals)).toFixed(2)
+      : "0";
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -88,6 +92,7 @@ export default class RecordViewModel extends BaseViewModel {
       term: (r as IDepositRecord).depositTerm?.toNumber() || (r as ILoanRecord).loanTerm?.toNumber(),
       maturityDate,
       collateralizationRatio,
+      soldCollateralAmount,
     };
   }
 

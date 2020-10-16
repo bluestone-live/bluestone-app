@@ -86,10 +86,12 @@ class Record extends Component<IProps, IState> {
               </div>
             ) : undefined}
 
-            <div className="item">
-              <span>Liquidated Collateral:</span>
-              <span>0 ETH</span>
-            </div>
+            {record?.type === RecordType.Borrow ? (
+              <div className="item">
+                <span>Liquidated Collateral:</span>
+                <span className="uppercase">{`${record.soldCollateralAmount} ${record.token}`}</span>
+              </div>
+            ) : undefined}
           </div>
 
           <div className="detail">
