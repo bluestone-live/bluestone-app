@@ -62,7 +62,7 @@ export default class RecordViewModel extends BaseViewModel {
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
   };
 
-  calcNewRatio(value: string) {
+  private calcNewRatio(value: string) {
     const debt = this.record!.remainingDebt;
 
     const loanToken = this.tokens.find(
@@ -119,9 +119,7 @@ export default class RecordViewModel extends BaseViewModel {
 
     const remainingDebt = isLoan ? utils.formatUnits(r["remainingDebt"], token.decimals) : "0";
 
-    const collateralAmount = isLoan
-      ? utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18)
-      : "0";
+    const collateralAmount = isLoan ? utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18) : "0";
 
     const maxCollateralAmount = collateralToken
       ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals)
@@ -130,10 +128,7 @@ export default class RecordViewModel extends BaseViewModel {
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
-      amount: utils.formatUnits(
-        (r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount,
-        token.decimals
-      ),
+      amount: utils.formatUnits((r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount, token.decimals),
       type: isLoan ? RecordType.Borrow : RecordType.Deposit,
       interest: Number.parseFloat(utils.formatUnits(r.interest, token.decimals)).toFixed(4),
       apr: apr.toFixed(2),

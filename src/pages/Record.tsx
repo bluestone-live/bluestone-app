@@ -89,6 +89,25 @@ class Record extends Component<IProps, IState> {
             ) : undefined}
           </div>
 
+          {record?.type === RecordType.Deposit ? (
+            <div className="detail">
+              <div className="head">
+                <h3>Withdraw</h3>
+                <span></span>
+              </div>
+
+              <div className="item">
+                <span>Withdraw Amount:</span>
+                <span className="uppercase">{`${record.amount} ${record.token}`}</span>
+              </div>
+
+              <div className="form">
+                <NumBox title="Withdraw Amount" maxValue={record.amount} />
+                <button>Repay</button>
+              </div>
+            </div>
+          ) : undefined}
+
           {record?.type === RecordType.Borrow ? (
             <div className="detail">
               <div className="head">

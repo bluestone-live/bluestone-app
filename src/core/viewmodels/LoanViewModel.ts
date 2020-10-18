@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 import BaseViewModel from "./BaseViewModel";
 import { calcCollateralRatio } from "../services/Math";
+import history from "../services/History";
 
 interface ILoanViewModel extends IViewModel {
   loanPairs: ILoanPair[];
@@ -142,7 +143,7 @@ export default class LoanViewModel extends BaseViewModel {
       .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
       .toString();
 
-    await protocol.loan(
+    const tx = await protocol.loan(
       loanToken.address,
       this.selectedCollateralToken.address,
       loanAmount.toString(),
@@ -153,5 +154,12 @@ export default class LoanViewModel extends BaseViewModel {
         value: isEtherCollateral ? collateralAmount : "0",
       }
     );
+
+    const receipt = await tx.wait();
+
+    const event = receipt.events.find((e) => e.event === "LoanSucceed");
+    const id = event.args.recordId;
+
+    history.push(`/record/${id}`);
   };
 }

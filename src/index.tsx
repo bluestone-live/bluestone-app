@@ -1,23 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { Provider } from 'mobx-react';
-import { createBrowserHistory } from 'history';
-import ViewModelLocator from './core/ViewModelLocator';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "mobx-react";
+import ViewModelLocator from "./core/ViewModelLocator";
+import history from "./core/services/History";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-const history = createBrowserHistory();
 ViewModelLocator.init();
 
 ReactDOM.render(
   <Provider history={history} locator={ViewModelLocator}>
     <App />
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

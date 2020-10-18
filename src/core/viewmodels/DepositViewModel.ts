@@ -4,6 +4,7 @@ import { IPool, IToken, IViewModel } from "./Types";
 import dayjs from "dayjs";
 import BaseViewModel from "./BaseViewModel";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
+import history from "../services/History";
 
 interface IDepositViewModel extends IViewModel {
   depositTerms: BigNumber[];
@@ -120,8 +121,12 @@ export default class DepositViewModel extends BaseViewModel {
     this.sending = true;
 
     const receipt = await tx.wait();
-    console.log(receipt);
+
+    const event = receipt.events.find((e) => e.event === "DepositSucceed");
+    const id = event.args.recordId;
 
     this.sending = false;
+
+    history.push(`/record/${id}`);
   };
 }
