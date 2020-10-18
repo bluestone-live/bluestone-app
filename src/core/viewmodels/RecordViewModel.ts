@@ -2,7 +2,7 @@ import { observable } from "mobx";
 import BaseViewModel from "./BaseViewModel";
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
 import dayjs from "dayjs";
-import { calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
+import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
 import { BigNumber, utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
@@ -44,7 +44,8 @@ export default class RecordViewModel extends BaseViewModel {
 
     this.newWithdrawCR = this.newDepositCR = ui.collateralizationRatio;
     this.maxDepositCollateral = ui.maxCollateralAmount;
-    this.maxWithdrawCollateral = ui.collateralAmount;
+    this.maxWithdrawCollateral = ui.maxWithdrawCollateralAmount;
+    console.log(ui.maxWithdrawCollateralAmount);
 
     this.record = {
       ...r,
@@ -134,6 +135,11 @@ export default class RecordViewModel extends BaseViewModel {
       ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals)
       : "0";
 
+    const maxWithdrawCollateralAmount = collateralToken
+      ? Number.parseFloat(collateralAmount) -
+        calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
+      : "0";
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -149,6 +155,7 @@ export default class RecordViewModel extends BaseViewModel {
       collateralAmount,
       collateralToken,
       maxCollateralAmount,
+      maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
     };
   }
 }
