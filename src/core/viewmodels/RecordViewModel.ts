@@ -50,6 +50,8 @@ export default class RecordViewModel extends BaseViewModel {
       ...r,
       ...ui,
     } as IRecordUI;
+
+    this.fetchTxs();
   }
 
   updateWithdrawCollateralAmount = (value: string) => {
@@ -61,6 +63,13 @@ export default class RecordViewModel extends BaseViewModel {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
   };
+
+  private async fetchTxs() {
+    const loan = this.protocol.filters.LoanSucceed(this.account);
+    const deposit = this.protocol.filters.DepositSucceed(this.account);
+
+    console.log(await Promise.all([loan, deposit].map((f) => this.protocol.queryFilter(f))));
+  }
 
   private calcNewRatio(value: string) {
     const debt = this.record!.remainingDebt;
