@@ -68,6 +68,7 @@ export interface IRecordUI extends IDepositRecord, ILoanRecord {
   id: string;
   collateralizationRatio: string;
   collateralToken?: IToken;
+  mainToken: IToken;
 }
 
 export interface IDepositRecord {

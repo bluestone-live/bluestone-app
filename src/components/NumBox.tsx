@@ -19,6 +19,7 @@ class NumBox extends Component<IProps, {}> {
   onButtonClick = () => {
     this.props.onButtonClick?.();
     this.input.value = this.props.maxValue || this.input.value;
+    this.props.onChange?.(this.input.value);
   };
 
   render() {

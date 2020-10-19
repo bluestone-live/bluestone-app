@@ -4,6 +4,7 @@ import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType 
 import dayjs from "dayjs";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
 import { BigNumber, utils } from "ethers";
+import { ETHAddress } from "../services/Constants";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -17,14 +18,22 @@ export default class RecordViewModel extends BaseViewModel {
   maxDepositCollateral?: string;
   maxWithdrawCollateral?: string;
 
+  private _userInputRepayAmount!: string;
+  private _userInputWithdrawCollateralAmount!: string;
+  private _userInputDepositCollateralAmount!: string;
+  private _params: IRecordViewModel;
+
   constructor(params: IRecordViewModel) {
     super(params);
 
+    this._params = params;
     this.record = params.record;
-    this.init(params);
+    this.refresh();
   }
 
-  private async init(params: IRecordViewModel) {
+  private async refresh() {
+    const params = this._params;
+
     const id = params.id;
     let r = params.record;
 
@@ -45,24 +54,60 @@ export default class RecordViewModel extends BaseViewModel {
     this.newWithdrawCR = this.newDepositCR = ui.collateralizationRatio;
     this.maxDepositCollateral = ui.maxCollateralAmount;
     this.maxWithdrawCollateral = ui.maxWithdrawCollateralAmount;
-    console.log(ui.maxWithdrawCollateralAmount);
 
     this.record = {
       ...r,
       ...ui,
     } as IRecordUI;
+  }
 
-    this.fetchTxs();
+  private async forceRefresh() {
+    while (true) {
+      try {
+        await this.refresh();
+        break;
+      } catch {
+        continue;
+      }
+    }
   }
 
   updateWithdrawCollateralAmount = (value: string) => {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) - Number.parseFloat(value);
     this.newWithdrawCR = this.calcNewRatio(`${newAmount}`);
+    this._userInputWithdrawCollateralAmount = value;
   };
 
   updateDepositCollateralAmount = (value: string) => {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
+    this._userInputDepositCollateralAmount = value;
+  };
+
+  updateRepayAmount = (amount: string) => {
+    this._userInputRepayAmount = amount;
+  };
+
+  repay = async () => {
+    const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken!.decimals);
+    await this.protocol.repayLoan(this.record!.id, amount.toString());
+    await this.forceRefresh();
+  };
+
+  withdrawCollateral = async () => {
+    const amount = utils.parseUnits(this._userInputWithdrawCollateralAmount, this.record!.collateralToken?.decimals);
+    await this.protocol.subtractCollateral(this.record!.id, amount.toString());
+    await this.forceRefresh();
+  };
+
+  depositCollateral = async () => {
+    const collateralToken = this.record!.collateralToken!;
+    const isETH = collateralToken.address === ETHAddress;
+    const amount = utils.parseUnits(this._userInputDepositCollateralAmount, collateralToken.decimals);
+    await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
+      value: isETH ? amount.toString() : "0",
+    });
+    await this.forceRefresh();
   };
 
   private async fetchTxs() {
@@ -153,6 +198,7 @@ export default class RecordViewModel extends BaseViewModel {
       soldCollateralAmount,
       remainingDebt,
       collateralAmount,
+      mainToken: token,
       collateralToken,
       maxCollateralAmount,
       maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
