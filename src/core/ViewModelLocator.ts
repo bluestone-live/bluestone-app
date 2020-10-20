@@ -6,6 +6,7 @@ import DepositViewModel from "./viewmodels/DepositViewModel";
 import { abi as ERC20Abi } from "../contracts/ERC20.json";
 import { EventEmitter } from "events";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
+import HomeViewModel from "./viewmodels/HomeViewModel";
 import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import { Metamask } from "ethpay.core";
@@ -118,8 +119,6 @@ export class ViewModelLocator extends EventEmitter {
       eth.allowance = MaxInt256;
     }
 
-    console.log(this.depositTokens);
-
     const pairs = await this.protocol.getLoanAndCollateralTokenPairs();
     const loanPairs: any[] = [];
 
@@ -139,8 +138,6 @@ export class ViewModelLocator extends EventEmitter {
       };
     });
 
-    console.log(this.loanPairs);
-
     this.maxLoanTerm = await this.protocol.getMaxLoanTerm();
     this.depositTerms = await this.protocol.getDepositTerms();
     this.maxDistributorFeeRatios = await this.protocol.getMaxDistributorFeeRatios();
@@ -149,6 +146,26 @@ export class ViewModelLocator extends EventEmitter {
 
   private async initAccount() {
     this.balance = await this.provider.getBalance(this.account);
+  }
+
+  private _homeVM?: HomeViewModel;
+  get homeVM() {
+    if (this._homeVM) {
+      return this._homeVM;
+    }
+
+    if (!this.initFinished) return undefined;
+
+    this._homeVM = new HomeViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      tokens: this.depositTokens,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+    });
+
+    return this._homeVM;
   }
 
   private _lendVM?: DepositViewModel;

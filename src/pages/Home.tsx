@@ -1,18 +1,52 @@
 import "./Home.scss";
 
 import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
 
+import Currency from "../components/Currency";
+import HomeViewModel from "../core/viewmodels/HomeViewModel";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 import { Slogan } from "../layouts";
+import { ViewModelLocator } from "../core/ViewModelLocator";
 import dai from "../assets/crypto/dai.svg";
 import protect from "../assets/protect-96.png";
 import requestMoney from "../assets/request-money-96.png";
 import sendMoney from "../assets/send-money-96.png";
+import { tr } from "date-fns/locale";
 import usdc from "../assets/crypto/usdc.svg";
 import usdt from "../assets/crypto/usdt.svg";
 
-class Home extends Component {
+interface IProps {
+  locator: ViewModelLocator;
+}
+
+interface IState {
+  vm?: HomeViewModel;
+}
+
+@inject("locator")
+@observer
+class Home extends Component<IProps, IState> {
+  state: IState = {};
+
+  componentDidMount() {
+    const locator = this.props.locator;
+    this.setState({ vm: locator.homeVM });
+
+    this.props.locator.once("init", () => {
+      this.setState({ vm: locator.homeVM });
+      locator.homeVM?.refresh();
+    });
+
+    if (locator.initFinished) {
+      locator.homeVM?.refresh();
+    }
+  }
+
   render() {
+    const { vm } = this.state;
+
     return (
       <div className="home page">
         <Slogan />
@@ -24,7 +58,7 @@ class Home extends Component {
               <tr>
                 <th className="asset">Asset</th>
                 <th>Lending Cap.</th>
-                <th>Borrowing Amt.</th>
+                <th>Borrowing Cap.</th>
                 <th>Best Lending Term</th>
                 <th>Borrow APR</th>
                 <th>Action</th>
@@ -32,66 +66,58 @@ class Home extends Component {
             </thead>
 
             <tbody>
-              <tr>
-                <td className="asset">
-                  <div>
-                    <img src={dai} alt="Dai" />
-                    <span>DAI</span>
-                  </div>
-                </td>
-                <td>11,223 DAI</td>
-                <td>2,345 DAI</td>
-                <td>5.4 % (30 Days)</td>
-                <td>4% - 8%</td>
-                <td>
-                  <Link to="/lend">
-                    <button>Lend</button>
-                  </Link>
-                  <Link to="/loan">
-                    <button>Loan</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td className="asset">
-                  <div>
-                    <img src={usdc} alt="Dai" />
-                    <span>USDC</span>
-                  </div>
-                </td>
-                <td>11,223 USDC</td>
-                <td>2,345 USDC</td>
-                <td>5.4 % (30 Days)</td>
-                <td>4% - 8%</td>
-                <td>
-                  <Link to="/lend">
-                    <button>Lend</button>
-                  </Link>
-                  <Link to="/loan">
-                    <button>Loan</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td className="asset">
-                  <div>
-                    <img src={usdt} alt="Dai" />
-                    <span>USDT</span>
-                  </div>
-                </td>
-                <td>11,223 USDT</td>
-                <td>2,345 USDT</td>
-                <td>5.4 % (30 Days)</td>
-                <td>4% - 8%</td>
-                <td>
-                  <Link to="/lend">
-                    <button>Lend</button>
-                  </Link>
-                  <Link to="/loan">
-                    <button>Loan</button>
-                  </Link>
-                </td>
-              </tr>
+              {vm && vm.pools
+                ? vm.pools.map((p) => {
+                    return (
+                      <tr key={p.token.address}>
+                        <td className="asset">
+                          <div className="uppercase">
+                            <Currency symbol={p.token.name} />
+                            <span>{p.token.name}</span>
+                          </div>
+                        </td>
+                        <td className="uppercase">{`${p.lendingAmount} ${p.token.name}`}</td>
+                        <td className="uppercase">{`${p.loanAmount} ${p.token.name}`}</td>
+                        <td>{`${p.bestLendingApr}% (${p.bestLendingTerm} Days)`}</td>
+                        <td>{`${p.lowLoanApr}% - ${p.highLoanApr}%`}</td>
+                        <td>
+                          <Link to="/lend">
+                            <button>Lend</button>
+                          </Link>
+                          <Link to="/loan">
+                            <button>Loan</button>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })
+                : new Array(3).fill(1).map((_, i) => {
+                    return (
+                      <tr key={i}>
+                        <td className="asset">
+                          <div>
+                            <img src={usdc} alt="Dai" />
+                            <Loading />
+                          </div>
+                        </td>
+                        <td>
+                          <Loading />
+                        </td>
+                        <td>
+                          <Loading />
+                        </td>
+                        <td>
+                          <Loading />
+                        </td>
+                        <td>
+                          <Loading />
+                        </td>
+                        <td>
+                          <Loading />
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </table>
         </div>
