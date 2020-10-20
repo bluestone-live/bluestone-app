@@ -38,6 +38,7 @@ class Record extends Component<IProps, IState> {
   render() {
     const { vm } = this.state;
     const record = vm?.record;
+    const txs = vm?.txs;
 
     return (
       <div className="record page">
@@ -92,7 +93,7 @@ class Record extends Component<IProps, IState> {
           {record?.type === RecordType.Deposit ? (
             <div className="detail">
               <div className="head">
-                <h3>Withdraw</h3>
+                <h3>{record.isMatured ? "Withdraw" : "Early withdraw"}</h3>
                 <span></span>
               </div>
 
@@ -102,8 +103,8 @@ class Record extends Component<IProps, IState> {
               </div>
 
               <div className="form">
-                <NumBox title="Withdraw Amount" maxValue={record.amount} />
-                <button>Withdraw</button>
+                <NumBox title="Withdraw Amount" maxValue={record.amount} defaultValue={record.amount} disabled />
+                <button onClick={vm?.withdraw}>Withdraw</button>
               </div>
             </div>
           ) : undefined}
@@ -191,11 +192,27 @@ class Record extends Component<IProps, IState> {
             </thead>
 
             <tbody>
-              <tr>
-                <td>{new Date().toLocaleString()}</td>
-                <td>Deposit</td>
-                <td>12, 345 DAI</td>
-              </tr>
+              {txs && txs.length > 0 ? (
+                txs.map((tx) => (
+                  <tr key={tx.transactionHash}>
+                    <td>{tx.time}</td>
+                    <td>{tx.event}</td>
+                    <td className="uppercase">{`${tx.amount} ${tx.token?.name}`}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>
+                    <Loading />
+                  </td>
+                  <td>
+                    <Loading />
+                  </td>
+                  <td>
+                    <Loading />
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

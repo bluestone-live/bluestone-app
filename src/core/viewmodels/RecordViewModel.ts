@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
 import { BigNumber, utils } from "ethers";
 import { ETHAddress } from "../services/Constants";
+import UserTransactions, { HistoryTx } from "../services/UserTransactions";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -15,6 +16,7 @@ export default class RecordViewModel extends BaseViewModel {
   @observable record?: IRecordUI;
   @observable newWithdrawCR?: string;
   @observable newDepositCR?: string;
+  @observable txs: HistoryTx[] = [];
   maxDepositCollateral?: string;
   maxWithdrawCollateral?: string;
 
@@ -22,13 +24,22 @@ export default class RecordViewModel extends BaseViewModel {
   private _userInputWithdrawCollateralAmount!: string;
   private _userInputDepositCollateralAmount!: string;
   private _params: IRecordViewModel;
+  private _userTxs: UserTransactions;
+
+  isClosed() {
+    return this.record?.isWithdrawn || this.record?.isClosed;
+  }
 
   constructor(params: IRecordViewModel) {
     super(params);
 
     this._params = params;
+    this._userTxs = new UserTransactions(params);
     this.record = params.record;
     this.refresh();
+    this._userTxs.queryHistory(this.account, (params.record?.id || params.id)!).then((v) => {
+      this.txs = v;
+    });
   }
 
   private async refresh() {
@@ -70,6 +81,9 @@ export default class RecordViewModel extends BaseViewModel {
         continue;
       }
     }
+
+    this.txs = await this._userTxs.queryHistory(this.account, this.record!.id);
+    console.log(this.txs);
   }
 
   updateWithdrawCollateralAmount = (value: string) => {
@@ -88,8 +102,18 @@ export default class RecordViewModel extends BaseViewModel {
     this._userInputRepayAmount = amount;
   };
 
+  withdraw = async () => {
+    if (this.record?.isMatured) {
+      await this.protocol.withdraw(this.record!.id);
+    } else {
+      await this.protocol.earlyWithdraw(this.record!.id);
+    }
+
+    await this.forceRefresh();
+  };
+
   repay = async () => {
-    const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken!.decimals);
+    const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken.decimals);
     await this.protocol.repayLoan(this.record!.id, amount.toString());
     await this.forceRefresh();
   };
@@ -109,13 +133,6 @@ export default class RecordViewModel extends BaseViewModel {
     });
     await this.forceRefresh();
   };
-
-  private async fetchTxs() {
-    const loan = this.protocol.filters.LoanSucceed(this.account);
-    const deposit = this.protocol.filters.DepositSucceed(this.account);
-
-    console.log(await Promise.all([loan, deposit].map((f) => this.protocol.queryFilter(f))));
-  }
 
   private calcNewRatio(value: string) {
     const debt = this.record!.remainingDebt;

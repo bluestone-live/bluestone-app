@@ -11,6 +11,7 @@ interface IProps {
   defaultValue?: string;
   maxValue?: string;
   onButtonClick?: () => void;
+  disabled?: boolean;
 }
 
 class NumBox extends Component<IProps, {}> {
@@ -34,6 +35,7 @@ class NumBox extends Component<IProps, {}> {
             ref={(e) => (this.input = e!)}
             placeholder="0.00"
             defaultValue={this.props.defaultValue}
+            disabled={this.props.disabled}
             onChange={(e) => this.props.onChange?.(e.target.value)}
           />
           <button onClick={() => this.onButtonClick()}>{this.props.buttonTitle || "MAX"}</button>
