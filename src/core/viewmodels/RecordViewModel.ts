@@ -46,8 +46,8 @@ export default class RecordViewModel extends BaseViewModel {
   private async refresh() {
     const params = this._params;
 
-    const id = params.id;
-    let r = params.record;
+    const id = params.id || params.record?.id;
+    let r!: IRecordUI;
 
     if (id) {
       try {
