@@ -15,7 +15,9 @@ class Header extends Component<IProps, {}> {
     const { isHome } = this.props;
     return (
       <header>
-        <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
+        <Link to="/">
+          <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
+        </Link>
         {isHome ? undefined : (
           <div className="links">
             <Link to="/lend">Deposit</Link>
