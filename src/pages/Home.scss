@@ -1,4 +1,4 @@
-@import '../theme.scss';
+@import "../theme.scss";
 
 .home.page {
   display: grid;
@@ -56,11 +56,14 @@
 
         .asset {
           > div {
+            display: flex;
             justify-content: flex-start;
             padding-left: 16px;
             box-sizing: border-box;
+            align-items: center;
 
-            img {
+            img,
+            .icon-loading {
               margin-right: 12px;
               width: 27px;
               height: 27px;

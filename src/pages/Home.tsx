@@ -7,6 +7,7 @@ import Currency from "../components/Currency";
 import HomeViewModel from "../core/viewmodels/HomeViewModel";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
+import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import dai from "../assets/crypto/dai.svg";
@@ -96,7 +97,7 @@ class Home extends Component<IProps, IState> {
                       <tr key={i}>
                         <td className="asset">
                           <div>
-                            <img src={usdc} alt="Dai" />
+                            <Skeleton className='icon-loading' width={27} height={27} />
                             <Loading />
                           </div>
                         </td>
