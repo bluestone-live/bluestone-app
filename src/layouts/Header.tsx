@@ -1,8 +1,10 @@
-import React, { Component } from "react";
 import "./Header.scss";
+
+import React, { Component } from "react";
+
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import logo_blue from "../assets/logo-blue.svg";
-import { Link } from "react-router-dom";
 
 interface IProps {
   isHome?: boolean;

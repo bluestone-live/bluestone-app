@@ -1,15 +1,17 @@
+import "./index.scss";
+
+import * as serviceWorker from "./serviceWorker";
+
+import App from "./App";
+import { Provider } from "mobx-react";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import { Provider } from "mobx-react";
 import ViewModelLocator from "./core/ViewModelLocator";
-import history from "./core/services/History";
 import dayjs from "dayjs";
+import history from "./core/services/History";
 import utc from "dayjs/plugin/utc";
-dayjs.extend(utc);
 
+dayjs.extend(utc);
 ViewModelLocator.init();
 
 ReactDOM.render(

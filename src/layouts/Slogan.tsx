@@ -1,9 +1,11 @@
-import React, { Component } from "react";
 import "./Slogan.scss";
+
+import React, { Component } from "react";
+
+import $ from "jquery";
 import m1 from "../assets/mountain1.svg";
 import m2 from "../assets/mountain2.svg";
 import m3 from "../assets/mountain3.svg";
-import $ from "jquery";
 
 class Slogan extends Component {
   private timer;

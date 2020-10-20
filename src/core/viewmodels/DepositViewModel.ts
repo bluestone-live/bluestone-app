@@ -1,10 +1,11 @@
 import { BigNumber, ethers } from "ethers";
-import { observable } from "mobx";
-import { IPool, IToken, IViewModel } from "./Types";
-import dayjs from "dayjs";
-import BaseViewModel from "./BaseViewModel";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
+import { IPool, IToken, IViewModel } from "./Types";
+
+import BaseViewModel from "./BaseViewModel";
+import dayjs from "dayjs";
 import history from "../services/History";
+import { observable } from "mobx";
 
 interface IDepositViewModel extends IViewModel {
   depositTerms: BigNumber[];

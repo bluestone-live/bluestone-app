@@ -1,14 +1,15 @@
-import { Metamask } from "ethpay.core";
-import ethers, { BigNumber, Contract } from "ethers";
-import { abi as ProtocolAbi } from "../contracts/Protocol.json";
-import { abi as ERC20Abi } from "../contracts/ERC20.json";
-import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
-import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
-import DepositViewModel from "./viewmodels/DepositViewModel";
-import LoanViewModel from "./viewmodels/LoanViewModel";
-import { EventEmitter } from "events";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
+import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
+import ethers, { BigNumber, Contract } from "ethers";
+
+import DepositViewModel from "./viewmodels/DepositViewModel";
+import { abi as ERC20Abi } from "../contracts/ERC20.json";
+import { EventEmitter } from "events";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
+import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
+import LoanViewModel from "./viewmodels/LoanViewModel";
+import { Metamask } from "ethpay.core";
+import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
 
 export class ViewModelLocator extends EventEmitter {

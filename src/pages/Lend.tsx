@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
 import './Lend.scss';
-import TokenSelector from '../components/TokenSelector';
-import NumBox from '../components/NumBox';
-import Calendar from '../components/Calendar';
+
+import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { ViewModelLocator } from '../core/ViewModelLocator';
+
+import Calendar from '../components/Calendar';
 import DepositViewModel from '../core/viewmodels/DepositViewModel';
-import Skeleton from 'react-loading-skeleton';
 import Loading from '../components/Loading';
+import NumBox from '../components/NumBox';
+import Skeleton from 'react-loading-skeleton';
+import TokenSelector from '../components/TokenSelector';
+import { ViewModelLocator } from '../core/ViewModelLocator';
 import { ethers } from 'ethers';
 
 interface Props {

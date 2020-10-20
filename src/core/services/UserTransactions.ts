@@ -1,6 +1,7 @@
 import { Contract, Event, utils } from "ethers";
-import dayjs from "dayjs";
+
 import { IToken } from "../viewmodels/Types";
+import dayjs from "dayjs";
 
 export interface HistoryTx extends Event {
   time: string;

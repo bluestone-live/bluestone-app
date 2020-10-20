@@ -1,12 +1,14 @@
-import React, { Component } from "react";
 import "./Record.scss";
-import NumBox from "../components/NumBox";
+
+import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { ViewModelLocator } from "../core/ViewModelLocator";
-import RecordViewModel from "../core/viewmodels/RecordViewModel";
+
 import Loading from "../components/Loading";
-import { RouteComponentProps } from "react-router-dom";
+import NumBox from "../components/NumBox";
 import { RecordType } from "../core/viewmodels/Types";
+import RecordViewModel from "../core/viewmodels/RecordViewModel";
+import { RouteComponentProps } from "react-router-dom";
+import { ViewModelLocator } from "../core/ViewModelLocator";
 
 interface IProps extends RouteComponentProps {
   locator: ViewModelLocator;

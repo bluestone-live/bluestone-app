@@ -1,7 +1,9 @@
-import React, { Component } from "react";
 import "./Footer.scss";
-import twitter from "../assets/social/twitter.svg";
+
+import React, { Component } from "react";
+
 import github from "../assets/social/github.svg";
+import twitter from "../assets/social/twitter.svg";
 
 class Footer extends Component {
   render() {

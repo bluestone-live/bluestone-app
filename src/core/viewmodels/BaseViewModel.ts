@@ -1,7 +1,8 @@
-import dayjs from "dayjs";
+import { IToken, IViewModel } from "./Types";
+
 import { Contract } from "ethers";
 import TokenPool from "../services/Pool";
-import { IToken, IViewModel } from "./Types";
+import dayjs from "dayjs";
 
 export default class BaseViewModel {
   protected tokenPool: TokenPool;

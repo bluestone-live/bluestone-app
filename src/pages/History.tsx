@@ -1,12 +1,14 @@
-import React, { Component } from "react";
 import "./History.scss";
-import Currency from "../components/Currency";
+
+import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
+
+import Currency from "../components/Currency";
 import { History } from "history";
-import { ViewModelLocator } from "../core/ViewModelLocator";
 import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
-import Loading from "../components/Loading";
 import { IRecordUI } from "../core/viewmodels/Types";
+import Loading from "../components/Loading";
+import { ViewModelLocator } from "../core/ViewModelLocator";
 
 interface IProps {
   history: History;

@@ -1,14 +1,15 @@
-import React, { Component } from "react";
 import "./Lend.scss";
-import Calendar from "../components/Calendar";
-import TokenSelector from "../components/TokenSelector";
-import NumBox from "../components/NumBox";
+
+import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { ViewModelLocator } from "../core/ViewModelLocator";
-import LoanViewModel from "../core/viewmodels/LoanViewModel";
+
+import Calendar from "../components/Calendar";
 import Loading from "../components/Loading";
+import LoanViewModel from "../core/viewmodels/LoanViewModel";
+import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
-import { ethers } from "ethers";
+import TokenSelector from "../components/TokenSelector";
+import { ViewModelLocator } from "../core/ViewModelLocator";
 
 interface IProps {
   locator: ViewModelLocator;

@@ -1,4 +1,3 @@
-import { Dayjs } from "dayjs";
 import { BigNumber, Contract } from "ethers";
 
 export interface IToken {

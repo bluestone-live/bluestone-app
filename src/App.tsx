@@ -1,12 +1,14 @@
-import React from "react";
 import "./App.scss";
-import { Header, Footer } from "./layouts";
-import { Router, Route, Switch } from "react-router-dom";
-import { inject } from "mobx-react";
-import { Home, LendPage, LoanPage, HistoryPage, RecordPage } from "./pages";
-import { History } from "history";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+
+import { Footer, Header } from "./layouts";
+import { HistoryPage, Home, LendPage, LoanPage, RecordPage } from "./pages";
+import { Route, Router, Switch } from "react-router-dom";
+
+import { History } from "history";
+import React from "react";
+import { inject } from "mobx-react";
 
 interface IApp {
   history?: History;
