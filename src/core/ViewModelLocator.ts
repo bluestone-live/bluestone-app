@@ -213,7 +213,7 @@ export class ViewModelLocator extends EventEmitter {
   }
 
   recordVM?: RecordViewModel;
-  
+
   selectRecord(record: IRecordUI) {
     this.recordVM = new RecordViewModel({
       account: this.account,

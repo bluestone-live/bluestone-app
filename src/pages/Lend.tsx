@@ -1,16 +1,16 @@
-import './Lend.scss';
+import "./Lend.scss";
 
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
 
-import Calendar from '../components/Calendar';
-import DepositViewModel from '../core/viewmodels/DepositViewModel';
-import Loading from '../components/Loading';
-import NumBox from '../components/NumBox';
-import Skeleton from 'react-loading-skeleton';
-import TokenSelector from '../components/TokenSelector';
-import { ViewModelLocator } from '../core/ViewModelLocator';
-import { ethers } from 'ethers';
+import Calendar from "../components/Calendar";
+import DepositViewModel from "../core/viewmodels/DepositViewModel";
+import Loading from "../components/Loading";
+import NumBox from "../components/NumBox";
+import Skeleton from "react-loading-skeleton";
+import TokenSelector from "../components/TokenSelector";
+import { ViewModelLocator } from "../core/ViewModelLocator";
+import { ethers } from "ethers";
 
 interface Props {
   locator: ViewModelLocator;
@@ -19,12 +19,12 @@ interface Props {
 interface State {
   vm?: DepositViewModel;
   preview: Date;
-  ranges: { startDate: Date; endDate: Date; key: 'selection' }[];
+  ranges: { startDate: Date; endDate: Date; key: "selection" }[];
 
   maxBalance?: string;
 }
 
-@inject('locator')
+@inject("locator")
 @observer
 class Lend extends Component<Props, State> {
   state: State = {
@@ -32,7 +32,7 @@ class Lend extends Component<Props, State> {
       {
         startDate: new Date(),
         endDate: new Date(),
-        key: 'selection',
+        key: "selection",
       },
     ],
     preview: new Date(),
@@ -42,15 +42,13 @@ class Lend extends Component<Props, State> {
 
   componentDidMount() {
     this.setState({ vm: this.props.locator.lendVM });
-    this.props.locator.once('init', () => this.setState({ vm: this.props.locator.lendVM }));
+    this.props.locator.once("init", () => this.setState({ vm: this.props.locator.lendVM }));
   }
 
   onMaxClick = () => {
     const { vm } = this.state;
     const token = vm?.currentToken;
-    const value = token
-      ? ethers.utils.formatUnits(token.balance ?? '0', token.decimals ?? 18)
-      : '0';
+    const value = token ? ethers.utils.formatUnits(token.balance ?? "0", token.decimals ?? 18) : "0";
 
     this.setState({ maxBalance: value });
     this.numbox.setValue(value);
@@ -60,8 +58,7 @@ class Lend extends Component<Props, State> {
   render() {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
-    const buttonDisabled =
-      (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending;
+    const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending;
 
     return (
       <div className="lend page">
@@ -118,7 +115,7 @@ class Lend extends Component<Props, State> {
               <Skeleton height={37} />
             ) : (
               <button disabled={buttonDisabled} onClick={vm?.deposit}>
-                {vm?.currentToken.allowance?.eq(0) ? 'Approve & Deposit' : 'Deposit'}
+                {vm?.currentToken.allowance?.eq(0) ? "Approve & Deposit" : "Deposit"}
               </button>
             )}
           </div>

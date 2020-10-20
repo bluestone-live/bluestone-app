@@ -1,15 +1,15 @@
-import './Home.scss';
+import "./Home.scss";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Link } from 'react-router-dom';
-import { Slogan } from '../layouts';
-import dai from '../assets/crypto/dai.svg';
-import protect from '../assets/protect-96.png';
-import requestMoney from '../assets/request-money-96.png';
-import sendMoney from '../assets/send-money-96.png';
-import usdc from '../assets/crypto/usdc.svg';
-import usdt from '../assets/crypto/usdt.svg';
+import { Link } from "react-router-dom";
+import { Slogan } from "../layouts";
+import dai from "../assets/crypto/dai.svg";
+import protect from "../assets/protect-96.png";
+import requestMoney from "../assets/request-money-96.png";
+import sendMoney from "../assets/send-money-96.png";
+import usdc from "../assets/crypto/usdc.svg";
+import usdt from "../assets/crypto/usdt.svg";
 
 class Home extends Component {
   render() {
