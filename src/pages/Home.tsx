@@ -10,13 +10,9 @@ import Loading from "../components/Loading";
 import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
-import dai from "../assets/crypto/dai.svg";
 import protect from "../assets/protect-96.png";
 import requestMoney from "../assets/request-money-96.png";
 import sendMoney from "../assets/send-money-96.png";
-import { tr } from "date-fns/locale";
-import usdc from "../assets/crypto/usdc.svg";
-import usdt from "../assets/crypto/usdt.svg";
 
 interface IProps {
   locator: ViewModelLocator;
