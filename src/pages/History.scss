@@ -1,0 +1,89 @@
+@import "../theme.scss";
+
+.history.page {
+  > .categories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > .nav {
+      display: flex;
+      > .item {
+        margin-right: 16px;
+        color: #ccc;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &:hover {
+          color: black;
+        }
+
+        &.active {
+          color: black;
+        }
+      }
+    }
+  }
+
+  > table {
+    margin-top: 24px;
+    table-layout: fixed;
+
+    th.token,
+    td.token {
+      text-align: start;
+
+      > div {
+        justify-content: flex-start;
+        padding-left: 16px;
+        box-sizing: border-box;
+        align-items: center;
+
+        img {
+          margin-right: 8px;
+          width: 20px;
+          height: 20px;
+        }
+
+        .lend {
+          color: rgb(140, 185, 16);
+          margin-left: 4px;
+        }
+
+        .loan {
+          color: red;
+          margin-left: 4px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        text-align: center;
+      }
+
+      td.token,
+      td.type,
+      td.amount,
+      td.interest {
+        text-transform: uppercase;
+      }
+
+      tr:nth-child(even) {
+        background: #fafafa;
+      }
+
+      tr {
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+}

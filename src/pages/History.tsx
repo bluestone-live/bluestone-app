@@ -1,0 +1,138 @@
+import React, { Component } from "react";
+import "./History.scss";
+import Currency from "../components/Currency";
+import { inject, observer } from "mobx-react";
+import { History } from "history";
+import { ViewModelLocator } from "../core/ViewModelLocator";
+import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
+import Loading from "../components/Loading";
+
+interface IProps {
+  history: History;
+  locator: ViewModelLocator;
+}
+
+interface IState {
+  vm?: HistoryViewModel;
+}
+
+const types = [
+  { label: "Active", value: "active" },
+  { label: "Deposit", value: "deposit" },
+  { label: "Borrow", value: "loan" },
+  { label: "Closed", value: "closed" },
+];
+
+@inject("history")
+@inject("locator")
+@observer
+class HistoryPage extends Component<IProps, IState> {
+  state: IState = {};
+
+  componentDidMount() {
+    this.setState({ vm: this.props.locator.historyVM });
+    this.props.locator.once("init", () => {
+      this.setState({ vm: this.props.locator.historyVM });
+      this.props.locator.historyVM!.refresh();
+    });
+
+    if (this.props.locator.initFinished) {
+      this.props.locator.historyVM!.refresh();
+    }
+  }
+
+  render() {
+    const { vm } = this.state;
+
+    return (
+      <div className="history page">
+        <div className="categories">
+          <h1>History</h1>
+          <div className="nav">
+            {types.map((t) => {
+              return (
+                <div
+                  key={t.value}
+                  className={`item ${vm?.type === t.value ? "active" : ""}`}
+                  onClick={() => vm?.switch(t.value as any)}
+                >
+                  {t.label}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th className="token">
+                <div>Token</div>
+              </th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Interest</th>
+              <th>APR</th>
+              <th>Term</th>
+              <th>Maturity Date</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {vm && !vm.loading
+              ? vm.currentRecords.map((r, i) => {
+                  return (
+                    <tr key={i} onClick={(_) => this.props.history.push(`/record/${r.id}`)}>
+                      <td className="token">
+                        <div>
+                          <Currency symbol={r.token} />
+                          {r.token}
+                          {/* <span className="lend">↓</span> */}
+                        </div>
+                      </td>
+                      <td className="type">{r.type}</td>
+                      <td className="amount">{`${r.amount} ${r.token}`}</td>
+                      <td className="interest">{`${r.interest} ${r.token}`}</td>
+                      <td>{r.apr}%</td>
+                      <td>{r.term} Days</td>
+                      <td>{r.maturityDate}</td>
+                    </tr>
+                  );
+                })
+              : new Array(7).fill(1).map((_, i) => {
+                  return (
+                    <tr key={i}>
+                      <td className="token">
+                        <div>
+                          <Loading />
+                        </div>
+                      </td>
+                      <td className="type">
+                        <Loading />
+                      </td>
+                      <td className="amount">
+                        <Loading />
+                      </td>
+                      <td className="interest">
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                      <td>
+                        <Loading />
+                      </td>
+                    </tr>
+                  );
+                })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default HistoryPage;

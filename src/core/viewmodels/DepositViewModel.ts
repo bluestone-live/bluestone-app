@@ -6,7 +6,6 @@ import BaseViewModel from "./BaseViewModel";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 
 interface IDepositViewModel extends IViewModel {
-  tokens: IToken[];
   depositTerms: BigNumber[];
 }
 
@@ -24,7 +23,7 @@ export default class DepositViewModel extends BaseViewModel {
   @observable selectedPool?: IPool;
   @observable inputValue?: string;
   readonly terms: number[];
-  readonly tokens: string[];
+  readonly tokenSymbols: string[];
 
   private selectedDate?: Date;
 
@@ -33,7 +32,7 @@ export default class DepositViewModel extends BaseViewModel {
 
     this.params = params;
     this.terms = params.depositTerms.map((t) => t.toNumber()).sort();
-    this.tokens = params.tokens.map((t) => t.name);
+    this.tokenSymbols = params.tokens.map((t) => t.name);
 
     this.maxDate.setDate(new Date().getDate() + this.terms[this.terms.length - 1]);
 
