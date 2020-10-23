@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import Select, { ValueType } from 'react-select';
-import './TokenSelector.scss';
+import "./TokenSelector.scss";
+
+import React, { Component } from "react";
+import Select, { ValueType } from "react-select";
 
 const tokens = [
-  { value: 'dai', label: 'DAI' },
-  { value: 'usdc', label: 'USDC' },
-  { value: 'usdt', label: 'USDT' },
-  { value: 'eth', label: 'ETH' },
+  { value: "dai", label: "DAI" },
+  { value: "usdc", label: "USDC" },
+  { value: "usdt", label: "USDT" },
+  { value: "eth", label: "ETH" },
 ];
 
-const icon = (symbol = 'dai') => ({
-  alignItems: 'center',
-  display: 'flex',
+const icon = (symbol = "dai") => ({
+  alignItems: "center",
+  display: "flex",
 
-  ':before': {
+  ":before": {
     backgroundImage: `url('/assets/crypto/${symbol}.svg')`,
-    backgroundSize: 'cover',
+    backgroundSize: "cover",
     content: '" "',
-    display: 'block',
+    display: "block",
     marginRight: 8,
     height: 19,
     width: 19,
@@ -33,7 +34,7 @@ const customStyles = {
   },
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
+    const transition = "opacity 300ms";
     return { ...provided, opacity, transition, ...icon(state.data.value) };
   },
 };
@@ -54,14 +55,11 @@ class TokenSelector extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {};
-    this.tokens =
-      props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! || [];
+    this.tokens = props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! || [];
   }
 
   render() {
-    this.tokens =
-      this.props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! ||
-      [];
+    this.tokens = this.props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! || [];
 
     return (
       <div className="tokens-selector">
@@ -75,7 +73,7 @@ class TokenSelector extends Component<IProps, IState> {
           isClearable={false}
           isSearchable={false}
           onChange={(item) => {
-            this.props.onChange?.(item!['value']);
+            this.props.onChange?.(item!["value"]);
             this.setState({ selected: item });
           }}
         />

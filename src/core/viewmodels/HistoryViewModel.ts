@@ -1,21 +1,31 @@
-import { BigNumber, ethers } from "ethers";
-import { observable } from "mobx";
+import { IDepositRecord, ILoanRecord, IRecordUI, IViewModel, RecordType } from "./Types";
+
 import BaseViewModel from "./BaseViewModel";
-import { IDepositRecord, ILoanRecord, IRecordUI, RecordType } from "./Types";
-import dayjs from "dayjs";
-import { getTimestampByPoolId } from "../services/Math";
+import RecordViewModel from "./RecordViewModel";
+import { ViewModelLocator } from "../ViewModelLocator";
+import { observable } from "mobx";
 
 type IRecord = IDepositRecord | ILoanRecord;
 type ShowType = "active" | "closed" | "deposit" | "loan";
+
+interface IHistoryViewModel extends IViewModel {
+  locator: ViewModelLocator;
+}
 
 export default class HistoryViewModel extends BaseViewModel {
   private allRecords!: IRecordUI[];
   private depRecords!: IDepositRecord[];
   private loanRecords!: ILoanRecord[];
+  private locator: ViewModelLocator;
 
   @observable currentRecords: IRecordUI[] = [];
   @observable type: ShowType = "active";
   @observable loading = true;
+
+  constructor(params: IHistoryViewModel) {
+    super(params);
+    this.locator = params.locator;
+  }
 
   async refresh() {
     this.loading = true;
@@ -23,55 +33,18 @@ export default class HistoryViewModel extends BaseViewModel {
     this.depRecords = await this.protocol.getDepositRecordsByAccount(this.account);
     this.loanRecords = await this.protocol.getLoanRecordsByAccount(this.account);
 
-    this.allRecords = (this.depRecords as IRecord[])
-      .concat(this.loanRecords as IRecord[])
-      .sort((r1: IRecord, r2: IRecord) => r2.createdAt.sub(r1.createdAt).toNumber())
-      .map((r) => {
-        const token = this.tokens.find(
-          (t) =>
-            t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
-            t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
-        )!;
-
-        console.log(r);
-        const apr = r["annualInterestRate"]
-          ? Number.parseFloat(ethers.utils.formatUnits(r["annualInterestRate"].mul(100), 18))
-          : ((r.interest as unknown) as BigNumber)
-              .div(
-                ((((r as IDepositRecord).depositAmount ||
-                  (r as ILoanRecord).remainingDebt) as unknown) as BigNumber).div(
-                  (((r as IDepositRecord).depositTerm || (r as ILoanRecord).loanTerm) as unknown) as BigNumber
-                )
-              )
-              .mul(365)
-              .mul(100)
-              .toNumber();
-
-        const isLoan = r["collateralTokenAddress"] ? true : false;
-
-        let maturityDate = "";
-        if (isLoan) {
-          maturityDate = dayjs((r as ILoanRecord).dueAt.mul(1000).toNumber(), { utc: true }).format("YYYY-MM-DD HH:mm");
-        } else {
-          const poolId = (r as IDepositRecord).poolId;
-          maturityDate = dayjs.utc(getTimestampByPoolId(poolId)).local().format("YYYY-MM-DD HH:mm");
-        }
-
-        return {
-          ...r,
-          id: r["depositId"] || r["loanId"],
-          token: token.name,
-          amount: ethers.utils.formatUnits(
-            (r as ILoanRecord).loanAmount || (r as IDepositRecord).depositAmount,
-            token.decimals
-          ),
-          type: isLoan ? RecordType.Borrow : RecordType.Deposit,
-          interest: Number.parseFloat(ethers.utils.formatUnits(r.interest, token.decimals)).toFixed(4),
-          apr: apr.toFixed(2),
-          term: (r as IDepositRecord).depositTerm?.toNumber() || (r as ILoanRecord).loanTerm?.toNumber(),
-          maturityDate,
-        } as IRecordUI;
-      });
+    this.allRecords = await Promise.all(
+      (this.depRecords as IRecord[])
+        .concat(this.loanRecords as IRecord[])
+        .sort((r1: IRecord, r2: IRecord) => r2.createdAt.sub(r1.createdAt).toNumber())
+        .map(async (r) => {
+          const ui = (await RecordViewModel.fetchUIData(r, this.tokens)) as any;
+          return {
+            ...r,
+            ...ui,
+          } as IRecordUI;
+        })
+    );
 
     this.switch(this.type);
 
@@ -101,4 +74,8 @@ export default class HistoryViewModel extends BaseViewModel {
         break;
     }
   }
+
+  selectRecord = (record: IRecordUI) => {
+    this.locator.selectRecord(record);
+  };
 }

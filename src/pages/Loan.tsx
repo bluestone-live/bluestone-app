@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import './Lend.scss';
-import Calendar from '../components/Calendar';
-import TokenSelector from '../components/TokenSelector';
-import NumBox from '../components/NumBox';
-import { inject, observer } from 'mobx-react';
-import { ViewModelLocator } from '../core/ViewModelLocator';
-import LoanViewModel from '../core/viewmodels/LoanViewModel';
-import Loading from '../components/Loading';
-import Skeleton from 'react-loading-skeleton';
-import { ethers } from 'ethers';
+import "./Lend.scss";
+
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
+
+import Calendar from "../components/Calendar";
+import Loading from "../components/Loading";
+import LoanViewModel from "../core/viewmodels/LoanViewModel";
+import NumBox from "../components/NumBox";
+import Skeleton from "react-loading-skeleton";
+import TokenSelector from "../components/TokenSelector";
+import { ViewModelLocator } from "../core/ViewModelLocator";
 
 interface IProps {
   locator: ViewModelLocator;
@@ -17,13 +18,12 @@ interface IProps {
 interface State {
   vm?: LoanViewModel;
   preview: Date;
-  ranges: { startDate: Date; endDate: Date; key: 'selection' }[];
+  ranges: { startDate: Date; endDate: Date; key: "selection" }[];
 
   maxLoan?: string;
-  maxCollateral?: string;
 }
 
-@inject('locator')
+@inject("locator")
 @observer
 class Loan extends Component<IProps, State> {
   state: State = {
@@ -31,7 +31,7 @@ class Loan extends Component<IProps, State> {
       {
         startDate: new Date(),
         endDate: new Date(),
-        key: 'selection',
+        key: "selection",
       },
     ],
     preview: new Date(),
@@ -39,7 +39,7 @@ class Loan extends Component<IProps, State> {
 
   componentDidMount() {
     this.setState({ vm: this.props.locator.loanVM });
-    this.props.locator.once('init', () => this.setState({ vm: this.props.locator.loanVM }));
+    this.props.locator.once("init", () => this.setState({ vm: this.props.locator.loanVM }));
   }
 
   onLoanMaxClick = () => {};
@@ -49,21 +49,14 @@ class Loan extends Component<IProps, State> {
     const collateralToken = vm?.selectedCollateralToken;
     if (!vm || !collateralToken) return;
 
-    const value = ethers.utils.formatUnits(collateralToken.balance!, collateralToken.decimals!);
-    this.setState({
-      maxCollateral: value,
-    });
-
-    vm.inputCollateral(value);
+    vm.inputCollateral(vm!.maxCollateralAmount!);
   };
 
   render() {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
     const buttonDisabled =
-      (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue
-        ? false
-        : true) || vm?.sending;
+      (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) || vm?.sending;
 
     return (
       <div className="loan page">
@@ -82,11 +75,7 @@ class Loan extends Component<IProps, State> {
           <div className="form">
             <div className="items">
               <div className="item">
-                <TokenSelector
-                  title="Loan Token"
-                  tokens={vm?.loanTokens}
-                  onChange={vm?.selectLoanPair}
-                />
+                <TokenSelector title="Loan Token" tokens={vm?.loanTokens} onChange={vm?.selectLoanPair} />
               </div>
               <div className="item">
                 <NumBox
@@ -104,7 +93,7 @@ class Loan extends Component<IProps, State> {
                 <NumBox
                   title="Collateral Amount"
                   onChange={vm?.inputCollateral}
-                  defaultValue={this.state.maxCollateral}
+                  maxValue={vm?.maxCollateralAmount}
                   onButtonClick={this.onCollateralMaxClick}
                 />
               </div>
@@ -116,13 +105,7 @@ class Loan extends Component<IProps, State> {
 
               <div className="item">
                 <span>Interest:</span>
-                <span>
-                  {loading ? (
-                    <Loading />
-                  ) : (
-                    `${vm!.interest.toFixed(4)} ${vm!.loanToken.name.toUpperCase()}`
-                  )}
-                </span>
+                <span>{loading ? <Loading /> : `${vm!.interest.toFixed(4)} ${vm!.loanToken.name.toUpperCase()}`}</span>
               </div>
 
               <div className="item">
@@ -145,7 +128,7 @@ class Loan extends Component<IProps, State> {
               <Skeleton height={37} />
             ) : (
               <button disabled={buttonDisabled} onClick={vm?.loan}>
-                {vm?.loanToken.allowance?.eq(0) ? 'Approve & Loan' : 'Loan'}
+                {vm?.loanToken.allowance?.eq(0) ? "Approve & Loan" : "Loan"}
               </button>
             )}
           </div>

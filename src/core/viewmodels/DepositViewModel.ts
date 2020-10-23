@@ -1,9 +1,11 @@
 import { BigNumber, ethers } from "ethers";
-import { observable } from "mobx";
-import { IPool, IToken, IViewModel } from "./Types";
-import dayjs from "dayjs";
-import BaseViewModel from "./BaseViewModel";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
+import { IPool, IToken, IViewModel } from "./Types";
+
+import BaseViewModel from "./BaseViewModel";
+import dayjs from "dayjs";
+import history from "../services/History";
+import { observable } from "mobx";
 
 interface IDepositViewModel extends IViewModel {
   depositTerms: BigNumber[];
@@ -120,8 +122,12 @@ export default class DepositViewModel extends BaseViewModel {
     this.sending = true;
 
     const receipt = await tx.wait();
-    console.log(receipt);
+
+    const event = receipt.events.find((e) => e.event === "DepositSucceed");
+    const id = event.args.recordId;
 
     this.sending = false;
+
+    history.push(`/record/${id}`);
   };
 }

@@ -9,11 +9,19 @@ interface IProps {
   isValid?: (value: string) => boolean;
   buttonTitle?: string;
   defaultValue?: string;
+  maxValue?: string;
   onButtonClick?: () => void;
+  disabled?: boolean;
 }
 
 class NumBox extends Component<IProps, {}> {
   private input!: HTMLInputElement;
+
+  onButtonClick = () => {
+    this.props.onButtonClick?.();
+    this.input.value = this.props.maxValue || this.input.value;
+    this.props.onChange?.(this.input.value);
+  };
 
   render() {
     return (
@@ -27,9 +35,10 @@ class NumBox extends Component<IProps, {}> {
             ref={(e) => (this.input = e!)}
             placeholder="0.00"
             defaultValue={this.props.defaultValue}
+            disabled={this.props.disabled}
             onChange={(e) => this.props.onChange?.(e.target.value)}
           />
-          <button onClick={() => this.props.onButtonClick?.()}>{this.props.buttonTitle || "MAX"}</button>
+          <button onClick={() => this.onButtonClick()}>{this.props.buttonTitle || "MAX"}</button>
         </div>
       </div>
     );

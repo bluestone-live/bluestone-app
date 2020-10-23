@@ -1,5 +1,5 @@
 import { BigNumber, Contract, ethers } from "ethers";
-import { IDistributionFeeRatios, IPool, IBasePool, IInterestModelParameters } from "../viewmodels/Types";
+import { IBasePool, IDistributionFeeRatios, IInterestModelParameters, IPool } from "../viewmodels/Types";
 
 interface IConstruct {
   protocol: Contract;
@@ -51,7 +51,7 @@ export default class TokenPool {
     });
 
     computedPools.shift(); // Remove 1st pool
-    console.log(computedPools);
+    
     return computedPools;
   }
 

@@ -1,10 +1,12 @@
-import { ethers } from "ethers";
-import { computed, observable } from "mobx";
-import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
-import dayjs from "dayjs";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
+import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
+import { computed, observable } from "mobx";
+import { ethers, utils } from "ethers";
+
 import BaseViewModel from "./BaseViewModel";
 import { calcCollateralRatio } from "../services/Math";
+import dayjs from "dayjs";
+import history from "../services/History";
 
 interface ILoanViewModel extends IViewModel {
   loanPairs: ILoanPair[];
@@ -29,6 +31,7 @@ export default class LoanViewModel extends BaseViewModel {
   @observable inputLoanValue?: string;
   @observable inputCollateralValue?: string;
   @observable sending = false;
+  @observable maxCollateralAmount?: string;
 
   @computed get loanToken() {
     return this.currentLoanPair?.loanToken;
@@ -68,6 +71,11 @@ export default class LoanViewModel extends BaseViewModel {
     this.selectedCollateralToken =
       this.currentLoanPair.collateralTokens.find((t) => t.name.toLowerCase() === name.toLowerCase()) ||
       this.selectedCollateralToken;
+
+    this.maxCollateralAmount = utils.formatUnits(
+      this.selectedCollateralToken.balance!,
+      this.selectedCollateralToken.decimals!
+    );
   };
 
   peekTerm = (date: Date) => {
@@ -91,6 +99,8 @@ export default class LoanViewModel extends BaseViewModel {
     this.selectedDate = date;
     const targetPool = this.peekTerm(date);
     this.selectedPool = targetPool;
+
+    this.inputLoan(this.inputLoanValue);
   };
 
   restoreTerm = () => {
@@ -134,7 +144,7 @@ export default class LoanViewModel extends BaseViewModel {
       .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
       .toString();
 
-    await protocol.loan(
+    const tx = await protocol.loan(
       loanToken.address,
       this.selectedCollateralToken.address,
       loanAmount.toString(),
@@ -145,5 +155,12 @@ export default class LoanViewModel extends BaseViewModel {
         value: isEtherCollateral ? collateralAmount : "0",
       }
     );
+
+    const receipt = await tx.wait();
+
+    const event = receipt.events.find((e) => e.event === "LoanSucceed");
+    const id = event.args.recordId;
+
+    history.push(`/record/${id}`);
   };
 }

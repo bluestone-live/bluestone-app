@@ -1,15 +1,23 @@
-import React, { Component } from "react";
 import "./Header.scss";
+
+import React, { Component } from "react";
+
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import logo_blue from "../assets/logo-blue.svg";
-import { Link } from "react-router-dom";
 
-class Header extends Component {
+interface IProps {
+  isHome?: boolean;
+}
+
+class Header extends Component<IProps, {}> {
   render() {
-    const isHome = window.location.pathname?.length <= 1;
+    const { isHome } = this.props;
     return (
       <header>
-        <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
+        <Link to="/">
+          <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
+        </Link>
         {isHome ? undefined : (
           <div className="links">
             <Link to="/lend">Deposit</Link>
