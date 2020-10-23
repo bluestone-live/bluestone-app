@@ -51,7 +51,7 @@ export default class TokenPool {
     });
 
     computedPools.shift(); // Remove 1st pool
-    console.log(computedPools);
+    
     return computedPools;
   }
 
