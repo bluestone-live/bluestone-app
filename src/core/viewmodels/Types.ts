@@ -9,10 +9,15 @@ export interface IToken {
   balance?: BigNumber;
   interestParams?: IInterestModelParameters;
   pools?: IPool[];
+  price?: BigNumber;
 }
 
 export interface IViewModel {
   account: string;
+  protocol: Contract;
+  interestModel: Contract;
+  distributionFeeRatios: IDistributionFeeRatios;
+  protocolReserveRatio: BigNumber;
 }
 
 export interface IInterestModelParameters {
@@ -31,10 +36,17 @@ export interface IBasePool {
 export interface IPool extends IBasePool {
   tokenAddress: string;
   term: number;
-  apr: number;
+  lendAPR: number;
+  loanAPR: number;
 }
 
 export interface IDistributionFeeRatios {
   depositDistributorFeeRatio: BigNumber;
   loanDistributorFeeRatio: BigNumber;
+}
+
+export interface ILoanPair {
+  loanToken: IToken;
+  collateralTokens: IToken[];
+  minCollateralCoverageRatio: BigNumber;
 }

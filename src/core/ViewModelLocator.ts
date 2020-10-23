@@ -3,9 +3,10 @@ import ethers, { BigNumber, Contract } from 'ethers';
 import { abi as ProtocolAbi } from '../contracts/Protocol.json';
 import { abi as ERC20Abi } from '../contracts/ERC20.json';
 import { abi as InterestModelAbi } from '../contracts/InterestModel.json';
-import { IDistributionFeeRatios, IToken } from './viewmodels/Types';
+import { IDistributionFeeRatios, ILoanPair, IToken } from './viewmodels/Types';
+import DepositViewModel from './viewmodels/DepositViewModel';
 import { EventEmitter } from 'events';
-import { ETHAddress } from './services/Constants';
+import { ETHAddress, MaxInt256 } from './services/Constants';
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -23,11 +24,7 @@ export class ViewModelLocator extends EventEmitter {
   interestModel!: Contract;
   nativeEther!: IPlainToken;
   depositTokens!: IToken[];
-  loanPairs!: {
-    loanToken: IToken;
-    collateralToken: IToken;
-    minCollateralCoverageRatio: BigNumber;
-  }[];
+  loanPairs!: ILoanPair[];
   maxLoanTerm!: BigNumber;
   depositTerms!: BigNumber[];
 
@@ -71,7 +68,7 @@ export class ViewModelLocator extends EventEmitter {
     await this.provider.getBalance(account);
 
     try {
-      this.protocolInfo = require(`../../../networks/${this.provider.network.name}`) as IProtocolInfo;
+      this.protocolInfo = require(`../../networks/${this.provider.network.name}`) as IProtocolInfo;
     } catch (error) {
       return false;
     }
@@ -117,21 +114,41 @@ export class ViewModelLocator extends EventEmitter {
         token.balance = await token.contract?.balanceOf(this.account);
         token.decimals = await token.contract?.decimals();
         token.interestParams = await this.interestModel.getLoanParameters(token.address);
+        token.price = await this.protocol.getTokenPrice(token.address);
       }),
     );
 
+    const eth = this.depositTokens.find((t) => t.name.toLowerCase() === 'eth');
+    if (eth) {
+      eth.balance = await this.provider.getBalance(this.account);
+      eth.decimals = 18;
+      eth.allowance = MaxInt256;
+    }
+
+    console.log(this.depositTokens);
+
     const pairs = await this.protocol.getLoanAndCollateralTokenPairs();
-    this.loanPairs = pairs.map((p) => {
+    const loanPairs: any[] = [];
+
+    for (let p of pairs) {
+      // Remove duplicate loan tokens
+      if (loanPairs.find((lp) => lp.loanTokenAddress === p.loanTokenAddress)) continue;
+      loanPairs.push(p);
+    }
+
+    this.loanPairs = loanPairs.map((p) => {
       return {
         loanToken: this.depositTokens.find(
           (t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase(),
         ),
-        collateralToken: this.depositTokens.find(
+        collateralTokens: this.depositTokens.filter(
           (t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase(),
         ),
         ...p,
       };
     });
+
+    console.log(this.loanPairs);
 
     this.maxLoanTerm = await this.protocol.getMaxLoanTerm();
     this.depositTerms = await this.protocol.getDepositTerms();
@@ -141,6 +158,27 @@ export class ViewModelLocator extends EventEmitter {
 
   private async initAccount() {
     this.balance = await this.provider.getBalance(this.account);
+  }
+
+  private _lendVM?: DepositViewModel;
+  get lendVM() {
+    if (this._lendVM) {
+      return this._lendVM;
+    }
+
+    if (!this.initFinished) return undefined;
+
+    this._lendVM = new DepositViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      tokens: this.depositTokens,
+      depositTerms: this.depositTerms,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+    });
+
+    return this._lendVM;
   }
 
 }

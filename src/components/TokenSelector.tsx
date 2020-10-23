@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import Select, { ValueType } from "react-select";
-import "./TokenSelector.scss";
+import React, { Component } from 'react';
+import Select, { ValueType } from 'react-select';
+import './TokenSelector.scss';
 
 const tokens = [
-  { value: "dai", label: "DAI" },
-  { value: "usdc", label: "USDC" },
-  { value: "usdt", label: "USDT" },
-  { value: "eth", label: "ETH" },
+  { value: 'dai', label: 'DAI' },
+  { value: 'usdc', label: 'USDC' },
+  { value: 'usdt', label: 'USDT' },
+  { value: 'eth', label: 'ETH' },
 ];
 
-const icon = (symbol = "dai") => ({
-  alignItems: "center",
-  display: "flex",
+const icon = (symbol = 'dai') => ({
+  alignItems: 'center',
+  display: 'flex',
 
-  ":before": {
+  ':before': {
     backgroundImage: `url('/assets/crypto/${symbol}.svg')`,
-    backgroundSize: "cover",
+    backgroundSize: 'cover',
     content: '" "',
-    display: "block",
+    display: 'block',
     marginRight: 8,
     height: 19,
     width: 19,
@@ -33,7 +33,7 @@ const customStyles = {
   },
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = "opacity 300ms";
+    const transition = 'opacity 300ms';
     return { ...provided, opacity, transition, ...icon(state.data.value) };
   },
 };
@@ -45,7 +45,7 @@ interface IProps {
 }
 
 interface IState {
-  selected: ValueType<{ value: string; label: string }>;
+  selected?: ValueType<{ value: string; label: string }>;
 }
 
 class TokenSelector extends Component<IProps, IState> {
@@ -53,25 +53,31 @@ class TokenSelector extends Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-
-    this.tokens = props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! || tokens;
-
-    this.state = {
-      selected: this.tokens[0],
-    };
+    this.state = {};
+    this.tokens =
+      props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! || [];
   }
 
   render() {
+    this.tokens =
+      this.props.tokens?.map((t) => tokens.find((token) => token.value === t.toLowerCase())!)! ||
+      [];
+
     return (
       <div className="tokens-selector">
         <span className="title">{this.props.title}</span>
+
         <Select
           options={this.tokens}
           styles={customStyles}
-          defaultValue={this.state.selected}
+          defaultValue={this.tokens[0]}
+          value={this.state.selected || this.tokens[0]}
           isClearable={false}
           isSearchable={false}
-          onChange={(item) => this.props.onChange?.(item!["value"])}
+          onChange={(item) => {
+            this.props.onChange?.(item!['value']);
+            this.setState({ selected: item });
+          }}
         />
       </div>
     );
