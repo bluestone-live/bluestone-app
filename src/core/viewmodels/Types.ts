@@ -1,4 +1,4 @@
-import { BigNumber, Contract } from 'ethers';
+import { BigNumber, Contract } from "ethers";
 
 export interface IToken {
   name: string;
@@ -18,6 +18,7 @@ export interface IViewModel {
   interestModel: Contract;
   distributionFeeRatios: IDistributionFeeRatios;
   protocolReserveRatio: BigNumber;
+  tokens: IToken[];
 }
 
 export interface IInterestModelParameters {
@@ -49,4 +50,52 @@ export interface ILoanPair {
   loanToken: IToken;
   collateralTokens: IToken[];
   minCollateralCoverageRatio: BigNumber;
+}
+
+export enum RecordType {
+  Deposit = "deposit",
+  Borrow = "borrow",
+}
+
+export interface IRecordUI extends IDepositRecord, ILoanRecord {
+  token: string;
+  amount: string;
+  apr: string;
+  term: number;
+  maturityDate: string;
+  type: string;
+  id: string;
+}
+
+export interface IDepositRecord {
+  tokenAddress: string;
+  depositTerm: BigNumber;
+  depositAmount: string;
+  poolId: string;
+  createdAt: BigNumber;
+  withdrewAt: BigNumber;
+  isMatured: boolean;
+  isWithdrawn: boolean;
+  interest: string;
+  isEarlyWithdrawable?: boolean;
+}
+
+export interface ILoanRecord {
+  loanTokenAddress: string;
+  collateralTokenAddress: string;
+  loanAmount: string;
+  collateralAmount: string;
+  loanTerm: BigNumber;
+  annualInterestRate: string;
+  interest: string;
+  collateralCoverageRatio: string;
+  minCollateralCoverageRatio: string;
+  alreadyPaidAmount: string;
+  soldCollateralAmount: string;
+  liquidatedAmount: string;
+  remainingDebt: string;
+  createdAt: BigNumber;
+  dueAt: BigNumber;
+  isOverDue: boolean;
+  isClosed: boolean;
 }

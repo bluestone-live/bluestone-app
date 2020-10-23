@@ -8,6 +8,7 @@ import DepositViewModel from "./viewmodels/DepositViewModel";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import { EventEmitter } from "events";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
+import HistoryViewModel from "./viewmodels/HistoryViewModel";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -186,8 +187,26 @@ export class ViewModelLocator extends EventEmitter {
       protocolReserveRatio: this.protocolReserveRatio,
       maxTerm: maxTerm,
       interestModel: this.interestModel,
+      tokens: this.depositTokens,
     });
     return this._loanVM;
+  }
+
+  private _historyVM?: HistoryViewModel;
+  get historyVM() {
+    if (this._historyVM) return this._historyVM;
+
+    if (!this.initFinished) return undefined;
+    
+    this._historyVM = new HistoryViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+      tokens: this.depositTokens,
+    });
+    return this._historyVM;
   }
 }
 
