@@ -164,15 +164,12 @@ export default class RecordViewModel extends BaseViewModel {
 
     const apr = r["annualInterestRate"]
       ? Number.parseFloat(utils.formatUnits(r["annualInterestRate"].mul(100), 18))
-      : ((r.interest as unknown) as BigNumber)
-          .div(
-            ((((r as IDepositRecord).depositAmount || (r as ILoanRecord).remainingDebt) as unknown) as BigNumber).div(
-              (((r as IDepositRecord).depositTerm || (r as ILoanRecord).loanTerm) as unknown) as BigNumber
-            )
-          )
-          .mul(365)
-          .mul(100)
-          .toNumber();
+      : (Number.parseFloat(utils.formatUnits(r.interest, token.decimals)) /
+          Number.parseFloat(utils.formatUnits(r["depositAmount"] || r["remainingDebt"], token.decimals)) /
+          Number.parseFloat(utils.formatUnits(r["depositTerm"] || r["loanTerm"], 0))) *
+        365 *
+        100;
+    console.log(apr);
 
     const isLoan = r["collateralTokenAddress"] ? true : false;
 
