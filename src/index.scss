@@ -1,0 +1,61 @@
+@import './theme.scss';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  line-height: 2;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+
+  thead {
+    tr {
+      th {
+        color: #aaa;
+        font-size: 0.9em;
+      }
+
+      border-bottom: 1px solid #f0f0f0;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        & div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        padding: 12px 0;
+      }
+    }
+  }
+}
+
+h1 {
+  color: $theme-color;
+  font-size: 1.17em;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}

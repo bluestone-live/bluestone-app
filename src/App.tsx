@@ -1,19 +1,34 @@
 import React from "react";
-import "./App.css";
-import Footer from "./layouts/Footer";
-import Header from "./layouts/Header";
+import "./App.scss";
+import { Header, Footer } from "./layouts";
+import { Router, Route, Switch } from "react-router-dom";
+import { inject } from "mobx-react";
+import { Home } from "./pages";
+import { History } from "history";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
-function App() {
-  return (
-    <div className="App">
-      <div className="top">
-
-        <Header />
-        <Footer />
-
-      </div>
-    </div>
-  );
+interface IApp {
+  history?: History;
 }
 
-export default App;
+@inject("history")
+export default class App extends React.Component<IApp, {}> {
+  render() {
+    return (
+      <Router history={this.props.history!}>
+        <div className="App">
+          <div className="top">
+            <Header />
+          </div>
+
+          <Switch>
+            <Route component={Home} />
+          </Switch>
+
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
+}
