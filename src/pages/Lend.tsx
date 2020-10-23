@@ -82,7 +82,7 @@ class Lend extends Component<Props, State> {
               <div className="item">
                 <TokenSelector
                   title="Deposit Token"
-                  tokens={vm?.tokens}
+                  tokens={vm?.tokenSymbols}
                   onChange={(token) => vm?.selectToken(token)}
                 />
               </div>
