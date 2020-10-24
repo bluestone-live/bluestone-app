@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import "./index.scss";
+
+import * as serviceWorker from "./serviceWorker";
+
+import App from "./App";
+import { Provider } from "mobx-react";
+import React from "react";
+import ReactDOM from "react-dom";
+import ViewModelLocator from "./core/ViewModelLocator";
+import dayjs from "dayjs";
+import history from "./core/services/History";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+ViewModelLocator.init();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider history={history} locator={ViewModelLocator}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

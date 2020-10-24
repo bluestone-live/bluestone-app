@@ -1,0 +1,57 @@
+.numbox {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+
+  > .title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+
+    span:last-child {
+      opacity: 0.5;
+    }
+  }
+
+  div.input-area {
+    margin-top: 8px;
+    position: relative;
+
+    input {
+      border: 1px solid hsl(0, 0%, 80%);
+      border-radius: 5px;
+      -webkit-appearance: none;
+      padding: 10px 12px;
+      padding-bottom: 8px;
+      font-size: 16px;
+      outline-color: #2684ff;
+      font-weight: 400;
+      width: 100%;
+      box-sizing: border-box;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+
+    button {
+      background: none;
+      color: #aaa;
+      font-weight: 600;
+      font-size: 12px;
+      max-width: 56px;
+      outline: none;
+      margin-top: 2px;
+      text-align: center;
+      text-transform: uppercase;
+      border: none;
+      position: absolute;
+      right: 0;
+      top: 1px;
+
+      &:hover {
+        color: #222;
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+$accent-color: #ff6dc4;
+$green-color: #52cc65;
+$theme-color: #002397;
+$border-color: #f0f0f0;
+$text-color: #849095;
+$slogan-height: 40vh;
+
+.page {
+  padding: 0 10%;
+  padding-top: 24px;
+  min-height: calc(100vh - 290px);
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  background-color: $accent-color;
+  color: white;
+  padding: 10px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    border-color: #888;
+    cursor: not-allowed !important;
+  }
+}

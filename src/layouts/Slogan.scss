@@ -1,0 +1,82 @@
+@import "../theme.scss";
+
+.slogan {
+  // height: $slogan-height;
+  height: 420px;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  color: white;
+  justify-content: flex-start;
+  align-items: flex-end;
+  box-sizing: border-box;
+
+  background-color: $theme-color;
+  padding: 0 15%;
+
+  > span {
+    font-size: 32px;
+    font-weight: 200;
+  }
+
+  .text-container {
+    margin-bottom: 72px;
+    width: 100%;
+    position: relative;
+
+    div.text {
+      position: relative;
+      font-size: 22px;
+      width: 100%;
+      height: 32px;
+
+      span {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    div.indicators {
+      display: flex;
+      margin-top: 16px;
+      .item {
+        width: 6px;
+        height: 6px;
+        margin-right: 10px;
+        background-color: #fff;
+        border-radius: 50%;
+        opacity: 0.5;
+        transition: all 0.2s;
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .img-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    z-index: 5;
+    align-items: flex-end;
+
+    div.mountains {
+      height: 40px;
+      position: relative;
+      width: 100%;
+
+      img {
+        position: absolute;
+        right: 12px;
+        bottom: -2px;
+        opacity: 0;
+      }
+    }
+  }
+}

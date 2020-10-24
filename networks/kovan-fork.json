@@ -1,0 +1,6 @@
+{
+  "contracts": {
+    "Protocol": "0xACCdc4E9417ba4bE7e25e9Bc534f7C4bF2D2dE0D",
+    "InterestModel": "0x7765B7c48CF99AF7c83638b46D76c9DbF5ddA2C8"
+  }
+}

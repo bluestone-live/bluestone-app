@@ -1,0 +1,113 @@
+@import "../theme.scss";
+
+.home.page {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 80vh;
+
+  .welcome {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+    height: calc(40vh - 42px);
+    height: calc(420px - 42px);
+  }
+
+  .content {
+    table {
+      thead {
+        th.asset {
+          text-align: start;
+          padding-left: 20px;
+        }
+      }
+      tbody {
+        font-size: 17px;
+        color: #222;
+
+        tr:nth-child(even) {
+          background: #fafafa;
+        }
+
+        td {
+          text-align: center;
+
+          button {
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background-color: $accent-color;
+            padding: 6px;
+            width: 96px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s;
+
+            &:hover {
+              opacity: 0.75;
+            }
+
+            &:first-child {
+              margin-right: 8px;
+            }
+          }
+        }
+
+        .asset {
+          > div {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 16px;
+            box-sizing: border-box;
+            align-items: center;
+
+            img,
+            .icon-loading {
+              margin-right: 12px;
+              width: 27px;
+              height: 27px;
+            }
+
+            span {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .features {
+    display: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    div.feature {
+      display: grid;
+      grid-template-rows: auto auto;
+      max-width: 235px;
+      color: #b8bccc;
+      margin-bottom: 24px;
+      margin-top: 64px;
+
+      div.title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+
+        img {
+          width: 24px;
+          height: 24px;
+          margin-right: 12px;
+        }
+
+        span {
+          font-size: 20px;
+          font-weight: 600;
+          color: $theme-color;
+        }
+      }
+    }
+  }
+}

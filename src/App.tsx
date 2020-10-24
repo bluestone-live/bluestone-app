@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Footer, Header } from "./layouts";
+import { HistoryPage, Home, LendPage, LoanPage, RecordPage } from "./pages";
+import { Route, Router, Switch } from "react-router-dom";
+
+import { History } from "history";
+import React from "react";
+import { inject } from "mobx-react";
+
+interface IApp {
+  history?: History;
 }
 
-export default App;
+interface IState {
+  isHome?: boolean;
+}
+
+@inject("history")
+export default class App extends React.Component<IApp, {}> {
+  state: IState = {};
+
+  componentDidMount() {
+    window.addEventListener("popstate", (_) => {
+      this.setState({ isHome: window.location.pathname?.length <= 1 });
+    });
+  }
+
+  render() {
+    return (
+      <Router history={this.props.history!}>
+        <div className="App">
+          <div className="top">
+            <Header isHome={this.state.isHome} />
+          </div>
+
+          <Switch>
+            <Route component={LendPage} path="/lend" />
+            <Route component={LoanPage} path="/loan" />
+            <Route component={HistoryPage} path="/history" />
+            <Route component={RecordPage} path="/record/:id" />
+            <Route component={Home} />
+          </Switch>
+
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
+}
