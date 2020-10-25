@@ -1,4 +1,3 @@
-import { BigNumber, utils } from "ethers";
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
 import UserTransactions, { HistoryTx } from "../services/UserTransactions";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
@@ -7,6 +6,7 @@ import BaseViewModel from "./BaseViewModel";
 import { ETHAddress } from "../services/Constants";
 import dayjs from "dayjs";
 import { observable } from "mobx";
+import { utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
