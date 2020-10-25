@@ -3,6 +3,7 @@ import "./Record.scss";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
+import Button from "../components/Button";
 import Loading from "../components/Loading";
 import NumBox from "../components/NumBox";
 import { RecordType } from "../core/viewmodels/Types";
@@ -106,7 +107,9 @@ class Record extends Component<IProps, IState> {
 
               <div className="form">
                 <NumBox title="Withdraw Amount" maxValue={record.amount} defaultValue={record.amount} disabled />
-                <button onClick={vm?.withdraw}>Withdraw</button>
+                <Button loading={vm?.withdrawing} onClick={vm?.withdraw}>
+                  Withdraw
+                </Button>
               </div>
             </div>
           ) : undefined}
@@ -125,7 +128,9 @@ class Record extends Component<IProps, IState> {
 
               <div className="form">
                 <NumBox title="Repay Amount" maxValue={record.remainingDebt} onChange={vm?.updateRepayAmount} />
-                <button onClick={vm?.repay}>Repay</button>
+                <Button loading={vm?.repaying} onClick={vm?.repay}>
+                  Repay
+                </Button>
               </div>
             </div>
           ) : undefined}
@@ -150,7 +155,9 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxWithdrawCollateral}
                   onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
                 />
-                <button onClick={vm?.withdrawCollateral}>Withdraw</button>
+                <Button loading={vm?.withdrawingCollateral} onClick={vm?.withdrawCollateral}>
+                  Withdraw
+                </Button>
               </div>
             </div>
           ) : undefined}
@@ -176,7 +183,9 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxDepositCollateral}
                   onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
                 />
-                <button onClick={vm?.depositCollateral}>Deposit</button>
+                <Button loading={vm?.depositingCollateral} onClick={vm?.depositCollateral}>
+                  Deposit
+                </Button>
               </div>
             </div>
           ) : undefined}
