@@ -76,3 +76,14 @@ Resources:
 #    Properties:
 #      DomainName: !Ref ApplicationDomain
 #      ValidationMethod: DNS
+
+  DomainRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt Distribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      # Use hardcoded hosted zone id for now. It's pointing to bluestone.live hosted zone.
+      HostedZoneId: Z02950982SB41W2NQVJSS
+      Name: !Ref ApplicationDomain
+      Type: A
