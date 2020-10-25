@@ -6,7 +6,7 @@ on:
     types: [closed]
 
 env:
-  CF_STACK_NAME: beta-bluestone-live-pr-${{ github.head_ref }}
+  CF_STACK_NAME: beta-bluestone-live-pr-${{ github.event.number }}
 
 jobs:
   clean:
