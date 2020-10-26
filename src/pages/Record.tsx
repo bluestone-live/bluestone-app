@@ -230,7 +230,7 @@ class Record extends Component<IProps, IState> {
                 txs.map((tx) => (
                   <tr key={tx.transactionHash}>
                     <td>{tx.time}</td>
-                    <td>{`event_${tx.event}`}</td>
+                    <td>{i18n.t(`event_${tx.event}`)}</td>
                     <td className="uppercase">{`${tx.amount} ${tx.token?.name}`}</td>
                   </tr>
                 ))
