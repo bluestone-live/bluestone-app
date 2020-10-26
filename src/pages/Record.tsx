@@ -10,6 +10,7 @@ import { RecordType } from "../core/viewmodels/Types";
 import RecordViewModel from "../core/viewmodels/RecordViewModel";
 import { RouteComponentProps } from "react-router-dom";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import dayjs from "dayjs";
 
 interface IProps extends RouteComponentProps {
   locator: ViewModelLocator;
@@ -76,7 +77,7 @@ class Record extends Component<IProps, IState> {
             </div>
 
             <div className="item">
-              <span>Maturity Date:</span>
+              <span>Maturity Date ({dayjs.tz.guess()}):</span>
               <span className="uppercase">{record ? `${record.maturityDate}` : <Loading />}</span>
             </div>
 
