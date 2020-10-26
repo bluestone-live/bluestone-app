@@ -11,6 +11,7 @@ import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
 import TokenSelector from "../components/TokenSelector";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import dayjs from "dayjs";
 import i18n from "../i18n";
 
 interface IProps {
@@ -129,7 +130,9 @@ class Loan extends Component<IProps, State> {
               </div>
 
               <div className="item">
-                <span>{i18n.t("common_maturity_date")}:</span>
+                <span>
+                  {i18n.t("common_maturity_date")} ({dayjs.tz.guess()}):
+                </span>
                 <span>{loading ? <Loading /> : vm!.maturityDate}</span>
               </div>
             </div>

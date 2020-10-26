@@ -11,6 +11,7 @@ import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
 import TokenSelector from "../components/TokenSelector";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import dayjs from "dayjs";
 import { ethers } from "ethers";
 import i18n from "../i18n";
 
@@ -111,7 +112,9 @@ class Lend extends Component<Props, State> {
               </div>
 
               <div className="item">
-                <span>{i18n.t("common_maturity_date")}:</span>
+                <span>
+                  {i18n.t("common_maturity_date")} ({dayjs.tz.guess()}):
+                </span>
                 <span>{loading ? <Loading /> : vm!.maturityDate}</span>
               </div>
             </div>
@@ -120,7 +123,7 @@ class Lend extends Component<Props, State> {
               <Skeleton height={37} />
             ) : (
               <Button disabled={buttonDisabled} onClick={vm?.deposit} loading={sending}>
-                {vm?.currentToken.allowance?.eq(0) 
+                {vm?.currentToken.allowance?.eq(0)
                   ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}`
                   : i18n.t("button_deposit")}
               </Button>
