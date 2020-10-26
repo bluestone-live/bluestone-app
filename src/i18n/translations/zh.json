@@ -213,7 +213,6 @@
     "loan_collateral_token": "抵押 Token",
     "loan_collateral_amount": "抵押量",
     "common_interest": "利息",
-    "common_collateralization_ratio\n": "抵押率",
     "button_loan": "贷款",
     "history_title": "交易历史",
     "history_nav_active": "进行中",
@@ -248,6 +247,7 @@
     "event_DepositSucceed": "存款",
     "event_WithdrawSucceed": "取款",
     "event_EarlyWithdrawSucceed": "提前取款",
-    "event_LiquidateLoanSucceed": "清算"
+    "event_LiquidateLoanSucceed": "清算",
+    "common_collateralization_ratio": "抵押率"
   }
 }

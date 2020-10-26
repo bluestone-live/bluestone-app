@@ -213,7 +213,6 @@
     "loan_collateral_token": "Collateral Token",
     "loan_collateral_amount": "Collateral Amount",
     "common_interest": "Interest",
-    "common_collateralization_ratio\n": "Collateralization Ratio",
     "button_loan": "Loan",
     "history_title": "History",
     "history_nav_active": "Active",
@@ -248,6 +247,7 @@
     "event_DepositSucceed": "Deposit",
     "event_WithdrawSucceed": "Withdraw",
     "event_EarlyWithdrawSucceed": "Early Withdraw",
-    "event_LiquidateLoanSucceed": "Liquidate"
+    "event_LiquidateLoanSucceed": "Liquidate",
+    "common_collateralization_ratio": "Collateralization Ratio"
   }
 }
