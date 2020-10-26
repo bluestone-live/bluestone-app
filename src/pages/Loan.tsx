@@ -10,6 +10,7 @@ import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
 import TokenSelector from "../components/TokenSelector";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import i18n from "../i18n";
 
 interface IProps {
   locator: ViewModelLocator;
@@ -75,23 +76,27 @@ class Loan extends Component<IProps, State> {
           <div className="form">
             <div className="items">
               <div className="item">
-                <TokenSelector title="Loan Token" tokens={vm?.loanTokens} onChange={vm?.selectLoanPair} />
+                <TokenSelector
+                  title={i18n.t("loan_loan_token")}
+                  tokens={vm?.loanTokens}
+                  onChange={vm?.selectLoanPair}
+                />
               </div>
               <div className="item">
                 <NumBox
-                  title="Amount"
+                  title={i18n.t("common_amount")}
                   onChange={vm?.inputLoan}
                   defaultValue={this.state.maxLoan}
                   onButtonClick={this.onLoanMaxClick}
                 />
               </div>
               <div className="item">
-                <TokenSelector title="Collateral Token" tokens={vm?.collateralTokens} />
+                <TokenSelector title={i18n.t("loan_collateral_token")} tokens={vm?.collateralTokens} />
               </div>
 
               <div className="item">
                 <NumBox
-                  title="Collateral Amount"
+                  title={i18n.t("loan_collateral_amount")}
                   onChange={vm?.inputCollateral}
                   maxValue={vm?.maxCollateralAmount}
                   onButtonClick={this.onCollateralMaxClick}
@@ -99,12 +104,14 @@ class Loan extends Component<IProps, State> {
               </div>
 
               <div className="item">
-                <span>Terms:</span>
-                <span>{loading ? <Loading /> : `${vm!.term} Days`}</span>
+                <span>{i18n.t("common_term")}:</span>
+                <span>
+                  {loading ? <Loading /> : `${vm!.term} ${i18n.t(vm!.term > 1 ? "common_days" : "common_day")}`}
+                </span>
               </div>
 
               <div className="item">
-                <span>Interest:</span>
+                <span>{i18n.t("common_interest")}:</span>
                 <span>{loading ? <Loading /> : `${vm!.interest.toFixed(4)} ${vm!.loanToken.name.toUpperCase()}`}</span>
               </div>
 
@@ -114,12 +121,12 @@ class Loan extends Component<IProps, State> {
               </div>
 
               <div className="item">
-                <span>Collateralization Ratio:</span>
+                <span>{i18n.t("common_collateralization_ratio")}:</span>
                 <span>{loading ? <Loading /> : `${vm!.collateralization.toFixed(2)}%`}</span>
               </div>
 
               <div className="item">
-                <span>Maturity Date:</span>
+                <span>{i18n.t("common_maturity_date")}:</span>
                 <span>{loading ? <Loading /> : vm!.maturityDate}</span>
               </div>
             </div>
@@ -128,7 +135,9 @@ class Loan extends Component<IProps, State> {
               <Skeleton height={37} />
             ) : (
               <button disabled={buttonDisabled} onClick={vm?.loan}>
-                {vm?.loanToken.allowance?.eq(0) ? "Approve & Loan" : "Loan"}
+                {vm?.loanToken.allowance?.eq(0)
+                  ? `${i18n.t("button_approve")} & ${i18n.t("button_loan")}`
+                  : i18n.t("button_loan")}
               </button>
             )}
           </div>

@@ -75,7 +75,7 @@ export default class DepositViewModel extends BaseViewModel {
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.lendAPR ?? 0;
     this.maturityDate = dayjs(date).format("YYYY-MM-DD");
-
+    
     return targetPool;
   };
 

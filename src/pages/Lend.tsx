@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import TokenSelector from "../components/TokenSelector";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import { ethers } from "ethers";
+import i18n from "../i18n";
 
 interface Props {
   locator: ViewModelLocator;
@@ -80,7 +81,7 @@ class Lend extends Component<Props, State> {
             <div className="items">
               <div className="item">
                 <TokenSelector
-                  title="Deposit Token"
+                  title={i18n.t("lend_deposit_token")}
                   tokens={vm?.tokenSymbols}
                   onChange={(token) => vm?.selectToken(token)}
                 />
@@ -96,8 +97,10 @@ class Lend extends Component<Props, State> {
               </div>
 
               <div className="item">
-                <span>Term:</span>
-                <span>{loading ? <Loading /> : `${vm!.term} Days`}</span>
+                <span>{i18n.t("common_term")}:</span>
+                <span>
+                  {loading ? <Loading /> : `${vm!.term} ${vm!.term > 1 ? i18n.t("common_days") : i18n.t("common_day")}`}
+                </span>
               </div>
 
               <div className="item">
@@ -106,7 +109,7 @@ class Lend extends Component<Props, State> {
               </div>
 
               <div className="item">
-                <span>Maturity Date:</span>
+                <span>{i18n.t("common_maturity_date")}:</span>
                 <span>{loading ? <Loading /> : vm!.maturityDate}</span>
               </div>
             </div>
@@ -115,7 +118,9 @@ class Lend extends Component<Props, State> {
               <Skeleton height={37} />
             ) : (
               <button disabled={buttonDisabled} onClick={vm?.deposit}>
-                {vm?.currentToken.allowance?.eq(0) ? "Approve & Deposit" : "Deposit"}
+                {vm?.currentToken.allowance?.eq(0)
+                  ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}`
+                  : i18n.t("button_deposit")}
               </button>
             )}
           </div>

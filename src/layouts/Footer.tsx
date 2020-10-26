@@ -3,6 +3,7 @@ import "./Footer.scss";
 import React, { Component } from "react";
 
 import github from "../assets/social/github.svg";
+import i18n from "../i18n";
 import twitter from "../assets/social/twitter.svg";
 
 class Footer extends Component {
@@ -50,24 +51,24 @@ class Footer extends Component {
 
         <div className="sections">
           <div className="section">
-            <h3>About</h3>
+            <h3>{i18n.t("footer_title_about")}</h3>
 
             <ul>
-              <li>About us</li>
+              <li>{i18n.t("footer_about_us")}</li>
             </ul>
           </div>
 
           <div className="section">
-            <h3>Docs</h3>
+            <h3>{i18n.t("footer_title_docs")}</h3>
 
             <ul>
-              <li>Paper</li>
-              <li>Documents</li>
+              <li>{i18n.t("footer_paper")}</li>
+              <li>{i18n.t("footer_documents")}</li>
             </ul>
           </div>
 
           <div className="section social">
-            <h3>Contacts</h3>
+            <h3>{i18n.t("footer_title_contacts")}</h3>
             <div>
               <a href="https://twitter.com/BluestoneDefi">
                 <img src={twitter} alt="Bluestone Twitter" />

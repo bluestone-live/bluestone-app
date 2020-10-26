@@ -9,6 +9,7 @@ import HistoryViewModel from "../core/viewmodels/HistoryViewModel";
 import { IRecordUI } from "../core/viewmodels/Types";
 import Loading from "../components/Loading";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import i18n from "../i18n";
 
 interface IProps {
   history: History;
@@ -20,10 +21,10 @@ interface IState {
 }
 
 const types = [
-  { label: "Active", value: "active" },
-  { label: "Deposit", value: "deposit" },
-  { label: "Borrow", value: "loan" },
-  { label: "Closed", value: "closed" },
+  { label: i18n.t("history_nav_active"), value: "active" },
+  { label: i18n.t("history_nav_deposit"), value: "deposit" },
+  { label: i18n.t("history_nav_borrow"), value: "loan" },
+  { label: i18n.t("history_nav_closed"), value: "closed" },
 ];
 
 @inject("history")
@@ -55,7 +56,7 @@ class HistoryPage extends Component<IProps, IState> {
     return (
       <div className="history page">
         <div className="categories">
-          <h1>History</h1>
+          <h1>{i18n.t("history_title")}</h1>
           <div className="nav">
             {types.map((t) => {
               return (
@@ -75,14 +76,14 @@ class HistoryPage extends Component<IProps, IState> {
           <thead>
             <tr>
               <th className="token">
-                <div>Token</div>
+                <div>{i18n.t("common_token")}</div>
               </th>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Interest</th>
+              <th>{i18n.t("common_type")}</th>
+              <th>{i18n.t("common_amount")}</th>
+              <th>{i18n.t("common_interest")}</th>
               <th>APR</th>
-              <th>Term</th>
-              <th>Maturity Date</th>
+              <th>{i18n.t("common_term")}</th>
+              <th>{i18n.t("common_maturity_date")}</th>
             </tr>
           </thead>
 

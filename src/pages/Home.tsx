@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
+import i18n from "../i18n";
 import protect from "../assets/protect-96.png";
 import requestMoney from "../assets/request-money-96.png";
 import sendMoney from "../assets/send-money-96.png";
@@ -53,12 +54,12 @@ class Home extends Component<IProps, IState> {
           <table>
             <thead>
               <tr>
-                <th className="asset">Asset</th>
-                <th>Lending Cap.</th>
-                <th>Borrowing Cap.</th>
-                <th>Best Lending Term</th>
-                <th>Borrow APR</th>
-                <th>Action</th>
+                <th className="asset">{i18n.t("home_asset")}</th>
+                <th>{i18n.t("home_lending_cap")}</th>
+                <th>{i18n.t("home_borrowing_cap")}</th>
+                <th>{i18n.t("home_best_lending_term")}</th>
+                <th>{i18n.t("home_borrowing_apr")}</th>
+                <th>{i18n.t('home_actions')}</th>
               </tr>
             </thead>
 
@@ -93,7 +94,7 @@ class Home extends Component<IProps, IState> {
                       <tr key={i}>
                         <td className="asset">
                           <div>
-                            <Skeleton className='icon-loading' width={27} height={27} />
+                            <Skeleton className="icon-loading" width={27} height={27} />
                             <Loading />
                           </div>
                         </td>
