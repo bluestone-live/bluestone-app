@@ -196,7 +196,6 @@ export default class RecordViewModel extends BaseViewModel {
           Number.parseFloat(utils.formatUnits(r["depositTerm"] || r["loanTerm"], 0))) *
         365 *
         100;
-    console.log(apr);
 
     const isLoan = r["collateralTokenAddress"] ? true : false;
 
@@ -227,6 +226,8 @@ export default class RecordViewModel extends BaseViewModel {
         calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
       : "0";
 
+    const isClosed = r["isClosed"] || r["isWithdrawn"] || r["withdrewAt"]?.gt(0);
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -244,6 +245,7 @@ export default class RecordViewModel extends BaseViewModel {
       collateralToken,
       maxCollateralAmount,
       maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
+      isClosed,
     };
   }
 }

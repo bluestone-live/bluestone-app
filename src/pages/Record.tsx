@@ -42,15 +42,17 @@ class Record extends Component<IProps, IState> {
     const { vm } = this.state;
     const record = vm?.record;
     const txs = vm?.txs;
+    const closed = record?.isClosed;
 
     return (
       <div className="record page">
-        <h1>{`${record?.type === RecordType.Deposit ? "Deposit Details" : "Loan Details"}`}</h1>
+        <h1>{`${record ? (record.type === RecordType.Deposit ? "Deposit Details" : "Loan Details") : "Details"}`}</h1>
 
         <div className="details">
           <div className="detail">
             <div className="head">
               <h3>Basic Info</h3>
+              {closed ? <span>Closed</span> : undefined}
             </div>
 
             <div className="item">
@@ -93,7 +95,7 @@ class Record extends Component<IProps, IState> {
             ) : undefined}
           </div>
 
-          {record?.type === RecordType.Deposit ? (
+          {record?.type === RecordType.Deposit && !closed ? (
             <div className="detail">
               <div className="head">
                 <h3>{record.isMatured ? "Withdraw" : "Early withdraw"}</h3>
@@ -107,14 +109,14 @@ class Record extends Component<IProps, IState> {
 
               <div className="form">
                 <NumBox title="Withdraw Amount" maxValue={record.amount} defaultValue={record.amount} disabled />
-                <Button loading={vm?.withdrawing} onClick={vm?.withdraw}>
+                <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey">
                   Withdraw
                 </Button>
               </div>
             </div>
           ) : undefined}
 
-          {record?.type === RecordType.Borrow ? (
+          {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
                 <h3>Debt</h3>
@@ -128,14 +130,14 @@ class Record extends Component<IProps, IState> {
 
               <div className="form">
                 <NumBox title="Repay Amount" maxValue={record.remainingDebt} onChange={vm?.updateRepayAmount} />
-                <Button loading={vm?.repaying} onClick={vm?.repay}>
+                <Button loading={vm?.repaying} onClick={vm?.repay} loadingColor="lightgrey">
                   Repay
                 </Button>
               </div>
             </div>
           ) : undefined}
 
-          {record?.type === RecordType.Borrow ? (
+          {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
                 <h3>Withdraw Collateral</h3>
@@ -155,14 +157,14 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxWithdrawCollateral}
                   onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
                 />
-                <Button loading={vm?.withdrawingCollateral} onClick={vm?.withdrawCollateral}>
+                <Button loading={vm?.withdrawingCollateral} onClick={vm?.withdrawCollateral} loadingColor="lightgrey">
                   Withdraw
                 </Button>
               </div>
             </div>
           ) : undefined}
 
-          {record?.type === RecordType.Borrow ? (
+          {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
                 <h3>Deposit Collateral</h3>
@@ -183,7 +185,7 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxDepositCollateral}
                   onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
                 />
-                <Button loading={vm?.depositingCollateral} onClick={vm?.depositCollateral}>
+                <Button loading={vm?.depositingCollateral} onClick={vm?.depositCollateral} loadingColor="lightgrey">
                   Deposit
                 </Button>
               </div>
