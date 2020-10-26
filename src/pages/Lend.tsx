@@ -3,6 +3,7 @@ import "./Lend.scss";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
+import Button from "../components/Button";
 import Calendar from "../components/Calendar";
 import DepositViewModel from "../core/viewmodels/DepositViewModel";
 import Loading from "../components/Loading";
@@ -58,6 +59,7 @@ class Lend extends Component<Props, State> {
   render() {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
+    const sending = vm?.sending;
     const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending;
 
     return (
@@ -114,9 +116,9 @@ class Lend extends Component<Props, State> {
             {loading ? (
               <Skeleton height={37} />
             ) : (
-              <button disabled={buttonDisabled} onClick={vm?.deposit}>
+              <Button disabled={buttonDisabled} onClick={vm?.deposit} loading={sending}>
                 {vm?.currentToken.allowance?.eq(0) ? "Approve & Deposit" : "Deposit"}
-              </button>
+              </Button>
             )}
           </div>
         </div>

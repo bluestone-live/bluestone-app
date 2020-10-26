@@ -137,30 +137,36 @@ export default class LoanViewModel extends BaseViewModel {
   loan = async () => {
     const { protocol } = this.params;
 
-    const loanToken = this.currentLoanPair.loanToken;
-    const loanAmount = ethers.utils.parseUnits(this.inputLoanValue!, loanToken.decimals);
-    const isEtherCollateral = this.selectedCollateralToken.address === ETHAddress;
-    const collateralAmount = ethers.utils
-      .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
-      .toString();
+    try {
+      const loanToken = this.currentLoanPair.loanToken;
+      const loanAmount = ethers.utils.parseUnits(this.inputLoanValue!, loanToken.decimals);
+      const isEtherCollateral = this.selectedCollateralToken.address === ETHAddress;
+      const collateralAmount = ethers.utils
+        .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
+        .toString();
 
-    const tx = await protocol.loan(
-      loanToken.address,
-      this.selectedCollateralToken.address,
-      loanAmount.toString(),
-      isEtherCollateral ? "0" : collateralAmount,
-      this.selectedPool!.term.toString(),
-      DistributorAddress,
-      {
-        value: isEtherCollateral ? collateralAmount : "0",
-      }
-    );
+      this.sending = true;
 
-    const receipt = await tx.wait();
+      const tx = await protocol.loan(
+        loanToken.address,
+        this.selectedCollateralToken.address,
+        loanAmount.toString(),
+        isEtherCollateral ? "0" : collateralAmount,
+        this.selectedPool!.term.toString(),
+        DistributorAddress,
+        {
+          value: isEtherCollateral ? collateralAmount : "0",
+        }
+      );
 
-    const event = receipt.events.find((e) => e.event === "LoanSucceed");
-    const id = event.args.recordId;
+      const receipt = await tx.wait();
 
-    history.push(`/record/${id}`);
+      const event = receipt.events.find((e) => e.event === "LoanSucceed");
+      const id = event.args.recordId;
+
+      history.push(`/record/${id}`);
+    } finally {
+      this.sending = false;
+    }
   };
 }

@@ -1,0 +1,14 @@
+.button-ex {
+  .content {
+    display: flex !important;
+    justify-content: center;
+
+    > div {
+      margin-bottom: -4px;
+    }
+
+    > * {
+      margin-right: 12px;
+    }
+  }
+}

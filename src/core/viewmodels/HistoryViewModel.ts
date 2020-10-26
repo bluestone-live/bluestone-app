@@ -56,9 +56,7 @@ export default class HistoryViewModel extends BaseViewModel {
 
     switch (type) {
       case "active":
-        this.currentRecords = this.allRecords.filter((r) =>
-          r.type === RecordType.Deposit ? !(r as IDepositRecord).isWithdrawn : !(r as ILoanRecord).isClosed
-        );
+        this.currentRecords = this.allRecords.filter((r) => !r.isClosed);
         break;
       case "deposit":
         this.currentRecords.splice(0, this.currentRecords.length);
@@ -68,9 +66,7 @@ export default class HistoryViewModel extends BaseViewModel {
         this.currentRecords = this.allRecords.filter((r) => r.type === RecordType.Borrow);
         break;
       case "closed":
-        this.currentRecords = this.allRecords.filter((r) =>
-          r.type === RecordType.Deposit ? (r as IDepositRecord).isWithdrawn : (r as ILoanRecord).isClosed
-        );
+        this.currentRecords = this.allRecords.filter((r) => r.isClosed);
         break;
     }
   }
