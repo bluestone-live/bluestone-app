@@ -1,7 +1,9 @@
-import dayjs from 'dayjs';
-import React, { Component } from 'react';
-import { DateRange } from 'react-date-range';
 import './Calendar.scss';
+
+import React, { Component } from 'react';
+
+import { DateRange } from 'react-date-range';
+import dayjs from 'dayjs';
 
 const shortcuts = [
   {
@@ -48,7 +50,7 @@ class Calendar extends Component<IProps, {}> {
     preview: new Date(),
   };
 
-  private initTimestamp = dayjs();
+  private initTimestamp = dayjs().hour(0);
 
   private fastSelect(days: number) {
     const future = this.initTimestamp.add(days, 'd').toDate();

@@ -1,4 +1,3 @@
-import { BigNumber, utils } from "ethers";
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
 import UserTransactions, { HistoryTx } from "../services/UserTransactions";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
@@ -7,6 +6,7 @@ import BaseViewModel from "./BaseViewModel";
 import { ETHAddress } from "../services/Constants";
 import dayjs from "dayjs";
 import { observable } from "mobx";
+import { utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -18,6 +18,10 @@ export default class RecordViewModel extends BaseViewModel {
   @observable newWithdrawCR?: string;
   @observable newDepositCR?: string;
   @observable txs: HistoryTx[] = [];
+  @observable withdrawing = false;
+  @observable withdrawingCollateral = false;
+  @observable depositingCollateral = false;
+  @observable repaying = false;
   maxDepositCollateral?: string;
   maxWithdrawCollateral?: string;
 
@@ -104,34 +108,57 @@ export default class RecordViewModel extends BaseViewModel {
   };
 
   withdraw = async () => {
-    if (this.record?.isMatured) {
-      await this.protocol.withdraw(this.record!.id);
-    } else {
-      await this.protocol.earlyWithdraw(this.record!.id);
+    try {
+      this.withdrawing = true;
+      if (this.record?.isMatured) {
+        await this.protocol.withdraw(this.record!.id);
+      } else {
+        await this.protocol.earlyWithdraw(this.record!.id);
+      }
+    } finally {
+      this.withdrawing = false;
     }
 
     await this.forceRefresh();
   };
 
   repay = async () => {
-    const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken.decimals);
-    await this.protocol.repayLoan(this.record!.id, amount.toString());
+    try {
+      this.repaying = true;
+      const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken.decimals);
+      await this.protocol.repayLoan(this.record!.id, amount.toString());
+    } finally {
+      this.repaying = false;
+    }
+
     await this.forceRefresh();
   };
 
   withdrawCollateral = async () => {
-    const amount = utils.parseUnits(this._userInputWithdrawCollateralAmount, this.record!.collateralToken?.decimals);
-    await this.protocol.subtractCollateral(this.record!.id, amount.toString());
+    try {
+      this.withdrawingCollateral = true;
+      const amount = utils.parseUnits(this._userInputWithdrawCollateralAmount, this.record!.collateralToken?.decimals);
+      await this.protocol.subtractCollateral(this.record!.id, amount.toString());
+    } finally {
+      this.withdrawingCollateral = false;
+    }
+
     await this.forceRefresh();
   };
 
   depositCollateral = async () => {
-    const collateralToken = this.record!.collateralToken!;
-    const isETH = collateralToken.address === ETHAddress;
-    const amount = utils.parseUnits(this._userInputDepositCollateralAmount, collateralToken.decimals);
-    await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
-      value: isETH ? amount.toString() : "0",
-    });
+    try {
+      this.depositingCollateral = true;
+      const collateralToken = this.record!.collateralToken!;
+      const isETH = collateralToken.address === ETHAddress;
+      const amount = utils.parseUnits(this._userInputDepositCollateralAmount, collateralToken.decimals);
+      await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
+        value: isETH ? amount.toString() : "0",
+      });
+    } finally {
+      this.depositingCollateral = false;
+    }
+
     await this.forceRefresh();
   };
 
@@ -164,15 +191,11 @@ export default class RecordViewModel extends BaseViewModel {
 
     const apr = r["annualInterestRate"]
       ? Number.parseFloat(utils.formatUnits(r["annualInterestRate"].mul(100), 18))
-      : ((r.interest as unknown) as BigNumber)
-          .div(
-            ((((r as IDepositRecord).depositAmount || (r as ILoanRecord).remainingDebt) as unknown) as BigNumber).div(
-              (((r as IDepositRecord).depositTerm || (r as ILoanRecord).loanTerm) as unknown) as BigNumber
-            )
-          )
-          .mul(365)
-          .mul(100)
-          .toNumber();
+      : (Number.parseFloat(utils.formatUnits(r.interest, token.decimals)) /
+          Number.parseFloat(utils.formatUnits(r["depositAmount"] || r["remainingDebt"], token.decimals)) /
+          Number.parseFloat(utils.formatUnits(r["depositTerm"] || r["loanTerm"], 0))) *
+        365 *
+        100;
 
     const isLoan = r["collateralTokenAddress"] ? true : false;
 
@@ -203,6 +226,8 @@ export default class RecordViewModel extends BaseViewModel {
         calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
       : "0";
 
+    const isClosed = r["isClosed"] || r["isWithdrawn"] || r["withdrewAt"]?.gt(0);
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -220,6 +245,7 @@ export default class RecordViewModel extends BaseViewModel {
       collateralToken,
       maxCollateralAmount,
       maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
+      isClosed,
     };
   }
 }

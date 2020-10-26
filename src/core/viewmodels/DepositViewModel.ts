@@ -100,34 +100,36 @@ export default class DepositViewModel extends BaseViewModel {
     const token = this.currentToken;
     const tokenWei = ethers.utils.parseUnits(this.inputValue ?? "0", token.decimals).toString();
 
-    if (!token.allowance?.gte(tokenWei)) {
-      await token.contract?.approve(
-        protocol.address,
-        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-      );
-    }
+    try {
+      this.sending = true;
 
-    const isETH = token.address === ETHAddress;
-
-    const tx = await protocol.deposit(
-      token.address,
-      isETH ? "0" : tokenWei,
-      this.selectedPool!.term.toString(),
-      DistributorAddress,
-      {
-        value: isETH ? tokenWei : "0",
+      if (!token.allowance?.gte(tokenWei)) {
+        await token.contract?.approve(
+          protocol.address,
+          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        );
       }
-    );
 
-    this.sending = true;
+      const isETH = token.address === ETHAddress;
 
-    const receipt = await tx.wait();
+      const tx = await protocol.deposit(
+        token.address,
+        isETH ? "0" : tokenWei,
+        this.selectedPool!.term.toString(),
+        DistributorAddress,
+        {
+          value: isETH ? tokenWei : "0",
+        }
+      );
 
-    const event = receipt.events.find((e) => e.event === "DepositSucceed");
-    const id = event.args.recordId;
+      const receipt = await tx.wait();
 
-    this.sending = false;
+      const event = receipt.events.find((e) => e.event === "DepositSucceed");
+      const id = event.args.recordId;
 
-    history.push(`/record/${id}`);
+      history.push(`/record/${id}`);
+    } finally {
+      this.sending = false;
+    }
   };
 }
