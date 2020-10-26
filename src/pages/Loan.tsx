@@ -3,6 +3,7 @@ import "./Lend.scss";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
+import Button from "../components/Button";
 import Calendar from "../components/Calendar";
 import Loading from "../components/Loading";
 import LoanViewModel from "../core/viewmodels/LoanViewModel";
@@ -56,9 +57,11 @@ class Loan extends Component<IProps, State> {
   render() {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
+    const sending = vm?.sending;
     const buttonDisabled =
       (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) || vm?.sending;
 
+    console.log(sending);
     return (
       <div className="loan page">
         <h1>Loan</h1>
@@ -134,11 +137,11 @@ class Loan extends Component<IProps, State> {
             {loading ? (
               <Skeleton height={37} />
             ) : (
-              <button disabled={buttonDisabled} onClick={vm?.loan}>
+              <Button disabled={buttonDisabled} onClick={vm?.loan} loading={sending}>
                 {vm?.loanToken.allowance?.eq(0)
                   ? `${i18n.t("button_approve")} & ${i18n.t("button_loan")}`
                   : i18n.t("button_loan")}
-              </button>
+              </Button>
             )}
           </div>
         </div>

@@ -9,9 +9,11 @@ import ReactDOM from "react-dom";
 import ViewModelLocator from "./core/ViewModelLocator";
 import dayjs from "dayjs";
 import history from "./core/services/History";
+import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
 ViewModelLocator.init();
 
 ReactDOM.render(
