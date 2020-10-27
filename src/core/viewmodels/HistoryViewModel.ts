@@ -16,7 +16,6 @@ export default class HistoryViewModel extends BaseViewModel {
   private allRecords!: IRecordUI[];
   private depRecords!: IDepositRecord[];
   private loanRecords!: ILoanRecord[];
-  private locator: ViewModelLocator;
 
   @observable currentRecords: IRecordUI[] = [];
   @observable type: ShowType = "active";

@@ -163,6 +163,7 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
+      locator: this,
     });
 
     return this._homeVM;
@@ -184,6 +185,7 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
+      locator: this,
     });
 
     return this._lendVM;
@@ -207,6 +209,7 @@ export class ViewModelLocator extends EventEmitter {
       maxTerm: maxTerm,
       interestModel: this.interestModel,
       tokens: this.depositTokens,
+      locator: this,
     });
     return this._loanVM;
   }
@@ -240,6 +243,7 @@ export class ViewModelLocator extends EventEmitter {
       interestModel: this.interestModel,
       tokens: this.depositTokens,
       record,
+      locator: this,
     });
   }
 
@@ -251,6 +255,7 @@ export class ViewModelLocator extends EventEmitter {
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
       tokens: this.depositTokens,
+      locator: this,
       id,
     });
   }
