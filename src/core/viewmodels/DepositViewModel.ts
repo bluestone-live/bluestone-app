@@ -75,7 +75,7 @@ export default class DepositViewModel extends BaseViewModel {
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.lendAPR ?? 0;
     this.maturityDate = dayjs(date).format("YYYY-MM-DD");
-    
+
     return targetPool;
   };
 
@@ -127,6 +127,7 @@ export default class DepositViewModel extends BaseViewModel {
       const event = receipt.events.find((e) => e.event === "DepositSucceed");
       const id = event.args.recordId;
 
+      this.locator.selectRecordById(id);
       history.push(`/record/${id}`);
     } finally {
       this.sending = false;

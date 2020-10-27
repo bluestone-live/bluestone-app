@@ -174,6 +174,7 @@ export default class LoanViewModel extends BaseViewModel {
       const event = receipt.events.find((e) => e.event === "LoanSucceed");
       const id = event.args.recordId;
 
+      this.locator.selectRecordById(id);
       history.push(`/record/${id}`);
     } finally {
       this.sending = false;
