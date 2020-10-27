@@ -1,7 +1,7 @@
+import { BigNumber, ethers, utils } from "ethers";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import { computed, observable } from "mobx";
-import { ethers, utils } from "ethers";
 
 import BaseViewModel from "./BaseViewModel";
 import { calcCollateralRatio } from "../services/Math";
@@ -32,6 +32,7 @@ export default class LoanViewModel extends BaseViewModel {
   @observable inputCollateralValue?: string;
   @observable sending = false;
   @observable maxCollateralAmount?: string;
+  @observable maxLoanAmount?: string;
 
   @computed get loanToken() {
     return this.currentLoanPair?.loanToken;
@@ -72,10 +73,13 @@ export default class LoanViewModel extends BaseViewModel {
       this.currentLoanPair.collateralTokens.find((t) => t.name.toLowerCase() === name.toLowerCase()) ||
       this.selectedCollateralToken;
 
-    this.maxCollateralAmount = utils.formatUnits(
-      this.selectedCollateralToken.balance!,
-      this.selectedCollateralToken.decimals!
-    );
+    let max = this.selectedCollateralToken.balance!;
+    const gasFee = utils.parseEther("0.05");
+    if (this.selectedCollateralToken.address === ETHAddress && max.gt(gasFee)) {
+      max = max.sub(gasFee);
+    }
+
+    this.maxCollateralAmount = utils.formatUnits(max, this.selectedCollateralToken.decimals!);
   };
 
   peekTerm = (date: Date) => {
@@ -83,8 +87,14 @@ export default class LoanViewModel extends BaseViewModel {
     const term = dayjs(date).diff(this.now, "d");
     const accurate = dayjs(date).diff(this.now, "minute");
 
-    const targetPool = this.currentLoanPair.loanToken.pools?.[term];
+    const loanToken = this.currentLoanPair.loanToken;
+    const targetPool = loanToken.pools?.[term];
     this.peekPool = targetPool;
+
+    const remaining = loanToken.pools?.slice(term);
+
+    const maxloan = remaining?.reduce((p, c) => p.add(c.availableAmount), BigNumber.from(0)) ?? BigNumber.from(0);
+    this.maxLoanAmount = utils.formatUnits(maxloan, loanToken.decimals);
 
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.loanAPR ?? 0;

@@ -22,8 +22,6 @@ interface State {
   vm?: LoanViewModel;
   preview: Date;
   ranges: { startDate: Date; endDate: Date; key: "selection" }[];
-
-  maxLoan?: string;
 }
 
 @inject("locator")
@@ -45,14 +43,14 @@ class Loan extends Component<IProps, State> {
     this.props.locator.once("init", () => this.setState({ vm: this.props.locator.loanVM }));
   }
 
-  onLoanMaxClick = () => {};
+  onLoanMaxClick = () => {
+    const vm = this.props.locator.loanVM;
+    vm?.inputLoan(vm?.maxLoanAmount);
+  };
 
   onCollateralMaxClick = () => {
     const vm = this.props.locator.loanVM;
-    const collateralToken = vm?.selectedCollateralToken;
-    if (!vm || !collateralToken) return;
-
-    vm.inputCollateral(vm!.maxCollateralAmount!);
+    vm?.inputCollateral(vm!.maxCollateralAmount!);
   };
 
   render() {
@@ -62,7 +60,6 @@ class Loan extends Component<IProps, State> {
     const buttonDisabled =
       (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) || vm?.sending;
 
-    console.log(sending);
     return (
       <div className="loan page">
         <h1>Loan</h1>
@@ -90,7 +87,7 @@ class Loan extends Component<IProps, State> {
                 <NumBox
                   title={i18n.t("common_amount")}
                   onChange={vm?.inputLoan}
-                  defaultValue={this.state.maxLoan}
+                  maxValue={vm?.maxLoanAmount}
                   onButtonClick={this.onLoanMaxClick}
                 />
               </div>
