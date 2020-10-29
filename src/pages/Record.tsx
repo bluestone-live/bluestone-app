@@ -11,6 +11,7 @@ import RecordViewModel from "../core/viewmodels/RecordViewModel";
 import { RouteComponentProps } from "react-router-dom";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import dayjs from "dayjs";
+import i18n from "../i18n";
 
 interface IProps extends RouteComponentProps {
   locator: ViewModelLocator;
@@ -47,17 +48,23 @@ class Record extends Component<IProps, IState> {
 
     return (
       <div className="record page">
-        <h1>{`${record ? (record.type === RecordType.Deposit ? "Deposit Details" : "Loan Details") : "Details"}`}</h1>
+        <h1>{`${
+          record
+            ? record.type === RecordType.Deposit
+              ? i18n.t("record_deposit_details")
+              : i18n.t("record_loan_details")
+            : i18n.t("record_title")
+        }`}</h1>
 
         <div className="details">
           <div className="detail">
             <div className="head">
-              <h3>Basic Info</h3>
-              {closed ? <span>Closed</span> : undefined}
+              <h3>{i18n.t("record_basic_info")}</h3>
+              {closed ? <span>{i18n.t("closed")}</span> : undefined}
             </div>
 
             <div className="item">
-              <span>Amount:</span>
+              <span>{i18n.t("common_amount")}:</span>
               <span className="uppercase">{record ? `${record?.amount} ${record?.token}` : <Loading />}</span>
             </div>
 
@@ -67,30 +74,34 @@ class Record extends Component<IProps, IState> {
             </div>
 
             <div className="item">
-              <span>Interest:</span>
+              <span>{i18n.t("common_interest")}:</span>
               <span className="uppercase">{record ? `${record.interest} ${record.token}` : <Loading />}</span>
             </div>
 
             <div className="item">
-              <span>Term:</span>
-              <span>{record ? `${record.term} Days` : <Loading />}</span>
+              <span>{i18n.t("common_term")}:</span>
+              <span>
+                {record ? `${record.term} ${i18n.t(record.term > 1 ? "common_days" : "common_day")}` : <Loading />}
+              </span>
             </div>
 
             <div className="item">
-              <span>Maturity Date ({dayjs.tz.guess()}):</span>
+              <span>
+                {i18n.t("common_maturity_date")} ({dayjs.tz.guess()}):
+              </span>
               <span className="uppercase">{record ? `${record.maturityDate}` : <Loading />}</span>
             </div>
 
             {record?.type === RecordType.Borrow ? (
               <div className="item">
-                <span>Collateralization Ratio:</span>
+                <span>{i18n.t("common_collateralization_ratio")}:</span>
                 <span>{`${record.collateralizationRatio}%`}</span>
               </div>
             ) : undefined}
 
             {record?.type === RecordType.Borrow ? (
               <div className="item">
-                <span>Liquidated Collateral:</span>
+                <span>{i18n.t("record_liquidated_collateral")}:</span>
                 <span className="uppercase">{`${record.soldCollateralAmount} ${record.token}`}</span>
               </div>
             ) : undefined}
@@ -104,14 +115,19 @@ class Record extends Component<IProps, IState> {
               </div>
 
               <div className="item">
-                <span>Withdraw Amount:</span>
+                <span>{i18n.t("record_withdraw_amount")}:</span>
                 <span className="uppercase">{`${record.amount} ${record.token}`}</span>
               </div>
 
               <div className="form">
-                <NumBox title="Withdraw Amount" maxValue={record.amount} defaultValue={record.amount} disabled />
+                <NumBox
+                  title={i18n.t("record_withdraw_amount")}
+                  maxValue={record.amount}
+                  defaultValue={record.amount}
+                  disabled
+                />
                 <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey">
-                  Withdraw
+                  {i18n.t("button_withdraw")}
                 </Button>
               </div>
             </div>
@@ -120,19 +136,23 @@ class Record extends Component<IProps, IState> {
           {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
-                <h3>Debt</h3>
+                <h3>{i18n.t("record_debt")}</h3>
                 <span></span>
               </div>
 
               <div className="item">
-                <span>Remaining Debt:</span>
+                <span>{i18n.t("common_remaining_debt")}:</span>
                 <span className="uppercase">{`${record.remainingDebt} ${record.token}`}</span>
               </div>
 
               <div className="form">
-                <NumBox title="Repay Amount" maxValue={record.remainingDebt} onChange={vm?.updateRepayAmount} />
+                <NumBox
+                  title={i18n.t("record_repay_amount")}
+                  maxValue={record.remainingDebt}
+                  onChange={vm?.updateRepayAmount}
+                />
                 <Button loading={vm?.repaying} onClick={vm?.repay} loadingColor="lightgrey">
-                  Repay
+                  {i18n.t("button_repay")}
                 </Button>
               </div>
             </div>
@@ -141,25 +161,25 @@ class Record extends Component<IProps, IState> {
           {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
-                <h3>Withdraw Collateral</h3>
+                <h3>{i18n.t("record_withdraw_collateral")}</h3>
                 <span></span>
               </div>
 
               <div className="item">
-                <span>Total Collateral:</span>
+                <span>{i18n.t("common_total_collateral")}:</span>
                 <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
               </div>
 
               <div className="form">
                 <NumBox
-                  title="Withdraw Amount"
+                  title={i18n.t("record_withdraw_amount")}
                   secondTitle={`New CCR: ${vm?.newWithdrawCR}%`}
                   onChange={vm?.updateWithdrawCollateralAmount}
                   maxValue={vm?.maxWithdrawCollateral}
                   onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
                 />
                 <Button loading={vm?.withdrawingCollateral} onClick={vm?.withdrawCollateral} loadingColor="lightgrey">
-                  Withdraw
+                  {i18n.t("button_withdraw")}
                 </Button>
               </div>
             </div>
@@ -168,18 +188,18 @@ class Record extends Component<IProps, IState> {
           {record?.type === RecordType.Borrow && !closed ? (
             <div className="detail">
               <div className="head">
-                <h3>Deposit Collateral</h3>
+                <h3>{i18n.t("record_deposit_collateral")}</h3>
                 <span></span>
               </div>
 
               <div className="item">
-                <span>Total Collateral:</span>
+                <span>{i18n.t("common_total_collateral")}:</span>
                 <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
               </div>
 
               <div className="form">
                 <NumBox
-                  title="Deposit Amount"
+                  title={i18n.t("record_deposit_amount")}
                   secondTitle={`New CCR: ${vm?.newDepositCR}%`}
                   secondDesc="New Collateral Coverage Ratio"
                   onChange={vm?.updateDepositCollateralAmount}
@@ -187,7 +207,7 @@ class Record extends Component<IProps, IState> {
                   onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
                 />
                 <Button loading={vm?.depositingCollateral} onClick={vm?.depositCollateral} loadingColor="lightgrey">
-                  Deposit
+                  {i18n.t("button_deposit")}
                 </Button>
               </div>
             </div>
@@ -195,13 +215,13 @@ class Record extends Component<IProps, IState> {
         </div>
 
         <div className="transactions">
-          <h3>Transactions</h3>
+          <h3>{i18n.t("record_transactions")}</h3>
           <table>
             <thead>
               <tr>
-                <th>Time</th>
-                <th>Action</th>
-                <th>Amount</th>
+                <th>{i18n.t("common_time")}</th>
+                <th>{i18n.t("common_action")}</th>
+                <th>{i18n.t("common_amount")}</th>
               </tr>
             </thead>
 
@@ -210,7 +230,7 @@ class Record extends Component<IProps, IState> {
                 txs.map((tx) => (
                   <tr key={tx.transactionHash}>
                     <td>{tx.time}</td>
-                    <td>{tx.event}</td>
+                    <td>{i18n.t(`event_${tx.event}`)}</td>
                     <td className="uppercase">{`${tx.amount} ${tx.token?.name}`}</td>
                   </tr>
                 ))

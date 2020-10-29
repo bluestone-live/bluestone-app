@@ -1,5 +1,7 @@
 import { BigNumber, Contract } from "ethers";
 
+import { ViewModelLocator } from "../ViewModelLocator";
+
 export interface IToken {
   name: string;
   address: string;
@@ -19,6 +21,7 @@ export interface IViewModel {
   distributionFeeRatios: IDistributionFeeRatios;
   protocolReserveRatio: BigNumber;
   tokens: IToken[];
+  locator: ViewModelLocator;
 }
 
 export interface IInterestModelParameters {

@@ -127,6 +127,7 @@ export default class DepositViewModel extends BaseViewModel {
       const event = receipt.events.find((e) => e.event === "DepositSucceed");
       const id = event.args.recordId;
 
+      this.locator.selectRecordById(id);
       history.push(`/record/${id}`);
     } finally {
       this.sending = false;

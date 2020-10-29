@@ -1,29 +1,30 @@
-import './Calendar.scss';
+import "./Calendar.scss";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { DateRange } from 'react-date-range';
-import dayjs from 'dayjs';
+import { DateRange } from "react-date-range";
+import dayjs from "dayjs";
+import i18n from "../i18n";
 
 const shortcuts = [
   {
-    tag: '1 Week',
+    tag: "1 Week",
     value: 7,
   },
   {
-    tag: '2 Weeks',
+    tag: "2 Weeks",
     value: 14,
   },
   {
-    tag: '30 Days',
+    tag: "30 Days",
     value: 30,
   },
   {
-    tag: '60 Days',
+    tag: "60 Days",
     value: 60,
   },
   {
-    tag: '90 Days',
+    tag: "90 Days",
     value: 90,
   },
 ];
@@ -44,7 +45,7 @@ class Calendar extends Component<IProps, {}> {
       {
         startDate: new Date(),
         endDate: new Date(),
-        key: 'selection',
+        key: "selection",
       },
     ],
     preview: new Date(),
@@ -53,10 +54,10 @@ class Calendar extends Component<IProps, {}> {
   private initTimestamp = dayjs().hour(0);
 
   private fastSelect(days: number) {
-    const future = this.initTimestamp.add(days, 'd').toDate();
+    const future = this.initTimestamp.add(days, "d").toDate();
 
     this.setState({
-      ranges: [{ startDate: new Date(), endDate: future, key: 'selection' }],
+      ranges: [{ startDate: new Date(), endDate: future, key: "selection" }],
     });
 
     this.props.onSelect?.(future);
@@ -73,7 +74,7 @@ class Calendar extends Component<IProps, {}> {
           maxDate={this.props.maxDate}
           moveRangeOnFirstSelection={true}
           color="#ff6dc4"
-          rangeColors={['#ff6dc4']}
+          rangeColors={["#ff6dc4"]}
           ranges={this.state.ranges}
           scroll={{ enabled: true }}
           preview={{ startDate: new Date(), endDate: this.state.preview }}
@@ -83,7 +84,7 @@ class Calendar extends Component<IProps, {}> {
                 {
                   startDate: new Date(),
                   endDate: this.state.preview || new Date(),
-                  key: 'selection',
+                  key: "selection",
                 },
               ],
             });
@@ -95,7 +96,7 @@ class Calendar extends Component<IProps, {}> {
           }}
         />
 
-        <div className="subtitle">Quick selections</div>
+        <div className="subtitle">{i18n.t("calendar_quick_select")}</div>
         <div className="shortcuts">
           {shortcuts.map((v) => {
             return (
@@ -108,13 +109,13 @@ class Calendar extends Component<IProps, {}> {
 
         {this.props.recommends ? (
           <div className="recommends">
-            <div className="subtitle">Recommended</div>
+            <div className="subtitle">{i18n.t("calendar_recommended")}</div>
 
             <div className="items">
               {this.props.recommends.map((r) => {
                 return (
                   <div className="item" key={r.days} onClick={(_) => this.fastSelect(r.days)}>
-                    <span>{`${r.days} Days`}</span>
+                    <span>{`${r.days} ${i18n.t(r.days > 1 ? "common_days" : "common_day")}`}</span>
                     <span>{`APR: ${r.apr}%`}</span>
                   </div>
                 );
