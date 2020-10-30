@@ -105,10 +105,12 @@ export default class DepositViewModel extends BaseViewModel {
       this.sending = true;
 
       if (!token.allowance?.gte(tokenWei)) {
-        await token.contract?.approve(
+        const appTx = await token.contract?.approve(
           protocol.address,
           "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         );
+        
+        Notification.track(appTx.hash);
       }
 
       const isETH = token.address === ETHAddress;
