@@ -4,6 +4,7 @@ import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import { computed, observable } from "mobx";
 
 import BaseViewModel from "./BaseViewModel";
+import Notification from "../services/Notify";
 import { calcCollateralRatio } from "../services/Math";
 import dayjs from "dayjs";
 import history from "../services/History";
@@ -169,6 +170,7 @@ export default class LoanViewModel extends BaseViewModel {
         }
       );
 
+      Notification.track(tx.hash);
       const receipt = await tx.wait();
 
       const event = receipt.events.find((e) => e.event === "LoanSucceed");

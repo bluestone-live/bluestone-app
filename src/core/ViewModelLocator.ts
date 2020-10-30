@@ -10,6 +10,7 @@ import HomeViewModel from "./viewmodels/HomeViewModel";
 import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import { Metamask } from "ethpay.core";
+import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
 
@@ -69,6 +70,9 @@ export class ViewModelLocator extends EventEmitter {
 
     this.provider = new ethers.providers.Web3Provider(window["ethereum"]);
     this.signer = this.provider.getSigner();
+
+    const network = await this.provider.getNetwork();
+    Notification.register(network.chainId);
 
     await this.provider.getBalance(account);
 
