@@ -4,6 +4,7 @@ import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from 
 
 import BaseViewModel from "./BaseViewModel";
 import { ETHAddress } from "../services/Constants";
+import Notification from "../services/Notify";
 import dayjs from "dayjs";
 import { observable } from "mobx";
 import { utils } from "ethers";
@@ -88,7 +89,6 @@ export default class RecordViewModel extends BaseViewModel {
     }
 
     this.txs = await this._userTxs.queryHistory(this.account, this.record!.id);
-    console.log(this.txs);
   }
 
   updateWithdrawCollateralAmount = (value: string) => {
@@ -110,11 +110,16 @@ export default class RecordViewModel extends BaseViewModel {
   withdraw = async () => {
     try {
       this.withdrawing = true;
+      let tx: any;
+
       if (this.record?.isMatured) {
-        await this.protocol.withdraw(this.record!.id);
+        tx = await this.protocol.withdraw(this.record!.id);
       } else {
-        await this.protocol.earlyWithdraw(this.record!.id);
+        tx = await this.protocol.earlyWithdraw(this.record!.id);
       }
+
+      Notification.track(tx.hash);
+      await tx.wait();
     } finally {
       this.withdrawing = false;
     }
@@ -126,7 +131,10 @@ export default class RecordViewModel extends BaseViewModel {
     try {
       this.repaying = true;
       const amount = utils.parseUnits(this._userInputRepayAmount, this.record!.mainToken.decimals);
-      await this.protocol.repayLoan(this.record!.id, amount.toString());
+      const tx = await this.protocol.repayLoan(this.record!.id, amount.toString());
+      Notification.track(tx.hash);
+
+      await tx.wait();
     } finally {
       this.repaying = false;
     }
@@ -138,7 +146,10 @@ export default class RecordViewModel extends BaseViewModel {
     try {
       this.withdrawingCollateral = true;
       const amount = utils.parseUnits(this._userInputWithdrawCollateralAmount, this.record!.collateralToken?.decimals);
-      await this.protocol.subtractCollateral(this.record!.id, amount.toString());
+      const tx = await this.protocol.subtractCollateral(this.record!.id, amount.toString());
+      Notification.track(tx.hash);
+
+      await tx.wait();
     } finally {
       this.withdrawingCollateral = false;
     }
@@ -152,9 +163,12 @@ export default class RecordViewModel extends BaseViewModel {
       const collateralToken = this.record!.collateralToken!;
       const isETH = collateralToken.address === ETHAddress;
       const amount = utils.parseUnits(this._userInputDepositCollateralAmount, collateralToken.decimals);
-      await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
+      const tx = await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
         value: isETH ? amount.toString() : "0",
       });
+      Notification.track(tx.hash);
+
+      await tx.wait();
     } finally {
       this.depositingCollateral = false;
     }

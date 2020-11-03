@@ -3,6 +3,7 @@ import { DistributorAddress, ETHAddress } from "../services/Constants";
 import { IPool, IToken, IViewModel } from "./Types";
 
 import BaseViewModel from "./BaseViewModel";
+import Notification from "../services/Notify";
 import dayjs from "dayjs";
 import history from "../services/History";
 import { observable } from "mobx";
@@ -104,10 +105,12 @@ export default class DepositViewModel extends BaseViewModel {
       this.sending = true;
 
       if (!token.allowance?.gte(tokenWei)) {
-        await token.contract?.approve(
+        const appTx = await token.contract?.approve(
           protocol.address,
           "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         );
+        
+        Notification.track(appTx.hash);
       }
 
       const isETH = token.address === ETHAddress;
@@ -122,6 +125,7 @@ export default class DepositViewModel extends BaseViewModel {
         }
       );
 
+      Notification.track(tx.hash);
       const receipt = await tx.wait();
 
       const event = receipt.events.find((e) => e.event === "DepositSucceed");

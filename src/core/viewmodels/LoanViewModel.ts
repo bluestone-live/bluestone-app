@@ -4,6 +4,7 @@ import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import { computed, observable } from "mobx";
 
 import BaseViewModel from "./BaseViewModel";
+import Notification from "../services/Notify";
 import { calcCollateralRatio } from "../services/Math";
 import dayjs from "dayjs";
 import history from "../services/History";
@@ -148,14 +149,24 @@ export default class LoanViewModel extends BaseViewModel {
     const { protocol } = this.params;
 
     try {
+      this.sending = true;
+
       const loanToken = this.currentLoanPair.loanToken;
       const loanAmount = ethers.utils.parseUnits(this.inputLoanValue!, loanToken.decimals);
       const isEtherCollateral = this.selectedCollateralToken.address === ETHAddress;
       const collateralAmount = ethers.utils
         .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
         .toString();
+      const tokenWei = ethers.utils.parseUnits(this.inputLoanValue ?? "0", loanToken.decimals).toString();
 
-      this.sending = true;
+      if (!loanToken.allowance?.gte(tokenWei)) {
+        const appTx = await loanToken.contract?.approve(
+          protocol.address,
+          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        );
+
+        Notification.track(appTx.hash);
+      }
 
       const tx = await protocol.loan(
         loanToken.address,
@@ -169,6 +180,7 @@ export default class LoanViewModel extends BaseViewModel {
         }
       );
 
+      Notification.track(tx.hash);
       const receipt = await tx.wait();
 
       const event = receipt.events.find((e) => e.event === "LoanSucceed");
