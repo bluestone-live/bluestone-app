@@ -5,6 +5,7 @@ import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from 
 import BaseViewModel from "./BaseViewModel";
 import { ETHAddress } from "../services/Constants";
 import Notification from "../services/Notify";
+import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import { observable } from "mobx";
 import { utils } from "ethers";
@@ -25,6 +26,10 @@ export default class RecordViewModel extends BaseViewModel {
   @observable repaying = false;
   maxDepositCollateral?: string;
   maxWithdrawCollateral?: string;
+
+  @observable isRepayAmountLegal?: boolean;
+  @observable isWithdrawCollateralAmountLegal?: boolean;
+  @observable isDepositCollateralAmountLegal?: boolean;
 
   private _userInputRepayAmount!: string;
   private _userInputWithdrawCollateralAmount!: string;
@@ -95,16 +100,19 @@ export default class RecordViewModel extends BaseViewModel {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) - Number.parseFloat(value);
     this.newWithdrawCR = this.calcNewRatio(`${newAmount}`);
     this._userInputWithdrawCollateralAmount = value;
+    this.isWithdrawCollateralAmountLegal = checkNumber(value);
   };
 
   updateDepositCollateralAmount = (value: string) => {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
     this._userInputDepositCollateralAmount = value;
+    this.isDepositCollateralAmountLegal = checkNumber(value);
   };
 
   updateRepayAmount = (amount: string) => {
     this._userInputRepayAmount = amount;
+    this.isRepayAmountLegal = checkNumber(amount);
   };
 
   withdraw = async () => {
@@ -185,9 +193,7 @@ export default class RecordViewModel extends BaseViewModel {
         t.address.toLowerCase() === this.record?.tokenAddress?.toLowerCase()
     )!;
 
-    const collateralToken = this.tokens.find(
-      (t) => t.address.toLowerCase() === this.record?.collateralTokenAddress?.toLowerCase()
-    );
+    const collateralToken = this.tokens.find((t) => t.address.toLowerCase() === this.record?.collateralTokenAddress?.toLowerCase());
 
     return calcCollateralRatio(value, `${debt || 1}`, collateralToken?.price!, loanToken.price!).toFixed(2);
   }
@@ -199,9 +205,7 @@ export default class RecordViewModel extends BaseViewModel {
         t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
     )!;
 
-    const collateralToken = tokens.find(
-      (t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase()
-    );
+    const collateralToken = tokens.find((t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase());
 
     const apr = r["annualInterestRate"]
       ? Number.parseFloat(utils.formatUnits(r["annualInterestRate"].mul(100), 18))
@@ -221,9 +225,7 @@ export default class RecordViewModel extends BaseViewModel {
       maturityDate = dayjs.utc(getTimestampByPoolId(poolId)).local().format("YYYY-MM-DD HH:mm");
     }
 
-    const collateralizationRatio = isLoan
-      ? Number.parseFloat(utils.formatUnits(r["collateralCoverageRatio"].mul(100), 18)).toFixed(2)
-      : "0";
+    const collateralizationRatio = isLoan ? Number.parseFloat(utils.formatUnits(r["collateralCoverageRatio"].mul(100), 18)).toFixed(2) : "0";
 
     const soldCollateralAmount = isLoan ? utils.formatUnits(r["soldCollateralAmount"], token.decimals) : "0";
 
@@ -231,13 +233,10 @@ export default class RecordViewModel extends BaseViewModel {
 
     const collateralAmount = isLoan ? utils.formatUnits(r["collateralAmount"], collateralToken?.decimals ?? 18) : "0";
 
-    const maxCollateralAmount = collateralToken
-      ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals)
-      : "0";
+    const maxCollateralAmount = collateralToken ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals) : "0";
 
     const maxWithdrawCollateralAmount = collateralToken
-      ? Number.parseFloat(collateralAmount) -
-        calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
+      ? Number.parseFloat(collateralAmount) - calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
       : "0";
 
     const isClosed = r["isClosed"] || r["isWithdrawn"] || r["withdrewAt"]?.gt(0);

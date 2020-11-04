@@ -6,6 +6,7 @@ import { computed, observable } from "mobx";
 import BaseViewModel from "./BaseViewModel";
 import Notification from "../services/Notify";
 import { calcCollateralRatio } from "../services/Math";
+import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import history from "../services/History";
 
@@ -30,7 +31,9 @@ export default class LoanViewModel extends BaseViewModel {
   @observable collateralTokens!: string[];
   @observable selectedPool?: IPool;
   @observable inputLoanValue?: string;
+  @observable inputLoanLegal?: boolean;
   @observable inputCollateralValue?: string;
+  @observable inputCollateralValueLegal?: boolean;
   @observable sending = false;
   @observable maxCollateralAmount?: string;
   @observable maxLoanAmount?: string;
@@ -71,8 +74,7 @@ export default class LoanViewModel extends BaseViewModel {
 
   selectCollateralToken = (name: string) => {
     this.selectedCollateralToken =
-      this.currentLoanPair.collateralTokens.find((t) => t.name.toLowerCase() === name.toLowerCase()) ||
-      this.selectedCollateralToken;
+      this.currentLoanPair.collateralTokens.find((t) => t.name.toLowerCase() === name.toLowerCase()) || this.selectedCollateralToken;
 
     let max = this.selectedCollateralToken.balance!;
     const gasFee = utils.parseEther("0.05");
@@ -121,6 +123,8 @@ export default class LoanViewModel extends BaseViewModel {
   };
 
   inputLoan = (value?: string) => {
+    this.inputLoanLegal = checkNumber(value ?? "");
+
     if (!this.peekPool || !value) return;
     this.inputLoanValue = value;
 
@@ -134,6 +138,7 @@ export default class LoanViewModel extends BaseViewModel {
     if (!value) return;
 
     this.inputCollateralValue = value;
+    this.inputCollateralValueLegal = checkNumber(value);
 
     if (!value || !this.inputLoanValue) return;
 
@@ -154,16 +159,11 @@ export default class LoanViewModel extends BaseViewModel {
       const loanToken = this.currentLoanPair.loanToken;
       const loanAmount = ethers.utils.parseUnits(this.inputLoanValue!, loanToken.decimals);
       const isEtherCollateral = this.selectedCollateralToken.address === ETHAddress;
-      const collateralAmount = ethers.utils
-        .parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals)
-        .toString();
+      const collateralAmount = ethers.utils.parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals).toString();
       const tokenWei = ethers.utils.parseUnits(this.inputLoanValue ?? "0", loanToken.decimals).toString();
 
       if (!loanToken.allowance?.gte(tokenWei)) {
-        const appTx = await loanToken.contract?.approve(
-          protocol.address,
-          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        );
+        const appTx = await loanToken.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
       }

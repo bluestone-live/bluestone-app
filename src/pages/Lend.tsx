@@ -62,7 +62,7 @@ class Lend extends Component<Props, State> {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
     const sending = vm?.sending;
-    const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending;
+    const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending || !vm?.inputLegal;
 
     return (
       <div className="lend page">
@@ -93,6 +93,7 @@ class Lend extends Component<Props, State> {
                   defaultValue={this.state.maxBalance}
                   onButtonClick={this.onMaxClick}
                   title={i18n.t("lend_deposit_amount")}
+                  isValid={vm?.inputLegal ?? true}
                 />
               </div>
 

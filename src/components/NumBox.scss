@@ -32,6 +32,10 @@
       right: 0;
       bottom: 0;
       top: 0;
+
+      &.illegal {
+        outline-color: red;
+      }
     }
 
     button {

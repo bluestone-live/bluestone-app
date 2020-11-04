@@ -49,11 +49,7 @@ class Record extends Component<IProps, IState> {
     return (
       <div className="record page">
         <h1>{`${
-          record
-            ? record.type === RecordType.Deposit
-              ? i18n.t("record_deposit_details")
-              : i18n.t("record_loan_details")
-            : i18n.t("record_title")
+          record ? (record.type === RecordType.Deposit ? i18n.t("record_deposit_details") : i18n.t("record_loan_details")) : i18n.t("record_title")
         }`}</h1>
 
         <div className="details">
@@ -80,9 +76,7 @@ class Record extends Component<IProps, IState> {
 
             <div className="item">
               <span>{i18n.t("common_term")}:</span>
-              <span>
-                {record ? `${record.term} ${i18n.t(record.term > 1 ? "common_days" : "common_day")}` : <Loading />}
-              </span>
+              <span>{record ? `${record.term} ${i18n.t(record.term > 1 ? "common_days" : "common_day")}` : <Loading />}</span>
             </div>
 
             <div className="item">
@@ -120,12 +114,7 @@ class Record extends Component<IProps, IState> {
               </div>
 
               <div className="form">
-                <NumBox
-                  title={i18n.t("record_withdraw_amount")}
-                  maxValue={record.amount}
-                  defaultValue={record.amount}
-                  disabled
-                />
+                <NumBox title={i18n.t("record_withdraw_amount")} maxValue={record.amount} defaultValue={record.amount} disabled />
                 <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey">
                   {i18n.t("button_withdraw")}
                 </Button>
@@ -150,8 +139,9 @@ class Record extends Component<IProps, IState> {
                   title={i18n.t("record_repay_amount")}
                   maxValue={record.remainingDebt}
                   onChange={vm?.updateRepayAmount}
+                  isValid={vm?.isRepayAmountLegal ?? true}
                 />
-                <Button loading={vm?.repaying} onClick={vm?.repay} loadingColor="lightgrey">
+                <Button loading={vm?.repaying} onClick={vm?.repay} loadingColor="lightgrey" disabled={!vm?.isRepayAmountLegal}>
                   {i18n.t("button_repay")}
                 </Button>
               </div>
@@ -177,8 +167,14 @@ class Record extends Component<IProps, IState> {
                   onChange={vm?.updateWithdrawCollateralAmount}
                   maxValue={vm?.maxWithdrawCollateral}
                   onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
+                  isValid={vm?.isWithdrawCollateralAmountLegal ?? true}
                 />
-                <Button loading={vm?.withdrawingCollateral} onClick={vm?.withdrawCollateral} loadingColor="lightgrey">
+                <Button
+                  loading={vm?.withdrawingCollateral}
+                  onClick={vm?.withdrawCollateral}
+                  loadingColor="lightgrey"
+                  disabled={!vm?.isWithdrawCollateralAmountLegal}
+                >
                   {i18n.t("button_withdraw")}
                 </Button>
               </div>
@@ -205,8 +201,14 @@ class Record extends Component<IProps, IState> {
                   onChange={vm?.updateDepositCollateralAmount}
                   maxValue={vm?.maxDepositCollateral}
                   onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
+                  isValid={vm?.isDepositCollateralAmountLegal ?? true}
                 />
-                <Button loading={vm?.depositingCollateral} onClick={vm?.depositCollateral} loadingColor="lightgrey">
+                <Button
+                  loading={vm?.depositingCollateral}
+                  onClick={vm?.depositCollateral}
+                  loadingColor="lightgrey"
+                  disabled={!vm?.isDepositCollateralAmountLegal}
+                >
                   {i18n.t("button_deposit")}
                 </Button>
               </div>
