@@ -1,11 +1,11 @@
-@import '../theme.scss';
+@import "../theme.scss";
 
 .footer {
   display: grid;
   grid-template-columns: auto 1fr;
   //   display: flex;
   //   justify-content: space-evenly;
-  margin: 32px calc(10% );
+  margin: 32px calc(10%);
   padding-top: 32px;
   border-top: 1px solid #f0f0f0;
 
@@ -29,6 +29,10 @@
 
         li {
           margin-bottom: 12px;
+
+          a {
+            color: black;
+          }
         }
       }
 
@@ -41,6 +45,7 @@
         a {
           margin-right: 12px;
           display: inline-block;
+
           img {
             width: 20px;
             height: 20px;

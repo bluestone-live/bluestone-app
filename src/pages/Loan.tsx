@@ -62,7 +62,7 @@ class Loan extends Component<IProps, State> {
 
     return (
       <div className="loan page">
-        <h1>Loan</h1>
+        <h1>{i18n.t('loan_title')}</h1>
 
         <div className="content">
           <Calendar

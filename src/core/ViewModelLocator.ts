@@ -13,6 +13,7 @@ import { Metamask } from "ethpay.core";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
+import { observable } from "mobx";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -48,6 +49,8 @@ export class ViewModelLocator extends EventEmitter {
   }
 
   async init() {
+    // this.checkIsHome();
+
     if (this.initialized) return true;
     if (!(await this.initApp())) return false;
 
@@ -102,9 +105,7 @@ export class ViewModelLocator extends EventEmitter {
 
   private async initProtocol() {
     const enabledDepositTokens = await this.protocol.getDepositTokens();
-    this.depositTokens = enabledDepositTokens.map((addr) =>
-      this.depositTokens.find((t) => t.address.toLowerCase() === addr.toLowerCase())
-    );
+    this.depositTokens = enabledDepositTokens.map((addr) => this.depositTokens.find((t) => t.address.toLowerCase() === addr.toLowerCase()));
 
     Promise.all(
       this.depositTokens.map(async (token) => {
@@ -135,9 +136,7 @@ export class ViewModelLocator extends EventEmitter {
     this.loanPairs = loanPairs.map((p) => {
       return {
         loanToken: this.depositTokens.find((t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase()),
-        collateralTokens: this.depositTokens.filter(
-          (t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase()
-        ),
+        collateralTokens: this.depositTokens.filter((t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase()),
         ...p,
       };
     });
@@ -263,6 +262,7 @@ export class ViewModelLocator extends EventEmitter {
       id,
     });
   }
+
 }
 
 export default ViewModelLocator.instance;

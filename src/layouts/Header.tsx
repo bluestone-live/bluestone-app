@@ -14,6 +14,8 @@ interface IProps {
 class Header extends Component<IProps, {}> {
   render() {
     const { isHome } = this.props;
+    console.log("isHome", isHome);
+    
     return (
       <header>
         <Link to="/">
@@ -22,7 +24,7 @@ class Header extends Component<IProps, {}> {
         {isHome ? undefined : (
           <div className="links">
             <Link to="/lend">{i18n.t("header_deposit")}</Link>
-            <Link to="/loan">{i18n.t("header_borrow")}</Link>
+            <Link to="/borrow">{i18n.t("header_borrow")}</Link>
             <Link to="/history">{i18n.t("header_history")}</Link>
           </div>
         )}
