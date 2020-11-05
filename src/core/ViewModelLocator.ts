@@ -13,7 +13,6 @@ import { Metamask } from "ethpay.core";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
-import { observable } from "mobx";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
