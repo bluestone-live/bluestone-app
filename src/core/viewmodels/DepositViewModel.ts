@@ -4,6 +4,7 @@ import { IPool, IToken, IViewModel } from "./Types";
 
 import BaseViewModel from "./BaseViewModel";
 import Notification from "../services/Notify";
+import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import history from "../services/History";
 import { observable } from "mobx";
@@ -25,6 +26,7 @@ export default class DepositViewModel extends BaseViewModel {
   @observable sending = false;
   @observable selectedPool?: IPool;
   @observable inputValue?: string;
+  @observable inputLegal?: boolean;
   readonly terms: number[];
   readonly tokenSymbols: string[];
 
@@ -94,6 +96,7 @@ export default class DepositViewModel extends BaseViewModel {
 
   inputBalance = (value: string) => {
     this.inputValue = value;
+    this.inputLegal = checkNumber(value);
   };
 
   deposit = async () => {
@@ -105,25 +108,16 @@ export default class DepositViewModel extends BaseViewModel {
       this.sending = true;
 
       if (!token.allowance?.gte(tokenWei)) {
-        const appTx = await token.contract?.approve(
-          protocol.address,
-          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        );
-        
+        const appTx = await token.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+
         Notification.track(appTx.hash);
       }
 
       const isETH = token.address === ETHAddress;
 
-      const tx = await protocol.deposit(
-        token.address,
-        isETH ? "0" : tokenWei,
-        this.selectedPool!.term.toString(),
-        DistributorAddress,
-        {
-          value: isETH ? tokenWei : "0",
-        }
-      );
+      const tx = await protocol.deposit(token.address, isETH ? "0" : tokenWei, this.selectedPool!.term.toString(), DistributorAddress, {
+        value: isETH ? tokenWei : "0",
+      });
 
       Notification.track(tx.hash);
       const receipt = await tx.wait();

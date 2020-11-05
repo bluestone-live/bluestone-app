@@ -8,37 +8,28 @@ import { Route, Router, Switch } from "react-router-dom";
 
 import { History } from "history";
 import React from "react";
+import { ViewModelLocator } from "./core/ViewModelLocator";
 import { inject } from "mobx-react";
 
 interface IApp {
   history?: History;
-}
-
-interface IState {
-  isHome?: boolean;
+  locator?: ViewModelLocator;
 }
 
 @inject("history")
+@inject("locator")
 export default class App extends React.Component<IApp, {}> {
-  state: IState = {};
-
-  componentDidMount() {
-    window.addEventListener("popstate", (_) => {
-      this.setState({ isHome: window.location.pathname?.length <= 1 });
-    });
-  }
-
   render() {
     return (
       <Router history={this.props.history!}>
         <div className="App">
           <div className="top">
-            <Header isHome={this.state.isHome} />
+            <Header />
           </div>
 
           <Switch>
             <Route component={LendPage} path="/lend" />
-            <Route component={LoanPage} path="/loan" />
+            <Route component={LoanPage} path="/borrow" />
             <Route component={HistoryPage} path="/history" />
             <Route component={RecordPage} path="/record/:id" />
             <Route component={Home} />

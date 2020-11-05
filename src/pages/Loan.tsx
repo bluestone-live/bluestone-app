@@ -58,11 +58,14 @@ class Loan extends Component<IProps, State> {
     const loading = !vm || vm?.loading;
     const sending = vm?.sending;
     const buttonDisabled =
-      (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) || vm?.sending;
+      (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) ||
+      vm?.sending ||
+      !vm?.inputLoanLegal ||
+      !vm?.inputCollateralValueLegal;
 
     return (
       <div className="loan page">
-        <h1>Loan</h1>
+        <h1>{i18n.t("loan_title")}</h1>
 
         <div className="content">
           <Calendar
@@ -77,11 +80,7 @@ class Loan extends Component<IProps, State> {
           <div className="form">
             <div className="items">
               <div className="item">
-                <TokenSelector
-                  title={i18n.t("loan_loan_token")}
-                  tokens={vm?.loanTokens}
-                  onChange={vm?.selectLoanPair}
-                />
+                <TokenSelector title={i18n.t("loan_loan_token")} tokens={vm?.loanTokens} onChange={vm?.selectLoanPair} />
               </div>
               <div className="item">
                 <NumBox
@@ -89,6 +88,7 @@ class Loan extends Component<IProps, State> {
                   onChange={vm?.inputLoan}
                   maxValue={vm?.maxLoanAmount}
                   onButtonClick={this.onLoanMaxClick}
+                  isValid={vm?.inputLoanLegal ?? true}
                 />
               </div>
               <div className="item">
@@ -101,14 +101,13 @@ class Loan extends Component<IProps, State> {
                   onChange={vm?.inputCollateral}
                   maxValue={vm?.maxCollateralAmount}
                   onButtonClick={this.onCollateralMaxClick}
+                  isValid={vm?.inputCollateralValueLegal ?? true}
                 />
               </div>
 
               <div className="item">
                 <span>{i18n.t("common_term")}:</span>
-                <span>
-                  {loading ? <Loading /> : `${vm!.term} ${i18n.t(vm!.term > 1 ? "common_days" : "common_day")}`}
-                </span>
+                <span>{loading ? <Loading /> : `${vm!.term} ${i18n.t(vm!.term > 1 ? "common_days" : "common_day")}`}</span>
               </div>
 
               <div className="item">
@@ -138,9 +137,7 @@ class Loan extends Component<IProps, State> {
               <Skeleton height={37} />
             ) : (
               <Button disabled={buttonDisabled} onClick={vm?.loan} loading={sending}>
-                {vm?.loanToken.allowance?.eq(0)
-                  ? `${i18n.t("button_approve")} & ${i18n.t("button_loan")}`
-                  : i18n.t("button_loan")}
+                {vm?.loanToken.allowance?.eq(0) ? `${i18n.t("button_approve")} & ${i18n.t("button_loan")}` : i18n.t("button_loan")}
               </Button>
             )}
           </div>

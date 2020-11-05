@@ -56,10 +56,9 @@ class Home extends Component<IProps, IState> {
               <tr>
                 <th className="asset">{i18n.t("home_asset")}</th>
                 <th>{i18n.t("home_lending_cap")}</th>
-                <th>{i18n.t("home_borrowing_cap")}</th>
                 <th>{i18n.t("home_best_lending_term")}</th>
                 <th>{i18n.t("home_borrowing_apr")}</th>
-                <th>{i18n.t('home_actions')}</th>
+                <th>{i18n.t("home_actions")}</th>
               </tr>
             </thead>
 
@@ -75,15 +74,15 @@ class Home extends Component<IProps, IState> {
                           </div>
                         </td>
                         <td className="uppercase">{`${p.lendingAmount} ${p.token.name}`}</td>
-                        <td className="uppercase">{`${p.loanAmount} ${p.token.name}`}</td>
-                        <td>{`${p.bestLendingApr}% (${p.bestLendingTerm} Days)`}</td>
+
+                        <td>{`${p.lowestLendingApr}%-${p.bestLendingApr}%`}</td>
                         <td>{`${p.lowLoanApr}% - ${p.highLoanApr}%`}</td>
                         <td>
                           <Link to="/lend">
-                            <button>Lend</button>
+                            <button>{i18n.t("button_deposit")}</button>
                           </Link>
-                          <Link to="/loan">
-                            <button>Loan</button>
+                          <Link to="/borrow">
+                            <button>{i18n.t("button_loan")}</button>
                           </Link>
                         </td>
                       </tr>

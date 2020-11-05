@@ -11,4 +11,8 @@
       margin-right: 12px;
     }
   }
+
+  &:disabled {
+    color: rgb(145, 145, 145) !important;
+  }
 }

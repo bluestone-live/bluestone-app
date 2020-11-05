@@ -1,12 +1,13 @@
-import React, { Component } from "react";
 import "./NumBox.scss";
+
+import React, { Component } from "react";
 
 interface IProps {
   title?: string;
   secondTitle?: string;
   secondDesc?: string;
   onChange?: (value: string) => void;
-  isValid?: (value: string) => boolean;
+  isValid?: boolean;
   buttonTitle?: string;
   defaultValue?: string;
   maxValue?: string;
@@ -32,6 +33,7 @@ class NumBox extends Component<IProps, {}> {
         </div>
         <div className="input-area">
           <input
+            className={`${this.props.isValid ? "" : "illegal"}`}
             ref={(e) => (this.input = e!)}
             placeholder="0.00"
             defaultValue={this.props.defaultValue}

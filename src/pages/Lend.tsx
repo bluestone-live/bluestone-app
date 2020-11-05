@@ -62,12 +62,12 @@ class Lend extends Component<Props, State> {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
     const sending = vm?.sending;
-    const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending;
+    const buttonDisabled = (vm && vm.term && vm.selectedPool && vm.inputValue ? false : true) || vm?.sending || !vm?.inputLegal;
 
     return (
       <div className="lend page">
         <div>
-          <h1>Deposit</h1>
+          <h1>{i18n.t("lend_title")}</h1>
         </div>
         <div className="content">
           <Calendar
@@ -83,11 +83,7 @@ class Lend extends Component<Props, State> {
           <div className="form">
             <div className="items">
               <div className="item">
-                <TokenSelector
-                  title={i18n.t("lend_deposit_token")}
-                  tokens={vm?.tokenSymbols}
-                  onChange={(token) => vm?.selectToken(token)}
-                />
+                <TokenSelector title={i18n.t("lend_deposit_token")} tokens={vm?.tokenSymbols} onChange={(token) => vm?.selectToken(token)} />
               </div>
 
               <div className="item input">
@@ -96,14 +92,14 @@ class Lend extends Component<Props, State> {
                   onChange={vm?.inputBalance}
                   defaultValue={this.state.maxBalance}
                   onButtonClick={this.onMaxClick}
+                  title={i18n.t("lend_deposit_amount")}
+                  isValid={vm?.inputLegal ?? true}
                 />
               </div>
 
               <div className="item">
                 <span>{i18n.t("common_term")}:</span>
-                <span>
-                  {loading ? <Loading /> : `${vm!.term} ${vm!.term > 1 ? i18n.t("common_days") : i18n.t("common_day")}`}
-                </span>
+                <span>{loading ? <Loading /> : `${vm!.term} ${vm!.term > 1 ? i18n.t("common_days") : i18n.t("common_day")}`}</span>
               </div>
 
               <div className="item">
@@ -123,9 +119,7 @@ class Lend extends Component<Props, State> {
               <Skeleton height={37} />
             ) : (
               <Button disabled={buttonDisabled} onClick={vm?.deposit} loading={sending}>
-                {vm?.currentToken.allowance?.eq(0)
-                  ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}`
-                  : i18n.t("button_deposit")}
+                {vm?.currentToken.allowance?.eq(0) ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}` : i18n.t("button_deposit")}
               </Button>
             )}
           </div>

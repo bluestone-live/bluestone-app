@@ -31,10 +31,7 @@ class Footer extends Component {
                     </g>
                     <g>
                       <g>
-                        <polygon
-                          fillRule="nonzero"
-                          points="0 11.5 12.4329108 4.11492327 20.6973572 8.76734086 39.8302633 0 52 11.5"
-                        />
+                        <polygon fillRule="nonzero" points="0 11.5 12.4329108 4.11492327 20.6973572 8.76734086 39.8302633 0 52 11.5" />
                         <path
                           d="M42.444,21.852 L39.8302633,24 L34.439,21.852 L42.444,21.852 Z M16.357,18.5 L12.573,20.352 L12.298,20.352 L8.713,18.5 L16.357,18.5 Z M46.524,18.5 L44.27,20.352 L30.675,20.352 L26.027,18.5 L46.524,18.5 Z M52,14 L48.958,16.5 L21.008,16.5 L20.6973572,16.3762253 L20.444,16.5 L4.84,16.5 L0,14 L52,14 Z"
                           fillRule="nonzero"
@@ -62,7 +59,11 @@ class Footer extends Component {
             <h3>{i18n.t("footer_title_docs")}</h3>
 
             <ul>
-              <li>{i18n.t("footer_paper")}</li>
+              <li>
+                <a href="https://raw.githubusercontent.com/bluestone-live/design-paper/master/Bluestone_Whitepaper_v0.pdf">
+                  {i18n.t("footer_paper")}
+                </a>
+              </li>
               <li>{i18n.t("footer_documents")}</li>
             </ul>
           </div>

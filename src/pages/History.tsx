@@ -60,11 +60,7 @@ class HistoryPage extends Component<IProps, IState> {
           <div className="nav">
             {types.map((t) => {
               return (
-                <div
-                  key={t.value}
-                  className={`item ${vm?.type === t.value ? "active" : ""}`}
-                  onClick={() => vm?.switch(t.value as any)}
-                >
+                <div key={t.value} className={`item ${vm?.type === t.value ? "active" : ""}`} onClick={() => vm?.switch(t.value as any)}>
                   {t.label}
                 </div>
               );
@@ -100,7 +96,7 @@ class HistoryPage extends Component<IProps, IState> {
                         </div>
                       </td>
                       <td className="type">{r.type}</td>
-                      <td className="amount">{`${r.amount} ${r.token}`}</td>
+                      <td className="amount">{`${Number.parseFloat(r.amount).toFixed(4)} ${r.token}`}</td>
                       <td className="interest">{`${r.interest} ${r.token}`}</td>
                       <td>{r.apr}%</td>
                       <td>{r.term} Days</td>

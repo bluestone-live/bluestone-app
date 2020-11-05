@@ -8,6 +8,7 @@ interface PoolOverview {
   token: IToken;
   lendingAmount: string;
   loanAmount: string;
+  lowestLendingApr: string;
   bestLendingApr: string;
   bestLendingTerm: number;
   lowLoanApr: string;
@@ -28,8 +29,9 @@ export default class HomeViewModel extends BaseViewModel {
 
         return {
           token: t,
-          lendingAmount: utils.formatUnits(lendingAmount, t.decimals),
-          loanAmount: utils.formatUnits(loanAmount, t.decimals),
+          lendingAmount: Number.parseFloat(utils.formatUnits(lendingAmount, t.decimals)).toFixed(4),
+          loanAmount: Number.parseFloat(utils.formatUnits(loanAmount, t.decimals)).toFixed(4),
+          lowestLendingApr: (bestLending[bestLending.length - 1]?.lendAPR * 100).toFixed(2),
           bestLendingApr: (bestLending[0]?.lendAPR * 100).toFixed(2),
           bestLendingTerm: bestLending[0]?.term,
           lowLoanApr: (pools[pools.length - 1].loanAPR * 100).toFixed(2),
