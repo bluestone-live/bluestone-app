@@ -61,7 +61,7 @@ class Record extends Component<IProps, IState> {
 
             <div className="item">
               <span>{i18n.t("common_amount")}:</span>
-              <span className="uppercase">{record ? `${record?.amount} ${record?.token}` : <Loading />}</span>
+              <span className="uppercase">{record ? `${Number.parseFloat(record?.amount ?? 0).toFixed(4)} ${record?.token}` : <Loading />}</span>
             </div>
 
             <div className="item">
@@ -110,7 +110,7 @@ class Record extends Component<IProps, IState> {
 
               <div className="item">
                 <span>{i18n.t("record_withdraw_amount")}:</span>
-                <span className="uppercase">{`${record.amount} ${record.token}`}</span>
+                <span className="uppercase">{`${Number.parseFloat(record.amount).toFixed(4)} ${record.token}`}</span>
               </div>
 
               <div className="form">
@@ -131,7 +131,7 @@ class Record extends Component<IProps, IState> {
 
               <div className="item">
                 <span>{i18n.t("common_remaining_debt")}:</span>
-                <span className="uppercase">{`${record.remainingDebt} ${record.token}`}</span>
+                <span className="uppercase">{`${Number.parseFloat(record.remainingDebt).toFixed(4)} ${record.token}`}</span>
               </div>
 
               <div className="form">
@@ -157,7 +157,7 @@ class Record extends Component<IProps, IState> {
 
               <div className="item">
                 <span>{i18n.t("common_total_collateral")}:</span>
-                <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
+                <span className="uppercase">{`${Number.parseFloat(record.collateralAmount).toFixed(4)} ${record.collateralToken?.name}`}</span>
               </div>
 
               <div className="form">
@@ -190,7 +190,7 @@ class Record extends Component<IProps, IState> {
 
               <div className="item">
                 <span>{i18n.t("common_total_collateral")}:</span>
-                <span className="uppercase">{`${record.collateralAmount} ${record.collateralToken?.name}`}</span>
+                <span className="uppercase">{`${Number.parseFloat(record.collateralAmount).toFixed(4)} ${record.collateralToken?.name}`}</span>
               </div>
 
               <div className="form">
