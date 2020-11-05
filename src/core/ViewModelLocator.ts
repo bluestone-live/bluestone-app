@@ -49,8 +49,6 @@ export class ViewModelLocator extends EventEmitter {
   }
 
   async init() {
-    // this.checkIsHome();
-
     if (this.initialized) return true;
     if (!(await this.initApp())) return false;
 
