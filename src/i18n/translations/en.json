@@ -197,7 +197,7 @@
     "footer_paper": "Paper",
     "footer_documents": "Documents",
     "footer_title_contacts": "Contacts",
-    "lend_deposit_token": "Lend Token",
+    "lend_deposit_token": "Token",
     "common_term": "Term",
     "common_apr": "APR",
     "common_maturity_date": "Maturity Date",
@@ -208,7 +208,7 @@
     "common_weeks": "Weeks",
     "calendar_quick_select": "Quick Selections",
     "calendar_recommended": "Recomended",
-    "loan_loan_token": "Borrow Token",
+    "loan_loan_token": "Token",
     "common_amount": "Amount",
     "loan_collateral_token": "Collateral Token",
     "loan_collateral_amount": "Collateral Amount",
@@ -251,6 +251,8 @@
     "common_collateralization_ratio": "Collateralization Ratio",
     "lend_deposit_amount": "Deposit Amount",
     "loan_title": "Borrow",
-    "lend_title": "Lend"
+    "lend_title": "Lend",
+    "record_type_deposit": "Lend",
+    "record_type_borrow": "Borrow"
   }
 }
