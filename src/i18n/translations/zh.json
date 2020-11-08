@@ -197,7 +197,7 @@
     "footer_paper": "白皮书",
     "footer_documents": "开发文档",
     "footer_title_contacts": "联系",
-    "lend_deposit_token": "选择 Token",
+    "lend_deposit_token": "选择Token",
     "common_term": "期限",
     "common_apr": "APR",
     "common_maturity_date": "到期时间",
@@ -208,7 +208,7 @@
     "common_weeks": "周",
     "calendar_quick_select": "快速选择",
     "calendar_recommended": "推荐",
-    "loan_loan_token": "选择贷款Token",
+    "loan_loan_token": "选择Token",
     "common_amount": "数量",
     "loan_collateral_token": "抵押 Token",
     "loan_collateral_amount": "抵押量",
@@ -251,6 +251,8 @@
     "common_collateralization_ratio": "抵押率",
     "lend_deposit_amount": "存款数",
     "loan_title": "借款",
-    "lend_title": "存款"
+    "lend_title": "存款",
+    "record_type_deposit": "存款",
+    "record_type_borrow": "借款"
   }
 }

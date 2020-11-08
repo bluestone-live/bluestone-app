@@ -95,7 +95,7 @@ class HistoryPage extends Component<IProps, IState> {
                           {/* <span className="lend">↓</span> */}
                         </div>
                       </td>
-                      <td className="type">{r.type}</td>
+                      <td className="type">{i18n.t(`record_type_${r.type}`)}</td>
                       <td className="amount">{`${Number.parseFloat(r.amount).toFixed(4)} ${r.token}`}</td>
                       <td className="interest">{`${r.interest} ${r.token}`}</td>
                       <td>{r.apr}%</td>
