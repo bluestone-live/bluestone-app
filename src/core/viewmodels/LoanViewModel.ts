@@ -125,9 +125,10 @@ export default class LoanViewModel extends BaseViewModel {
   inputLoan = (value?: string) => {
     this.inputLoanLegal = checkNumber(value ?? "");
 
-    if (!this.peekPool || !value) return;
+    if (!value) return;
     this.inputLoanValue = value;
 
+    if (!this.peekPool) return;
     this.debt = Number.parseFloat(value) * (1 + (this.peekPool.loanAPR / 365) * this.peekPool.term);
     this.interest = this.debt - Number.parseFloat(value);
 
