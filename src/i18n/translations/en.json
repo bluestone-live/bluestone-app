@@ -253,6 +253,7 @@
     "loan_title": "Borrow",
     "lend_title": "Lend",
     "record_type_deposit": "Lend",
-    "record_type_borrow": "Borrow"
+    "record_type_borrow": "Borrow",
+    "calendar_title": "Pick a maturity date"
   }
 }
