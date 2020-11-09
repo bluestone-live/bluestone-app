@@ -99,7 +99,9 @@ class HistoryPage extends Component<IProps, IState> {
                       <td className="amount">{`${Number.parseFloat(r.amount).toFixed(4)} ${r.token}`}</td>
                       <td className="interest">{`${r.interest} ${r.token}`}</td>
                       <td>{r.apr}%</td>
-                      <td>{r.term} Days</td>
+                      <td>
+                        {r.term} {`${i18n.t(r.term > 1 ? "common_days" : "common_day")}`}
+                      </td>
                       <td>{r.maturityDate}</td>
                     </tr>
                   );
