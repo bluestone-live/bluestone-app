@@ -66,6 +66,8 @@ class Calendar extends Component<IProps, {}> {
   render() {
     return (
       <div className="calendar" onMouseLeave={() => this.props.onMouseOut?.()}>
+        <div className="title">{i18n.t("calendar_title")} </div>
+
         <DateRange
           months={this.props.months || 1}
           direction="vertical"

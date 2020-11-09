@@ -253,6 +253,7 @@
     "loan_title": "借款",
     "lend_title": "存款",
     "record_type_deposit": "存款",
-    "record_type_borrow": "借款"
+    "record_type_borrow": "借款",
+    "calendar_title": "选择到期日期"
   }
 }
