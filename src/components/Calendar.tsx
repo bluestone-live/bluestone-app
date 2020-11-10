@@ -40,24 +40,24 @@ interface IProps {
 }
 
 class Calendar extends Component<IProps, {}> {
+  private initTimestamp = dayjs().add(1, "day").hour(0);
+
   state = {
     ranges: [
       {
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: this.initTimestamp.toDate(),
+        endDate: this.initTimestamp.toDate(),
         key: "selection",
       },
     ],
-    preview: new Date(),
+    preview: this.initTimestamp.toDate(),
   };
-
-  private initTimestamp = dayjs().hour(0);
 
   private fastSelect(days: number) {
     const future = this.initTimestamp.add(days, "d").toDate();
 
     this.setState({
-      ranges: [{ startDate: new Date(), endDate: future, key: "selection" }],
+      ranges: [{ startDate: this.initTimestamp.toDate(), endDate: future, key: "selection" }],
     });
 
     this.props.onSelect?.(future);
@@ -72,19 +72,19 @@ class Calendar extends Component<IProps, {}> {
           months={this.props.months || 1}
           direction="vertical"
           fixedHeight
-          minDate={this.props.minDate || new Date()}
+          minDate={this.props.minDate || this.initTimestamp.toDate()}
           maxDate={this.props.maxDate}
           moveRangeOnFirstSelection={true}
           color="#ff6dc4"
           rangeColors={["#ff6dc4"]}
           ranges={this.state.ranges}
           scroll={{ enabled: true }}
-          preview={{ startDate: new Date(), endDate: this.state.preview }}
+          preview={{ startDate: this.initTimestamp.toDate(), endDate: this.state.preview }}
           onChange={(item) => {
             this.setState({
               ranges: [
                 {
-                  startDate: new Date(),
+                  startDate: this.initTimestamp.toDate(),
                   endDate: this.state.preview || new Date(),
                   key: "selection",
                 },

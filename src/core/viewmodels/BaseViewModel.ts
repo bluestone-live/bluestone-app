@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 
 export default class BaseViewModel {
   protected tokenPool: TokenPool;
-  minDate = new Date();
+  minDate = dayjs().add(1, "d").hour(0).toDate();
   maxDate = new Date();
-  protected readonly now = dayjs();
+  protected readonly now = this.minDate;
   protected protocol!: Contract;
   protected account!: string;
   protected tokens!: IToken[];
