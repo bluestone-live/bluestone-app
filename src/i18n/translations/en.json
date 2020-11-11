@@ -244,7 +244,7 @@
     "event_RepayLoanSucceed": "Repay",
     "event_AddCollateralSucceed": "Deposit Collateral",
     "event_SubtractCollateralSucceed": "Withdraw Collateral",
-    "event_DepositSucceed": "Deposit",
+    "event_DepositSucceed": "Lend",
     "event_WithdrawSucceed": "Withdraw",
     "event_EarlyWithdrawSucceed": "Early Withdraw",
     "event_LiquidateLoanSucceed": "Liquidate",

@@ -14,7 +14,6 @@ interface IProps {
 class Header extends Component<IProps, {}> {
   render() {
     const { isHome } = this.props;
-    console.log("isHome", isHome);
     
     return (
       <header>
