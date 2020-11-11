@@ -198,6 +198,10 @@ export default class RecordViewModel extends BaseViewModel {
     return calcCollateralRatio(value, `${debt || 1}`, collateralToken?.price!, loanToken.price!).toFixed(2);
   }
 
+  openTx = (tx: HistoryTx) => {
+    window.open(`https://${this.locator.network}.etherscan.io/tx/${tx.transactionHash}`, "_blank");
+  };
+
   static fetchUIData(r: ILoanRecord | IDepositRecord, tokens: IToken[]) {
     const token = tokens.find(
       (t) =>

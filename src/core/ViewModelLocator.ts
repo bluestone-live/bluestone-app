@@ -36,6 +36,7 @@ export class ViewModelLocator extends EventEmitter {
 
   maxDistributorFeeRatios!: IDistributionFeeRatios;
   protocolReserveRatio!: BigNumber;
+  network?: string;
 
   private async watchAccount() {
     const provider = await Metamask.getProvider();
@@ -73,6 +74,7 @@ export class ViewModelLocator extends EventEmitter {
 
     const network = await this.provider.getNetwork();
     Notification.register(network.chainId);
+    this.network = network.name;
 
     await this.provider.getBalance(account);
 
@@ -259,7 +261,6 @@ export class ViewModelLocator extends EventEmitter {
       id,
     });
   }
-
 }
 
 export default ViewModelLocator.instance;
