@@ -108,7 +108,7 @@ class Record extends Component<IProps, IState> {
                 <span></span>
               </div>
 
-              <div className="item">
+              <div className="item" style={{ display: "none" }}>
                 <span>{i18n.t("record_withdraw_amount")}:</span>
                 <span className="uppercase">{`${Number.parseFloat(record.amount).toFixed(4)} ${record.token}`}</span>
               </div>
