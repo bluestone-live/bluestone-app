@@ -245,6 +245,8 @@ export default class RecordViewModel extends BaseViewModel {
 
     const isClosed = r["isClosed"] || r["isWithdrawn"] || r["withdrewAt"]?.gt(0);
 
+    const isMatured = dayjs(maturityDate).isBefore(dayjs());
+
     return {
       id: r["depositId"] || r["loanId"],
       token: token.name,
@@ -263,6 +265,7 @@ export default class RecordViewModel extends BaseViewModel {
       maxCollateralAmount,
       maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
       isClosed,
+      isMatured
     };
   }
 }

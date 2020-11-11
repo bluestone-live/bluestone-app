@@ -104,7 +104,7 @@ class Record extends Component<IProps, IState> {
           {record?.type === RecordType.Deposit && !closed ? (
             <div className="detail">
               <div className="head">
-                <h3>{record.isMatured ? "Withdraw" : "Early withdraw"}</h3>
+                <h3>{record.isMatured ? i18n.t("deposit_detail_button_withdraw") : i18n.t("deposit_detail_button_early_withdraw")}</h3>
                 <span></span>
               </div>
 
@@ -116,7 +116,7 @@ class Record extends Component<IProps, IState> {
               <div className="form">
                 <NumBox title={i18n.t("record_withdraw_amount")} maxValue={record.amount} defaultValue={record.amount} disabled />
                 <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey">
-                  {i18n.t("button_withdraw")}
+                  {i18n.t(record.isMatured ? "deposit_detail_button_withdraw" : "deposit_detail_button_early_withdraw")}
                 </Button>
               </div>
             </div>
