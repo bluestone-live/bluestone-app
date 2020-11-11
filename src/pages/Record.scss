@@ -78,6 +78,9 @@
 
       tbody {
         font-size: 14px;
+        tr {
+          cursor: pointer;
+        }
       }
 
       td {

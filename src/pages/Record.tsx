@@ -230,7 +230,7 @@ class Record extends Component<IProps, IState> {
             <tbody>
               {txs && txs.length > 0 ? (
                 txs.map((tx) => (
-                  <tr key={tx.transactionHash}>
+                  <tr key={tx.transactionHash} onClick={(_) => vm?.openTx(tx)}>
                     <td>{tx.time}</td>
                     <td>{i18n.t(`event_${tx.event}`)}</td>
                     <td className="uppercase">{`${tx.amount} ${tx.token?.name}`}</td>
