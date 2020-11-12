@@ -57,7 +57,7 @@ class Calendar extends Component<IProps, {}> {
     const future = this.initTimestamp.add(days, "d").toDate();
 
     this.setState({
-      ranges: [{ startDate: this.initTimestamp.toDate(), endDate: future, key: "selection" }],
+      ranges: [{ startDate: new Date(), endDate: future, key: "selection" }],
     });
 
     this.props.onSelect?.(future);
@@ -79,12 +79,12 @@ class Calendar extends Component<IProps, {}> {
           rangeColors={["#ff6dc4"]}
           ranges={this.state.ranges}
           scroll={{ enabled: true }}
-          preview={{ startDate: this.initTimestamp.toDate(), endDate: this.state.preview }}
+          preview={{ startDate: new Date(), endDate: this.state.preview }}
           onChange={(item) => {
             this.setState({
               ranges: [
                 {
-                  startDate: this.initTimestamp.toDate(),
+                  startDate: new Date(),
                   endDate: this.state.preview || new Date(),
                   key: "selection",
                 },
