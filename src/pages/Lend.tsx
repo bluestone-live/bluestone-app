@@ -78,6 +78,7 @@ class Lend extends Component<Props, State> {
             onPreview={vm?.peekTerm}
             onSelect={vm?.selectTerm}
             onMouseOut={vm?.restoreTerm}
+            type="Lend"
           />
 
           <div className="form">
