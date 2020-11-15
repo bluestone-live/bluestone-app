@@ -75,6 +75,7 @@ class Loan extends Component<IProps, State> {
             minDate={vm?.minDate}
             onSelect={vm?.selectTerm}
             onMouseOut={vm?.restoreTerm}
+            type="Borrow"
           />
 
           <div className="form">

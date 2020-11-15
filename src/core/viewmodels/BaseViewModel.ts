@@ -9,7 +9,7 @@ export default class BaseViewModel {
   protected tokenPool: TokenPool;
   minDate = dayjs().add(1, "d").hour(0).toDate();
   maxDate = new Date();
-  protected readonly now = this.minDate;
+  protected now = this.minDate;
   protected protocol!: Contract;
   protected account!: string;
   protected tokens!: IToken[];

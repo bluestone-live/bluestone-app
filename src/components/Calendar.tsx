@@ -37,10 +37,15 @@ interface IProps {
   onPreview?: (date: Date) => void;
   onSelect?: (date: Date) => void;
   onMouseOut?: () => void;
+  type: "Lend" | "Borrow";
 }
 
 class Calendar extends Component<IProps, {}> {
-  private initTimestamp = dayjs().add(1, "day").hour(0);
+  private initTimestamp = dayjs()
+    .add(this.props.type === "Lend" ? 1 : 0, "day")
+    .hour(0)
+    .minute(0)
+    .second(0);
 
   state = {
     ranges: [
