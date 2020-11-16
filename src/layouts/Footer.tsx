@@ -48,10 +48,10 @@ class Footer extends Component {
 
         <div className="sections">
           <div className="section">
-            <h3>{i18n.t("footer_title_about")}</h3>
+            <h3>{i18n.t("footer_title_products")}</h3>
 
             <ul>
-              <li>{i18n.t("footer_about_us")}</li>
+              <li><a href="/">Bluestone</a></li>
             </ul>
           </div>
 
