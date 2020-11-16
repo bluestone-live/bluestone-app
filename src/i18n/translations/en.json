@@ -194,9 +194,9 @@
     "footer_title_about": "About",
     "footer_about_us": "About us",
     "footer_title_docs": "Docs",
-    "footer_paper": "Paper",
+    "footer_paper": "White Paper",
     "footer_documents": "Documents",
-    "footer_title_contacts": "Contacts",
+    "footer_title_contacts": "Community",
     "lend_deposit_token": "Token",
     "common_term": "Term",
     "common_apr": "APR",
@@ -254,6 +254,8 @@
     "lend_title": "Lend",
     "record_type_deposit": "Lend",
     "record_type_borrow": "Borrow",
-    "calendar_title": "Select Maturity Date"
+    "calendar_title": "Select Maturity Date",
+    "footer_title_products": "Products",
+    "footer_title_developers": "Developers"
   }
 }

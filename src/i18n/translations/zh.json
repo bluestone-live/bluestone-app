@@ -196,7 +196,7 @@
     "footer_title_docs": "文档",
     "footer_paper": "白皮书",
     "footer_documents": "开发文档",
-    "footer_title_contacts": "联系",
+    "footer_title_contacts": "社区",
     "lend_deposit_token": "选择Token",
     "common_term": "期限",
     "common_apr": "APR",
@@ -254,6 +254,8 @@
     "lend_title": "存款",
     "record_type_deposit": "存款",
     "record_type_borrow": "借款",
-    "calendar_title": "选择到期日期"
+    "calendar_title": "选择到期日期",
+    "footer_title_products": "产品",
+    "footer_title_developers": "开发"
   }
 }
