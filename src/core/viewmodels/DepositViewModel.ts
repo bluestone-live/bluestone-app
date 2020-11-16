@@ -6,6 +6,7 @@ import BaseViewModel from "./BaseViewModel";
 import Notification from "../services/Notify";
 import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
+import { getTimestampByPoolId } from "../services/Math";
 import history from "../services/History";
 import { observable } from "mobx";
 
@@ -77,7 +78,10 @@ export default class DepositViewModel extends BaseViewModel {
 
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.lendAPR ?? 0;
-    this.maturityDate = dayjs(date).format("YYYY-MM-DD");
+
+    if (targetPool) {
+      this.maturityDate = dayjs.utc(getTimestampByPoolId(targetPool.poolId.toString())).local().format("YYYY-MM-DD HH:mm"); // dayjs(date).format("YYYY-MM-DD");
+    }
 
     return targetPool;
   };

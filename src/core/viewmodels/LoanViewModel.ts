@@ -103,7 +103,7 @@ export default class LoanViewModel extends BaseViewModel {
 
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.loanAPR ?? 0;
-    this.maturityDate = dayjs(date).format("YYYY-MM-DD");
+    this.maturityDate = dayjs(date).hour(dayjs().hour()).minute(dayjs().minute()).format("YYYY-MM-DD HH:mm");
 
     this.inputLoan(this.inputLoanValue);
 
