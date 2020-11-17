@@ -79,9 +79,11 @@
   }
 
   .features {
-    display: none;
+    // display: none;
+    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 64px;
 
     div.feature {
       display: grid;
