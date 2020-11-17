@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import i18n from "../i18n";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo-large.svg";
 import logo_blue from "../assets/logo-blue.svg";
 
 interface IProps {
@@ -14,11 +14,12 @@ interface IProps {
 class Header extends Component<IProps, {}> {
   render() {
     const { isHome } = this.props;
-    
+
     return (
       <header>
         <Link to="/">
           <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
+          {/* <div className="logo bg-img"></div> */}
         </Link>
         {isHome ? undefined : (
           <div className="links">

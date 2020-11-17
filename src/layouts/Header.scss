@@ -1,12 +1,9 @@
-@import '../theme.scss';
+@import "../theme.scss";
 
 header {
   padding: 24px 0;
   display: grid;
   grid-template-columns: auto 1fr;
-  
-  .logo {
-  }
 
   .links {
     display: flex;
