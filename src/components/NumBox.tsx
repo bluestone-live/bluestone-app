@@ -40,7 +40,9 @@ class NumBox extends Component<IProps, {}> {
             disabled={this.props.disabled}
             onChange={(e) => this.props.onChange?.(e.target.value)}
           />
-          <button onClick={() => this.onButtonClick()}>{this.props.buttonTitle || "MAX"}</button>
+          <button disabled={this.props.maxValue === "0"} onClick={() => this.onButtonClick()}>
+            {this.props.buttonTitle || "MAX"}
+          </button>
         </div>
       </div>
     );

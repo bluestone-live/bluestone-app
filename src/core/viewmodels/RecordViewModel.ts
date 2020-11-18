@@ -239,9 +239,11 @@ export default class RecordViewModel extends BaseViewModel {
 
     const maxCollateralAmount = collateralToken ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals) : "0";
 
-    const maxWithdrawCollateralAmount = collateralToken
-      ? Number.parseFloat(collateralAmount) - calcCollateralAmount("151", remainingDebt, collateralToken.price!, token.price!)
-      : "0";
+    let maxWithdrawCollateralAmount = collateralToken
+      ? Number.parseFloat(collateralAmount) - calcCollateralAmount("151", remainingDebt, collateralToken!.price!, token.price!)
+      : 0;
+
+    maxWithdrawCollateralAmount = maxWithdrawCollateralAmount < 0.0000001 ? 0 : maxWithdrawCollateralAmount;
 
     const isClosed = r["isClosed"] || r["isWithdrawn"] || r["withdrewAt"]?.gt(0);
 
@@ -265,7 +267,7 @@ export default class RecordViewModel extends BaseViewModel {
       maxCollateralAmount,
       maxWithdrawCollateralAmount: maxWithdrawCollateralAmount.toString(),
       isClosed,
-      isMatured
+      isMatured,
     };
   }
 }

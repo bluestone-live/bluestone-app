@@ -209,7 +209,7 @@ class Record extends Component<IProps, IState> {
                   loadingColor="lightgrey"
                   disabled={!vm?.isDepositCollateralAmountLegal}
                 >
-                  {i18n.t("button_deposit")}
+                  {i18n.t("button_deposit_collateral")}
                 </Button>
               </div>
             </div>
