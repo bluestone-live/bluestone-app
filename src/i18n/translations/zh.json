@@ -256,6 +256,7 @@
     "record_type_borrow": "借款",
     "calendar_title": "选择到期日期",
     "footer_title_products": "产品",
-    "footer_title_developers": "开发"
+    "footer_title_developers": "开发",
+    "button_deposit_collateral": "添加抵押物"
   }
 }
