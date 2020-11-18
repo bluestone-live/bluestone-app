@@ -103,7 +103,7 @@ class Calendar extends Component<IProps, {}> {
           }}
         />
 
-        <div className="subtitle">{i18n.t("calendar_quick_select")}</div>
+        {/* <div className="subtitle">{i18n.t("calendar_quick_select")}</div>
         <div className="shortcuts">
           {shortcuts.map((v) => {
             return (
@@ -129,7 +129,7 @@ class Calendar extends Component<IProps, {}> {
               })}
             </div>
           </div>
-        ) : undefined}
+        ) : undefined} */}
       </div>
     );
   }
