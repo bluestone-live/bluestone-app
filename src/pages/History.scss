@@ -30,7 +30,7 @@
 
   > table {
     margin-top: 24px;
-    table-layout: fixed;
+    // table-layout: fixed;
 
     th.token,
     td.token {
@@ -70,6 +70,18 @@
       td.amount,
       td.interest {
         text-transform: uppercase;
+      }
+
+      td.date {
+        min-width: 125px;
+      }
+
+      td.matured {
+        color: $accent-color;
+      }
+
+      td.closed {
+        color: $text-color;
       }
 
       tr:nth-child(even) {
