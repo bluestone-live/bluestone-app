@@ -6,28 +6,28 @@ import { DateRange } from "react-date-range";
 import dayjs from "dayjs";
 import i18n from "../i18n";
 
-const shortcuts = [
-  {
-    tag: "1 Week",
-    value: 7,
-  },
-  {
-    tag: "2 Weeks",
-    value: 14,
-  },
-  {
-    tag: "30 Days",
-    value: 30,
-  },
-  {
-    tag: "60 Days",
-    value: 60,
-  },
-  {
-    tag: "90 Days",
-    value: 90,
-  },
-];
+// const shortcuts = [
+//   {
+//     tag: "1 Week",
+//     value: 7,
+//   },
+//   {
+//     tag: "2 Weeks",
+//     value: 14,
+//   },
+//   {
+//     tag: "30 Days",
+//     value: 30,
+//   },
+//   {
+//     tag: "60 Days",
+//     value: 60,
+//   },
+//   {
+//     tag: "90 Days",
+//     value: 90,
+//   },
+// ];
 
 interface IProps {
   recommends?: { days: number; apr: number | string }[];
