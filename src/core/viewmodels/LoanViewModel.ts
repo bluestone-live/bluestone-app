@@ -138,12 +138,18 @@ export default class LoanViewModel extends BaseViewModel {
   };
 
   inputCollateral = (value?: string) => {
-    if (!value) return;
+    if (!value) {
+      this.collateralization = 0;
+      return;
+    }
 
     this.inputCollateralValue = value;
     this.inputCollateralValueLegal = checkNumber(value);
 
-    if (!value || !this.inputLoanValue) return;
+    if (!value || !this.inputLoanValue) {
+      this.collateralization = 0;
+      return;
+    }
 
     this.collateralization = calcCollateralRatio(
       value,
