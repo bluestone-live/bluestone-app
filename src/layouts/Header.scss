@@ -5,16 +5,27 @@ header {
   display: grid;
   grid-template-columns: auto 1fr;
 
+  img {
+    margin-top: 4px;
+  }
+
   .links {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    // display: none;
 
     > a {
       margin-left: 16px;
       color: white;
+    }
+
+    &.grey {
       color: $text-color;
+
+      > a {
+        margin-left: 16px;
+        color: $text-color;
+      }
     }
   }
 }
