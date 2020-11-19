@@ -11,9 +11,21 @@ interface IProps {
   isHome?: boolean;
 }
 
-class Header extends Component<IProps, {}> {
+interface IState {
+  isHome?: boolean;
+}
+
+class Header extends Component<IProps, IState> {
+  state: IState = { isHome: true };
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ isHome: window.location.pathname.length < 2 });
+    }, 500);
+  }
+
   render() {
-    const { isHome } = this.props;
+    const { isHome } = this.state;
 
     return (
       <header>
@@ -21,13 +33,11 @@ class Header extends Component<IProps, {}> {
           <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
           {/* <div className="logo bg-img"></div> */}
         </Link>
-        {isHome ? undefined : (
-          <div className="links">
-            <Link to="/lend">{i18n.t("header_deposit")}</Link>
-            <Link to="/borrow">{i18n.t("header_borrow")}</Link>
-            <Link to="/history">{i18n.t("header_history")}</Link>
-          </div>
-        )}
+        <div className={`links ${isHome ? "" : "grey"}`}>
+          <Link to="/lend">{i18n.t("header_deposit")}</Link>
+          <Link to="/borrow">{i18n.t("header_borrow")}</Link>
+          <Link to="/history">{i18n.t("header_history")}</Link>
+        </div>
       </header>
     );
   }
