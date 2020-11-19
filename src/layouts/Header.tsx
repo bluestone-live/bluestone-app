@@ -21,7 +21,7 @@ class Header extends Component<IProps, IState> {
   componentDidMount() {
     setInterval(() => {
       this.setState({ isHome: window.location.pathname.length < 2 });
-    }, 500);
+    }, 1000);
   }
 
   render() {
@@ -31,7 +31,6 @@ class Header extends Component<IProps, IState> {
       <header>
         <Link to="/">
           <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
-          {/* <div className="logo bg-img"></div> */}
         </Link>
         <div className={`links ${isHome ? "" : "grey"}`}>
           <Link to="/lend">{i18n.t("header_deposit")}</Link>
