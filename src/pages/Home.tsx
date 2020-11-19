@@ -3,10 +3,13 @@ import "./Home.scss";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
+import BorrowIcon from '../assets/borrow.svg';
 import Currency from "../components/Currency";
+import DepositIcon from '../assets/deposit.svg';
 import HomeViewModel from "../core/viewmodels/HomeViewModel";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
+import RiskIcon from '../assets/risk.svg';
 import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
@@ -122,7 +125,7 @@ class Home extends Component<IProps, IState> {
         <div className="features">
           <div className="feature">
             <div className="title">
-              <img src={sendMoney} alt="Borrow" />
+              <img src={BorrowIcon} alt="Borrow" />
               <span>Borrow</span>
             </div>
 
@@ -131,7 +134,7 @@ class Home extends Component<IProps, IState> {
 
           <div className="feature">
             <div className="title">
-              <img src={requestMoney} alt="Deposit" />
+              <img src={DepositIcon} alt="Deposit" />
               <span>Deposit</span>
             </div>
 
@@ -140,7 +143,7 @@ class Home extends Component<IProps, IState> {
 
           <div className="feature">
             <div className="title">
-              <img src={protect} alt="Security" />
+              <img src={RiskIcon} alt="Security" />
               <span>No Bank Run Risk</span>
             </div>
 
