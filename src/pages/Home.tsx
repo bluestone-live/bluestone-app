@@ -14,9 +14,10 @@ import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import i18n from "../i18n";
-import protect from "../assets/protect-96.png";
-import requestMoney from "../assets/request-money-96.png";
-import sendMoney from "../assets/send-money-96.png";
+
+// import protect from "../assets/protect-96.png";
+// import requestMoney from "../assets/request-money-96.png";
+// import sendMoney from "../assets/send-money-96.png";
 
 interface IProps {
   locator: ViewModelLocator;
