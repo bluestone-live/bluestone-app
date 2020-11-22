@@ -76,7 +76,7 @@ class Record extends Component<IProps, IState> {
 
             <div className="item">
               <span>{i18n.t("common_term")}:</span>
-              <span>{record ? `${record.term} ${i18n.t(record.term > 1 ? "common_days" : "common_day")}` : <Loading />}</span>
+              <span>{record ? `${record.term}-${i18n.t("common_day")}` : <Loading />}</span>
             </div>
 
             <div className="item">

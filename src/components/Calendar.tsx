@@ -122,7 +122,7 @@ class Calendar extends Component<IProps, {}> {
               {this.props.recommends.map((r) => {
                 return (
                   <div className="item" key={r.days} onClick={(_) => this.fastSelect(r.days)}>
-                    <span>{`${r.days} ${i18n.t(r.days > 1 ? "common_days" : "common_day")}`}</span>
+                    <span>{`${r.days} ${i18n.t("common_day")}`}</span>
                     <span>{`APR: ${r.apr}%`}</span>
                   </div>
                 );

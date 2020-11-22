@@ -108,7 +108,7 @@ class Loan extends Component<IProps, State> {
 
               <div className="item">
                 <span>{i18n.t("common_term")}:</span>
-                <span>{loading ? <Loading /> : `${vm!.term} ${i18n.t(vm!.term > 1 ? "common_days" : "common_day")}`}</span>
+                <span>{loading ? <Loading /> : `${vm!.term}-${i18n.t("common_day")}`}</span>
               </div>
 
               <div className="item">
