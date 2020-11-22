@@ -223,7 +223,9 @@ export default class RecordViewModel extends BaseViewModel {
 
     let maturityDate = "";
     if (isLoan) {
-      maturityDate = dayjs((r as ILoanRecord).dueAt.mul(1000).toNumber(), { utc: true }).format("YYYY-MM-DD HH:mm");
+      maturityDate = dayjs((r as ILoanRecord).dueAt.mul(1000).toNumber(), { utc: true })
+        .local()
+        .format("YYYY-MM-DD HH:mm");
     } else {
       const poolId = (r as IDepositRecord).poolId;
       maturityDate = dayjs.utc(getTimestampByPoolId(poolId)).local().format("YYYY-MM-DD HH:mm");
