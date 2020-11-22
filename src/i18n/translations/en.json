@@ -249,7 +249,7 @@
     "event_EarlyWithdrawSucceed": "Early Withdraw",
     "event_LiquidateLoanSucceed": "Liquidate",
     "common_collateralization_ratio": "Collateralization Ratio",
-    "lend_deposit_amount": "Deposit Amount",
+    "lend_deposit_amount": "Amount",
     "loan_title": "Borrow",
     "lend_title": "Lend",
     "record_type_deposit": "Lend",
