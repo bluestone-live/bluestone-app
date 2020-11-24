@@ -10,7 +10,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer">
-        <div>
+        <div className='logo'>
           <svg width="174px" height="24px" viewBox="0 0 174 24" version="1.1">
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <g transform="translate(-82.000000, -41.000000) scale(0.82 0.82)" fill="#002397">

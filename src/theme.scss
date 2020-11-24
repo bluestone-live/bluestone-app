@@ -9,6 +9,10 @@ $slogan-height: 40vh;
   padding: 0 10%;
   padding-top: 24px;
   min-height: calc(100vh - 290px);
+
+  @media only screen and (max-width: 600px) {
+    padding: 0;
+  }
 }
 
 button {

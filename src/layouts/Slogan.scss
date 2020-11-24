@@ -35,9 +35,18 @@
       height: 32px;
       font-weight: 600;
 
+      @media only screen and (max-width: 600px) {
+        width: 90vw;
+      }
+
       span {
         position: absolute;
         opacity: 0;
+
+        @media only screen and (max-width: 600px) {
+          width: 90vw;
+          bottom: 4px;
+        }
       }
     }
 
@@ -78,6 +87,10 @@
         right: 12px;
         bottom: -2px;
         opacity: 0;
+
+        @media only screen and (max-width: 600px) {
+          right: -24px
+        }
       }
     }
   }
