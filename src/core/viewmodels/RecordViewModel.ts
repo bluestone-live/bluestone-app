@@ -100,19 +100,19 @@ export default class RecordViewModel extends BaseViewModel {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) - Number.parseFloat(value);
     this.newWithdrawCR = this.calcNewRatio(`${newAmount}`);
     this._userInputWithdrawCollateralAmount = value;
-    this.isWithdrawCollateralAmountLegal = checkNumber(value);
+    this.isWithdrawCollateralAmountLegal = checkNumber(value) && Number.parseFloat(value) > 0;
   };
 
   updateDepositCollateralAmount = (value: string) => {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
     this._userInputDepositCollateralAmount = value;
-    this.isDepositCollateralAmountLegal = checkNumber(value);
+    this.isDepositCollateralAmountLegal = checkNumber(value) && Number.parseFloat(value) > 0;
   };
 
   updateRepayAmount = (amount: string) => {
     this._userInputRepayAmount = amount;
-    this.isRepayAmountLegal = checkNumber(amount);
+    this.isRepayAmountLegal = checkNumber(amount) && Number.parseFloat(amount) > 0;
   };
 
   withdraw = async () => {
