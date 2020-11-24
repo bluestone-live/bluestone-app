@@ -74,12 +74,12 @@ class HistoryPage extends Component<IProps, IState> {
               <th className="token">
                 <div>{i18n.t("common_token")}</div>
               </th>
-              <th>{i18n.t("common_type")}</th>
-              <th>{i18n.t("common_amount")}</th>
-              <th>{i18n.t("common_interest")}</th>
-              <th>APR</th>
-              <th>{i18n.t("common_term")}</th>
-              <th>{i18n.t("common_maturity_date")}</th>
+              <th className="type">{i18n.t("common_type")}</th>
+              <th className="amount">{i18n.t("common_amount")}</th>
+              <th className="interest">{i18n.t("common_interest")}</th>
+              <th className="apr">APR</th>
+              <th className="term">{i18n.t("common_term")}</th>
+              <th className="date">{i18n.t("common_maturity_date")}</th>
             </tr>
           </thead>
 
@@ -98,8 +98,8 @@ class HistoryPage extends Component<IProps, IState> {
                       <td className="type">{i18n.t(`record_type_${r.type}`)}</td>
                       <td className="amount">{`${Number.parseFloat(r.amount).toFixed(4)} ${r.token}`}</td>
                       <td className="interest">{`${r.interest} ${r.token}`}</td>
-                      <td>{r.apr}%</td>
-                      <td>
+                      <td className="apr">{r.apr}%</td>
+                      <td className="term">
                         {r.term}-{`${i18n.t("common_day")}`}
                       </td>
                       <td className={`${r.isClosed ? "closed" : r.isMatured && !r.isClosed ? "matured" : ""} date`}>{r.maturityDate}</td>
@@ -123,13 +123,13 @@ class HistoryPage extends Component<IProps, IState> {
                       <td className="interest">
                         <Loading />
                       </td>
-                      <td>
+                      <td className="apr">
                         <Loading />
                       </td>
-                      <td>
+                      <td className="term">
                         <Loading />
                       </td>
-                      <td>
+                      <td className="date">
                         <Loading />
                       </td>
                     </tr>
