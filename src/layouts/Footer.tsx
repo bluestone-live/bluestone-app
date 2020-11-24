@@ -51,7 +51,9 @@ class Footer extends Component {
             <h3>{i18n.t("footer_title_products")}</h3>
 
             <ul>
-              <li><a href="/">Bluestone</a></li>
+              <li>
+                <a href="/">Bluestone</a>
+              </li>
             </ul>
           </div>
 
@@ -60,11 +62,11 @@ class Footer extends Component {
 
             <ul>
               <li>
-                <a href="/assets/Bluestone_Whitepaper_v0.pdf">
-                  {i18n.t("footer_paper")}
-                </a>
+                <a href="/assets/Bluestone_Whitepaper_v0.pdf">{i18n.t("footer_paper")}</a>
               </li>
-              <li>{i18n.t("footer_documents")}</li>
+              <li>
+                <a href="https://docs.bluestone.live/">{i18n.t("footer_documents")}</a>
+              </li>
             </ul>
           </div>
 
