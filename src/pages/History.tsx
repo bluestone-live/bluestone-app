@@ -100,7 +100,7 @@ class HistoryPage extends Component<IProps, IState> {
                       <td className="interest">{`${r.interest} ${r.token}`}</td>
                       <td>{r.apr}%</td>
                       <td>
-                        {r.term} {`${i18n.t(r.term > 1 ? "common_days" : "common_day")}`}
+                        {r.term}-{`${i18n.t("common_day")}`}
                       </td>
                       <td className={`${r.isClosed ? "closed" : r.isMatured && !r.isClosed ? "matured" : ""} date`}>{r.maturityDate}</td>
                     </tr>

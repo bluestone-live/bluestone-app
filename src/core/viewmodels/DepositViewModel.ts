@@ -100,7 +100,7 @@ export default class DepositViewModel extends BaseViewModel {
 
   inputBalance = (value: string) => {
     this.inputValue = value;
-    this.inputLegal = checkNumber(value);
+    this.inputLegal = checkNumber(value) && Number.parseFloat(value) > 0;
   };
 
   deposit = async () => {
