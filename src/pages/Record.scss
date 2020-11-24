@@ -9,6 +9,11 @@
     row-gap: 12px;
     padding-top: 12px;
 
+    @media only screen and (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     .detail {
       border: 1px solid $border-color;
       border-radius: 5px;
