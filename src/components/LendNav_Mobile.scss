@@ -1,0 +1,29 @@
+@import "../theme.scss";
+
+.lendnav_mobile {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+
+  div {
+    > span {
+      display: inline-block;
+      margin: 0 4px;
+      opacity: 0.25;
+    }
+
+    > a {
+      color: $text-color;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+      text-transform: uppercase;
+
+      &.active {
+          color: $theme-color;
+      }
+    }
+  }
+}
