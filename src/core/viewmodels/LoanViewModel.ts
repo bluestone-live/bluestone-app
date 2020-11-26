@@ -144,7 +144,10 @@ export default class LoanViewModel extends BaseViewModel {
     }
 
     this.inputCollateralValue = value;
-    this.inputCollateralValueLegal = checkNumber(value) && Number.parseFloat(value) > 0;
+    this.inputCollateralValueLegal =
+      checkNumber(value) &&
+      Number.parseFloat(value) > 0 &&
+      utils.parseUnits(value, this.selectedCollateralToken.decimals).lte(this.selectedCollateralToken.balance || "0");
 
     if (!value || !this.inputLoanValue) {
       this.collateralization = 0;
