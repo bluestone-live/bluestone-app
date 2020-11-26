@@ -1,4 +1,4 @@
-import "./LendNav_Mobile.scss";
+import "./LendNavMobile.scss";
 
 import React, { Component } from "react";
 
@@ -9,7 +9,7 @@ interface Props {
   type: "lend" | "borrow";
 }
 
-class LendNav_Mobile extends Component<Props, {}> {
+class LendNavMobile extends Component<Props, {}> {
   render() {
     return (
       <div className="lendnav_mobile">
@@ -31,4 +31,4 @@ class LendNav_Mobile extends Component<Props, {}> {
   }
 }
 
-export default LendNav_Mobile;
+export default LendNavMobile;

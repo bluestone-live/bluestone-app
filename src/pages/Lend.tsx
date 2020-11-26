@@ -6,7 +6,7 @@ import { inject, observer } from "mobx-react";
 import Button from "../components/Button";
 import Calendar from "../components/Calendar";
 import DepositViewModel from "../core/viewmodels/DepositViewModel";
-import LendNav_Mobile from "../components/LendNav_Mobile";
+import LendNavMobile from "../components/LendNavMobile";
 import Loading from "../components/Loading";
 import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
@@ -67,7 +67,7 @@ class Lend extends Component<Props, State> {
 
     return (
       <div className="lend page">
-        <LendNav_Mobile type="lend" />
+        <LendNavMobile type="lend" />
         <h1 className="legend">{i18n.t("lend_title")}</h1>
 
         <div className="content">
