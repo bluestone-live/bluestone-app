@@ -178,6 +178,9 @@ export default class LoanViewModel extends BaseViewModel {
         const appTx = await loanToken.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
+
+        await appTx.wait();
+        this.currentLoanPair.loanToken.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
       }
 
       const tx = await protocol.loan(

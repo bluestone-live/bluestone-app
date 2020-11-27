@@ -118,6 +118,11 @@ export default class DepositViewModel extends BaseViewModel {
         const appTx = await token.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
+        await appTx.wait();
+
+        token.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        this.currentToken = undefined as any;
+        this.currentToken = token;
       }
 
       const isETH = token.address === ETHAddress;
