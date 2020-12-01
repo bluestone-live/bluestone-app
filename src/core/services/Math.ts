@@ -1,12 +1,8 @@
 import { BigNumber, utils } from "ethers";
+
 import dayjs from "dayjs";
 
-export function calcCollateralRatio(
-  collateralAmount: string,
-  debt: string,
-  collateralPrice: BigNumber,
-  loanPrice: BigNumber
-) {
+export function calcCollateralRatio(collateralAmount: string, debt: string, collateralPrice: BigNumber, loanPrice: BigNumber) {
   const ratio =
     ((Number.parseFloat(collateralAmount) * Number.parseFloat(utils.formatUnits(collateralPrice, 18))) /
       Number.parseFloat(utils.formatUnits(loanPrice, 18)) /
@@ -16,16 +12,9 @@ export function calcCollateralRatio(
   return ratio;
 }
 
-export function calcCollateralAmount(
-  collateralRatio: string,
-  debt: string,
-  collateralPrice: BigNumber,
-  loanPrice: BigNumber
-) {
+export function calcCollateralAmount(collateralRatio: string, debt: string, collateralPrice: BigNumber, loanPrice: BigNumber) {
   const amount = // BigNumber.from(collateralRatio).mul(BigNumber.from(debt)).mul(loanPrice).div(collateralPrice);
-    ((Number.parseFloat(collateralRatio) / 100) *
-      Number.parseFloat(debt) *
-      Number.parseFloat(utils.formatUnits(loanPrice, 18))) /
+    ((Number.parseFloat(collateralRatio) / 100) * Number.parseFloat(debt) * Number.parseFloat(utils.formatUnits(loanPrice, 18))) /
     Number.parseFloat(utils.formatUnits(collateralPrice, 18));
   return amount;
 }

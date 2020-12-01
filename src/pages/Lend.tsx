@@ -120,7 +120,7 @@ class Lend extends Component<Props, State> {
               <Skeleton height={37} />
             ) : (
               <Button disabled={buttonDisabled} onClick={vm?.deposit} loading={sending}>
-                {vm?.currentToken.allowance?.eq(0) ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}` : i18n.t("button_deposit")}
+                {vm?.currentToken?.allowance?.eq(0) ? `${i18n.t("button_approve")} & ${i18n.t("button_deposit")}` : i18n.t("button_deposit")}
               </Button>
             )}
           </div>

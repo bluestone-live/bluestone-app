@@ -1,4 +1,4 @@
-import { BigNumber, ethers } from "ethers";
+import { BigNumber, ethers, utils } from "ethers";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 import { IPool, IToken, IViewModel } from "./Types";
 
@@ -100,7 +100,10 @@ export default class DepositViewModel extends BaseViewModel {
 
   inputBalance = (value: string) => {
     this.inputValue = value;
-    this.inputLegal = checkNumber(value) && Number.parseFloat(value) > 0;
+    this.inputLegal =
+      checkNumber(value) &&
+      Number.parseFloat(value) > 0 &&
+      Number.parseFloat(value) <= Number.parseFloat(utils.formatUnits(this.currentToken.balance || "0", this.currentToken.decimals));
   };
 
   deposit = async () => {
@@ -115,6 +118,11 @@ export default class DepositViewModel extends BaseViewModel {
         const appTx = await token.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
+        await appTx.wait();
+
+        token.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        this.currentToken = undefined as any;
+        this.currentToken = token;
       }
 
       const isETH = token.address === ETHAddress;

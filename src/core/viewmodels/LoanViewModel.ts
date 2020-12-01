@@ -144,7 +144,10 @@ export default class LoanViewModel extends BaseViewModel {
     }
 
     this.inputCollateralValue = value;
-    this.inputCollateralValueLegal = checkNumber(value) && Number.parseFloat(value) > 0;
+    this.inputCollateralValueLegal =
+      checkNumber(value) &&
+      Number.parseFloat(value) > 0 &&
+      utils.parseUnits(value, this.selectedCollateralToken.decimals).lte(this.selectedCollateralToken.balance || "0");
 
     if (!value || !this.inputLoanValue) {
       this.collateralization = 0;
@@ -175,6 +178,9 @@ export default class LoanViewModel extends BaseViewModel {
         const appTx = await loanToken.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
+
+        await appTx.wait();
+        this.currentLoanPair.loanToken.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
       }
 
       const tx = await protocol.loan(
