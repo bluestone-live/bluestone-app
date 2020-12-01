@@ -5,4 +5,8 @@
   .top {
     position: relative;
   }
+
+  @media only screen and (max-width: 600px) {
+    padding: 0 5%;
+  }
 }

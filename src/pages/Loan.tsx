@@ -5,6 +5,7 @@ import { inject, observer } from "mobx-react";
 
 import Button from "../components/Button";
 import Calendar from "../components/Calendar";
+import LendNavMobile from "../components/LendNavMobile";
 import Loading from "../components/Loading";
 import LoanViewModel from "../core/viewmodels/LoanViewModel";
 import NumBox from "../components/NumBox";
@@ -65,7 +66,8 @@ class Loan extends Component<IProps, State> {
 
     return (
       <div className="loan page">
-        <h1>{i18n.t("loan_title")}</h1>
+        <LendNavMobile type="borrow" />
+        <h1 className="legend">{i18n.t("loan_title")}</h1>
 
         <div className="content">
           <Calendar

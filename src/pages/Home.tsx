@@ -3,21 +3,17 @@ import "./Home.scss";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
-import BorrowIcon from '../assets/borrow.svg';
+import BorrowIcon from "../assets/borrow.svg";
 import Currency from "../components/Currency";
-import DepositIcon from '../assets/deposit.svg';
+import DepositIcon from "../assets/deposit.svg";
 import HomeViewModel from "../core/viewmodels/HomeViewModel";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
-import RiskIcon from '../assets/risk.svg';
+import RiskIcon from "../assets/risk.svg";
 import Skeleton from "react-loading-skeleton";
 import { Slogan } from "../layouts";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import i18n from "../i18n";
-
-// import protect from "../assets/protect-96.png";
-// import requestMoney from "../assets/request-money-96.png";
-// import sendMoney from "../assets/send-money-96.png";
 
 interface IProps {
   locator: ViewModelLocator;
@@ -59,10 +55,10 @@ class Home extends Component<IProps, IState> {
             <thead>
               <tr>
                 <th className="asset">{i18n.t("home_asset")}</th>
-                <th>{i18n.t("home_lending_cap")}</th>
-                <th>{i18n.t("home_best_lending_term")}</th>
-                <th>{i18n.t("home_borrowing_apr")}</th>
-                <th>{i18n.t("home_actions")}</th>
+                <th className="cap">{i18n.t("home_lending_cap")}</th>
+                <th className="lend_apr">{i18n.t("home_best_lending_term")}</th>
+                <th className="borrow_apr">{i18n.t("home_borrowing_apr")}</th>
+                <th className="actions">{i18n.t("home_actions")}</th>
               </tr>
             </thead>
 
@@ -77,11 +73,11 @@ class Home extends Component<IProps, IState> {
                             <span>{p.token.name}</span>
                           </div>
                         </td>
-                        <td className="uppercase">{`${p.lendingAmount} ${p.token.name}`}</td>
+                        <td className="cap uppercase">{`${p.lendingAmount} ${p.token.name}`}</td>
 
-                        <td>{`${p.lowestLendingApr}%-${p.bestLendingApr}%`}</td>
-                        <td>{`${p.lowLoanApr}% - ${p.highLoanApr}%`}</td>
-                        <td>
+                        <td className="lend_apr">{`${p.lowestLendingApr}%-${p.bestLendingApr}%`}</td>
+                        <td className="borrow_apr">{`${p.lowLoanApr}% - ${p.highLoanApr}%`}</td>
+                        <td className="actions">
                           <Link to="/lend">
                             <button>{i18n.t("button_deposit")}</button>
                           </Link>

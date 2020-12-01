@@ -233,7 +233,7 @@ class Record extends Component<IProps, IState> {
                   <tr key={tx.transactionHash} onClick={(_) => vm?.openTx(tx)}>
                     <td>{tx.time}</td>
                     <td>{i18n.t(`event_${tx.event}`)}</td>
-                    <td className="uppercase">{`${tx.amount} ${tx.token?.name}`}</td>
+                    <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toFixed(4)} ${tx.token?.name}`}</td>
                   </tr>
                 ))
               ) : (
