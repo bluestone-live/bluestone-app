@@ -84,7 +84,7 @@ export class ViewModelLocator extends EventEmitter {
       return false;
     }
 
-    this.protocol = new Contract(this.protocolInfo.contracts.OwnedUpgradeabilityProxy, ProtocolAbi as any, this.signer);
+    this.protocol = new Contract(this.protocolInfo.contracts.Protocol, ProtocolAbi as any, this.signer);
 
     this.interestModel = new Contract(this.protocolInfo.contracts.InterestModel, InterestModelAbi as any, this.signer);
 
@@ -269,7 +269,6 @@ interface IProtocolInfo {
   contracts: {
     Protocol: string;
     InterestModel: string;
-    OwnedUpgradeabilityProxy: string;
   };
 
   tokens: { [key: string]: IPlainToken };
