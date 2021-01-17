@@ -173,7 +173,7 @@ export default class RecordViewModel extends BaseViewModel {
       const collateralToken = this.record!.collateralToken!;
       const isETH = collateralToken.address === ETHAddress;
       const amount = utils.parseUnits(this._userInputDepositCollateralAmount, collateralToken.decimals);
-      const tx = await this.protocol.addCollateral(this.record!.id, isETH ? "0" : amount.toString(), {
+      const tx = await this.protocol.addCollateral(this.record!.id, amount.toString(), {
         value: isETH ? amount.toString() : "0",
       });
       Notification.track(tx.hash);
