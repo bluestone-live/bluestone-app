@@ -187,7 +187,7 @@ export default class LoanViewModel extends BaseViewModel {
         loanToken.address,
         this.selectedCollateralToken.address,
         loanAmount.toString(),
-        isEtherCollateral ? "0" : collateralAmount,
+        collateralAmount,
         this.selectedPool!.term.toString(),
         DistributorAddress,
         {
