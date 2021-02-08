@@ -61,7 +61,7 @@ Resources:
           # Use hardcoded arn for now. Need to change to create certificate for each domain
           # when we can validate the certificate automatically using DNS.
           # AcmCertificateArn: !Ref Certificate
-          AcmCertificateArn: "arn:aws:acm:us-east-1:025751355141:certificate/88a52681-7527-4a4b-a9bb-8dd6e026c3ab"
+          AcmCertificateArn: "arn:aws:acm:us-east-1:025751355141:certificate/52212bd4-1b61-4a32-8143-e537ee8c47e1"
           MinimumProtocolVersion: TLSv1.2_2019
           SslSupportMethod: sni-only
 
