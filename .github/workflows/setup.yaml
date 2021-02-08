@@ -77,21 +77,28 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Get Environment Name
-        id: envName
+        id: getEnvName
         uses: haya14busa/action-cond@v1
         with:
           cond: ${{ github.event_name == 'pull_request' }}
           if_true: pr-${{ github.event.number }}
           if_false: "prod"
+      - name: Get Domain
+        id: getDomain
+        uses: haya14busa/action-cond@v1
+        with:
+          cond: ${{ steps.getEnvName.outputs.value == 'prod' }}
+          if_true: app.bluestone.live
+          if_false: ${{ steps.getEnvName.outputs.value }}.app.bluestone.live
       - name: Deploy CloudFormation Stack
         id: deployStack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: beta-bluestone-live-${{ steps.envName.outputs.value }}
+          name: app-bluestone-live-${{ steps.getEnvName.outputs.value }}
           template: cloudFormationTemplate.yaml
           no-fail-on-empty-changeset: "1"
           parameter-overrides: >-
-            ApplicationDomain=${{ steps.envName.outputs.value }}.beta.bluestone.live
+            ApplicationDomain=${{ steps.getDomain.outputs.value }}
       - name: Copy Build To S3
         run: |
           aws cloudformation describe-stack-resource \
