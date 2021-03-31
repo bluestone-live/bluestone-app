@@ -27,6 +27,7 @@ Resources:
       DistributionConfig:
         Aliases:
           - !Ref ApplicationDomain
+          - app.bluestone.live
         CustomErrorResponses:
           - ErrorCachingMinTTL: 86400
             ErrorCode: 403
