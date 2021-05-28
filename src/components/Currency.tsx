@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import eth from "../assets/crypto/eth.svg";
+import weth from "../assets/crypto/weth.svg";
 import dai from "../assets/crypto/dai.svg";
 import usdc from "../assets/crypto/usdc.svg";
 import usdt from "../assets/crypto/usdt.svg";
 
 const icons = new Map([
   ["eth", eth],
+  ["weth", weth],
   ["dai", dai],
   ["usdc", usdc],
   ["usdt", usdt],

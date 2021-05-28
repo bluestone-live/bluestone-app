@@ -4,10 +4,10 @@ import React, { Component } from "react";
 import Select, { ValueType } from "react-select";
 
 const tokens = [
-  { value: "dai", label: "DAI" },
-  { value: "usdc", label: "USDC" },
+  // { value: "dai", label: "DAI" },
+  // { value: "usdc", label: "USDC" },
   { value: "usdt", label: "USDT" },
-  { value: "eth", label: "ETH" },
+  { value: "weth", label: "WETH" },
 ];
 
 const icon = (symbol = "dai") => ({

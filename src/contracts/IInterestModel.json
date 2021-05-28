@@ -55,26 +55,26 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"}],\"name\":\"getDepositWeight\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"depositWeight\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanTerm\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxTerm\",\"type\":\"uint256\"}],\"name\":\"getLoanInterestRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"loanInterestRate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol\":\"IInterestModel\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol\":{\"keccak256\":\"0x8aa6dd24e9b3ad458c5ebf0fc6f8496fc07eb54930145b92c5b9bf58403be55f\",\"urls\":[\"bzz-raw://c46260f06a3b9ab376b81916a9406d862882704d6b4046fb0fa25680f27b523a\",\"dweb:/ipfs/QmPJUMtTMrBnKrW2aVpw43gemehm8Xh5hzjNZ1SP2PEXAZ\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"}],\"name\":\"getDepositWeight\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"depositWeight\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanTerm\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxTerm\",\"type\":\"uint256\"}],\"name\":\"getLoanInterestRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"loanInterestRate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/tianyouluo/codes/bluestone/contracts/protocol/interface/IInterestModel.sol\":\"IInterestModel\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/tianyouluo/codes/bluestone/contracts/protocol/interface/IInterestModel.sol\":{\"keccak256\":\"0x8aa6dd24e9b3ad458c5ebf0fc6f8496fc07eb54930145b92c5b9bf58403be55f\",\"urls\":[\"bzz-raw://c46260f06a3b9ab376b81916a9406d862882704d6b4046fb0fa25680f27b523a\",\"dweb:/ipfs/QmPJUMtTMrBnKrW2aVpw43gemehm8Xh5hzjNZ1SP2PEXAZ\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.6.7;\n\n\ninterface IInterestModel {\n    function getDepositWeight(uint256 amount, uint256 term)\n        external\n        pure\n        returns (uint256 depositWeight);\n\n    function getLoanInterestRate(\n        address tokenAddress,\n        uint256 loanTerm,\n        uint256 maxTerm\n    ) external view returns (uint256 loanInterestRate);\n}\n",
-  "sourcePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol",
+  "sourcePath": "/Users/tianyouluo/codes/bluestone/contracts/protocol/interface/IInterestModel.sol",
   "ast": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol",
+    "absolutePath": "/Users/tianyouluo/codes/bluestone/contracts/protocol/interface/IInterestModel.sol",
     "exportedSymbols": {
       "IInterestModel": [
-        2734
+        2745
       ]
     },
-    "id": 2735,
+    "id": 2746,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2713,
+        "id": 2724,
         "literals": [
           "solidity",
           "^",
@@ -91,9 +91,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2734,
+        "id": 2745,
         "linearizedBaseContracts": [
-          2734
+          2745
         ],
         "name": "IInterestModel",
         "nodeType": "ContractDefinition",
@@ -102,7 +102,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "5ac0e1d2",
-            "id": 2722,
+            "id": 2733,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -110,17 +110,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 2718,
+              "id": 2729,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2715,
+                  "id": 2726,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2722,
+                  "scope": 2733,
                   "src": "83:14:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -129,7 +129,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2714,
+                    "id": 2725,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "83:7:15",
@@ -143,12 +143,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2717,
+                  "id": 2728,
                   "mutability": "mutable",
                   "name": "term",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2722,
+                  "scope": 2733,
                   "src": "99:12:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -157,7 +157,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2716,
+                    "id": 2727,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "99:7:15",
@@ -173,17 +173,17 @@
               "src": "82:30:15"
             },
             "returnParameters": {
-              "id": 2721,
+              "id": 2732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2720,
+                  "id": 2731,
                   "mutability": "mutable",
                   "name": "depositWeight",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2722,
+                  "scope": 2733,
                   "src": "160:21:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -192,7 +192,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2719,
+                    "id": 2730,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "160:7:15",
@@ -207,7 +207,7 @@
               ],
               "src": "159:23:15"
             },
-            "scope": 2734,
+            "scope": 2745,
             "src": "57:126:15",
             "stateMutability": "pure",
             "virtual": false,
@@ -217,7 +217,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "4ddaf8dc",
-            "id": 2733,
+            "id": 2744,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -225,17 +225,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 2729,
+              "id": 2740,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2724,
+                  "id": 2735,
                   "mutability": "mutable",
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2733,
+                  "scope": 2744,
                   "src": "227:20:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -244,7 +244,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2723,
+                    "id": 2734,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "227:7:15",
@@ -259,12 +259,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2726,
+                  "id": 2737,
                   "mutability": "mutable",
                   "name": "loanTerm",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2733,
+                  "scope": 2744,
                   "src": "257:16:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -273,7 +273,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2725,
+                    "id": 2736,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "257:7:15",
@@ -287,12 +287,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2728,
+                  "id": 2739,
                   "mutability": "mutable",
                   "name": "maxTerm",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2733,
+                  "scope": 2744,
                   "src": "283:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -301,7 +301,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2727,
+                    "id": 2738,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "283:7:15",
@@ -317,17 +317,17 @@
               "src": "217:87:15"
             },
             "returnParameters": {
-              "id": 2732,
+              "id": 2743,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2731,
+                  "id": 2742,
                   "mutability": "mutable",
                   "name": "loanInterestRate",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2733,
+                  "scope": 2744,
                   "src": "328:24:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -336,7 +336,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2730,
+                    "id": 2741,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "328:7:15",
@@ -351,318 +351,342 @@
               ],
               "src": "327:26:15"
             },
-            "scope": 2734,
+            "scope": 2745,
             "src": "189:165:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2735,
+        "scope": 2746,
         "src": "26:330:15"
       }
     ],
     "src": "0:357:15"
   },
   "legacyAST": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/protocol/interface/IInterestModel.sol",
-    "exportedSymbols": {
-      "IInterestModel": [
-        2734
-      ]
+    "attributes": {
+      "absolutePath": "/Users/tianyouluo/codes/bluestone/contracts/protocol/interface/IInterestModel.sol",
+      "exportedSymbols": {
+        "IInterestModel": [
+          2745
+        ]
+      }
     },
-    "id": 2735,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
-        "id": 2713,
-        "literals": [
-          "solidity",
-          "^",
-          "0.6",
-          ".7"
-        ],
-        "nodeType": "PragmaDirective",
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".7"
+          ]
+        },
+        "id": 2724,
+        "name": "PragmaDirective",
         "src": "0:23:15"
       },
       {
-        "abstract": false,
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "interface",
-        "documentation": null,
-        "fullyImplemented": false,
-        "id": 2734,
-        "linearizedBaseContracts": [
-          2734
-        ],
-        "name": "IInterestModel",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            2745
+          ],
+          "name": "IInterestModel",
+          "scope": 2746
+        },
+        "children": [
           {
-            "body": null,
-            "documentation": null,
-            "functionSelector": "5ac0e1d2",
-            "id": 2722,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getDepositWeight",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 2718,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2715,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2722,
-                  "src": "83:14:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2714,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "83:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2717,
-                  "mutability": "mutable",
-                  "name": "term",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2722,
-                  "src": "99:12:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2716,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "99:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "5ac0e1d2",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "82:30:15"
+              "name": "getDepositWeight",
+              "overrides": null,
+              "scope": 2745,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "external"
             },
-            "returnParameters": {
-              "id": 2721,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2720,
-                  "mutability": "mutable",
-                  "name": "depositWeight",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2722,
-                  "src": "160:21:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 2733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2725,
+                        "name": "ElementaryTypeName",
+                        "src": "83:7:15"
+                      }
+                    ],
+                    "id": 2726,
+                    "name": "VariableDeclaration",
+                    "src": "83:14:15"
                   },
-                  "typeName": {
-                    "id": 2719,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "160:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "159:23:15"
-            },
-            "scope": 2734,
-            "src": "57:126:15",
-            "stateMutability": "pure",
-            "virtual": false,
-            "visibility": "external"
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "term",
+                      "overrides": null,
+                      "scope": 2733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2727,
+                        "name": "ElementaryTypeName",
+                        "src": "99:7:15"
+                      }
+                    ],
+                    "id": 2728,
+                    "name": "VariableDeclaration",
+                    "src": "99:12:15"
+                  }
+                ],
+                "id": 2729,
+                "name": "ParameterList",
+                "src": "82:30:15"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "depositWeight",
+                      "overrides": null,
+                      "scope": 2733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2730,
+                        "name": "ElementaryTypeName",
+                        "src": "160:7:15"
+                      }
+                    ],
+                    "id": 2731,
+                    "name": "VariableDeclaration",
+                    "src": "160:21:15"
+                  }
+                ],
+                "id": 2732,
+                "name": "ParameterList",
+                "src": "159:23:15"
+              }
+            ],
+            "id": 2733,
+            "name": "FunctionDefinition",
+            "src": "57:126:15"
           },
           {
-            "body": null,
-            "documentation": null,
-            "functionSelector": "4ddaf8dc",
-            "id": 2733,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getLoanInterestRate",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 2729,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2724,
-                  "mutability": "mutable",
-                  "name": "tokenAddress",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2733,
-                  "src": "227:20:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 2723,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "227:7:15",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2726,
-                  "mutability": "mutable",
-                  "name": "loanTerm",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2733,
-                  "src": "257:16:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2725,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "257:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2728,
-                  "mutability": "mutable",
-                  "name": "maxTerm",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2733,
-                  "src": "283:15:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2727,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "283:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "4ddaf8dc",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "217:87:15"
+              "name": "getLoanInterestRate",
+              "overrides": null,
+              "scope": 2745,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
             },
-            "returnParameters": {
-              "id": 2732,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2731,
-                  "mutability": "mutable",
-                  "name": "loanInterestRate",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2733,
-                  "src": "328:24:15",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenAddress",
+                      "overrides": null,
+                      "scope": 2744,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 2734,
+                        "name": "ElementaryTypeName",
+                        "src": "227:7:15"
+                      }
+                    ],
+                    "id": 2735,
+                    "name": "VariableDeclaration",
+                    "src": "227:20:15"
                   },
-                  "typeName": {
-                    "id": 2730,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "328:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "loanTerm",
+                      "overrides": null,
+                      "scope": 2744,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2736,
+                        "name": "ElementaryTypeName",
+                        "src": "257:7:15"
+                      }
+                    ],
+                    "id": 2737,
+                    "name": "VariableDeclaration",
+                    "src": "257:16:15"
                   },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "327:26:15"
-            },
-            "scope": 2734,
-            "src": "189:165:15",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "external"
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "maxTerm",
+                      "overrides": null,
+                      "scope": 2744,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2738,
+                        "name": "ElementaryTypeName",
+                        "src": "283:7:15"
+                      }
+                    ],
+                    "id": 2739,
+                    "name": "VariableDeclaration",
+                    "src": "283:15:15"
+                  }
+                ],
+                "id": 2740,
+                "name": "ParameterList",
+                "src": "217:87:15"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "loanInterestRate",
+                      "overrides": null,
+                      "scope": 2744,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2741,
+                        "name": "ElementaryTypeName",
+                        "src": "328:7:15"
+                      }
+                    ],
+                    "id": 2742,
+                    "name": "VariableDeclaration",
+                    "src": "328:24:15"
+                  }
+                ],
+                "id": 2743,
+                "name": "ParameterList",
+                "src": "327:26:15"
+              }
+            ],
+            "id": 2744,
+            "name": "FunctionDefinition",
+            "src": "189:165:15"
           }
         ],
-        "scope": 2735,
+        "id": 2745,
+        "name": "ContractDefinition",
         "src": "26:330:15"
       }
     ],
+    "id": 2746,
+    "name": "SourceUnit",
     "src": "0:357:15"
   },
   "compiler": {
@@ -670,8 +694,8 @@
     "version": "0.6.7+commit.b8d736ae.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-09-15T02:50:37.476Z",
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-05-28T02:21:22.575Z",
   "devdoc": {
     "methods": {}
   },

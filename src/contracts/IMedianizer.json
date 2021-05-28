@@ -33,26 +33,26 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"peek\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"read\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"The medianizer is the smart contract which provides Makers trusted reference price.  /// https://developer.makerdao.com/feeds/ https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol\"}},\"settings\":{\"compilationTarget\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/common/interface/IMedianizer.sol\":\"IMedianizer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/common/interface/IMedianizer.sol\":{\"keccak256\":\"0xe9ad27f0d5409de9bd25517a21a0053426fdef474daa302f18c875b47ccd13e3\",\"urls\":[\"bzz-raw://2d540b21c659aecc32eb648451fbf702f87e0f2d64021b1df3860ba853fd1e7c\",\"dweb:/ipfs/QmcYiU6cF2Ccwgb1EfhwR9zGUFKxSTrHRMyXpNQcE5CfCi\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"peek\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"read\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"The medianizer is the smart contract which provides Makers trusted reference price.  /// https://developer.makerdao.com/feeds/ https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol\"}},\"settings\":{\"compilationTarget\":{\"/Users/tianyouluo/codes/bluestone/contracts/common/interface/IMedianizer.sol\":\"IMedianizer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/tianyouluo/codes/bluestone/contracts/common/interface/IMedianizer.sol\":{\"keccak256\":\"0xe9ad27f0d5409de9bd25517a21a0053426fdef474daa302f18c875b47ccd13e3\",\"urls\":[\"bzz-raw://2d540b21c659aecc32eb648451fbf702f87e0f2d64021b1df3860ba853fd1e7c\",\"dweb:/ipfs/QmcYiU6cF2Ccwgb1EfhwR9zGUFKxSTrHRMyXpNQcE5CfCi\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.6.7;\n\n\n/// The medianizer is the smart contract which provides Makers trusted reference price.\n///\n/// https://developer.makerdao.com/feeds/\n/// https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol\ninterface IMedianizer {\n    function peek() external view returns (bytes32, bool);\n\n    function read() external view returns (bytes32);\n}\n",
-  "sourcePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/common/interface/IMedianizer.sol",
+  "sourcePath": "/Users/tianyouluo/codes/bluestone/contracts/common/interface/IMedianizer.sol",
   "ast": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/common/interface/IMedianizer.sol",
+    "absolutePath": "/Users/tianyouluo/codes/bluestone/contracts/common/interface/IMedianizer.sol",
     "exportedSymbols": {
       "IMedianizer": [
-        72
+        48
       ]
     },
-    "id": 73,
+    "id": 49,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 58,
+        "id": 34,
         "literals": [
           "solidity",
           "^",
@@ -68,15 +68,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 59,
+          "id": 35,
           "nodeType": "StructuredDocumentation",
           "src": "26:208:1",
           "text": "The medianizer is the smart contract which provides Makers trusted reference price.\n\n/// https://developer.makerdao.com/feeds/\n https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol"
         },
         "fullyImplemented": false,
-        "id": 72,
+        "id": 48,
         "linearizedBaseContracts": [
-          72
+          48
         ],
         "name": "IMedianizer",
         "nodeType": "ContractDefinition",
@@ -85,7 +85,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "59e02dd7",
-            "id": 66,
+            "id": 42,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -93,23 +93,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 60,
+              "id": 36,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "275:2:1"
             },
             "returnParameters": {
-              "id": 65,
+              "id": 41,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 62,
+                  "id": 38,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 66,
+                  "scope": 42,
                   "src": "301:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -118,7 +118,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 61,
+                    "id": 37,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "301:7:1",
@@ -132,12 +132,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 64,
+                  "id": 40,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 66,
+                  "scope": 42,
                   "src": "310:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -146,7 +146,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 63,
+                    "id": 39,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:4:1",
@@ -161,7 +161,7 @@
               ],
               "src": "300:15:1"
             },
-            "scope": 72,
+            "scope": 48,
             "src": "262:54:1",
             "stateMutability": "view",
             "virtual": false,
@@ -171,7 +171,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "57de26a4",
-            "id": 71,
+            "id": 47,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -179,23 +179,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 67,
+              "id": 43,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "335:2:1"
             },
             "returnParameters": {
-              "id": 70,
+              "id": 46,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 69,
+                  "id": 45,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 71,
+                  "scope": 47,
                   "src": "361:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -204,7 +204,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 68,
+                    "id": 44,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "361:7:1",
@@ -219,208 +219,244 @@
               ],
               "src": "360:9:1"
             },
-            "scope": 72,
+            "scope": 48,
             "src": "322:48:1",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 73,
+        "scope": 49,
         "src": "234:138:1"
       }
     ],
     "src": "0:373:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/common/interface/IMedianizer.sol",
-    "exportedSymbols": {
-      "IMedianizer": [
-        72
-      ]
+    "attributes": {
+      "absolutePath": "/Users/tianyouluo/codes/bluestone/contracts/common/interface/IMedianizer.sol",
+      "exportedSymbols": {
+        "IMedianizer": [
+          48
+        ]
+      }
     },
-    "id": 73,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
-        "id": 58,
-        "literals": [
-          "solidity",
-          "^",
-          "0.6",
-          ".7"
-        ],
-        "nodeType": "PragmaDirective",
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".7"
+          ]
+        },
+        "id": 34,
+        "name": "PragmaDirective",
         "src": "0:23:1"
       },
       {
-        "abstract": false,
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "interface",
-        "documentation": {
-          "id": 59,
-          "nodeType": "StructuredDocumentation",
-          "src": "26:208:1",
-          "text": "The medianizer is the smart contract which provides Makers trusted reference price.\n\n/// https://developer.makerdao.com/feeds/\n https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol"
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            48
+          ],
+          "name": "IMedianizer",
+          "scope": 49
         },
-        "fullyImplemented": false,
-        "id": 72,
-        "linearizedBaseContracts": [
-          72
-        ],
-        "name": "IMedianizer",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "children": [
           {
-            "body": null,
-            "documentation": null,
-            "functionSelector": "59e02dd7",
-            "id": 66,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "peek",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 60,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "275:2:1"
+            "attributes": {
+              "text": "The medianizer is the smart contract which provides Makers trusted reference price.\n\n/// https://developer.makerdao.com/feeds/\n https://github.com/makerdao/medianizer/blob/master/src/medianizer.sol"
             },
-            "returnParameters": {
-              "id": 65,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 62,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 66,
-                  "src": "301:7:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  },
-                  "typeName": {
-                    "id": 61,
-                    "name": "bytes32",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "301:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 64,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 66,
-                  "src": "310:4:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 63,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "310:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "300:15:1"
-            },
-            "scope": 72,
-            "src": "262:54:1",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "external"
+            "id": 35,
+            "name": "StructuredDocumentation",
+            "src": "26:208:1"
           },
           {
-            "body": null,
-            "documentation": null,
-            "functionSelector": "57de26a4",
-            "id": 71,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "read",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 67,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "335:2:1"
-            },
-            "returnParameters": {
-              "id": 70,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 69,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 71,
-                  "src": "361:7:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  },
-                  "typeName": {
-                    "id": 68,
-                    "name": "bytes32",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "361:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "59e02dd7",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "360:9:1"
+              "name": "peek",
+              "overrides": null,
+              "scope": 48,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
             },
-            "scope": 72,
-            "src": "322:48:1",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "external"
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 36,
+                "name": "ParameterList",
+                "src": "275:2:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 42,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 37,
+                        "name": "ElementaryTypeName",
+                        "src": "301:7:1"
+                      }
+                    ],
+                    "id": 38,
+                    "name": "VariableDeclaration",
+                    "src": "301:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 42,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 39,
+                        "name": "ElementaryTypeName",
+                        "src": "310:4:1"
+                      }
+                    ],
+                    "id": 40,
+                    "name": "VariableDeclaration",
+                    "src": "310:4:1"
+                  }
+                ],
+                "id": 41,
+                "name": "ParameterList",
+                "src": "300:15:1"
+              }
+            ],
+            "id": 42,
+            "name": "FunctionDefinition",
+            "src": "262:54:1"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "57de26a4",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "read",
+              "overrides": null,
+              "scope": 48,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 43,
+                "name": "ParameterList",
+                "src": "335:2:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 47,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 44,
+                        "name": "ElementaryTypeName",
+                        "src": "361:7:1"
+                      }
+                    ],
+                    "id": 45,
+                    "name": "VariableDeclaration",
+                    "src": "361:7:1"
+                  }
+                ],
+                "id": 46,
+                "name": "ParameterList",
+                "src": "360:9:1"
+              }
+            ],
+            "id": 47,
+            "name": "FunctionDefinition",
+            "src": "322:48:1"
           }
         ],
-        "scope": 73,
+        "id": 48,
+        "name": "ContractDefinition",
         "src": "234:138:1"
       }
     ],
+    "id": 49,
+    "name": "SourceUnit",
     "src": "0:373:1"
   },
   "compiler": {
@@ -428,8 +464,8 @@
     "version": "0.6.7+commit.b8d736ae.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-09-15T02:50:37.440Z",
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-05-28T02:21:22.529Z",
   "devdoc": {
     "methods": {}
   },
