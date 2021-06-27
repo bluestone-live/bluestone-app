@@ -1,5 +1,5 @@
 import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
-import UserTransactions, { HistoryTx } from "../services/UserTransactions";
+import { HistoryTx } from "../services/UserTransactions";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
 
 import BaseViewModel from "./BaseViewModel";
@@ -19,7 +19,7 @@ export default class RecordViewModel extends BaseViewModel {
   @observable record?: IRecordUI;
   @observable newWithdrawCR?: string;
   @observable newDepositCR?: string;
-  @observable txs: HistoryTx[] = [];
+  // @observable txs: HistoryTx[] = [];
   @observable withdrawing = false;
   @observable withdrawingCollateral = false;
   @observable depositingCollateral = false;
@@ -35,7 +35,7 @@ export default class RecordViewModel extends BaseViewModel {
   private _userInputWithdrawCollateralAmount!: string;
   private _userInputDepositCollateralAmount!: string;
   private _params: IRecordViewModel;
-  private _userTxs: UserTransactions;
+  // private _userTxs: UserTransactions;
 
   isClosed() {
     return this.record?.isWithdrawn || this.record?.isClosed;
@@ -45,12 +45,12 @@ export default class RecordViewModel extends BaseViewModel {
     super(params);
 
     this._params = params;
-    this._userTxs = new UserTransactions(params);
+    // this._userTxs = new UserTransactions(params);
     this.record = params.record;
     this.refresh();
-    this._userTxs.queryHistory(this.account, (params.record?.id || params.id)!).then((v) => {
-      this.txs = v;
-    });
+    // this._userTxs.queryHistory(this.account, (params.record?.id || params.id)!).then((v) => {
+    //   this.txs = v;
+    // });
   }
 
   private async refresh() {
@@ -100,7 +100,7 @@ export default class RecordViewModel extends BaseViewModel {
       }
     }
 
-    this.txs = await this._userTxs.queryHistory(this.account, this.record!.id);
+    // this.txs = await this._userTxs.queryHistory(this.account, this.record!.id);
   }
 
   updateWithdrawCollateralAmount = (value: string) => {

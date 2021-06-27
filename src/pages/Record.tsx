@@ -43,7 +43,7 @@ class Record extends Component<IProps, IState> {
   render() {
     const { vm } = this.state;
     const record = vm?.record;
-    const txs = vm?.txs;
+    // const txs = vm?.txs;
     const closed = record?.isClosed;
 
     return (
@@ -221,42 +221,42 @@ class Record extends Component<IProps, IState> {
           ) : undefined}
         </div>
 
-        <div className="transactions">
-          <h3>{i18n.t("record_transactions")}</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>{i18n.t("common_time")}</th>
-                <th>{i18n.t("common_action")}</th>
-                <th>{i18n.t("common_amount")}</th>
-              </tr>
-            </thead>
+        {/*<div className="transactions">*/}
+        {/*  <h3>{i18n.t("record_transactions")}</h3>*/}
+        {/*  <table>*/}
+        {/*    <thead>*/}
+        {/*      <tr>*/}
+        {/*        <th>{i18n.t("common_time")}</th>*/}
+        {/*        <th>{i18n.t("common_action")}</th>*/}
+        {/*        <th>{i18n.t("common_amount")}</th>*/}
+        {/*      </tr>*/}
+        {/*    </thead>*/}
 
-            <tbody>
-              {txs && txs.length > 0 ? (
-                txs.map((tx) => (
-                  <tr key={tx.transactionHash} onClick={(_) => vm?.openTx(tx)}>
-                    <td>{tx.time}</td>
-                    <td>{i18n.t(`event_${tx.event}`)}</td>
-                    <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toFixed(4)} ${tx.token?.name}`}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td>
-                    <Loading />
-                  </td>
-                  <td>
-                    <Loading />
-                  </td>
-                  <td>
-                    <Loading />
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+        {/*    <tbody>*/}
+        {/*      {txs && txs.length > 0 ? (*/}
+        {/*        txs.map((tx) => (*/}
+        {/*          <tr key={tx.transactionHash} onClick={(_) => vm?.openTx(tx)}>*/}
+        {/*            <td>{tx.time}</td>*/}
+        {/*            <td>{i18n.t(`event_${tx.event}`)}</td>*/}
+        {/*            <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toFixed(4)} ${tx.token?.name}`}</td>*/}
+        {/*          </tr>*/}
+        {/*        ))*/}
+        {/*      ) : (*/}
+        {/*        <tr>*/}
+        {/*          <td>*/}
+        {/*            <Loading />*/}
+        {/*          </td>*/}
+        {/*          <td>*/}
+        {/*            <Loading />*/}
+        {/*          </td>*/}
+        {/*          <td>*/}
+        {/*            <Loading />*/}
+        {/*          </td>*/}
+        {/*        </tr>*/}
+        {/*      )}*/}
+        {/*    </tbody>*/}
+        {/*  </table>*/}
+        {/*</div>*/}
       </div>
     );
   }
