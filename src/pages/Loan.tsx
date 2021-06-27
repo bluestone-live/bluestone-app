@@ -140,7 +140,7 @@ class Loan extends Component<IProps, State> {
               <Skeleton height={37} />
             ) : (
               <Button disabled={buttonDisabled} onClick={vm?.loan} loading={sending}>
-                {vm?.loanToken.allowance?.eq(0) ? `${i18n.t("button_approve")} & ${i18n.t("button_loan")}` : i18n.t("button_loan")}
+                {vm?.selectedCollateralToken?.allowance?.eq(0) ? `${i18n.t("button_approve")} ${vm?.selectedCollateralToken?.name.toUpperCase()} and ${i18n.t("button_loan")}` : i18n.t("button_loan")}
               </Button>
             )}
           </div>
