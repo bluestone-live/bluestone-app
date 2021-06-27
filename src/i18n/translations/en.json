@@ -82,6 +82,7 @@
     "common_withdraw_deposit_fail_title": "Withdraw failed",
     "common_withdraw_deposit_succeed": "Withdraw succeeded",
     "deposit_detail_button_early_withdraw": "Early Withdraw",
+    "deposit_detail_button_cannot_early_withdraw": "Not Early Withdrawable",
     "deposit_detail_button_withdraw": "Withdraw",
     "deposit_detail_label_amount": "Amount",
     "deposit_detail_label_current_apr": "Current APR",

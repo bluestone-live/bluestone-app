@@ -82,6 +82,7 @@
     "common_withdraw_deposit_fail_title": "取款失败",
     "common_withdraw_deposit_succeed": "取款成功",
     "deposit_detail_button_early_withdraw": "提前取款",
+    "deposit_detail_button_cannot_early_withdraw": "无法提前取款",
     "deposit_detail_button_withdraw": "取款",
     "deposit_detail_label_amount": "存款金额",
     "deposit_detail_label_current_apr": "年化利率",

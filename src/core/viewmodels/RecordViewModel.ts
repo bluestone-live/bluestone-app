@@ -61,7 +61,14 @@ export default class RecordViewModel extends BaseViewModel {
 
     if (id) {
       try {
-        r = await this.protocol.getDepositRecordById(id);
+        const [basicInfo, isEarlyWithdrawable,] = await Promise.all([
+          this.protocol.getDepositRecordById(id),
+          this.protocol.isDepositEarlyWithdrawable(id),
+        ]);
+        r = {
+          ...basicInfo,
+          isEarlyWithdrawable,
+        };
       } catch (error) {
         try {
           r = await this.protocol.getLoanRecordById(id);

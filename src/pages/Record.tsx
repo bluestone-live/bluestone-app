@@ -115,8 +115,13 @@ class Record extends Component<IProps, IState> {
 
               <div className="form">
                 <NumBox title={i18n.t("record_withdraw_amount")} maxValue={record.amount} defaultValue={record.amount} disabled />
-                <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey">
-                  {i18n.t(record.isMatured ? "deposit_detail_button_withdraw" : "deposit_detail_button_early_withdraw")}
+                <Button loading={vm?.withdrawing} onClick={vm?.withdraw} loadingColor="lightgrey" disabled={!record?.isEarlyWithdrawable}>
+                  {i18n.t(record.isMatured
+                      ? "deposit_detail_button_withdraw"
+                      : record.isEarlyWithdrawable
+                          ? "deposit_detail_button_early_withdraw"
+                          : "deposit_detail_button_cannot_early_withdraw"
+                  )}
                 </Button>
               </div>
             </div>
