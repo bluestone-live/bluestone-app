@@ -29,6 +29,7 @@ export class ViewModelLocator extends EventEmitter {
   protocol!: Contract;
   interestModel!: Contract;
   nativeEther!: IPlainToken;
+  tokens!: IToken[];
   depositTokens!: IToken[];
   loanPairs!: ILoanPair[];
   maxLoanTerm!: BigNumber;
@@ -75,11 +76,14 @@ export class ViewModelLocator extends EventEmitter {
     const network = await this.provider.getNetwork();
     Notification.register(network.chainId);
     this.network = network.name;
+    if (network.chainId === 9527) {
+      this.network = 'rangersdev';
+    }
 
     await this.provider.getBalance(account);
 
     try {
-      this.protocolInfo = require(`../../networks/${this.provider.network.name}`) as IProtocolInfo;
+      this.protocolInfo = require(`../../networks/${this.network}`) as IProtocolInfo;
     } catch (error) {
       return false;
     }
@@ -88,7 +92,7 @@ export class ViewModelLocator extends EventEmitter {
 
     this.interestModel = new Contract(this.protocolInfo.contracts.InterestModel, InterestModelAbi as any, this.signer);
 
-    this.depositTokens = Object.getOwnPropertyNames(this.protocolInfo.tokens).map((t) => {
+    this.tokens = Object.getOwnPropertyNames(this.protocolInfo.tokens).map((t) => {
       const token = this.protocolInfo.tokens[t];
 
       return {
@@ -103,20 +107,20 @@ export class ViewModelLocator extends EventEmitter {
   }
 
   private async initProtocol() {
-    const enabledDepositTokens = await this.protocol.getDepositTokens();
-    this.depositTokens = enabledDepositTokens.map((addr) => this.depositTokens.find((t) => t.address.toLowerCase() === addr.toLowerCase()));
-
-    Promise.all(
-      this.depositTokens.map(async (token) => {
-        token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
-        token.balance = await token.contract?.balanceOf(this.account);
-        token.decimals = await token.contract?.decimals();
-        token.interestParams = await this.interestModel.getLoanParameters(token.address);
-        token.price = await this.protocol.getTokenPrice(token.address);
-      })
+    await Promise.all(
+        this.tokens.map(async (token) => {
+          token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
+          token.balance = await token.contract?.balanceOf(this.account);
+          token.decimals = await token.contract?.decimals();
+          token.interestParams = await this.interestModel.getLoanParameters(token.address);
+          token.price = await this.protocol.getTokenPrice(token.address);
+        })
     );
 
-    const eth = this.depositTokens.find((t) => t.name.toLowerCase() === "eth");
+    const enabledDepositTokens = await this.protocol.getDepositTokens();
+    this.depositTokens = enabledDepositTokens.map((addr) => this.tokens.find((t) => t.address.toLowerCase() === addr.toLowerCase()));
+
+    const eth = this.tokens.find((t) => t.name.toLowerCase() === "eth");
     if (eth) {
       eth.balance = await this.provider.getBalance(this.account);
       eth.decimals = 18;
@@ -134,8 +138,8 @@ export class ViewModelLocator extends EventEmitter {
 
     this.loanPairs = loanPairs.map((p) => {
       return {
-        loanToken: this.depositTokens.find((t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase()),
-        collateralTokens: this.depositTokens.filter((t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase()),
+        loanToken: this.tokens.find((t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase()),
+        collateralTokens: this.tokens.filter((t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase()),
         ...p,
       };
     });
@@ -210,7 +214,7 @@ export class ViewModelLocator extends EventEmitter {
       protocolReserveRatio: this.protocolReserveRatio,
       maxTerm: maxTerm,
       interestModel: this.interestModel,
-      tokens: this.depositTokens,
+      tokens: this.tokens,
       locator: this,
     });
     return this._loanVM;

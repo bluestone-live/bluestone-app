@@ -60,7 +60,9 @@ export default class LoanViewModel extends BaseViewModel {
   }
 
   selectLoanPair = async (name: string) => {
-    this.currentLoanPair = this.params.loanPairs.find((p) => p.loanToken.name.toLowerCase() === name.toLowerCase())!;
+    this.currentLoanPair = this.params.loanPairs.find(
+        (p) => p.loanToken.name.toLowerCase() === name.toLowerCase()
+    )!;
 
     this.selectCollateralToken(this.currentLoanPair.collateralTokens[0].name);
 
@@ -170,22 +172,23 @@ export default class LoanViewModel extends BaseViewModel {
 
       const loanToken = this.currentLoanPair.loanToken;
       const loanAmount = ethers.utils.parseUnits(this.inputLoanValue!, loanToken.decimals);
-      const isEtherCollateral = this.selectedCollateralToken.address === ETHAddress;
-      const collateralAmount = ethers.utils.parseUnits(this.inputCollateralValue!, this.selectedCollateralToken.decimals).toString();
+      const collateralToken = this.selectedCollateralToken;
+      const isEtherCollateral = collateralToken.address === ETHAddress;
+      const collateralAmount = ethers.utils.parseUnits(this.inputCollateralValue!, collateralToken.decimals).toString();
       const tokenWei = ethers.utils.parseUnits(this.inputLoanValue ?? "0", loanToken.decimals).toString();
 
-      if (!loanToken.allowance?.gte(tokenWei)) {
-        const appTx = await loanToken.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+      if (!collateralToken.allowance?.gte(tokenWei)) {
+        const appTx = await collateralToken.contract?.approve(protocol.address, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         Notification.track(appTx.hash);
 
         await appTx.wait();
-        this.currentLoanPair.loanToken.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        collateralToken.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
       }
 
       const tx = await protocol.loan(
         loanToken.address,
-        this.selectedCollateralToken.address,
+        collateralToken.address,
         loanAmount.toString(),
         collateralAmount,
         this.selectedPool!.term.toString(),
