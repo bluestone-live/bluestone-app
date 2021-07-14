@@ -77,7 +77,7 @@ export class ViewModelLocator extends EventEmitter {
     Notification.register(network.chainId);
     this.network = network.name;
     if (network.chainId === 9527) {
-      this.network = 'rangersdev';
+      this.network = 'rangerstest';
     }
 
     await this.provider.getBalance(account);
