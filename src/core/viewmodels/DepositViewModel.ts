@@ -40,7 +40,7 @@ export default class DepositViewModel extends BaseViewModel {
     this.terms = params.depositTerms.map((t) => t.toNumber()).sort();
     this.tokenSymbols = params.tokens.map((t) => t.name);
 
-    this.maxDate.setDate(new Date().getDate() + this.terms[this.terms.length - 1]);
+    this.maxDate.setDate(new Date().getDate() + this.terms[this.terms.length - 1] + 1);
 
     this.selectToken(params.tokens[0].name);
   }
