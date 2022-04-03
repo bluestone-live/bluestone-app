@@ -83,7 +83,11 @@ class Loan extends Component<IProps, State> {
           <div className="form">
             <div className="items">
               <div className="item">
-                <TokenSelector title={i18n.t("loan_loan_token")} tokens={vm?.loanTokens} onChange={vm?.selectLoanPair} />
+                <TokenSelector
+                  title={i18n.t("loan_loan_token")}
+                  tokens={vm?.loanTokens}
+                  onChange={vm?.selectLoanToken}
+                />
               </div>
               <div className="item">
                 <NumBox
@@ -95,7 +99,11 @@ class Loan extends Component<IProps, State> {
                 />
               </div>
               <div className="item">
-                <TokenSelector title={i18n.t("loan_collateral_token")} tokens={vm?.collateralTokens} />
+                <TokenSelector
+                  title={i18n.t("loan_collateral_token")}
+                  tokens={vm?.collateralTokens}
+                  onChange={vm?.selectCollateralToken}
+                />
               </div>
 
               <div className="item">

@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
 import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
 import ethers, { BigNumber, Contract } from "ethers";
@@ -127,22 +128,24 @@ export class ViewModelLocator extends EventEmitter {
       eth.allowance = MaxInt256;
     }
 
+    const tokensByAddr = _.keyBy(this.tokens, 'address');
     const pairs = await this.protocol.getLoanAndCollateralTokenPairs();
-    const loanPairs: any[] = [];
+    const loanPairsByLoanTokenAddr = pairs.reduce((res, pair) => {
+      const loanToken = tokensByAddr[pair.loanTokenAddress];
+      const collateralToken = tokensByAddr[pair.collateralTokenAddress];
 
-    for (let p of pairs) {
-      // Remove duplicate loan tokens
-      if (loanPairs.find((lp) => lp.loanTokenAddress === p.loanTokenAddress)) continue;
-      loanPairs.push(p);
-    }
-
-    this.loanPairs = loanPairs.map((p) => {
-      return {
-        loanToken: this.tokens.find((t) => t.address.toLowerCase() === p.loanTokenAddress.toLowerCase()),
-        collateralTokens: this.tokens.filter((t) => t.address.toLowerCase() === p.collateralTokenAddress.toLowerCase()),
-        ...p,
-      };
-    });
+      if (!res[loanToken.address]) {
+        res[loanToken.address] = {
+          loanToken,
+          collateralTokens: [collateralToken],
+          ...pair,
+        }
+      } else {
+        res[loanToken.address].collateralTokens.push(collateralToken);
+      }
+      return res;
+    }, {});
+    this.loanPairs = Object.values(loanPairsByLoanTokenAddr);
 
     this.maxLoanTerm = await this.protocol.getMaxLoanTerm();
     this.depositTerms = await this.protocol.getDepositTerms();

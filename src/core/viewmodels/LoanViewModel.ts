@@ -54,12 +54,12 @@ export default class LoanViewModel extends BaseViewModel {
 
     this.loanTokens = params.loanPairs.map((p) => p.loanToken.name);
 
-    this.selectLoanPair(params.loanPairs[0].loanToken.name);
+    this.selectLoanToken(params.loanPairs[0].loanToken.name);
 
     this.now = dayjs().add(0, "d").hour(0).minute(0).second(0).toDate();
   }
 
-  selectLoanPair = async (name: string) => {
+  selectLoanToken = async (name: string) => {
     this.currentLoanPair = this.params.loanPairs.find(
         (p) => p.loanToken.name.toLowerCase() === name.toLowerCase()
     )!;
