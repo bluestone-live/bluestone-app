@@ -8,6 +8,8 @@ const tokens = [
   { value: "usdc", label: "USDC" },
   { value: "usdt", label: "USDT" },
   { value: "eth", label: "ETH" },
+  { value: "sgc", label: "SGC" },
+  { value: "xbtc", label: "xBTC" },
 ];
 
 const icon = (symbol = "dai") => ({
