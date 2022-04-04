@@ -218,7 +218,7 @@ export class ViewModelLocator extends EventEmitter {
       loanPairs: this.loanPairs,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      maxTerm: maxTerm,
+      maxTerm,
       interestModel: this.interestModel,
       tokens: this.tokens,
       locator: this,
