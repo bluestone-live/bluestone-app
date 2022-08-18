@@ -1,6 +1,6 @@
 import { BigNumber, ethers, utils } from "ethers";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
-import { IPool, IToken, IViewModel } from "./Types";
+import type { IPool, IToken, IViewModel } from "./Types";
 
 import BaseViewModel from "./BaseViewModel";
 import Notification from "../services/Notify";

@@ -1,6 +1,6 @@
 import { BigNumber, ethers, utils } from "ethers";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
-import { ILoanPair, IPool, IToken, IViewModel } from "./Types";
+import type { ILoanPair, IPool, IToken, IViewModel } from "./Types";
 import { computed, observable } from "mobx";
 
 import BaseViewModel from "./BaseViewModel";
