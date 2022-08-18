@@ -48,7 +48,7 @@ interface IProps {
 }
 
 interface IState {
-  selected?: ValueType<{ value: string; label: string }>;
+  selected?: ValueType<{ value: string; label: string }, false>;
 }
 
 class TokenSelector extends Component<IProps, IState> {

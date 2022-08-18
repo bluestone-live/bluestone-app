@@ -1,4 +1,5 @@
-import { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel, RecordType } from "./Types";
+import type { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel } from "./Types";
+import { RecordType } from "./Types"
 import UserTransactions, { HistoryTx } from "../services/UserTransactions";
 import { calcCollateralAmount, calcCollateralRatio, getTimestampByPoolId } from "../services/Math";
 
@@ -72,7 +73,7 @@ export default class RecordViewModel extends BaseViewModel {
       } catch (error) {
         try {
           r = await this.protocol.getLoanRecordById(id);
-        } catch (error) {}
+        } catch (error) { }
       }
     }
 
@@ -223,10 +224,10 @@ export default class RecordViewModel extends BaseViewModel {
     const apr = r["annualInterestRate"]
       ? Number.parseFloat(utils.formatUnits(r["annualInterestRate"].mul(100), 18))
       : (Number.parseFloat(utils.formatUnits(r.interest, token.decimals)) /
-          Number.parseFloat(utils.formatUnits(r["depositAmount"] || r["remainingDebt"], token.decimals)) /
-          Number.parseFloat(utils.formatUnits(r["depositTerm"] || r["loanTerm"], 0))) *
-        365 *
-        100;
+        Number.parseFloat(utils.formatUnits(r["depositAmount"] || r["remainingDebt"], token.decimals)) /
+        Number.parseFloat(utils.formatUnits(r["depositTerm"] || r["loanTerm"], 0))) *
+      365 *
+      100;
 
     const isLoan = r["collateralTokenAddress"] ? true : false;
 

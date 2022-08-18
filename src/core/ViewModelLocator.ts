@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
 import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
-import ethers, { BigNumber, Contract } from "ethers";
+import { ethers, BigNumber, Contract } from "ethers";
 
 import DepositViewModel from "./viewmodels/DepositViewModel";
 import { abi as ERC20Abi } from "../contracts/ERC20.json";
@@ -109,13 +109,13 @@ export class ViewModelLocator extends EventEmitter {
 
   private async initProtocol() {
     await Promise.all(
-        this.tokens.map(async (token) => {
-          token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
-          token.balance = await token.contract?.balanceOf(this.account);
-          token.decimals = await token.contract?.decimals();
-          token.interestParams = await this.interestModel.getLoanParameters(token.address);
-          token.price = await this.protocol.getTokenPrice(token.address);
-        })
+      this.tokens.map(async (token) => {
+        token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
+        token.balance = await token.contract?.balanceOf(this.account);
+        token.decimals = await token.contract?.decimals();
+        token.interestParams = await this.interestModel.getLoanParameters(token.address);
+        token.price = await this.protocol.getTokenPrice(token.address);
+      })
     );
 
     const enabledDepositTokens = await this.protocol.getDepositTokens();
@@ -211,7 +211,7 @@ export class ViewModelLocator extends EventEmitter {
     const maxTerm = this.depositTerms
       .map((t) => t.toNumber())
       .sort((a, b) => a - b)
-      [this.depositTerms.length - 1];
+    [this.depositTerms.length - 1];
     this._loanVM = new LoanViewModel({
       account: this.account,
       protocol: this.protocol,
