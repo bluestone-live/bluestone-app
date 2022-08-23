@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.6.6",
     "@metamask/detect-provider": "^1.1.0",
+    "@radix-ui/react-popover": "^1.0.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@vechaiui/core": "^0.6.0",
+    "@vechaiui/react": "^0.2.2",
+    "@walletconnect/web3-provider": "^1.8.0",
     "animejs": "^3.2.0",
     "bnc-notify": "^1.5.0",
+    "bootstrap": "^5.2.0",
     "date-fns": "^2.15.0",
     "dayjs": "^1.8.36",
     "ethers": "^5.0.13",
@@ -18,6 +25,7 @@
     "mobx-react": "^6.2.5",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^2.5.0",
     "react-date-range": "^1.0.3",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.3",
@@ -27,7 +35,8 @@
     "react-scripts": "3.4.3",
     "react-select": "^3.1.0",
     "social-logos": "^2.1.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",

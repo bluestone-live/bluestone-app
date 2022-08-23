@@ -1,0 +1,46 @@
+.Wallet {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  &:hover {
+    overflow: visible;
+  }
+
+  .dropdown-title {
+    width: 100%;
+
+    img {
+      width: 25px;
+      height: 25px;
+      transition: all 0.3;
+
+      &:hover {
+        transform: scale(1.2, 1.2);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dropdown-content {
+    width: 100%;
+
+    img {
+      width: 25px;
+      height: 25px;
+
+      &:hover {
+        cursor: pointer;
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        -webkit-transition: all .5s ease-out;
+        transition: all .5s ease-out;
+      }
+    }
+  }
+}

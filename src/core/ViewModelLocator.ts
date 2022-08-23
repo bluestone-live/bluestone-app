@@ -3,6 +3,9 @@ import { ETHAddress, MaxInt256 } from "./services/Constants";
 import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
 import { ethers, BigNumber, Contract } from "ethers";
 
+import { Metamask } from "ethpay.core";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 import DepositViewModel from "./viewmodels/DepositViewModel";
 import { abi as ERC20Abi } from "../contracts/ERC20.json";
 import { EventEmitter } from "events";
@@ -10,7 +13,6 @@ import HistoryViewModel from "./viewmodels/HistoryViewModel";
 import HomeViewModel from "./viewmodels/HomeViewModel";
 import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
 import LoanViewModel from "./viewmodels/LoanViewModel";
-import { Metamask } from "ethpay.core";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
@@ -41,6 +43,11 @@ export class ViewModelLocator extends EventEmitter {
   network?: string;
 
   private async watchAccount() {
+    // let provider: any;
+
+    // provider = new WalletConnectProvider({
+    //   infuraId: "76eca7933f9a4b73a2438632bfd0180b",
+    // })
     const provider = await Metamask.getProvider();
     if (!provider) return;
 
