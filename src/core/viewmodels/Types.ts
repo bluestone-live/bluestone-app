@@ -14,6 +14,12 @@ export interface IToken {
   price?: BigNumber;
 }
 
+export enum WalletType {
+  Disconnect = "Disconnect",
+  MetaMask = "MetaMask",
+  WalletConnect = "WalletConnect"
+}
+
 export interface IViewModel {
   account: string;
   protocol: Contract;
