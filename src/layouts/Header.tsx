@@ -2,11 +2,12 @@ import "./Header.scss";
 
 import React, { Component } from "react";
 import WalletSelector from "../components/WalletSelector"
-
+import LocatorInstance from "../core/ViewModelLocator";
 import { Link } from "react-router-dom";
 import i18n from "../i18n";
 import logo from "../assets/logo-large.svg";
 import logo_blue from "../assets/logo-blue.svg";
+import { Provider } from "mobx-react";
 
 interface IProps {
   isHome?: boolean;
@@ -40,7 +41,9 @@ class Header extends Component<IProps, IState> {
             <Link to="/borrow">{i18n.t("header_borrow")}</Link>
             <Link to="/history">{i18n.t("header_history")}</Link>
           </div>
-          <WalletSelector />
+          <Provider locator={LocatorInstance}>
+            <WalletSelector />
+          </Provider>
         </div>
       </header>
     );

@@ -16,16 +16,19 @@ import LoanViewModel from "./viewmodels/LoanViewModel";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
+import { WalletType } from "../core/viewmodels/Types"
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
 
+  wallletconnectProvider!: WalletConnectProvider;
   private provider!: ethers.providers.Web3Provider;
   private signer!: ethers.providers.JsonRpcSigner;
   private initialized = false;
 
   initFinished = false;
 
+  wallet!: WalletType;
   account!: string;
   balance!: BigNumber;
   protocolInfo!: IProtocolInfo;
@@ -43,15 +46,11 @@ export class ViewModelLocator extends EventEmitter {
   network?: string;
 
   private async watchAccount() {
-    // let provider: any;
+    // const provider = await Metamask.getProvider();
+    // if (!provider) return;
 
-    // provider = new WalletConnectProvider({
-    //   infuraId: "76eca7933f9a4b73a2438632bfd0180b",
-    // })
-    const provider = await Metamask.getProvider();
-    if (!provider) return;
-
-    provider.on("accountsChanged", (_) => {
+    if(!this.provider) return;
+    this.provider.on("accountsChanged", (_) => {
       this.initialized = false;
       this.init();
     });
@@ -74,11 +73,26 @@ export class ViewModelLocator extends EventEmitter {
   }
 
   private async initApp() {
-    const [account] = await Metamask.enable();
-    if (!account) return false;
-    this.account = account;
+    this.initWallet();
+    if (this.wallet === WalletType.MetaMask) {
+      this.provider = new ethers.providers.Web3Provider(window["ethereum"]);
+      const [account] = await Metamask.enable();
+      console.log("account=", account)
+      if (!account) return false;
+      this.account = account;
+    } else if (this.wallet === WalletType.WalletConnect) {
+      this.wallletconnectProvider = new WalletConnectProvider({
+        infuraId: "76eca7933f9a4b73a2438632bfd0180b",
+      });
+      this.provider = new ethers.providers.Web3Provider(this.wallletconnectProvider);
+      const [account] = await this.wallletconnectProvider.enable();
+      console.log("account=", account)
+      if (!account) return false;
+      this.account = account;
+    } else {
+      return false;
+    }
 
-    this.provider = new ethers.providers.Web3Provider(window["ethereum"]);
     this.signer = this.provider.getSigner();
 
     const network = await this.provider.getNetwork();
@@ -88,7 +102,7 @@ export class ViewModelLocator extends EventEmitter {
       this.network = 'rangersdev';
     }
 
-    await this.provider.getBalance(account);
+    await this.provider.getBalance(this.account);
 
     try {
       this.protocolInfo = require(`../../networks/${this.network}`) as IProtocolInfo;
@@ -114,6 +128,22 @@ export class ViewModelLocator extends EventEmitter {
     return true;
   }
 
+  private initWallet() {
+    let wallet = window.localStorage.getItem("wallet");
+    switch (wallet) {
+      case WalletType.MetaMask:
+        this.wallet = WalletType.MetaMask;
+        break;
+      case WalletType.WalletConnect:
+        this.wallet = WalletType.WalletConnect;
+        break;
+      default:
+        this.wallet = WalletType.Disconnect;
+        break;
+    }
+    console.log("initWallet: ", this.wallet);
+  }
+
   private async initProtocol() {
     await Promise.all(
       this.tokens.map(async (token) => {
@@ -126,7 +156,7 @@ export class ViewModelLocator extends EventEmitter {
     );
 
     const enabledDepositTokens = await this.protocol.getDepositTokens();
-    this.depositTokens = enabledDepositTokens.map((addr) => this.tokens.find((t) => t.address.toLowerCase() === addr.toLowerCase()));
+    this.depositTokens = enabledDepositTokens.map((addr: string) => this.tokens.find((t: IToken) => t.address.toLowerCase() === addr.toLowerCase()));
 
     const eth = this.tokens.find((t) => t.name.toLowerCase() === "eth");
     if (eth) {

@@ -1,40 +1,49 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./WalletSelector.scss";
+import { WalletType } from "../core/viewmodels/Types"
+import { ViewModelLocator } from "../core/ViewModelLocator";
 
 import React, { Component } from "react";
-
-enum WalletType {
-    Disconnect = "Disconnect",
-    MetaMask = "MetaMask",
-    WalletConnect = "WalletConnect"
-}
+import { inject, observer } from "mobx-react";
 
 const IconPath = {
     "Disconnect": require("../assets/wallet/disconnect.svg"),
     "MetaMask": require("../assets/wallet/metamask.svg"),
     "WalletConnect": require("../assets/wallet/walletconnect.svg")
-} 
+}
 
 interface IProps {
-    // loading?: any;
-    // loadingColor?: string;
-    // connected?: WalletSelector;
-    // color: string;
+    locator?: ViewModelLocator;
 }
 
 interface IState {
     wallet: WalletType;
 }
 
+@inject("locator")
+@observer
 class WalletSelector extends Component<IProps, IState> {
     state: IState = {
-        wallet: WalletType.MetaMask
+        wallet: WalletType.Disconnect
     };
 
-    changeWallet = (value: WalletType) => {
-        console.log("[Before]: this.state=", this.state);
-        this.state.wallet = value;
-        console.log("[After]: this.state=", this.state);
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            wallet: this.props.locator!.wallet
+        }
+    }
+
+    changeWallet = async (value: WalletType) => {
+        if(this.state.wallet === WalletType.WalletConnect && value === WalletType.Disconnect) {
+            console.log("disconnect wallect connect.")
+            await this.props.locator?.wallletconnectProvider.disconnect();
+        }
+        this.setState({
+            wallet: value
+        });
+        window.localStorage.setItem("wallet", value);
+        window.location.reload();
     }
 
     render() {
@@ -43,8 +52,9 @@ class WalletSelector extends Component<IProps, IState> {
         return (
             <div className="Wallet">
                 <span className="dropdown-title">
-                    <img src={IconPath[wallet]}></img>
+                    <img src={IconPath[wallet]} alt="selected wallet"></img>
                 </span>
+
                 <span className="dropdown-content" onClick={() => this.changeWallet(WalletType.MetaMask)}>
                     <img src={IconPath[WalletType.MetaMask]} alt="metamask"></img>
                 </span>
