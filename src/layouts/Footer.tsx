@@ -65,7 +65,7 @@ class Footer extends Component {
                 <a href="/assets/Bluestone_Whitepaper_v0.pdf">{i18n.t("footer_paper")}</a>
               </li>
               <li>
-                <a href="https://docs.bluestone.live/">{i18n.t("footer_documents")}</a>
+                <a href="https://docs.bluestone.dev/">{i18n.t("footer_documents")}</a>
               </li>
             </ul>
           </div>
