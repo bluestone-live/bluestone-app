@@ -88,13 +88,13 @@ jobs:
         uses: haya14busa/action-cond@v1
         with:
           cond: ${{ steps.getEnvName.outputs.value == 'prod' }}
-          if_true: app.bluestone.live
-          if_false: ${{ steps.getEnvName.outputs.value }}.app.bluestone.live
+          if_true: app.bluestone.dev
+          if_false: ${{ steps.getEnvName.outputs.value }}.app.bluestone.dev
       - name: Deploy CloudFormation Stack
         id: deployStack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: app-bluestone-live-${{ steps.getEnvName.outputs.value }}
+          name: app-bluestone-dev-${{ steps.getEnvName.outputs.value }}
           template: cloudFormationTemplate.yaml
           no-fail-on-empty-changeset: "1"
           parameter-overrides: >-
