@@ -35,7 +35,7 @@ class WalletSelector extends Component<IProps, IState> {
     }
 
     changeWallet = async (value: WalletType) => {
-        if(this.state.wallet === WalletType.WalletConnect && value === WalletType.Disconnect) {
+        if (this.state.wallet === WalletType.WalletConnect && value === WalletType.Disconnect) {
             console.log("disconnect wallect connect.")
             await this.props.locator?.wallletconnectProvider.disconnect();
         }
@@ -55,13 +55,13 @@ class WalletSelector extends Component<IProps, IState> {
                     <img src={IconPath[wallet]} alt="selected wallet"></img>
                 </span>
 
-                <span className="dropdown-content" onClick={() => this.changeWallet(WalletType.MetaMask)}>
+                <span className="dropdown-content" style={wallet === WalletType.MetaMask ? { display: 'none' } : {}} onClick={() => this.changeWallet(WalletType.MetaMask)}>
                     <img src={IconPath[WalletType.MetaMask]} alt="metamask"></img>
                 </span>
-                <span className="dropdown-content" onClick={() => this.changeWallet(WalletType.WalletConnect)}>
+                <span className="dropdown-content" style={wallet === WalletType.WalletConnect ? { display: 'none' } : {}} onClick={() => this.changeWallet(WalletType.WalletConnect)}>
                     <img src={IconPath[WalletType.WalletConnect]} alt="walletconnect"></img>
                 </span>
-                <span className="dropdown-content" onClick={() => this.changeWallet(WalletType.Disconnect)}>
+                <span className="dropdown-content" style={wallet === WalletType.Disconnect ? { display: 'none' } : {}} onClick={() => this.changeWallet(WalletType.Disconnect)}>
                     <img src={IconPath[WalletType.Disconnect]} alt="disconnect"></img>
                 </span>
             </div>

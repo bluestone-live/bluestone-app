@@ -9,6 +9,7 @@ import { calcCollateralRatio } from "../services/Math";
 import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import history from "../services/History";
+import ErrorMsg from "../services/ErrorMsg";
 
 interface ILoanViewModel extends IViewModel {
   loanPairs: ILoanPair[];
@@ -61,7 +62,7 @@ export default class LoanViewModel extends BaseViewModel {
 
   selectLoanToken = async (name: string) => {
     this.currentLoanPair = this.params.loanPairs.find(
-        (p) => p.loanToken.name.toLowerCase() === name.toLowerCase()
+      (p) => p.loanToken.name.toLowerCase() === name.toLowerCase()
     )!;
 
     this.selectCollateralToken(this.currentLoanPair.collateralTokens[0].name);
@@ -206,6 +207,8 @@ export default class LoanViewModel extends BaseViewModel {
 
       this.locator.selectRecordById(id);
       history.push(`/record/${id}`);
+    } catch (error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.sending = false;
     }
