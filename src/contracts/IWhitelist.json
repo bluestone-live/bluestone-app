@@ -1,0 +1,1466 @@
+{
+  "contractName": "IWhitelist",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getAdministrators",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWhitelistedLenders",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWhitelistedBorrowers",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addAdministrator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeAdministrator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addLenderWhitelisted",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeLenderWhitelisted",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addBorrowerWhitelisted",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeBorrowerWhitelisted",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addAdministrator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addBorrowerWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addLenderWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAdministrators\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getWhitelistedBorrowers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getWhitelistedLenders\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeAdministrator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeBorrowerWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeLenderWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"addAdministrator(address)\":{\"params\":{\"account\":\"Account address\"}},\"addBorrowerWhitelisted(address)\":{\"params\":{\"account\":\"Account address\"}},\"addLenderWhitelisted(address)\":{\"params\":{\"account\":\"Account address\"}},\"removeAdministrator(address)\":{\"params\":{\"account\":\"Account address\"}},\"removeBorrowerWhitelisted(address)\":{\"params\":{\"account\":\"Account address\"}},\"removeLenderWhitelisted(address)\":{\"params\":{\"account\":\"Account address\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addAdministrator(address)\":{\"notice\":\"Add account to administrators\"},\"addBorrowerWhitelisted(address)\":{\"notice\":\"Add account to whitelistedBorrowers\"},\"addLenderWhitelisted(address)\":{\"notice\":\"Add account to whitelistedLenders\"},\"getAdministrators()\":{\"notice\":\"Whitelisted administrators getter\"},\"getWhitelistedBorrowers()\":{\"notice\":\"Whitelisted borrowers getter\"},\"getWhitelistedLenders()\":{\"notice\":\"Whitelisted lenders getter\"},\"removeAdministrator(address)\":{\"notice\":\"Remove account from administrators\"},\"removeBorrowerWhitelisted(address)\":{\"notice\":\"Remove account from whitelistedBorrowers\"},\"removeLenderWhitelisted(address)\":{\"notice\":\"Remove account from whitelistedLenders\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/protocol/interface/IWhitelist.sol\":\"IWhitelist\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/protocol/interface/IWhitelist.sol\":{\"keccak256\":\"0xbfa063e4acbc6788d128de55da39dbfcaa6f0048145514735f0411b9d7470de9\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d3fc32ec5d199c8795f41c431dbccd2eac666bfc4c6a28a9c9a4c1aef49e9e1\",\"dweb:/ipfs/Qmbm1yksfFETmSXHuXQbRNWNT4sZK1SyEqVy5aiDRUPWEr\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\ninterface IWhitelist {\n    /// Whitelist Getter\n\n    /// @notice Whitelisted administrators getter\n    function getAdministrators() external view returns (address[] memory);\n\n    /// @notice Whitelisted lenders getter\n    function getWhitelistedLenders() external view returns (address[] memory);\n\n    /// @notice Whitelisted borrowers getter\n    function getWhitelistedBorrowers() external view returns (address[] memory);\n\n    /// Option for Administrators\n\n    /// @notice Add account to administrators\n    /// @param account Account address\n    function addAdministrator(address account) external;\n\n    /// @notice Remove account from administrators\n    /// @param account Account address\n    function removeAdministrator(address account) external;\n\n    /// Option for Lenders\n\n    /// @notice Add account to whitelistedLenders\n    /// @param account Account address\n    function addLenderWhitelisted(address account) external;\n\n    /// @notice Remove account from whitelistedLenders\n    /// @param account Account address\n    function removeLenderWhitelisted(address account) external;\n\n    /// Option for Borrowers\n\n    /// @notice Add account to whitelistedBorrowers\n    /// @param account Account address\n    function addBorrowerWhitelisted(address account) external;\n\n    /// @notice Remove account from whitelistedBorrowers\n    /// @param account Account address\n    function removeBorrowerWhitelisted(address account) external;\n}\n",
+  "sourcePath": "/Users/liyangfan/Projects/WorkSpace/bluestone/contracts/protocol/interface/IWhitelist.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/protocol/interface/IWhitelist.sol",
+    "exportedSymbols": {
+      "IWhitelist": [
+        6362
+      ]
+    },
+    "id": 6363,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6304,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:34"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 6362,
+        "linearizedBaseContracts": [
+          6362
+        ],
+        "name": "IWhitelist",
+        "nameLocation": "74:10:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 6305,
+              "nodeType": "StructuredDocumentation",
+              "src": "117:45:34",
+              "text": "@notice Whitelisted administrators getter"
+            },
+            "functionSelector": "543b3693",
+            "id": 6311,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAdministrators",
+            "nameLocation": "176:17:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6306,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "193:2:34"
+            },
+            "returnParameters": {
+              "id": 6310,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6309,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6311,
+                  "src": "219:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6307,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "219:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6308,
+                    "nodeType": "ArrayTypeName",
+                    "src": "219:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "218:18:34"
+            },
+            "scope": 6362,
+            "src": "167:70:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6312,
+              "nodeType": "StructuredDocumentation",
+              "src": "243:38:34",
+              "text": "@notice Whitelisted lenders getter"
+            },
+            "functionSelector": "46b87f83",
+            "id": 6318,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getWhitelistedLenders",
+            "nameLocation": "295:21:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6313,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "316:2:34"
+            },
+            "returnParameters": {
+              "id": 6317,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6316,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6318,
+                  "src": "342:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6314,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "342:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6315,
+                    "nodeType": "ArrayTypeName",
+                    "src": "342:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:18:34"
+            },
+            "scope": 6362,
+            "src": "286:74:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6319,
+              "nodeType": "StructuredDocumentation",
+              "src": "366:40:34",
+              "text": "@notice Whitelisted borrowers getter"
+            },
+            "functionSelector": "e14eb4c0",
+            "id": 6325,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getWhitelistedBorrowers",
+            "nameLocation": "420:23:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6320,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "443:2:34"
+            },
+            "returnParameters": {
+              "id": 6324,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6323,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6325,
+                  "src": "469:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6321,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "469:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6322,
+                    "nodeType": "ArrayTypeName",
+                    "src": "469:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "468:18:34"
+            },
+            "scope": 6362,
+            "src": "411:76:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6326,
+              "nodeType": "StructuredDocumentation",
+              "src": "528:80:34",
+              "text": "@notice Add account to administrators\n @param account Account address"
+            },
+            "functionSelector": "c9991176",
+            "id": 6331,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addAdministrator",
+            "nameLocation": "622:16:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6329,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6328,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "647:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6331,
+                  "src": "639:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6327,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "639:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "638:17:34"
+            },
+            "returnParameters": {
+              "id": 6330,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "664:0:34"
+            },
+            "scope": 6362,
+            "src": "613:52:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6332,
+              "nodeType": "StructuredDocumentation",
+              "src": "671:85:34",
+              "text": "@notice Remove account from administrators\n @param account Account address"
+            },
+            "functionSelector": "68fa8134",
+            "id": 6337,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeAdministrator",
+            "nameLocation": "770:19:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6335,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6334,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "798:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6337,
+                  "src": "790:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6333,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "790:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "789:17:34"
+            },
+            "returnParameters": {
+              "id": 6336,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "815:0:34"
+            },
+            "scope": 6362,
+            "src": "761:55:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6338,
+              "nodeType": "StructuredDocumentation",
+              "src": "850:84:34",
+              "text": "@notice Add account to whitelistedLenders\n @param account Account address"
+            },
+            "functionSelector": "55ded346",
+            "id": 6343,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addLenderWhitelisted",
+            "nameLocation": "948:20:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6341,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6340,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "977:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6343,
+                  "src": "969:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6339,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "969:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "968:17:34"
+            },
+            "returnParameters": {
+              "id": 6342,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "994:0:34"
+            },
+            "scope": 6362,
+            "src": "939:56:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6344,
+              "nodeType": "StructuredDocumentation",
+              "src": "1001:89:34",
+              "text": "@notice Remove account from whitelistedLenders\n @param account Account address"
+            },
+            "functionSelector": "757c792c",
+            "id": 6349,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeLenderWhitelisted",
+            "nameLocation": "1104:23:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6347,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6346,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1136:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6349,
+                  "src": "1128:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6345,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1128:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1127:17:34"
+            },
+            "returnParameters": {
+              "id": 6348,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1153:0:34"
+            },
+            "scope": 6362,
+            "src": "1095:59:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6350,
+              "nodeType": "StructuredDocumentation",
+              "src": "1190:86:34",
+              "text": "@notice Add account to whitelistedBorrowers\n @param account Account address"
+            },
+            "functionSelector": "7f58568c",
+            "id": 6355,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addBorrowerWhitelisted",
+            "nameLocation": "1290:22:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6353,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6352,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1321:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6355,
+                  "src": "1313:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6351,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1313:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1312:17:34"
+            },
+            "returnParameters": {
+              "id": 6354,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1338:0:34"
+            },
+            "scope": 6362,
+            "src": "1281:58:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6356,
+              "nodeType": "StructuredDocumentation",
+              "src": "1345:91:34",
+              "text": "@notice Remove account from whitelistedBorrowers\n @param account Account address"
+            },
+            "functionSelector": "e6e9fea5",
+            "id": 6361,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeBorrowerWhitelisted",
+            "nameLocation": "1450:25:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6359,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6358,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1484:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6361,
+                  "src": "1476:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6357,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1476:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1475:17:34"
+            },
+            "returnParameters": {
+              "id": 6360,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1501:0:34"
+            },
+            "scope": 6362,
+            "src": "1441:61:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 6363,
+        "src": "64:1440:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1466:34"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/protocol/interface/IWhitelist.sol",
+    "exportedSymbols": {
+      "IWhitelist": [
+        6362
+      ]
+    },
+    "id": 6363,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6304,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:34"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 6362,
+        "linearizedBaseContracts": [
+          6362
+        ],
+        "name": "IWhitelist",
+        "nameLocation": "74:10:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 6305,
+              "nodeType": "StructuredDocumentation",
+              "src": "117:45:34",
+              "text": "@notice Whitelisted administrators getter"
+            },
+            "functionSelector": "543b3693",
+            "id": 6311,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAdministrators",
+            "nameLocation": "176:17:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6306,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "193:2:34"
+            },
+            "returnParameters": {
+              "id": 6310,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6309,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6311,
+                  "src": "219:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6307,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "219:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6308,
+                    "nodeType": "ArrayTypeName",
+                    "src": "219:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "218:18:34"
+            },
+            "scope": 6362,
+            "src": "167:70:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6312,
+              "nodeType": "StructuredDocumentation",
+              "src": "243:38:34",
+              "text": "@notice Whitelisted lenders getter"
+            },
+            "functionSelector": "46b87f83",
+            "id": 6318,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getWhitelistedLenders",
+            "nameLocation": "295:21:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6313,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "316:2:34"
+            },
+            "returnParameters": {
+              "id": 6317,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6316,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6318,
+                  "src": "342:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6314,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "342:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6315,
+                    "nodeType": "ArrayTypeName",
+                    "src": "342:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:18:34"
+            },
+            "scope": 6362,
+            "src": "286:74:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6319,
+              "nodeType": "StructuredDocumentation",
+              "src": "366:40:34",
+              "text": "@notice Whitelisted borrowers getter"
+            },
+            "functionSelector": "e14eb4c0",
+            "id": 6325,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getWhitelistedBorrowers",
+            "nameLocation": "420:23:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6320,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "443:2:34"
+            },
+            "returnParameters": {
+              "id": 6324,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6323,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6325,
+                  "src": "469:16:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 6321,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "469:7:34",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 6322,
+                    "nodeType": "ArrayTypeName",
+                    "src": "469:9:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "468:18:34"
+            },
+            "scope": 6362,
+            "src": "411:76:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6326,
+              "nodeType": "StructuredDocumentation",
+              "src": "528:80:34",
+              "text": "@notice Add account to administrators\n @param account Account address"
+            },
+            "functionSelector": "c9991176",
+            "id": 6331,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addAdministrator",
+            "nameLocation": "622:16:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6329,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6328,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "647:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6331,
+                  "src": "639:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6327,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "639:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "638:17:34"
+            },
+            "returnParameters": {
+              "id": 6330,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "664:0:34"
+            },
+            "scope": 6362,
+            "src": "613:52:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6332,
+              "nodeType": "StructuredDocumentation",
+              "src": "671:85:34",
+              "text": "@notice Remove account from administrators\n @param account Account address"
+            },
+            "functionSelector": "68fa8134",
+            "id": 6337,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeAdministrator",
+            "nameLocation": "770:19:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6335,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6334,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "798:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6337,
+                  "src": "790:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6333,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "790:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "789:17:34"
+            },
+            "returnParameters": {
+              "id": 6336,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "815:0:34"
+            },
+            "scope": 6362,
+            "src": "761:55:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6338,
+              "nodeType": "StructuredDocumentation",
+              "src": "850:84:34",
+              "text": "@notice Add account to whitelistedLenders\n @param account Account address"
+            },
+            "functionSelector": "55ded346",
+            "id": 6343,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addLenderWhitelisted",
+            "nameLocation": "948:20:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6341,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6340,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "977:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6343,
+                  "src": "969:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6339,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "969:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "968:17:34"
+            },
+            "returnParameters": {
+              "id": 6342,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "994:0:34"
+            },
+            "scope": 6362,
+            "src": "939:56:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6344,
+              "nodeType": "StructuredDocumentation",
+              "src": "1001:89:34",
+              "text": "@notice Remove account from whitelistedLenders\n @param account Account address"
+            },
+            "functionSelector": "757c792c",
+            "id": 6349,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeLenderWhitelisted",
+            "nameLocation": "1104:23:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6347,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6346,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1136:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6349,
+                  "src": "1128:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6345,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1128:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1127:17:34"
+            },
+            "returnParameters": {
+              "id": 6348,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1153:0:34"
+            },
+            "scope": 6362,
+            "src": "1095:59:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6350,
+              "nodeType": "StructuredDocumentation",
+              "src": "1190:86:34",
+              "text": "@notice Add account to whitelistedBorrowers\n @param account Account address"
+            },
+            "functionSelector": "7f58568c",
+            "id": 6355,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addBorrowerWhitelisted",
+            "nameLocation": "1290:22:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6353,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6352,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1321:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6355,
+                  "src": "1313:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6351,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1313:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1312:17:34"
+            },
+            "returnParameters": {
+              "id": 6354,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1338:0:34"
+            },
+            "scope": 6362,
+            "src": "1281:58:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 6356,
+              "nodeType": "StructuredDocumentation",
+              "src": "1345:91:34",
+              "text": "@notice Remove account from whitelistedBorrowers\n @param account Account address"
+            },
+            "functionSelector": "e6e9fea5",
+            "id": 6361,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeBorrowerWhitelisted",
+            "nameLocation": "1450:25:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6359,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6358,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1484:7:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6361,
+                  "src": "1476:15:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6357,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1476:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1475:17:34"
+            },
+            "returnParameters": {
+              "id": 6360,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1501:0:34"
+            },
+            "scope": 6362,
+            "src": "1441:61:34",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 6363,
+        "src": "64:1440:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1466:34"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-09-02T13:05:37.345Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "addAdministrator(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      },
+      "addBorrowerWhitelisted(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      },
+      "addLenderWhitelisted(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      },
+      "removeAdministrator(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      },
+      "removeBorrowerWhitelisted(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      },
+      "removeLenderWhitelisted(address)": {
+        "params": {
+          "account": "Account address"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "addAdministrator(address)": {
+        "notice": "Add account to administrators"
+      },
+      "addBorrowerWhitelisted(address)": {
+        "notice": "Add account to whitelistedBorrowers"
+      },
+      "addLenderWhitelisted(address)": {
+        "notice": "Add account to whitelistedLenders"
+      },
+      "getAdministrators()": {
+        "notice": "Whitelisted administrators getter"
+      },
+      "getWhitelistedBorrowers()": {
+        "notice": "Whitelisted borrowers getter"
+      },
+      "getWhitelistedLenders()": {
+        "notice": "Whitelisted lenders getter"
+      },
+      "removeAdministrator(address)": {
+        "notice": "Remove account from administrators"
+      },
+      "removeBorrowerWhitelisted(address)": {
+        "notice": "Remove account from whitelistedBorrowers"
+      },
+      "removeLenderWhitelisted(address)": {
+        "notice": "Remove account from whitelistedLenders"
+      }
+    },
+    "version": 1
+  }
+}

@@ -77,16 +77,16 @@ export class ViewModelLocator extends EventEmitter {
     if (this.wallet === WalletType.MetaMask) {
       this.provider = new ethers.providers.Web3Provider(window["ethereum"]);
       const [account] = await Metamask.enable();
-      console.log("account=", account)
+      console.log("account:", account)
       if (!account) return false;
       this.account = account;
     } else if (this.wallet === WalletType.WalletConnect) {
       this.wallletconnectProvider = new WalletConnectProvider({
-        infuraId: "76eca7933f9a4b73a2438632bfd0180b",
+        infuraId: "82d79956c4c14b268e820d06681d9cda",
       });
       this.provider = new ethers.providers.Web3Provider(this.wallletconnectProvider);
       const [account] = await this.wallletconnectProvider.enable();
-      console.log("account=", account)
+      console.log("account:", account)
       if (!account) return false;
       this.account = account;
     } else {
@@ -98,6 +98,7 @@ export class ViewModelLocator extends EventEmitter {
     const network = await this.provider.getNetwork();
     Notification.register(network.chainId);
     this.network = network.name;
+    console.log("network:", this.network);
     if (network.chainId === 9527) {
       this.network = 'rangersdev';
     }

@@ -28,3 +28,4 @@ yarn-error.log*
 # ethereum network configs
 networks/development.json
 networks/*-fork.json
+.vercel

@@ -22,118 +22,119 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.7+commit.b8d736ae\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenPrice\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updatePriceIfNeeded\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"updatePriceIfNeeded()\":{\"details\":\"Call this function before getPrice() if price freshness is important\"}}},\"userdoc\":{\"methods\":{\"getPrice()\":{\"notice\":\"Return the current token price in USD\"},\"updatePriceIfNeeded()\":{\"notice\":\"Update the token price if necessary\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol\":\"IPriceOracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol\":{\"keccak256\":\"0x42c495a83bb5c2c10bacfd3066eda87fe1a91c6511683ebc60d12effacee1510\",\"urls\":[\"bzz-raw://931f4a8bf80c3ed00fbe94639695273e7ecd343b3ee317cf2852100b7eeb4a98\",\"dweb:/ipfs/Qmdtk2ZnkwCMRxe1YznF5KEyrS52Gkicogmom2Z1vs5zz1\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenPrice\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updatePriceIfNeeded\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getPrice()\":{\"returns\":{\"tokenPrice\":\"tokenPrice\"}},\"updatePriceIfNeeded()\":{\"details\":\"Call this function before getPrice() if price freshness is important\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getPrice()\":{\"notice\":\"Return the current token price in USD\"},\"updatePriceIfNeeded()\":{\"notice\":\"Update the token price if necessary\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/oracle/interface/IPriceOracle.sol\":\"IPriceOracle\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/oracle/interface/IPriceOracle.sol\":{\"keccak256\":\"0xd70e47b9995b483098043f568a182286d6adc8941f043849127046dc4974cd64\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://291681f18a9a461c71d0e678cdf0580902666b1f881fc827ea7cdedcefcb5d80\",\"dweb:/ipfs/QmSfEUfgMrtUsNHNmgfMPaXho9tff8BpogwiNTMedPrA9W\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.6.7;\n\n\ninterface IPriceOracle {\n    /// @notice Update the token price if necessary\n    /// @dev Call this function before getPrice() if price freshness is important\n    function updatePriceIfNeeded() external;\n\n    /// @notice Return the current token price in USD\n    /// @return tokenPrice\n    function getPrice() external view returns (uint256 tokenPrice);\n}\n",
-  "sourcePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\ninterface IPriceOracle {\n    /// @notice Update the token price if necessary\n    /// @dev Call this function before getPrice() if price freshness is important\n    function updatePriceIfNeeded() external;\n\n    /// @notice Return the current token price in USD\n    /// @return tokenPrice\n    function getPrice() external view returns (uint256 tokenPrice);\n}\n",
+  "sourcePath": "/Users/liyangfan/Projects/WorkSpace/bluestone/contracts/oracle/interface/IPriceOracle.sol",
   "ast": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+    "absolutePath": "project:/contracts/oracle/interface/IPriceOracle.sol",
     "exportedSymbols": {
       "IPriceOracle": [
-        1624
+        4139
       ]
     },
-    "id": 1625,
+    "id": 4140,
+    "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1613,
+        "id": 4128,
         "literals": [
           "solidity",
           "^",
-          "0.6",
+          "0.8",
           ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "39:23:27"
       },
       {
         "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": null,
         "fullyImplemented": false,
-        "id": 1624,
+        "id": 4139,
         "linearizedBaseContracts": [
-          1624
+          4139
         ],
         "name": "IPriceOracle",
+        "nameLocation": "74:12:27",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "body": null,
             "documentation": {
-              "id": 1614,
+              "id": 4129,
               "nodeType": "StructuredDocumentation",
-              "src": "55:129:12",
+              "src": "93:129:27",
               "text": "@notice Update the token price if necessary\n @dev Call this function before getPrice() if price freshness is important"
             },
             "functionSelector": "f62fb7d2",
-            "id": 1617,
+            "id": 4132,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updatePriceIfNeeded",
+            "nameLocation": "236:19:27",
             "nodeType": "FunctionDefinition",
-            "overrides": null,
             "parameters": {
-              "id": 1615,
+              "id": 4130,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "217:2:12"
+              "src": "255:2:27"
             },
             "returnParameters": {
-              "id": 1616,
+              "id": 4131,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "228:0:12"
+              "src": "266:0:27"
             },
-            "scope": 1624,
-            "src": "189:40:12",
+            "scope": 4139,
+            "src": "227:40:27",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "body": null,
             "documentation": {
-              "id": 1618,
+              "id": 4133,
               "nodeType": "StructuredDocumentation",
-              "src": "235:76:12",
+              "src": "273:76:27",
               "text": "@notice Return the current token price in USD\n @return tokenPrice"
             },
             "functionSelector": "98d5fdca",
-            "id": 1623,
+            "id": 4138,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
+            "nameLocation": "363:8:27",
             "nodeType": "FunctionDefinition",
-            "overrides": null,
             "parameters": {
-              "id": 1619,
+              "id": 4134,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "333:2:12"
+              "src": "371:2:27"
             },
             "returnParameters": {
-              "id": 1622,
+              "id": 4137,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1621,
+                  "id": 4136,
                   "mutability": "mutable",
                   "name": "tokenPrice",
+                  "nameLocation": "405:10:27",
                   "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1623,
-                  "src": "359:18:12",
+                  "scope": 4138,
+                  "src": "397:18:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -141,138 +142,137 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1620,
+                    "id": 4135,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "359:7:12",
+                    "src": "397:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "358:20:12"
+              "src": "396:20:27"
             },
-            "scope": 1624,
-            "src": "316:63:12",
+            "scope": 4139,
+            "src": "354:63:27",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1625,
-        "src": "26:355:12"
+        "scope": 4140,
+        "src": "64:355:27",
+        "usedErrors": []
       }
     ],
-    "src": "0:382:12"
+    "src": "39:381:27"
   },
   "legacyAST": {
-    "absolutePath": "/Users/ethereum/Projects/bluestone/bluestone/contracts/oracle/interface/IPriceOracle.sol",
+    "absolutePath": "project:/contracts/oracle/interface/IPriceOracle.sol",
     "exportedSymbols": {
       "IPriceOracle": [
-        1624
+        4139
       ]
     },
-    "id": 1625,
+    "id": 4140,
+    "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1613,
+        "id": 4128,
         "literals": [
           "solidity",
           "^",
-          "0.6",
+          "0.8",
           ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "39:23:27"
       },
       {
         "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": null,
         "fullyImplemented": false,
-        "id": 1624,
+        "id": 4139,
         "linearizedBaseContracts": [
-          1624
+          4139
         ],
         "name": "IPriceOracle",
+        "nameLocation": "74:12:27",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "body": null,
             "documentation": {
-              "id": 1614,
+              "id": 4129,
               "nodeType": "StructuredDocumentation",
-              "src": "55:129:12",
+              "src": "93:129:27",
               "text": "@notice Update the token price if necessary\n @dev Call this function before getPrice() if price freshness is important"
             },
             "functionSelector": "f62fb7d2",
-            "id": 1617,
+            "id": 4132,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updatePriceIfNeeded",
+            "nameLocation": "236:19:27",
             "nodeType": "FunctionDefinition",
-            "overrides": null,
             "parameters": {
-              "id": 1615,
+              "id": 4130,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "217:2:12"
+              "src": "255:2:27"
             },
             "returnParameters": {
-              "id": 1616,
+              "id": 4131,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "228:0:12"
+              "src": "266:0:27"
             },
-            "scope": 1624,
-            "src": "189:40:12",
+            "scope": 4139,
+            "src": "227:40:27",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "body": null,
             "documentation": {
-              "id": 1618,
+              "id": 4133,
               "nodeType": "StructuredDocumentation",
-              "src": "235:76:12",
+              "src": "273:76:27",
               "text": "@notice Return the current token price in USD\n @return tokenPrice"
             },
             "functionSelector": "98d5fdca",
-            "id": 1623,
+            "id": 4138,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
+            "nameLocation": "363:8:27",
             "nodeType": "FunctionDefinition",
-            "overrides": null,
             "parameters": {
-              "id": 1619,
+              "id": 4134,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "333:2:12"
+              "src": "371:2:27"
             },
             "returnParameters": {
-              "id": 1622,
+              "id": 4137,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1621,
+                  "id": 4136,
                   "mutability": "mutable",
                   "name": "tokenPrice",
+                  "nameLocation": "405:10:27",
                   "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1623,
-                  "src": "359:18:12",
+                  "scope": 4138,
+                  "src": "397:18:27",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -280,49 +280,57 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1620,
+                    "id": 4135,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "359:7:12",
+                    "src": "397:7:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "358:20:12"
+              "src": "396:20:27"
             },
-            "scope": 1624,
-            "src": "316:63:12",
+            "scope": 4139,
+            "src": "354:63:27",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1625,
-        "src": "26:355:12"
+        "scope": 4140,
+        "src": "64:355:27",
+        "usedErrors": []
       }
     ],
-    "src": "0:382:12"
+    "src": "39:381:27"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.6.7+commit.b8d736ae.Emscripten.clang"
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-09-15T02:50:37.465Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-09-02T13:05:37.269Z",
   "devdoc": {
+    "kind": "dev",
     "methods": {
+      "getPrice()": {
+        "returns": {
+          "tokenPrice": "tokenPrice"
+        }
+      },
       "updatePriceIfNeeded()": {
         "details": "Call this function before getPrice() if price freshness is important"
       }
-    }
+    },
+    "version": 1
   },
   "userdoc": {
+    "kind": "user",
     "methods": {
       "getPrice()": {
         "notice": "Return the current token price in USD"
@@ -330,6 +338,7 @@
       "updatePriceIfNeeded()": {
         "notice": "Update the token price if necessary"
       }
-    }
+    },
+    "version": 1
   }
 }

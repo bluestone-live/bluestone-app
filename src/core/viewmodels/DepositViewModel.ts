@@ -8,6 +8,7 @@ import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import { getTimestampByPoolId } from "../services/Math";
 import history from "../services/History";
+import ErrorMsg from "../services/ErrorMsg";
 import { observable } from "mobx";
 
 interface IDepositViewModel extends IViewModel {
@@ -139,6 +140,8 @@ export default class DepositViewModel extends BaseViewModel {
 
       this.locator.selectRecordById(id);
       history.push(`/record/${id}`);
+    } catch (error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.sending = false;
     }

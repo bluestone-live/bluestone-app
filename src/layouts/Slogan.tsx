@@ -42,7 +42,7 @@ class Slogan extends Component {
       <div className="slogan">
         <div className="text-container">
           <div className="text">
-            <span id="slogan1">If the bank won’t lend, who will?</span>
+            <span id="slogan1">If the bank won't lend, who will?</span>
             <span id="slogan2">An Ethereum protocol for fixed rate loan</span>
             <span id="slogan3">Try it out</span>
           </div>

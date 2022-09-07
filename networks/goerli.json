@@ -1,0 +1,24 @@
+{
+  "contracts": {
+    "ChainlinkMock": "0xDAD7153919acbA4a6e332Ee5Ef2dB8fA537380b1",
+    "InterestModel": "0x3C33ec017898FC88024A37A3b896f3d9803AED04",
+    "Protocol": "0x571599C9a58109FA377C9F9ddaA460B2cAF02867"
+  },
+  "tokens": {
+    "ETH": {
+      "name": "Native Ether",
+      "address": "0x0000000000000000000000000000000000000001",
+      "priceOracleAddress": "0x76078d255628De4f3BE6A2a8031a51138aF41a56"
+    },
+    "SGC": {
+      "name": "SGC",
+      "address": "0x4BC3745BfbFb79bd521789B1E486db3753CFEb21",
+      "priceOracleAddress": "0x237b0Bb63ab12418455113a7470e61dCa45f0D4b"
+    },
+    "xBTC": {
+      "name": "xBTC",
+      "address": "0x4A632895Da76fDa5030D2f75C4E5AF500aD942b3",
+      "priceOracleAddress": "0x78C0054F65BEEab72b75D1B98872335c850f4F04"
+    }
+  }
+}
