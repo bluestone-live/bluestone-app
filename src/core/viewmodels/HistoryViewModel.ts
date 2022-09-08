@@ -37,6 +37,7 @@ export default class HistoryViewModel extends BaseViewModel {
         .concat(this.loanRecords as IRecord[])
         .sort((r1: IRecord, r2: IRecord) => r2.createdAt.sub(r1.createdAt).toNumber())
         .map(async (r) => {
+          console.log("before fetch, this.tokens=", this.tokens)
           const ui = (await RecordViewModel.fetchUIData(r, this.tokens)) as any;
           return {
             ...r,

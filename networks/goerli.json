@@ -1,24 +1,24 @@
 {
   "contracts": {
-    "ChainlinkMock": "0xDAD7153919acbA4a6e332Ee5Ef2dB8fA537380b1",
-    "InterestModel": "0x3C33ec017898FC88024A37A3b896f3d9803AED04",
-    "Protocol": "0x571599C9a58109FA377C9F9ddaA460B2cAF02867"
+    "ChainlinkMock": "0xD5a36332382aBEC9515B5695D70092c77b4185AB",
+    "InterestModel": "0x58E1167A89338d7b86E98686802D846CE9333D9D",
+    "Protocol": "0x9489f551e2dd40aA69518D2502Fe394212A0020D"
   },
   "tokens": {
     "ETH": {
       "name": "Native Ether",
       "address": "0x0000000000000000000000000000000000000001",
-      "priceOracleAddress": "0x76078d255628De4f3BE6A2a8031a51138aF41a56"
+      "priceOracleAddress": "0xf8dF60F41E589276F06778D3EE9730CeeBCaC343"
     },
     "SGC": {
       "name": "SGC",
-      "address": "0x4BC3745BfbFb79bd521789B1E486db3753CFEb21",
-      "priceOracleAddress": "0x237b0Bb63ab12418455113a7470e61dCa45f0D4b"
+      "address": "0x60103572D2d852B2D706cCB3a5371A9707Fe8e53",
+      "priceOracleAddress": "0xEa3ffD18A4EEBcc7C948b0796DCC4F24762e6d7D"
     },
     "xBTC": {
       "name": "xBTC",
-      "address": "0x4A632895Da76fDa5030D2f75C4E5AF500aD942b3",
-      "priceOracleAddress": "0x78C0054F65BEEab72b75D1B98872335c850f4F04"
+      "address": "0x73A522a5AE3b4e46c2352Ff542DB472a1Cc87228",
+      "priceOracleAddress": "0xb2ae71efA1e93F4d73B4536DB9D9d778A6412140"
     }
   }
 }
