@@ -142,7 +142,7 @@ export class ViewModelLocator extends EventEmitter {
         this.wallet = WalletType.Disconnect;
         break;
     }
-    console.log("initWallet: ", this.wallet);
+    console.log("wallet: ", this.wallet);
   }
 
   private async initProtocol() {
@@ -276,7 +276,7 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
-      tokens: this.depositTokens,
+      tokens: this.tokens,    // this.depositTokens
       locator: this,
     });
     return this._historyVM;
@@ -291,7 +291,7 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
-      tokens: this.depositTokens,
+      tokens: this.tokens,    // this.depositTokens
       record,
       locator: this,
     });
@@ -304,7 +304,7 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       interestModel: this.interestModel,
-      tokens: this.depositTokens,
+      tokens: this.tokens,    // this.depositTokens
       locator: this,
       id,
     });

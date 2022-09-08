@@ -213,11 +213,14 @@ export default class RecordViewModel extends BaseViewModel {
   };
 
   static fetchUIData(r: ILoanRecord | IDepositRecord, tokens: IToken[]) {
+    console.log("r=", r);
+    console.log("tokens=", tokens)
     const token = tokens.find(
       (t) =>
         t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
         t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
     )!;
+    console.log("token=", token)
 
     const collateralToken = tokens.find((t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase());
 
