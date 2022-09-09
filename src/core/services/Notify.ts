@@ -44,35 +44,10 @@ export default class Notification {
   static showErrorMessage(msgStr: string) {
     const notificationObject = {
       type: "error",
-      autoDismiss: 4000,
+      autoDismiss: 10000,
       message: msgStr,
     } as CustomNotificationObject;
     
     Notification.notify.notification(notificationObject)
-    // toast("Error Happened")
-    // const [notifications, customNotification, updateNotify] = useNotifications();
-    // const { update, dismiss } = customNotification({
-    //   eventCode: 'dbUpdate',
-    //   type: 'hint',
-    //   message: 'Custom hint notification created by the dapp',
-    //   onClick: () => window.open(`https://www.blocknative.com`)
-    // });
-    // // Update your notification example below
-    // // setTimeout(
-    // //   () =>
-    // //     update({
-    // //       eventCode: 'dbUpdateSuccess',
-    // //       message: 'Hint notification reason resolved!',
-    // //       type: 'success',
-    // //       autoDismiss: 5000
-    // //     }),
-    // //   4000
-    // // )
-    // setTimeout(
-    //   () =>
-    //     // use the dismiss method returned or add an autoDismiss prop to the notification
-    //     dismiss(),
-    //   4000
-    // );
   }
 }

@@ -128,7 +128,10 @@ export default class LoanViewModel extends BaseViewModel {
   };
 
   inputLoan = (value?: string) => {
-    this.inputLoanLegal = checkNumber(value ?? "") && Number.parseFloat(value ?? "") > 0;
+    this.inputLoanLegal =
+      checkNumber(value ?? "") &&
+      Number.parseFloat(value ?? "") > 0 &&
+      Number.parseFloat(value ?? "") <= Number.parseFloat(this.maxLoanAmount ?? "");
 
     if (!value) return;
     this.inputLoanValue = value;

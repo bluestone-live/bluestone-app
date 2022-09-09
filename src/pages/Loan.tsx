@@ -1,5 +1,5 @@
 import "./Lend.scss";
-
+import { utils } from "ethers";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
@@ -105,7 +105,6 @@ class Loan extends Component<IProps, State> {
                   onChange={vm?.selectCollateralToken}
                 />
               </div>
-
               <div className="item">
                 <NumBox
                   title={i18n.t("loan_collateral_amount")}
@@ -114,6 +113,13 @@ class Loan extends Component<IProps, State> {
                   onButtonClick={this.onCollateralMaxClick}
                   isValid={vm?.inputCollateralValueLegal ?? true}
                 />
+              </div>
+
+              <div className="item">
+                <span>
+                  {loading ? <Loading /> : `${vm!.selectedCollateralToken.name!.toUpperCase()}/USD:`}
+                </span>
+                <span>{loading ? <Loading /> : `${Number(utils.formatUnits(vm!.selectedCollateralToken.price!.toString(), vm!.selectedCollateralToken.decimals)).toFixed(4)}`}</span>
               </div>
 
               <div className="item">
