@@ -1,3 +1,4 @@
+import { utils } from "ethers";
 import type { IDepositRecord, ILoanRecord, IRecordUI, IToken, IViewModel } from "./Types";
 import { RecordType } from "./Types"
 import UserTransactions, { HistoryTx } from "../services/UserTransactions";
@@ -8,8 +9,8 @@ import { ETHAddress } from "../services/Constants";
 import Notification from "../services/Notify";
 import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
+import ErrorMsg from "../services/ErrorMsg";
 import { observable } from "mobx";
-import { utils } from "ethers";
 
 interface IRecordViewModel extends IViewModel {
   record?: IRecordUI;
@@ -122,7 +123,8 @@ export default class RecordViewModel extends BaseViewModel {
 
   updateRepayAmount = (amount: string) => {
     this._userInputRepayAmount = amount;
-    this.isRepayAmountLegal = checkNumber(amount) && Number.parseFloat(amount) > 0;
+    const maxRepayAmount = this.record!.remainingDebt;
+    this.isRepayAmountLegal = checkNumber(amount) && Number.parseFloat(amount) > 0 && Number.parseFloat(amount) <= Number.parseFloat(maxRepayAmount);
   };
 
   withdraw = async () => {
@@ -138,6 +140,8 @@ export default class RecordViewModel extends BaseViewModel {
 
       Notification.track(tx.hash);
       await tx.wait();
+    } catch(error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.withdrawing = false;
     }
@@ -153,6 +157,8 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
+    } catch(error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.repaying = false;
     }
@@ -168,6 +174,8 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
+    } catch(error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.withdrawingCollateral = false;
     }
@@ -187,6 +195,8 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
+    } catch(error) {
+      Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.depositingCollateral = false;
     }
@@ -213,14 +223,11 @@ export default class RecordViewModel extends BaseViewModel {
   };
 
   static fetchUIData(r: ILoanRecord | IDepositRecord, tokens: IToken[]) {
-    console.log("r=", r);
-    console.log("tokens=", tokens)
     const token = tokens.find(
       (t) =>
         t.address.toLowerCase() === (r as ILoanRecord).loanTokenAddress?.toLowerCase() ||
         t.address.toLowerCase() === (r as IDepositRecord).tokenAddress?.toLowerCase()
     )!;
-    console.log("token=", token)
 
     const collateralToken = tokens.find((t) => t.address.toLowerCase() === (r as ILoanRecord).collateralTokenAddress?.toLowerCase());
 

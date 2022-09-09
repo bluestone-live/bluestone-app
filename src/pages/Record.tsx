@@ -1,5 +1,5 @@
 import "./Record.scss";
-
+import {utils} from "ethers";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
@@ -85,6 +85,13 @@ class Record extends Component<IProps, IState> {
               </span>
               <span className="uppercase">{record ? `${record.maturityDate}` : <Loading />}</span>
             </div>
+
+            {record?.type === RecordType.Borrow ? (
+              <div className="item">
+                <span>{`${vm!.record!.collateralToken!.name!.toUpperCase()}/USD:`}</span>
+                <span>{`${Number(utils.formatUnits(vm!.record!.collateralToken!.price!.toString(), vm!.record!.collateralToken!.decimals)).toFixed(4)}`}</span>
+              </div>
+            ) : undefined}
 
             {record?.type === RecordType.Borrow ? (
               <div className="item">
