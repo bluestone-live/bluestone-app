@@ -28,19 +28,18 @@ class Header extends Component<IProps, IState> {
 
   render() {
     const { isHome } = this.state;
-
     return (
       <header>
         <Link to="/">
           <img className="logo" src={isHome ? logo : logo_blue} alt="Bluestone" />
         </Link>
         <div className="header-right-container">
-
           <div className={`links ${isHome ? "" : "grey"}`}>
             <Link to="/lend">{i18n.t("header_deposit")}</Link>
             <Link to="/borrow">{i18n.t("header_borrow")}</Link>
             <Link to="/history">{i18n.t("header_history")}</Link>
           </div>
+
           <Provider locator={LocatorInstance}>
             <WalletSelector />
           </Provider>
