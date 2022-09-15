@@ -21,7 +21,8 @@ import { WalletType } from "../core/viewmodels/Types"
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
 
-  wallletconnectProvider!: WalletConnectProvider;
+  infuraId: string;
+  walletconnectProvider!: WalletConnectProvider;
   private provider!: ethers.providers.Web3Provider;
   private signer!: ethers.providers.JsonRpcSigner;
   private initialized = false;
@@ -45,25 +46,28 @@ export class ViewModelLocator extends EventEmitter {
   protocolReserveRatio!: BigNumber;
   network?: string;
 
-  private async watchAccount() {
-    // const provider = await Metamask.getProvider();
-    // if (!provider) return;
+  constructor() {
+    super();
+    this.infuraId = "82d79956c4c14b268e820d06681d9cda";
+  }
 
-    if(!this.provider) return;
-    this.provider.on("accountsChanged", (_) => {
-      this.initialized = false;
-      this.init();
+  private async watchChanged() {
+    (this.provider as any).provider.on("accountsChanged", () => {
+      console.log("account changed....")
+      window.location.reload();
+    });
+    (this.provider as any).provider.on("chainChanged", () => {
+      console.log("chain changed....")
+      window.location.reload();
     });
   }
 
   async init() {
     if (this.initialized) return true;
     if (!(await this.initApp())) return false;
-
     this.initialized = true;
 
     await this.initProtocol();
-    await this.watchAccount();
     await this.initAccount();
 
     this.initFinished = true;
@@ -75,23 +79,23 @@ export class ViewModelLocator extends EventEmitter {
   private async initApp() {
     this.initWallet();
     if (this.wallet === WalletType.MetaMask) {
-      this.provider = new ethers.providers.Web3Provider(window["ethereum"]);
-      const [account] = await Metamask.enable();
-      console.log("account:", account)
+      this.provider = new ethers.providers.Web3Provider((window as any).ethereum);
+      const [account] = await this.provider.send("eth_requestAccounts", []);
       if (!account) return false;
       this.account = account;
     } else if (this.wallet === WalletType.WalletConnect) {
-      this.wallletconnectProvider = new WalletConnectProvider({
-        infuraId: "82d79956c4c14b268e820d06681d9cda",
+      this.walletconnectProvider = new WalletConnectProvider({
+        infuraId: this.infuraId,
       });
-      this.provider = new ethers.providers.Web3Provider(this.wallletconnectProvider);
-      const [account] = await this.wallletconnectProvider.enable();
-      console.log("account:", account)
+      this.provider = new ethers.providers.Web3Provider(this.walletconnectProvider);
+      const [account] = await this.walletconnectProvider.enable();
       if (!account) return false;
       this.account = account;
     } else {
       return false;
     }
+
+    this.watchChanged();
 
     this.signer = this.provider.getSigner();
 
@@ -103,13 +107,14 @@ export class ViewModelLocator extends EventEmitter {
       this.network = 'rangersdev';
     }
 
-    await this.provider.getBalance(this.account);
-
     try {
       this.protocolInfo = require(`../../networks/${this.network}`) as IProtocolInfo;
     } catch (error) {
+      Notification.showErrorMessage(`Network error, [${this.network}] is not support.`)
       return false;
     }
+
+    await this.provider.getBalance(this.account);
 
     this.protocol = new Contract(this.protocolInfo.contracts.Protocol, ProtocolAbi as any, this.signer);
 
@@ -142,7 +147,6 @@ export class ViewModelLocator extends EventEmitter {
         this.wallet = WalletType.Disconnect;
         break;
     }
-    console.log("wallet: ", this.wallet);
   }
 
   private async initProtocol() {
