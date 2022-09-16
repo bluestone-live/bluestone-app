@@ -8,6 +8,7 @@ interface IProps {
   secondDesc?: string;
   onChange?: (value: string) => void;
   isValid?: boolean;
+  errorMsg?: string;
   buttonTitle?: string;
   defaultValue?: string;
   maxValue?: string;
@@ -44,6 +45,7 @@ class NumBox extends Component<IProps, {}> {
             {this.props.buttonTitle || "MAX"}
           </button>
         </div>
+        <div className="error-area">{this.props.errorMsg}</div>
       </div>
     );
   }

@@ -58,4 +58,11 @@
       }
     }
   }
+
+  div.error-area {
+    height: 0px;
+    overflow: visible;
+    color: rgb(210, 4, 4);
+    font-size: 9px;
+  }
 }

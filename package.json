@@ -16,7 +16,6 @@
     "date-fns": "^2.15.0",
     "dayjs": "^1.8.36",
     "ethers": "^5.0.13",
-    "ethpay.core": "^1.0.9",
     "i18next": "^19.8.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "jquery": "^3.5.1",

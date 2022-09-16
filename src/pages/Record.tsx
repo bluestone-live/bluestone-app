@@ -89,7 +89,7 @@ class Record extends Component<IProps, IState> {
             {record?.type === RecordType.Borrow ? (
               <div className="item">
                 <span>{`${vm!.record!.collateralToken!.name!.toUpperCase()}/USD:`}</span>
-                <span>{`${Number(utils.formatUnits(vm!.record!.collateralToken!.price!.toString(), vm!.record!.collateralToken!.decimals)).toFixed(4)}`}</span>
+                <span>{`${Number(utils.formatUnits(vm!.record!.collateralToken!.price!.toString(), vm!.record!.collateralToken!.decimals)).toFixed(4)} $`}</span>
               </div>
             ) : undefined}
 
@@ -152,6 +152,7 @@ class Record extends Component<IProps, IState> {
                   maxValue={record.remainingDebt}
                   onChange={vm?.updateRepayAmount}
                   isValid={vm?.isRepayAmountLegal ?? true}
+                  errorMsg={vm?.repayErrorMsg}
                 />
                 <Button loading={vm?.repaying} onClick={vm?.repay} loadingColor="lightgrey" disabled={!vm?.isRepayAmountLegal}>
                   {i18n.t("button_repay")}
@@ -180,6 +181,7 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxWithdrawCollateral}
                   onButtonClick={() => vm?.updateWithdrawCollateralAmount(vm!.maxWithdrawCollateral!)}
                   isValid={vm?.isWithdrawCollateralAmountLegal ?? true}
+                  errorMsg={vm?.withdrawErrorMsg}
                 />
                 <Button
                   loading={vm?.withdrawingCollateral}
@@ -214,6 +216,7 @@ class Record extends Component<IProps, IState> {
                   maxValue={vm?.maxDepositCollateral}
                   onButtonClick={() => vm?.updateDepositCollateralAmount(vm!.maxDepositCollateral!)}
                   isValid={vm?.isDepositCollateralAmountLegal ?? true}
+                  errorMsg={vm?.depositErrorMsg}
                 />
                 <Button
                   loading={vm?.depositingCollateral}
