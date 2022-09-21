@@ -1,5 +1,5 @@
 import "./Lend.scss";
-import { utils } from "ethers";
+import { BigNumber, utils } from "ethers";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
@@ -61,7 +61,7 @@ class Loan extends Component<IProps, State> {
     const buttonDisabled =
       (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) ||
       vm?.sending ||
-      !vm?.inputLoanLegal ||
+      !vm?.inputLoanValueLegal ||
       !vm?.inputCollateralValueLegal;
 
     return (
@@ -95,7 +95,8 @@ class Loan extends Component<IProps, State> {
                   onChange={vm?.inputLoan}
                   maxValue={vm?.maxLoanAmount}
                   onButtonClick={this.onLoanMaxClick}
-                  isValid={vm?.inputLoanLegal ?? true}
+                  isValid={vm?.inputLoanValueLegal ?? true}
+                  errorMsg={vm?.loanValueErrorMsg}
                 />
               </div>
               <div className="item">
@@ -112,14 +113,15 @@ class Loan extends Component<IProps, State> {
                   maxValue={vm?.maxCollateralAmount}
                   onButtonClick={this.onCollateralMaxClick}
                   isValid={vm?.inputCollateralValueLegal ?? true}
+                  errorMsg={vm?.collateralValueErrorMsg}
                 />
               </div>
 
               <div className="item">
                 <span>
-                  {loading ? <Loading /> : `${vm!.selectedCollateralToken.name!.toUpperCase()}/USD:`}
+                  {loading ? "~/~:" : `${vm!.selectedCollateralToken.name!.toUpperCase()}/USD:`}
                 </span>
-                <span>{loading ? <Loading /> : `${Number(utils.formatUnits(vm!.selectedCollateralToken.price!.toString(), vm!.selectedCollateralToken.decimals)).toFixed(4)}`}</span>
+                <span>{loading ? <Loading /> : `${Number(utils.formatUnits(vm!.selectedCollateralToken.price!.toString(), vm!.selectedCollateralToken.decimals)).toFixed(4)} $`}</span>
               </div>
 
               <div className="item">
@@ -138,7 +140,7 @@ class Loan extends Component<IProps, State> {
               </div>
 
               <div className="item">
-                <span>{i18n.t("common_collateralization_ratio")}:</span>
+                <span>{loading ? i18n.t("common_collateralization_ratio") : `${i18n.t("common_collateralization_ratio")}(≥${vm!.currentLoanPair.minCollateralCoverageRatio.div(BigNumber.from(10).pow(16)).toNumber()}%)`}:</span>
                 <span>{loading ? <Loading /> : `${vm!.collateralization.toFixed(2)}%`}</span>
               </div>
 

@@ -3,7 +3,6 @@ import { ETHAddress, MaxInt256 } from "./services/Constants";
 import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
 import { ethers, BigNumber, Contract } from "ethers";
 
-import { Metamask } from "ethpay.core";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import DepositViewModel from "./viewmodels/DepositViewModel";
