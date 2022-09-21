@@ -22,7 +22,7 @@
     "lodash": "^4.17.21",
     "mobx": "^5.15.6",
     "mobx-react": "^6.2.5",
-    "node-sass": "^4.14.1",
+    "sass": "^1.54.9",
     "react": "^16.13.1",
     "react-bootstrap": "^2.5.0",
     "react-date-range": "^1.0.3",
