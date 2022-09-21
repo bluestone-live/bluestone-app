@@ -8,7 +8,7 @@ import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import { getTimestampByPoolId } from "../services/Math";
 import history from "../services/History";
-import ErrorMsg from "../services/ErrorMsg";
+import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
 import { observable } from "mobx";
 
 interface IDepositViewModel extends IViewModel {
@@ -29,6 +29,7 @@ export default class DepositViewModel extends BaseViewModel {
   @observable selectedPool?: IPool;
   @observable inputValue?: string;
   @observable inputLegal?: boolean;
+  @observable inputErrorMsg?: string;
   readonly terms: number[];
   readonly tokenSymbols: string[];
 
@@ -101,10 +102,24 @@ export default class DepositViewModel extends BaseViewModel {
 
   inputBalance = (value: string) => {
     this.inputValue = value;
-    this.inputLegal =
-      checkNumber(value) &&
-      Number.parseFloat(value) > 0 &&
-      Number.parseFloat(value) <= Number.parseFloat(utils.formatUnits(this.currentToken.balance || "0", this.currentToken.decimals));
+
+    if (checkNumber(value)) {
+      if (Number.parseFloat(value) > 0) {
+        if (Number.parseFloat(value) <= Number.parseFloat(utils.formatUnits(this.currentToken.balance || "0", this.currentToken.decimals))) {
+          this.inputLegal = true;
+          this.inputErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.inputLegal = false;
+          this.inputErrorMsg = InputErrorMsg.VALUE_OVER_ACCOUNT_BALANCE;
+        }
+      } else {
+        this.inputLegal = false;
+        this.inputErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.inputLegal = false;
+      this.inputErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
   };
 
   deposit = async () => {

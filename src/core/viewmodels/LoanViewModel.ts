@@ -9,7 +9,7 @@ import { calcCollateralRatio } from "../services/Math";
 import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
 import history from "../services/History";
-import ErrorMsg from "../services/ErrorMsg";
+import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
 
 interface ILoanViewModel extends IViewModel {
   loanPairs: ILoanPair[];
@@ -32,9 +32,11 @@ export default class LoanViewModel extends BaseViewModel {
   @observable collateralTokens!: string[];
   @observable selectedPool?: IPool;
   @observable inputLoanValue?: string;
-  @observable inputLoanLegal?: boolean;
+  @observable inputLoanValueLegal?: boolean;
   @observable inputCollateralValue?: string;
   @observable inputCollateralValueLegal?: boolean;
+  @observable loanValueErrorMsg?: string;
+  @observable collateralValueErrorMsg?: string;
   @observable sending = false;
   @observable maxCollateralAmount?: string;
   @observable maxLoanAmount?: string;
@@ -128,13 +130,26 @@ export default class LoanViewModel extends BaseViewModel {
   };
 
   inputLoan = (value?: string) => {
-    this.inputLoanLegal =
-      checkNumber(value ?? "") &&
-      Number.parseFloat(value ?? "") > 0 &&
-      Number.parseFloat(value ?? "") <= Number.parseFloat(this.maxLoanAmount ?? "");
-
     if (!value) return;
     this.inputLoanValue = value;
+
+    if (checkNumber(value)) {
+      if (Number.parseFloat(value) > 0) {
+        if (Number.parseFloat(value) <= Number.parseFloat(this.maxLoanAmount ?? "")) {
+          this.inputLoanValueLegal = true;
+          this.loanValueErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.inputLoanValueLegal = false;
+          this.loanValueErrorMsg = InputErrorMsg.VALUE_OVER_POOL_MAXIMUM;
+        }
+      } else {
+        this.inputLoanValueLegal = false;
+        this.loanValueErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.inputLoanValueLegal = false;
+      this.loanValueErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
 
     if (!this.peekPool) return;
     this.debt = Number.parseFloat(value) * (1 + (this.peekPool.loanAPR / 365) * this.peekPool.term);
@@ -150,10 +165,24 @@ export default class LoanViewModel extends BaseViewModel {
     }
 
     this.inputCollateralValue = value;
-    this.inputCollateralValueLegal =
-      checkNumber(value) &&
-      Number.parseFloat(value) > 0 &&
-      utils.parseUnits(value, this.selectedCollateralToken.decimals).lte(this.selectedCollateralToken.balance || "0");
+
+    if (checkNumber(value)) {
+      if (Number.parseFloat(value) > 0) {
+        if (utils.parseUnits(value, this.selectedCollateralToken.decimals).lte(this.selectedCollateralToken.balance || BigNumber.from("0"))) {
+          this.inputCollateralValueLegal = true;
+          this.collateralValueErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.inputCollateralValueLegal = false;
+          this.collateralValueErrorMsg = InputErrorMsg.VALUE_OVER_ACCOUNT_BALANCE;
+        }
+      } else {
+        this.inputCollateralValueLegal = false;
+        this.collateralValueErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.inputCollateralValueLegal = false;
+      this.collateralValueErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
 
     if (!value || !this.inputLoanValue) {
       this.collateralization = 0;
@@ -166,6 +195,12 @@ export default class LoanViewModel extends BaseViewModel {
       this.selectedCollateralToken.price!,
       this.currentLoanPair.loanToken.price!
     );
+
+
+    if(this.collateralization < this.currentLoanPair.minCollateralCoverageRatio.div(BigNumber.from(10).pow(16)).toNumber()) {
+      this.inputCollateralValueLegal = false;
+      this.collateralValueErrorMsg = InputErrorMsg.COLLATERALIZATION_RATIO_TOO_LOW;
+    }
   };
 
   loan = async () => {
