@@ -9,7 +9,7 @@ import { ETHAddress } from "../services/Constants";
 import Notification from "../services/Notify";
 import { checkNumber } from "../services/InputChecker";
 import dayjs from "dayjs";
-import ErrorMsg from "../services/ErrorMsg";
+import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
 import { observable } from "mobx";
 
 interface IRecordViewModel extends IViewModel {
@@ -30,8 +30,11 @@ export default class RecordViewModel extends BaseViewModel {
   maxWithdrawCollateral?: string;
 
   @observable isRepayAmountLegal?: boolean;
+  @observable repayErrorMsg?: string;
   @observable isWithdrawCollateralAmountLegal?: boolean;
+  @observable withdrawErrorMsg?: string;
   @observable isDepositCollateralAmountLegal?: boolean;
+  @observable depositErrorMsg?: string;
 
   private _userInputRepayAmount!: string;
   private _userInputWithdrawCollateralAmount!: string;
@@ -109,22 +112,68 @@ export default class RecordViewModel extends BaseViewModel {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) - Number.parseFloat(value);
     this.newWithdrawCR = this.calcNewRatio(`${newAmount}`);
     this._userInputWithdrawCollateralAmount = value;
-    this.isWithdrawCollateralAmountLegal =
-      checkNumber(value) && Number.parseFloat(value) > 0 && Number.parseFloat(value) <= Number.parseFloat(this.maxWithdrawCollateral || "0");
+    if (checkNumber(value)) {
+      if (Number.parseFloat(value) > 0) {
+        if (Number.parseFloat(value) <= Number.parseFloat(this.maxWithdrawCollateral || "0")) {
+          this.isWithdrawCollateralAmountLegal = true;
+          this.withdrawErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.isWithdrawCollateralAmountLegal = false;
+          this.withdrawErrorMsg = InputErrorMsg.VALUE_OVER_COLLATERAL_MAXIMUM;
+        }
+      } else {
+        this.isWithdrawCollateralAmountLegal = false;
+        this.withdrawErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.isWithdrawCollateralAmountLegal = false;
+      this.withdrawErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
   };
 
   updateDepositCollateralAmount = (value: string) => {
     const newAmount = Number.parseFloat(this.record!.collateralAmount) + Number.parseFloat(value);
     this.newDepositCR = this.calcNewRatio(`${newAmount}`);
     this._userInputDepositCollateralAmount = value;
-    this.isDepositCollateralAmountLegal =
-      checkNumber(value) && Number.parseFloat(value) > 0 && Number.parseFloat(value) <= Number.parseFloat(this.maxDepositCollateral || "0");
+    if (checkNumber(value)) {
+      if (Number.parseFloat(value) > 0) {
+        if (Number.parseFloat(value) <= Number.parseFloat(this.maxDepositCollateral || "0")) {
+          this.isDepositCollateralAmountLegal = true;
+          this.depositErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.isDepositCollateralAmountLegal = false;
+          this.depositErrorMsg = InputErrorMsg.VALUE_OVER_ACCOUNT_BALANCE;
+        }
+      } else {
+        this.isDepositCollateralAmountLegal = false;
+        this.depositErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.isDepositCollateralAmountLegal = false;
+      this.depositErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
   };
 
   updateRepayAmount = (amount: string) => {
     this._userInputRepayAmount = amount;
     const maxRepayAmount = this.record!.remainingDebt;
-    this.isRepayAmountLegal = checkNumber(amount) && Number.parseFloat(amount) > 0 && Number.parseFloat(amount) <= Number.parseFloat(maxRepayAmount);
+    if (checkNumber(amount)) {
+      if (Number.parseFloat(amount) > 0) {
+        if (Number.parseFloat(amount) <= Number.parseFloat(maxRepayAmount)) {
+          this.isRepayAmountLegal = true;
+          this.repayErrorMsg = InputErrorMsg.NONE;
+        } else {
+          this.isRepayAmountLegal = false;
+          this.repayErrorMsg = InputErrorMsg.VALUE_OVER_REMAINING_DEBT;
+        }
+      } else {
+        this.isRepayAmountLegal = false;
+        this.repayErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+      }
+    } else {
+      this.isRepayAmountLegal = false;
+      this.repayErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+    }
   };
 
   withdraw = async () => {
@@ -140,7 +189,7 @@ export default class RecordViewModel extends BaseViewModel {
 
       Notification.track(tx.hash);
       await tx.wait();
-    } catch(error) {
+    } catch (error) {
       Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.withdrawing = false;
@@ -157,7 +206,7 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
-    } catch(error) {
+    } catch (error) {
       Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.repaying = false;
@@ -174,7 +223,7 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
-    } catch(error) {
+    } catch (error) {
       Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.withdrawingCollateral = false;
@@ -195,7 +244,7 @@ export default class RecordViewModel extends BaseViewModel {
       Notification.track(tx.hash);
 
       await tx.wait();
-    } catch(error) {
+    } catch (error) {
       Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
     } finally {
       this.depositingCollateral = false;
