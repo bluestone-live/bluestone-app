@@ -13,11 +13,11 @@ export class ErrorMsg {
 
 export enum InputErrorMsg {
     NONE = "",
-    VALUE_NOT_NUMBER = "Input value must be number.",
-    VALUE_LESS_THAN_ZERO = "Input number be greater than 0.",
-    VALUE_OVER_POOL_MAXIMUM = "Input value exceeds the maximum amount of pools.",
-    VALUE_OVER_COLLATERAL_MAXIMUM = "Input value exceeds the total collateral.",
-    VALUE_OVER_REMAINING_DEBT = "Input value exceeds the remaining debt.",
-    VALUE_OVER_ACCOUNT_BALANCE = "Input value exceeds the balance of account.",
+    VALUE_NOT_NUMBER = "Must be number.",
+    VALUE_LESS_THAN_ZERO = "Must be greater than 0.",
+    VALUE_OVER_POOL_MAXIMUM = "Exceeds the maximum amount of pools.",
+    VALUE_OVER_COLLATERAL_MAXIMUM = "Exceeds the total collateral.",
+    VALUE_OVER_REMAINING_DEBT = "Exceeds the remaining debt.",
+    VALUE_OVER_ACCOUNT_BALANCE = "Exceeds the balance of account.",
     COLLATERALIZATION_RATIO_TOO_LOW = "Collateralization Ratio is too low.",
 }
