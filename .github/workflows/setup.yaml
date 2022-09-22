@@ -19,7 +19,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: "12"
+          node-version: "16"
       - name: Retrieve Cached Dependencies
         # if the cache key doesn't exist, it will create one when the job completes
         id: cacheDep
@@ -42,7 +42,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: "12"
+          node-version: "16"
       - name: Retrieve Cached Dependencies
         uses: actions/cache@v2
         with:

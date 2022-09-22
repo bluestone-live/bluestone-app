@@ -17,25 +17,8 @@
     border-top-left-radius: 0.3rem;
     background-image: linear-gradient(to right, #daecf4, rgb(51, 197, 213));
 
-    &:before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -2px;
-      width: 0;
-      height: 2px;
-      background: rgb(18, 74, 146);
-      transition: all .3s;
-    }
-
     &:hover {
       cursor: pointer;
-
-      &:before {
-        width: 100%;
-        left: 0;
-        right: 0;
-      }
     }
 
     img {

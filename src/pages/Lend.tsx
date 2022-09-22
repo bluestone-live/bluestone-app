@@ -96,6 +96,7 @@ class Lend extends Component<Props, State> {
                   onButtonClick={this.onMaxClick}
                   title={i18n.t("lend_deposit_amount")}
                   isValid={vm?.inputLegal ?? true}
+                  errorMsg={vm?.inputErrorMsg}
                 />
               </div>
 
