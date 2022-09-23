@@ -6,7 +6,7 @@ import { ethers, BigNumber, Contract } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import DepositViewModel from "./viewmodels/DepositViewModel";
-import { abi as ERC20Abi } from "../contracts/ERC20.json";
+import { abi as ERC20Abi } from "../contracts/ERC20Mock.json";
 import { EventEmitter } from "events";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
 import HomeViewModel from "./viewmodels/HomeViewModel";
@@ -16,6 +16,7 @@ import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
 import RecordViewModel from "./viewmodels/RecordViewModel";
 import { WalletType } from "../core/viewmodels/Types"
+import FaucetViewModel from "./viewmodels/FaucetViewModel";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -217,6 +218,27 @@ export class ViewModelLocator extends EventEmitter {
     });
 
     return this._homeVM;
+  }
+
+  private _faucetVM?: FaucetViewModel;
+  get faucetVM() {
+    if(this._faucetVM) {
+      return this._faucetVM;
+    }
+
+    if (!this.initFinished) return undefined;
+
+    this._faucetVM = new FaucetViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      tokens: this.depositTokens,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestModel: this.interestModel,
+      locator: this,
+    });
+
+    return this._faucetVM;
   }
 
   private _lendVM?: DepositViewModel;

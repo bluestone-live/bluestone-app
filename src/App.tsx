@@ -3,7 +3,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 import { Footer, Header } from "./layouts";
-import { HistoryPage, Home, LendPage, LoanPage, RecordPage } from "./pages";
+import { Home, FaucetPage, LendPage, LoanPage, HistoryPage, RecordPage } from "./pages";
 import { Route, Router, Switch } from "react-router-dom";
 
 import { History } from "history";
@@ -28,6 +28,7 @@ export default class App extends React.Component<IApp, {}> {
           </div>
 
           <Switch>
+            <Route component={FaucetPage} path="/faucet" />
             <Route component={LendPage} path="/lend" />
             <Route component={LoanPage} path="/borrow" />
             <Route component={HistoryPage} path="/history" />

@@ -21,16 +21,24 @@ header {
     > a {
       margin-left: 16px;
       color: white;
+      .faucet {
+        text-decoration: underline;
+      }
     }
 
     &.grey {
       color: $text-color;
 
-      > a {
+      >a {
         margin-left: 16px;
         color: $text-color;
       }
+
+      .faucet {
+        text-decoration: underline;
+      }
     }
+
 
     @media only screen and (max-width: 600px) {
       display: none;

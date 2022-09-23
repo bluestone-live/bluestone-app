@@ -54,7 +54,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: #f4fcff;
 
     img {
       width: 20px;
@@ -63,11 +63,6 @@
 
       &:hover {
         cursor: pointer;
-        // -webkit-transform: translateY(-3px);
-        // -ms-transform: translateY(-3px);
-        // transform: translateY(-3px);
-        // -webkit-transition: all .5s ease-out;
-        // transition: all .5s ease-out;
       }
     }
 
