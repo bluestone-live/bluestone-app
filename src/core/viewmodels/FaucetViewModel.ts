@@ -5,7 +5,7 @@ import BaseViewModel from "./BaseViewModel";
 import Notification from "../services/Notify";
 import { checkNumber } from "../services/InputChecker";
 import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
-import { IViewModel } from "./Types";
+import { IToken, IViewModel } from "./Types";
 import { ViewModelLocator } from "../ViewModelLocator";
 
 interface IFaucetViewModel extends IViewModel {
@@ -73,6 +73,33 @@ export default class FaucetViewModel extends BaseViewModel {
         } else {
             this.inputCollateralCoinLegal = false;
             this.collateralCoinErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+        }
+    };
+
+    addTokenToWallet = async (tokenName: string) => {
+        let tokenDetail: IToken | undefined;
+        for (let index in this.locator.tokens) {
+            if (this.locator.tokens[index].name === tokenName) {
+                tokenDetail = this.locator.tokens[index];
+                break;
+            }
+        }
+        if (!tokenDetail) { return };
+        try {
+            await (window as any).ethereum
+                .request({
+                    method: 'wallet_watchAsset',
+                    params: {
+                        type: 'ERC20',
+                        options: {
+                            address: tokenDetail.address,
+                            symbol: tokenDetail.name,
+                            decimals: tokenDetail.decimals,
+                        },
+                    },
+                });
+        } catch (error) {
+            console.error(error)
         }
     };
 

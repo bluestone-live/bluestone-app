@@ -3,7 +3,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 import { Footer, Header } from "./layouts";
-import { Home, FaucetPage, LendPage, LoanPage, HistoryPage, RecordPage } from "./pages";
+import { FaucetPage, HistoryPage, Home, LendPage, LoanPage, RecordPage } from "./pages";
 import { Route, Router, Switch } from "react-router-dom";
 
 import { History } from "history";

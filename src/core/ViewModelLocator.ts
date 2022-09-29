@@ -23,7 +23,7 @@ export class ViewModelLocator extends EventEmitter {
 
   infuraId: string;
   walletconnectProvider!: WalletConnectProvider;
-  private provider!: ethers.providers.Web3Provider;
+  provider!: ethers.providers.Web3Provider;
   private signer!: ethers.providers.JsonRpcSigner;
   private initialized = false;
 

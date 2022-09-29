@@ -40,13 +40,18 @@ class Faucet extends Component<IProps, IState> {
             case "goerli":
                 return "https://goerlifaucet.com/";
             case "kovan":
-                return "https://faucets.chain.link/";
+                return "https://gitter.im/kovan-testnet/faucet/";
             case "rinkeby":
                 return "https://rinkebyfaucet.com/";
             default:
                 linkElem.onclick = () => { return false };
                 break;
         }
+    }
+
+    addToWallet = async (tokenName: string) => {
+        const {vm} = this.state;
+        await vm?.addTokenToWallet(tokenName);
     }
 
     onMaxClickStable = () => {
@@ -77,7 +82,7 @@ class Faucet extends Component<IProps, IState> {
                     <div className="testnet-token">
                         <div>
                             <h2>{i18n.t("faucet_sgc_label")}</h2>
-                            <img src={sgcPath} alt="SGC icon"></img>
+                            <img src={sgcPath} onClick={() => this.addToWallet("sgc")} alt="SGC icon"></img>
                             <div className="input-area">
                                 <NumBox
                                     title={i18n.t("faucet_sgc_amount")}
@@ -99,7 +104,7 @@ class Faucet extends Component<IProps, IState> {
                         </div>
                         <div>
                             <h2>{i18n.t("faucet_xbtc_label")}</h2>
-                            <img src={xbtcPath} alt="xBTC icon"></img>
+                            <img src={xbtcPath} onClick={() => this.addToWallet("xbtc")} alt="xBTC icon"></img>
                             <div className="input-area">
                                 <NumBox
                                     title={i18n.t("faucet_xbtc_amount")}
