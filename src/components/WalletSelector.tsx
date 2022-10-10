@@ -5,13 +5,17 @@ import { shortenAddress } from "../core/services/Account";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import Notification from "../core/services/Notify";
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { inject, observer } from "mobx-react";
 
+import Disconnect from "../assets/wallet/disconnect.svg";
+import MetaMask from "../assets/wallet/metamask.svg";
+import WalletConnect from "../assets/wallet/walletconnect.svg";
+
 const IconPath = {
-    "Disconnect": require("../assets/wallet/disconnect.svg"),
-    "MetaMask": require("../assets/wallet/metamask.svg"),
-    "WalletConnect": require("../assets/wallet/walletconnect.svg")
+    "Disconnect": Disconnect,
+    "MetaMask": MetaMask,
+    "WalletConnect": WalletConnect
 }
 
 interface IProps {

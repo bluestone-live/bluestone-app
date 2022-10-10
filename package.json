@@ -32,10 +32,10 @@
     "react-loader-spinner": "^3.1.14",
     "react-loading-skeleton": "^2.1.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.1",
     "react-select": "^3.1.0",
     "social-logos": "^2.1.2",
-    "typescript": "^4.0.2",
+    "typescript": "^4.7.4",
     "web3": "^1.7.5"
   },
   "devDependencies": {
