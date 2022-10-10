@@ -259,6 +259,7 @@
     "faucet_sgc_amount": "SGC 数量",
     "faucet_xbtc_amount": "xBTC 数量",
     "faucet_mint": "铸造",
+    "faucet_add_to_wallet": "添加到钱包",
     "loan_title": "借款",
     "lend_title": "存款",
     "record_type_deposit": "存款",

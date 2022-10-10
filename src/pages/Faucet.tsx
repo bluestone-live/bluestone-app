@@ -50,7 +50,7 @@ class Faucet extends Component<IProps, IState> {
     }
 
     addToWallet = async (tokenName: string) => {
-        const {vm} = this.state;
+        const { vm } = this.state;
         await vm?.addTokenToWallet(tokenName);
     }
 
@@ -82,7 +82,7 @@ class Faucet extends Component<IProps, IState> {
                     <div className="testnet-token">
                         <div>
                             <h2>{i18n.t("faucet_sgc_label")}</h2>
-                            <img src={sgcPath} onClick={() => this.addToWallet("sgc")} alt="SGC icon"></img>
+                            <img src={sgcPath} alt="SGC icon"></img>
                             <div className="input-area">
                                 <NumBox
                                     title={i18n.t("faucet_sgc_amount")}
@@ -100,11 +100,15 @@ class Faucet extends Component<IProps, IState> {
                                         {i18n.t("faucet_mint")}
                                     </Button>
                                 )}
+                                <div className="inner-space" />
+                                <Button onClick={() => this.addToWallet("sgc")}>
+                                    {i18n.t("faucet_add_to_wallet")}
+                                </Button>
                             </div>
                         </div>
                         <div>
                             <h2>{i18n.t("faucet_xbtc_label")}</h2>
-                            <img src={xbtcPath} onClick={() => this.addToWallet("xbtc")} alt="xBTC icon"></img>
+                            <img src={xbtcPath} alt="xBTC icon"></img>
                             <div className="input-area">
                                 <NumBox
                                     title={i18n.t("faucet_xbtc_amount")}
@@ -122,6 +126,10 @@ class Faucet extends Component<IProps, IState> {
                                         {i18n.t("faucet_mint")}
                                     </Button>
                                 )}
+                                <div className="inner-space" />
+                                <Button onClick={() => this.addToWallet("xbtc")}>
+                                    {i18n.t("faucet_add_to_wallet")}
+                                </Button>
                             </div>
                         </div>
                     </div>

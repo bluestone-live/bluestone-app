@@ -259,6 +259,7 @@
     "faucet_sgc_amount": "SGC Amount",
     "faucet_xbtc_amount": "xBTC Amount",
     "faucet_mint": "Mint",
+    "faucet_add_to_wallet": "Add To Wallet",
     "loan_title": "Borrow",
     "lend_title": "Lend",
     "record_type_deposit": "Lend",
