@@ -1,6 +1,8 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
-export default () => {
+const loading = () => {
   return <Skeleton height={16} width={64} />;
 };
+
+export default loading;
