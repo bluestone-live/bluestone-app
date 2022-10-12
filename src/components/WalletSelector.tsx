@@ -13,9 +13,9 @@ import MetaMask from "../assets/wallet/metamask.svg";
 import WalletConnect from "../assets/wallet/walletconnect.svg";
 
 const IconPath = {
-    "Disconnect": Disconnect,
-    "MetaMask": MetaMask,
-    "WalletConnect": WalletConnect
+    Disconnect,
+    MetaMask,
+    WalletConnect
 }
 
 interface IProps {
