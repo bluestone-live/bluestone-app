@@ -15,6 +15,7 @@ export enum InputErrorMsg {
     NONE = "",
     VALUE_NOT_NUMBER = "Must be number.",
     VALUE_LESS_THAN_ZERO = "Must be greater than 0.",
+    VALUE_OVER_MAXIMUM = "Exceeds the maximum amount.",
     VALUE_OVER_POOL_MAXIMUM = "Exceeds the maximum amount of pools.",
     VALUE_OVER_COLLATERAL_MAXIMUM = "Exceeds the total collateral.",
     VALUE_OVER_REMAINING_DEBT = "Exceeds the remaining debt.",
