@@ -5,6 +5,7 @@ import { inject, observer } from "mobx-react";
 
 import Button from "../components/Button";
 import Calendar from "../components/Calendar";
+import DateSelector from "../components/DateSelector";
 import LendNavMobile from "../components/LendNavMobile";
 import Loading from "../components/Loading";
 import LoanViewModel from "../core/viewmodels/LoanViewModel";
@@ -70,7 +71,7 @@ class Loan extends Component<IProps, State> {
         <h1 className="legend">{i18n.t("loan_title")}</h1>
 
         <div className="content">
-          <Calendar
+          {/* <Calendar
             months={1.33}
             onPreview={vm?.peekTerm}
             maxDate={vm?.maxDate}
@@ -78,6 +79,9 @@ class Loan extends Component<IProps, State> {
             onSelect={vm?.selectTerm}
             onMouseOut={vm?.restoreTerm}
             type="Borrow"
+          /> */}
+          <DateSelector
+            onSelect={vm?.selectTerm}
           />
 
           <div className="form">
