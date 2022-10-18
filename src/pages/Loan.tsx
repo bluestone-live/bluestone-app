@@ -1,5 +1,5 @@
 import "./Lend.scss";
-import { BigNumber, utils } from "ethers";
+import { BigNumber, ethers, utils } from "ethers";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
@@ -8,6 +8,7 @@ import Calendar from "../components/Calendar";
 import DateSelector from "../components/DateSelector";
 import LendNavMobile from "../components/LendNavMobile";
 import Loading from "../components/Loading";
+import DateLoading from "../components/DateLoading";
 import LoanViewModel from "../core/viewmodels/LoanViewModel";
 import NumBox from "../components/NumBox";
 import Skeleton from "react-loading-skeleton";
@@ -15,6 +16,7 @@ import TokenSelector from "../components/TokenSelector";
 import { ViewModelLocator } from "../core/ViewModelLocator";
 import dayjs from "dayjs";
 import i18n from "../i18n";
+import { InterestRateModelType } from "../core/viewmodels/Types";
 
 interface IProps {
   locator: ViewModelLocator;
@@ -59,6 +61,33 @@ class Loan extends Component<IProps, State> {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
     const sending = vm?.sending;
+    const interestRateType = vm?.interestRateModelType;
+    let dateComponent;
+    if (!loading) {
+      if (interestRateType === InterestRateModelType.Linear) {
+        dateComponent = <Calendar
+          months={1.33}
+          onPreview={vm?.peekTerm}
+          maxDate={vm?.maxDate}
+          minDate={vm?.minDate}
+          onSelect={vm?.selectTerm}
+          onMouseOut={vm?.restoreTerm}
+          type="Borrow"
+        />;
+      } else {
+        const interestParams = JSON.parse(JSON.stringify(vm?.loanToken.interestParams));
+        const termStringList = interestParams[0].map((term: BigNumber) => utils.formatUnits(term, 0));
+        const interestRateStringList = interestParams[1].map((interestRate: BigNumber) => parseFloat(utils.formatEther(interestRate)) * 100);
+        dateComponent = <DateSelector
+          termList={termStringList}
+          interestRateList={interestRateStringList}
+          onPreview={vm?.peekTerm}
+          maxDate={vm?.maxDate}
+          minDate={vm?.minDate}
+          onSelect={vm?.selectTerm}
+        />;
+      }
+    }
     const buttonDisabled =
       (vm && vm.term && vm.selectedPool && vm.inputLoanValue && vm.inputCollateralValue ? false : true) ||
       vm?.sending ||
@@ -71,19 +100,24 @@ class Loan extends Component<IProps, State> {
         <h1 className="legend">{i18n.t("loan_title")}</h1>
 
         <div className="content">
-          {/* <Calendar
-            months={1.33}
-            onPreview={vm?.peekTerm}
-            maxDate={vm?.maxDate}
-            minDate={vm?.minDate}
-            onSelect={vm?.selectTerm}
-            onMouseOut={vm?.restoreTerm}
-            type="Borrow"
-          /> */}
-          <DateSelector
-            onSelect={vm?.selectTerm}
-          />
-
+          {
+            // loading ?
+            //   <Calendar
+            //     months={1.33}
+            //     onPreview={vm?.peekTerm}
+            //     maxDate={vm?.maxDate}
+            //     minDate={vm?.minDate}
+            //     onSelect={vm?.selectTerm}
+            //     onMouseOut={vm?.restoreTerm}
+            //     type="Borrow"
+            //   /> :
+            //   <DateSelector
+            //     maxDate={vm?.maxDate}
+            //     minDate={vm?.minDate}
+            //     onSelect={vm?.selectTerm}
+            //   />
+            loading ? <DateLoading /> : dateComponent
+          }
           <div className="form">
             <div className="items">
               <div className="item">

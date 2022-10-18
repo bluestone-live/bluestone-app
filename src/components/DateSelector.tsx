@@ -2,39 +2,43 @@ import { Component } from "react";
 import "./DateSelector.scss";
 import dayjs from "dayjs";
 import sgc from "../assets/crypto/sgc.svg"
+import graySgc from "../assets/components/gray_sgc.svg";
 
 interface IProps {
     // recommends?: { days: number; apr: number | string }[];
-    months?: number;
+    // months?: number;
+    termList: string[];
+    interestRateList: string[];
     maxDate?: Date;
     minDate?: Date;
+    onPreview?: (date: Date) => void;
     onSelect?: (date: Date) => void;
 }
 
 class DateSelector extends Component<IProps, {}> {
     state = {
-        termList: [7, 30, 60, 180, 360],
-        interestRateList: [0.02, 0.05, 0.08, 0.12, 0.15],
         term: undefined,
         interestRate: undefined,
     };
 
     clickListItem = (index: string) => {
         this.setState({
-            term: this.state.termList[index],
-            interestRate: this.state.interestRateList[index]
+            term: this.props.termList[index],
+            interestRate: this.props.interestRateList[index]
         });
-        const future = dayjs().add(Number(this.state.termList[index] - 1), "day").toDate();
+        const future = dayjs().add(Number(this.props.termList[index] - 1), "day").toDate();
         this.props.onSelect?.(future);
+        this.props.onPreview?.(future);
     }
 
     render() {
-        const { termList, interestRateList, term, interestRate } = this.state;
+        const { termList, interestRateList } = this.props;
+        const { term, interestRate } = this.state;
         let parameters = [] as any;
         for (let index in termList) {
             parameters.push(
                 <article className="interest_term_board__profile" key={index} onClick={() => this.clickListItem(index)}>
-                    <img src={sgc} alt="icon" className="interest_term_board__picture" />
+                    <img src={term === termList[index] ? sgc : graySgc} alt="icon" className="interest_term_board__picture" />
                     <span className="interest_term_board__name">{termList[index]}<span>Days</span></span>
                     <span className="interest_term_board__value">{interestRateList[index]}<span>%</span></span>
                 </article>
