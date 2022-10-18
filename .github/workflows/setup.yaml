@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: yarn-${{ hashFiles('package-lock.json') }}
+          key: yarn-${{ hashFiles('yarn.lock') }}
       - name: Install Dependencies
         if: steps.cacheDep.outputs.cache-hit != 'true'
         run: yarn install
@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: yarn-${{ hashFiles('package-lock.json') }}
+          key: yarn-${{ hashFiles('yarn.lock') }}
       - name: Retrieve Cached Build
         # if the cache key doesn't exist, it will create one when the job completes
         id: cacheBuild
