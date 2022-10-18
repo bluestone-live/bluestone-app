@@ -1,6 +1,6 @@
 import "./Lend.scss";
-import { BigNumber, ethers, utils } from "ethers";
-import React, { Component } from "react";
+import { BigNumber, utils } from "ethers";
+import { Component } from "react";
 import { inject, observer } from "mobx-react";
 
 import Button from "../components/Button";
@@ -101,21 +101,6 @@ class Loan extends Component<IProps, State> {
 
         <div className="content">
           {
-            // loading ?
-            //   <Calendar
-            //     months={1.33}
-            //     onPreview={vm?.peekTerm}
-            //     maxDate={vm?.maxDate}
-            //     minDate={vm?.minDate}
-            //     onSelect={vm?.selectTerm}
-            //     onMouseOut={vm?.restoreTerm}
-            //     type="Borrow"
-            //   /> :
-            //   <DateSelector
-            //     maxDate={vm?.maxDate}
-            //     minDate={vm?.minDate}
-            //     onSelect={vm?.selectTerm}
-            //   />
             loading ? <DateLoading /> : dateComponent
           }
           <div className="form">
