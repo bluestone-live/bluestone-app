@@ -1,7 +1,7 @@
-import { BigNumber, utils } from "ethers";
+import { BigNumber, ethers, utils } from "ethers";
 
 import BaseViewModel from "./BaseViewModel";
-import { IToken } from "./Types";
+import { IMappingInterestModelParameters, InterestRateModelType, IToken } from "./Types";
 import { observable } from "mobx";
 
 interface PoolOverview {
@@ -19,6 +19,7 @@ export default class HomeViewModel extends BaseViewModel {
   @observable pools!: PoolOverview[];
 
   async refresh() {
+    const interestRateModelType = this.locator.interestRateModelType;
     this.pools = await Promise.all(
       this.tokens.map(async (t) => {
         const pools = await this.tokenPool.getPools(t.address);
@@ -26,6 +27,20 @@ export default class HomeViewModel extends BaseViewModel {
         const lendingAmount = pools.reduce((p, c) => p.add(c.depositAmount), BigNumber.from(0));
 
         const bestLending = pools.sort((p1, p2) => p2.lendAPR - p1.lendAPR);
+        let lowLoanApr, highLoanApr;
+        if (interestRateModelType === InterestRateModelType.Linear) {
+          lowLoanApr = (pools[pools.length - 1].loanAPR * 100).toFixed(2);
+          highLoanApr = (pools[0].loanAPR * 100).toFixed(2);
+        }
+        else if (interestRateModelType === InterestRateModelType.Mapping) {
+          const params = (await this.locator.interestRateModel.getLoanParameters(t.address)) as IMappingInterestModelParameters;
+
+          // const availableTerms = params.termList.map((i) => i.toNumber());
+          const interests = params.interestRateList.map((i) => ethers.utils.formatUnits(i, 18));
+
+          lowLoanApr = (parseFloat(interests[0]) * 100).toFixed(2);
+          highLoanApr = (parseFloat(interests[interests.length-1]) * 100).toFixed(2);
+        }
 
         return {
           token: t,
@@ -34,8 +49,8 @@ export default class HomeViewModel extends BaseViewModel {
           lowestLendingApr: (bestLending[bestLending.length - 1]?.lendAPR * 100).toFixed(2),
           bestLendingApr: (bestLending[0]?.lendAPR * 100).toFixed(2),
           bestLendingTerm: bestLending[0]?.term,
-          lowLoanApr: (pools[pools.length - 1].loanAPR * 100).toFixed(2),
-          highLoanApr: (pools[0].loanAPR * 100).toFixed(2),
+          lowLoanApr,
+          highLoanApr,
         } as PoolOverview;
       })
     );
