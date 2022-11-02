@@ -12,6 +12,7 @@ export interface IToken {
   interestParams?: ILinearInterestModelParameters | IMappingInterestRates;
   pools?: IPool[];
   price?: BigNumber;
+  minCollateralCoverageRatio?: BigNumber;
 }
 
 export enum WalletType {

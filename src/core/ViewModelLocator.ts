@@ -170,6 +170,7 @@ export class ViewModelLocator extends EventEmitter {
         token.decimals = await token.contract?.decimals();
         token.interestParams = this.interestRateModelType === InterestRateModelType.Linear ? await this.interestRateModel.getLoanParameters(token.address) : await this.interestRateModel.getAllRates(token.address);
         token.price = await this.protocol.getTokenPrice(token.address);
+        token.minCollateralCoverageRatio = await this.initMinCollateralCoverageRatio(token.address);
       })
     );
 
@@ -210,6 +211,17 @@ export class ViewModelLocator extends EventEmitter {
 
   private async initAccount() {
     this.balance = await this.provider.getBalance(this.account);
+  }
+
+  private async initMinCollateralCoverageRatio(tokenAddress: string) {
+    const filter = await this.protocol.filters.SetLoanAndCollateralTokenPairSucceed();
+    const loanEvents = await this.protocol.queryFilter(filter);
+    for (let i = loanEvents.length - 1; i >= 0; i--) {
+        if (loanEvents[i]?.args!.collateralTokenAddress.toLowerCase() === tokenAddress.toLowerCase()) {
+            return loanEvents[i]?.args!.minCollateralCoverageRatio;
+        }
+    };
+    return BigNumber.from("0");
   }
 
   private _homeVM?: HomeViewModel;

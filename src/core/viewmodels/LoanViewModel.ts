@@ -93,6 +93,8 @@ export default class LoanViewModel extends BaseViewModel {
       max = max.sub(gasFee);
     }
 
+    this.currentLoanPair.minCollateralCoverageRatio = this.selectedCollateralToken.minCollateralCoverageRatio!;
+
     this.maxCollateralAmount = utils.formatUnits(max, this.selectedCollateralToken.decimals!);
   };
 
