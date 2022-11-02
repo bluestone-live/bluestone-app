@@ -9,7 +9,7 @@ export interface IToken {
   allowance?: BigNumber;
   decimals?: number;
   balance?: BigNumber;
-  interestParams?: ILinearInterestModelParameters | IMappingInterestModelParameters;
+  interestParams?: ILinearInterestModelParameters | IMappingInterestRates;
   pools?: IPool[];
   price?: BigNumber;
 }
@@ -41,7 +41,7 @@ export interface ILinearInterestModelParameters {
   loanInterestRateLowerBound: BigNumber;
 }
 
-export interface IMappingInterestModelParameters {
+export interface IMappingInterestRates {
   termList: BigNumber[],
   interestRateList: BigNumber[],
 }

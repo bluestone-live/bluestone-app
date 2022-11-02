@@ -1,5 +1,5 @@
 import { BigNumber, Contract, ethers } from "ethers";
-import { IBasePool, IDistributionFeeRatios, ILinearInterestModelParameters, IMappingInterestModelParameters, InterestRateModelType, IPool } from "../viewmodels/Types";
+import { IBasePool, IDistributionFeeRatios, ILinearInterestModelParameters, IMappingInterestRates, InterestRateModelType, IPool } from "../viewmodels/Types";
 
 interface IConstruct {
   protocol: Contract;
@@ -29,7 +29,7 @@ export default class TokenPool {
     let interests: string[];
     let availableTerms;
     if (this.interestRateModelType === InterestRateModelType.Linear) {
-      const params = (await this.interestRateModel.getLoanParameters(tokenAddress)) as ILinearInterestModelParameters;
+      const params: ILinearInterestModelParameters = await this.interestRateModel.getLoanParameters(tokenAddress);
 
       interests = this.getLoanInterestRates(
         params.loanInterestRateLowerBound,
@@ -38,10 +38,10 @@ export default class TokenPool {
       ).map((i) => ethers.utils.formatUnits(i, 18));
       interests.unshift("0"); // padding
     } else if (this.interestRateModelType === InterestRateModelType.Mapping) {
-      const params = (await this.interestRateModel.getLoanParameters(tokenAddress)) as IMappingInterestModelParameters;
+      const interestDetail: IMappingInterestRates = await this.interestRateModel.getAllRates(tokenAddress);
 
-      availableTerms = params.termList.map((i) => i.toNumber());
-      interests = params.interestRateList.map((i) => ethers.utils.formatUnits(i, 18));
+      availableTerms = interestDetail.termList.map((i) => i.toNumber());
+      interests = interestDetail.interestRateList.map((i) => ethers.utils.formatUnits(i, 18));
     }
 
     const computedPools = pools.map((pool, index) => {

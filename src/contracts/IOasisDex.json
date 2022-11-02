@@ -99,7 +99,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"buyEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"buy_gem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"pay_gem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"pay_amt\",\"type\":\"uint256\"}],\"name\":\"getBuyAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pay_gem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"buy_gem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"buy_amt\",\"type\":\"uint256\"}],\"name\":\"getPayAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isClosed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"matchingEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai. https://oasis.app/ https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interface/IOasisDex.sol\":\"IOasisDex\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interface/IOasisDex.sol\":{\"keccak256\":\"0x11cc00dec427df64564bbfdf419f0b66fca1fb806d0fe3d17a05677e8f9bccf8\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://f994d32061a03420f3d1f4386edd92a8ae38fc86de57a474a6f43f15be8cb04f\",\"dweb:/ipfs/QmQRjezVzw2yXo1KZUAXzYkXhhHtQCigc3ZoJcjKcAexp7\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"buyEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"buy_gem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"pay_gem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"pay_amt\",\"type\":\"uint256\"}],\"name\":\"getBuyAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pay_gem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"buy_gem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"buy_amt\",\"type\":\"uint256\"}],\"name\":\"getPayAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isClosed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"matchingEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai. https://oasis.app/ https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interface/IOasisDex.sol\":\"IOasisDex\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interface/IOasisDex.sol\":{\"keccak256\":\"0xbbf508ae24b9a33abdb69654a89aab110070d733e1f9c454a51e88255fdc572f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://24a6ed25870532570c7c73fe76641cc1e388b5d95182e53eef633c23e9cc04fa\",\"dweb:/ipfs/Qmee2B12BhU22ZG7q5ATnDFHSQeee7itgVv5hB4Jd1NmgE\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -107,21 +107,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\n\n/// Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai.\n///\n/// https://oasis.app/\n/// https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code\ninterface IOasisDex {\n    function isClosed() external view returns (bool);\n\n    function buyEnabled() external view returns (bool);\n\n    function matchingEnabled() external view returns (bool);\n\n    function getBuyAmount(\n        address buy_gem,\n        address pay_gem,\n        uint256 pay_amt\n    ) external view returns (uint256);\n\n    function getPayAmount(\n        address pay_gem,\n        address buy_gem,\n        uint256 buy_amt\n    ) external view returns (uint256);\n}\n",
+  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\n/// Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai.\n///\n/// https://oasis.app/\n/// https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code\ninterface IOasisDex {\n    function isClosed() external view returns (bool);\n\n    function buyEnabled() external view returns (bool);\n\n    function matchingEnabled() external view returns (bool);\n\n    function getBuyAmount(\n        address buy_gem,\n        address pay_gem,\n        uint256 pay_amt\n    ) external view returns (uint256);\n\n    function getPayAmount(\n        address pay_gem,\n        address buy_gem,\n        uint256 buy_amt\n    ) external view returns (uint256);\n}\n",
   "sourcePath": "/Users/liyangfan/Projects/WorkSpace/bluestone/contracts/common/interface/IOasisDex.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/interface/IOasisDex.sol",
     "exportedSymbols": {
       "IOasisDex": [
-        2520
+        2246
       ]
     },
-    "id": 2521,
+    "id": 2247,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2481,
+        "id": 2207,
         "literals": [
           "solidity",
           "^",
@@ -137,48 +137,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2482,
+          "id": 2208,
           "nodeType": "StructuredDocumentation",
-          "src": "65:274:15",
+          "src": "64:274:15",
           "text": "Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai.\n https://oasis.app/\n https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code"
         },
         "fullyImplemented": false,
-        "id": 2520,
+        "id": 2246,
         "linearizedBaseContracts": [
-          2520
+          2246
         ],
         "name": "IOasisDex",
-        "nameLocation": "349:9:15",
+        "nameLocation": "348:9:15",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "c2b6b58c",
-            "id": 2487,
+            "id": 2213,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isClosed",
-            "nameLocation": "374:8:15",
+            "nameLocation": "373:8:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2483,
+              "id": 2209,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "382:2:15"
+              "src": "381:2:15"
             },
             "returnParameters": {
-              "id": 2486,
+              "id": 2212,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2485,
+                  "id": 2211,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2487,
-                  "src": "408:4:15",
+                  "scope": 2213,
+                  "src": "407:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -186,10 +186,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2484,
+                    "id": 2210,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "408:4:15",
+                    "src": "407:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -198,42 +198,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "407:6:15"
+              "src": "406:6:15"
             },
-            "scope": 2520,
-            "src": "365:49:15",
+            "scope": 2246,
+            "src": "364:49:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "f582d293",
-            "id": 2492,
+            "id": 2218,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "buyEnabled",
-            "nameLocation": "429:10:15",
+            "nameLocation": "428:10:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2488,
+              "id": 2214,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "439:2:15"
+              "src": "438:2:15"
             },
             "returnParameters": {
-              "id": 2491,
+              "id": 2217,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2490,
+                  "id": 2216,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2492,
-                  "src": "465:4:15",
+                  "scope": 2218,
+                  "src": "464:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -241,10 +241,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2489,
+                    "id": 2215,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "465:4:15",
+                    "src": "464:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -253,42 +253,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "464:6:15"
+              "src": "463:6:15"
             },
-            "scope": 2520,
-            "src": "420:51:15",
+            "scope": 2246,
+            "src": "419:51:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "01492a0b",
-            "id": 2497,
+            "id": 2223,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "matchingEnabled",
-            "nameLocation": "486:15:15",
+            "nameLocation": "485:15:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2493,
+              "id": 2219,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "501:2:15"
+              "src": "500:2:15"
             },
             "returnParameters": {
-              "id": 2496,
+              "id": 2222,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2495,
+                  "id": 2221,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2497,
-                  "src": "527:4:15",
+                  "scope": 2223,
+                  "src": "526:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -296,10 +296,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2494,
+                    "id": 2220,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "527:4:15",
+                    "src": "526:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -308,36 +308,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "526:6:15"
+              "src": "525:6:15"
             },
-            "scope": 2520,
-            "src": "477:56:15",
+            "scope": 2246,
+            "src": "476:56:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "144a2752",
-            "id": 2508,
+            "id": 2234,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getBuyAmount",
-            "nameLocation": "548:12:15",
+            "nameLocation": "547:12:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2504,
+              "id": 2230,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2499,
+                  "id": 2225,
                   "mutability": "mutable",
                   "name": "buy_gem",
-                  "nameLocation": "578:7:15",
+                  "nameLocation": "577:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "570:15:15",
+                  "scope": 2234,
+                  "src": "569:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -345,10 +345,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2498,
+                    "id": 2224,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "570:7:15",
+                    "src": "569:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -359,13 +359,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2501,
+                  "id": 2227,
                   "mutability": "mutable",
                   "name": "pay_gem",
-                  "nameLocation": "603:7:15",
+                  "nameLocation": "602:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "595:15:15",
+                  "scope": 2234,
+                  "src": "594:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -373,10 +373,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2500,
+                    "id": 2226,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "595:7:15",
+                    "src": "594:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -387,13 +387,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2503,
+                  "id": 2229,
                   "mutability": "mutable",
                   "name": "pay_amt",
-                  "nameLocation": "628:7:15",
+                  "nameLocation": "627:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "620:15:15",
+                  "scope": 2234,
+                  "src": "619:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -401,10 +401,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2502,
+                    "id": 2228,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "620:7:15",
+                    "src": "619:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -413,21 +413,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "560:81:15"
+              "src": "559:81:15"
             },
             "returnParameters": {
-              "id": 2507,
+              "id": 2233,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2506,
+                  "id": 2232,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "665:7:15",
+                  "scope": 2234,
+                  "src": "664:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -435,10 +435,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2505,
+                    "id": 2231,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "665:7:15",
+                    "src": "664:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -447,36 +447,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "664:9:15"
+              "src": "663:9:15"
             },
-            "scope": 2520,
-            "src": "539:135:15",
+            "scope": 2246,
+            "src": "538:135:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "ff1fd974",
-            "id": 2519,
+            "id": 2245,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPayAmount",
-            "nameLocation": "689:12:15",
+            "nameLocation": "688:12:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2515,
+              "id": 2241,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2510,
+                  "id": 2236,
                   "mutability": "mutable",
                   "name": "pay_gem",
-                  "nameLocation": "719:7:15",
+                  "nameLocation": "718:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "711:15:15",
+                  "scope": 2245,
+                  "src": "710:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -484,10 +484,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2509,
+                    "id": 2235,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "711:7:15",
+                    "src": "710:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -498,13 +498,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2512,
+                  "id": 2238,
                   "mutability": "mutable",
                   "name": "buy_gem",
-                  "nameLocation": "744:7:15",
+                  "nameLocation": "743:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "736:15:15",
+                  "scope": 2245,
+                  "src": "735:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -512,10 +512,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2511,
+                    "id": 2237,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "736:7:15",
+                    "src": "735:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -526,13 +526,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2514,
+                  "id": 2240,
                   "mutability": "mutable",
                   "name": "buy_amt",
-                  "nameLocation": "769:7:15",
+                  "nameLocation": "768:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "761:15:15",
+                  "scope": 2245,
+                  "src": "760:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -540,10 +540,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2513,
+                    "id": 2239,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "761:7:15",
+                    "src": "760:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -552,21 +552,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "701:81:15"
+              "src": "700:81:15"
             },
             "returnParameters": {
-              "id": 2518,
+              "id": 2244,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2517,
+                  "id": 2243,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "806:7:15",
+                  "scope": 2245,
+                  "src": "805:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -574,10 +574,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2516,
+                    "id": 2242,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "806:7:15",
+                    "src": "805:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -586,35 +586,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "805:9:15"
+              "src": "804:9:15"
             },
-            "scope": 2520,
-            "src": "680:135:15",
+            "scope": 2246,
+            "src": "679:135:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2521,
-        "src": "339:478:15",
+        "scope": 2247,
+        "src": "338:478:15",
         "usedErrors": []
       }
     ],
-    "src": "39:779:15"
+    "src": "39:778:15"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/common/interface/IOasisDex.sol",
     "exportedSymbols": {
       "IOasisDex": [
-        2520
+        2246
       ]
     },
-    "id": 2521,
+    "id": 2247,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2481,
+        "id": 2207,
         "literals": [
           "solidity",
           "^",
@@ -630,48 +630,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2482,
+          "id": 2208,
           "nodeType": "StructuredDocumentation",
-          "src": "65:274:15",
+          "src": "64:274:15",
           "text": "Oasis is a decentralized application that runs on the Ethereum blockchain. Anyone can use Oasis to trade tokens, borrow against them, and earn savings using Dai.\n https://oasis.app/\n https://etherscan.io/address/0x39755357759ce0d7f32dc8dc45414cca409ae24e#code"
         },
         "fullyImplemented": false,
-        "id": 2520,
+        "id": 2246,
         "linearizedBaseContracts": [
-          2520
+          2246
         ],
         "name": "IOasisDex",
-        "nameLocation": "349:9:15",
+        "nameLocation": "348:9:15",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "c2b6b58c",
-            "id": 2487,
+            "id": 2213,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isClosed",
-            "nameLocation": "374:8:15",
+            "nameLocation": "373:8:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2483,
+              "id": 2209,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "382:2:15"
+              "src": "381:2:15"
             },
             "returnParameters": {
-              "id": 2486,
+              "id": 2212,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2485,
+                  "id": 2211,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2487,
-                  "src": "408:4:15",
+                  "scope": 2213,
+                  "src": "407:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -679,10 +679,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2484,
+                    "id": 2210,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "408:4:15",
+                    "src": "407:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -691,42 +691,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "407:6:15"
+              "src": "406:6:15"
             },
-            "scope": 2520,
-            "src": "365:49:15",
+            "scope": 2246,
+            "src": "364:49:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "f582d293",
-            "id": 2492,
+            "id": 2218,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "buyEnabled",
-            "nameLocation": "429:10:15",
+            "nameLocation": "428:10:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2488,
+              "id": 2214,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "439:2:15"
+              "src": "438:2:15"
             },
             "returnParameters": {
-              "id": 2491,
+              "id": 2217,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2490,
+                  "id": 2216,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2492,
-                  "src": "465:4:15",
+                  "scope": 2218,
+                  "src": "464:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -734,10 +734,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2489,
+                    "id": 2215,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "465:4:15",
+                    "src": "464:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -746,42 +746,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "464:6:15"
+              "src": "463:6:15"
             },
-            "scope": 2520,
-            "src": "420:51:15",
+            "scope": 2246,
+            "src": "419:51:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "01492a0b",
-            "id": 2497,
+            "id": 2223,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "matchingEnabled",
-            "nameLocation": "486:15:15",
+            "nameLocation": "485:15:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2493,
+              "id": 2219,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "501:2:15"
+              "src": "500:2:15"
             },
             "returnParameters": {
-              "id": 2496,
+              "id": 2222,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2495,
+                  "id": 2221,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2497,
-                  "src": "527:4:15",
+                  "scope": 2223,
+                  "src": "526:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -789,10 +789,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2494,
+                    "id": 2220,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "527:4:15",
+                    "src": "526:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -801,36 +801,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "526:6:15"
+              "src": "525:6:15"
             },
-            "scope": 2520,
-            "src": "477:56:15",
+            "scope": 2246,
+            "src": "476:56:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "144a2752",
-            "id": 2508,
+            "id": 2234,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getBuyAmount",
-            "nameLocation": "548:12:15",
+            "nameLocation": "547:12:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2504,
+              "id": 2230,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2499,
+                  "id": 2225,
                   "mutability": "mutable",
                   "name": "buy_gem",
-                  "nameLocation": "578:7:15",
+                  "nameLocation": "577:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "570:15:15",
+                  "scope": 2234,
+                  "src": "569:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -838,10 +838,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2498,
+                    "id": 2224,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "570:7:15",
+                    "src": "569:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -852,13 +852,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2501,
+                  "id": 2227,
                   "mutability": "mutable",
                   "name": "pay_gem",
-                  "nameLocation": "603:7:15",
+                  "nameLocation": "602:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "595:15:15",
+                  "scope": 2234,
+                  "src": "594:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -866,10 +866,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2500,
+                    "id": 2226,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "595:7:15",
+                    "src": "594:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -880,13 +880,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2503,
+                  "id": 2229,
                   "mutability": "mutable",
                   "name": "pay_amt",
-                  "nameLocation": "628:7:15",
+                  "nameLocation": "627:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "620:15:15",
+                  "scope": 2234,
+                  "src": "619:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -894,10 +894,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2502,
+                    "id": 2228,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "620:7:15",
+                    "src": "619:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -906,21 +906,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "560:81:15"
+              "src": "559:81:15"
             },
             "returnParameters": {
-              "id": 2507,
+              "id": 2233,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2506,
+                  "id": 2232,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2508,
-                  "src": "665:7:15",
+                  "scope": 2234,
+                  "src": "664:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -928,10 +928,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2505,
+                    "id": 2231,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "665:7:15",
+                    "src": "664:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -940,36 +940,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "664:9:15"
+              "src": "663:9:15"
             },
-            "scope": 2520,
-            "src": "539:135:15",
+            "scope": 2246,
+            "src": "538:135:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "ff1fd974",
-            "id": 2519,
+            "id": 2245,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPayAmount",
-            "nameLocation": "689:12:15",
+            "nameLocation": "688:12:15",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2515,
+              "id": 2241,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2510,
+                  "id": 2236,
                   "mutability": "mutable",
                   "name": "pay_gem",
-                  "nameLocation": "719:7:15",
+                  "nameLocation": "718:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "711:15:15",
+                  "scope": 2245,
+                  "src": "710:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -977,10 +977,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2509,
+                    "id": 2235,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "711:7:15",
+                    "src": "710:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -991,13 +991,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2512,
+                  "id": 2238,
                   "mutability": "mutable",
                   "name": "buy_gem",
-                  "nameLocation": "744:7:15",
+                  "nameLocation": "743:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "736:15:15",
+                  "scope": 2245,
+                  "src": "735:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1005,10 +1005,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2511,
+                    "id": 2237,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "736:7:15",
+                    "src": "735:7:15",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1019,13 +1019,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2514,
+                  "id": 2240,
                   "mutability": "mutable",
                   "name": "buy_amt",
-                  "nameLocation": "769:7:15",
+                  "nameLocation": "768:7:15",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "761:15:15",
+                  "scope": 2245,
+                  "src": "760:15:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1033,10 +1033,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2513,
+                    "id": 2239,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "761:7:15",
+                    "src": "760:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1045,21 +1045,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "701:81:15"
+              "src": "700:81:15"
             },
             "returnParameters": {
-              "id": 2518,
+              "id": 2244,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2517,
+                  "id": 2243,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2519,
-                  "src": "806:7:15",
+                  "scope": 2245,
+                  "src": "805:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1067,10 +1067,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2516,
+                    "id": 2242,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "806:7:15",
+                    "src": "805:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1079,21 +1079,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "805:9:15"
+              "src": "804:9:15"
             },
-            "scope": 2520,
-            "src": "680:135:15",
+            "scope": 2246,
+            "src": "679:135:15",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2521,
-        "src": "339:478:15",
+        "scope": 2247,
+        "src": "338:478:15",
         "usedErrors": []
       }
     ],
-    "src": "39:779:15"
+    "src": "39:778:15"
   },
   "compiler": {
     "name": "solc",
@@ -1101,7 +1101,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-09-02T13:05:37.236Z",
+  "updatedAt": "2022-10-13T07:24:15.112Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

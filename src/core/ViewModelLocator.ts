@@ -120,16 +120,16 @@ export class ViewModelLocator extends EventEmitter {
 
     this.protocol = new Contract(this.protocolInfo.contracts.Protocol, ProtocolAbi as any, this.signer);
 
-    const interestRateModelAddress = await this.protocol.getInterestModelAddress();
-    
-    if (interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.LinearInterestRateModel.toLowerCase()) {
+    const interestRateModelAddress = await this.protocol.getInterestRateModelAddress();
+
+    if (this.protocolInfo.contracts.LinearInterestRateModel && interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.LinearInterestRateModel.toLowerCase()) {
       this.interestRateModelType = InterestRateModelType.Linear;
       this.interestRateModel = new Contract(interestRateModelAddress, LinearInterestRateModelAbi as any, this.signer);
-    } else if (interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.MappingInterestRateModel.toLowerCase()) {
+    } else if (this.protocolInfo.contracts.MappingInterestRateModel && interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.MappingInterestRateModel.toLowerCase()) {
       this.interestRateModelType = InterestRateModelType.Mapping;
       this.interestRateModel = new Contract(interestRateModelAddress, MappingInterestRateModelAbi as any, this.signer);
     } else {
-      Notification.showErrorMessage("Interest Rate Model set error");
+      Notification.showErrorMessage("Interest Rate Model set error in network file");
       return false;
     }
 
@@ -168,7 +168,7 @@ export class ViewModelLocator extends EventEmitter {
         token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
         token.balance = await token.contract?.balanceOf(this.account);
         token.decimals = await token.contract?.decimals();
-        token.interestParams = await this.interestRateModel.getLoanParameters(token.address);
+        token.interestParams = this.interestRateModelType === InterestRateModelType.Linear ? await this.interestRateModel.getLoanParameters(token.address) : await this.interestRateModel.getAllRates(token.address);
         token.price = await this.protocol.getTokenPrice(token.address);
       })
     );
@@ -361,7 +361,6 @@ export default ViewModelLocator.instance;
 interface IProtocolInfo {
   contracts: {
     Protocol: string;
-    InterestRateModel: string;
     LinearInterestRateModel: string;
     MappingInterestRateModel: string;
   };

@@ -1,7 +1,7 @@
 import { BigNumber, ethers, utils } from "ethers";
 
 import BaseViewModel from "./BaseViewModel";
-import { IMappingInterestModelParameters, InterestRateModelType, IToken } from "./Types";
+import { IMappingInterestRates, InterestRateModelType, IToken } from "./Types";
 import { observable } from "mobx";
 
 interface PoolOverview {
@@ -33,7 +33,7 @@ export default class HomeViewModel extends BaseViewModel {
           highLoanApr = (pools[0].loanAPR * 100).toFixed(2);
         }
         else if (interestRateModelType === InterestRateModelType.Mapping) {
-          const params = (await this.locator.interestRateModel.getLoanParameters(t.address)) as IMappingInterestModelParameters;
+          const params = (await this.locator.interestRateModel.getAllRates(t.address)) as IMappingInterestRates;
 
           // const availableTerms = params.termList.map((i) => i.toNumber());
           const interests = params.interestRateList.map((i) => ethers.utils.formatUnits(i, 18));
