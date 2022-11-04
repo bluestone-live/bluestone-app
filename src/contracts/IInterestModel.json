@@ -55,7 +55,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"}],\"name\":\"getDepositWeight\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"depositWeight\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanTerm\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxTerm\",\"type\":\"uint256\"}],\"name\":\"getLoanInterestRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"loanInterestRate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/protocol/interface/IInterestModel.sol\":\"IInterestModel\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/protocol/interface/IInterestModel.sol\":{\"keccak256\":\"0x9025b7fc71d9936ae6c334efc557655dd3de0b83b39291a664c371edf8bfc37b\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0d829a8dec2c382c84bdf6048b6258a850f4a99f90282e765a5abd989c68f2aa\",\"dweb:/ipfs/QmdBFVhgXRTpGBu25zCBdBhNW1M73voq15GpbzuH7X9sQ7\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"}],\"name\":\"getDepositWeight\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"depositWeight\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"loanTerm\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxTerm\",\"type\":\"uint256\"}],\"name\":\"getLoanInterestRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"loanInterestRate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/protocol/interface/IInterestModel.sol\":\"IInterestModel\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/protocol/interface/IInterestModel.sol\":{\"keccak256\":\"0x79c9cfd16519febc6f1e399d5285614ac11fb079193026b47765a21bc7388a56\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://88e81a510129987e84e318c7f7b2b5b8642ad31ab2c18543c069041ed5b504f8\",\"dweb:/ipfs/QmZ7dqFWC8EcY7Prw4ecxZ9aoBv3mLyL9LV78vavthhw4z\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -63,21 +63,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\n\ninterface IInterestModel {\n    function getDepositWeight(uint256 amount, uint256 term)\n        external\n        pure\n        returns (uint256 depositWeight);\n\n    function getLoanInterestRate(\n        address tokenAddress,\n        uint256 loanTerm,\n        uint256 maxTerm\n    ) external view returns (uint256 loanInterestRate);\n}\n",
+  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.7;\n\ninterface IInterestModel {\n    function getDepositWeight(uint256 amount, uint256 term)\n        external\n        pure\n        returns (uint256 depositWeight);\n\n    function getLoanInterestRate(\n        address tokenAddress,\n        uint256 loanTerm,\n        uint256 maxTerm\n    ) external view returns (uint256 loanInterestRate);\n}\n",
   "sourcePath": "/Users/liyangfan/Projects/WorkSpace/bluestone/contracts/protocol/interface/IInterestModel.sol",
   "ast": {
     "absolutePath": "project:/contracts/protocol/interface/IInterestModel.sol",
     "exportedSymbols": {
       "IInterestModel": [
-        5766
+        5855
       ]
     },
-    "id": 5767,
+    "id": 5856,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5745,
+        "id": 5834,
         "literals": [
           "solidity",
           "^",
@@ -85,7 +85,7 @@
           ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:31"
+        "src": "39:23:32"
       },
       {
         "abstract": false,
@@ -93,36 +93,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 5766,
+        "id": 5855,
         "linearizedBaseContracts": [
-          5766
+          5855
         ],
         "name": "IInterestModel",
-        "nameLocation": "75:14:31",
+        "nameLocation": "74:14:32",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "5ac0e1d2",
-            "id": 5754,
+            "id": 5843,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDepositWeight",
-            "nameLocation": "105:16:31",
+            "nameLocation": "104:16:32",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5750,
+              "id": 5839,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5747,
+                  "id": 5836,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "130:6:31",
+                  "nameLocation": "129:6:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "122:14:31",
+                  "scope": 5843,
+                  "src": "121:14:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -130,10 +130,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5746,
+                    "id": 5835,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "122:7:31",
+                    "src": "121:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -143,13 +143,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 5749,
+                  "id": 5838,
                   "mutability": "mutable",
                   "name": "term",
-                  "nameLocation": "146:4:31",
+                  "nameLocation": "145:4:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "138:12:31",
+                  "scope": 5843,
+                  "src": "137:12:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -157,10 +157,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5748,
+                    "id": 5837,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "138:7:31",
+                    "src": "137:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -169,21 +169,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "121:30:31"
+              "src": "120:30:32"
             },
             "returnParameters": {
-              "id": 5753,
+              "id": 5842,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5752,
+                  "id": 5841,
                   "mutability": "mutable",
                   "name": "depositWeight",
-                  "nameLocation": "207:13:31",
+                  "nameLocation": "206:13:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "199:21:31",
+                  "scope": 5843,
+                  "src": "198:21:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -191,10 +191,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5751,
+                    "id": 5840,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "199:7:31",
+                    "src": "198:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -203,36 +203,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "198:23:31"
+              "src": "197:23:32"
             },
-            "scope": 5766,
-            "src": "96:126:31",
+            "scope": 5855,
+            "src": "95:126:32",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "4ddaf8dc",
-            "id": 5765,
+            "id": 5854,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLoanInterestRate",
-            "nameLocation": "237:19:31",
+            "nameLocation": "236:19:32",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5761,
+              "id": 5850,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5756,
+                  "id": 5845,
                   "mutability": "mutable",
                   "name": "tokenAddress",
-                  "nameLocation": "274:12:31",
+                  "nameLocation": "273:12:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "266:20:31",
+                  "scope": 5854,
+                  "src": "265:20:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -240,10 +240,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5755,
+                    "id": 5844,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "266:7:31",
+                    "src": "265:7:32",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -254,13 +254,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 5758,
+                  "id": 5847,
                   "mutability": "mutable",
                   "name": "loanTerm",
-                  "nameLocation": "304:8:31",
+                  "nameLocation": "303:8:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "296:16:31",
+                  "scope": 5854,
+                  "src": "295:16:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -268,10 +268,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5757,
+                    "id": 5846,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "296:7:31",
+                    "src": "295:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -281,13 +281,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 5760,
+                  "id": 5849,
                   "mutability": "mutable",
                   "name": "maxTerm",
-                  "nameLocation": "330:7:31",
+                  "nameLocation": "329:7:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "322:15:31",
+                  "scope": 5854,
+                  "src": "321:15:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -295,10 +295,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5759,
+                    "id": 5848,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "322:7:31",
+                    "src": "321:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -307,21 +307,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "256:87:31"
+              "src": "255:87:32"
             },
             "returnParameters": {
-              "id": 5764,
+              "id": 5853,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5763,
+                  "id": 5852,
                   "mutability": "mutable",
                   "name": "loanInterestRate",
-                  "nameLocation": "375:16:31",
+                  "nameLocation": "374:16:32",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "367:24:31",
+                  "scope": 5854,
+                  "src": "366:24:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -329,10 +329,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5762,
+                    "id": 5851,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "367:7:31",
+                    "src": "366:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -341,321 +341,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "366:26:31"
+              "src": "365:26:32"
             },
-            "scope": 5766,
-            "src": "228:165:31",
+            "scope": 5855,
+            "src": "227:165:32",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 5767,
-        "src": "65:330:31",
+        "scope": 5856,
+        "src": "64:330:32",
         "usedErrors": []
       }
     ],
-    "src": "39:357:31"
-  },
-  "legacyAST": {
-    "absolutePath": "project:/contracts/protocol/interface/IInterestModel.sol",
-    "exportedSymbols": {
-      "IInterestModel": [
-        5766
-      ]
-    },
-    "id": 5767,
-    "license": "UNLICENSED",
-    "nodeType": "SourceUnit",
-    "nodes": [
-      {
-        "id": 5745,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".7"
-        ],
-        "nodeType": "PragmaDirective",
-        "src": "39:23:31"
-      },
-      {
-        "abstract": false,
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "interface",
-        "fullyImplemented": false,
-        "id": 5766,
-        "linearizedBaseContracts": [
-          5766
-        ],
-        "name": "IInterestModel",
-        "nameLocation": "75:14:31",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "functionSelector": "5ac0e1d2",
-            "id": 5754,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getDepositWeight",
-            "nameLocation": "105:16:31",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 5750,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 5747,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nameLocation": "130:6:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "122:14:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5746,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "122:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 5749,
-                  "mutability": "mutable",
-                  "name": "term",
-                  "nameLocation": "146:4:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "138:12:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5748,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "138:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "121:30:31"
-            },
-            "returnParameters": {
-              "id": 5753,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 5752,
-                  "mutability": "mutable",
-                  "name": "depositWeight",
-                  "nameLocation": "207:13:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5754,
-                  "src": "199:21:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5751,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "199:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "198:23:31"
-            },
-            "scope": 5766,
-            "src": "96:126:31",
-            "stateMutability": "pure",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "4ddaf8dc",
-            "id": 5765,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getLoanInterestRate",
-            "nameLocation": "237:19:31",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 5761,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 5756,
-                  "mutability": "mutable",
-                  "name": "tokenAddress",
-                  "nameLocation": "274:12:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "266:20:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 5755,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "266:7:31",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 5758,
-                  "mutability": "mutable",
-                  "name": "loanTerm",
-                  "nameLocation": "304:8:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "296:16:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5757,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "296:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 5760,
-                  "mutability": "mutable",
-                  "name": "maxTerm",
-                  "nameLocation": "330:7:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "322:15:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5759,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "322:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "256:87:31"
-            },
-            "returnParameters": {
-              "id": 5764,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 5763,
-                  "mutability": "mutable",
-                  "name": "loanInterestRate",
-                  "nameLocation": "375:16:31",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 5765,
-                  "src": "367:24:31",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 5762,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "367:7:31",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "366:26:31"
-            },
-            "scope": 5766,
-            "src": "228:165:31",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "external"
-          }
-        ],
-        "scope": 5767,
-        "src": "65:330:31",
-        "usedErrors": []
-      }
-    ],
-    "src": "39:357:31"
+    "src": "39:356:32"
   },
   "compiler": {
     "name": "solc",
     "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.4",
-  "updatedAt": "2022-09-02T13:05:37.318Z",
+  "schemaVersion": "3.4.8",
+  "updatedAt": "2022-09-08T09:45:12.101Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

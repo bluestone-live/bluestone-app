@@ -9,9 +9,10 @@ export interface IToken {
   allowance?: BigNumber;
   decimals?: number;
   balance?: BigNumber;
-  interestParams?: IInterestModelParameters;
+  interestParams?: ILinearInterestModelParameters | IMappingInterestRates;
   pools?: IPool[];
   price?: BigNumber;
+  minCollateralCoverageRatio?: BigNumber;
 }
 
 export enum WalletType {
@@ -23,16 +24,27 @@ export enum WalletType {
 export interface IViewModel {
   account: string;
   protocol: Contract;
-  interestModel: Contract;
+  interestRateModel: Contract;
+  interestRateModelType: InterestRateModelType;
   distributionFeeRatios: IDistributionFeeRatios;
   protocolReserveRatio: BigNumber;
   tokens: IToken[];
   locator: ViewModelLocator;
 }
 
-export interface IInterestModelParameters {
+export enum InterestRateModelType {
+  Linear,
+  Mapping,
+}
+
+export interface ILinearInterestModelParameters {
   loanInterestRateUpperBound: BigNumber;
   loanInterestRateLowerBound: BigNumber;
+}
+
+export interface IMappingInterestRates {
+  termList: BigNumber[],
+  interestRateList: BigNumber[],
 }
 
 export interface IBasePool {

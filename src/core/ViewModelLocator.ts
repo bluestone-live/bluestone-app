@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import { ETHAddress, MaxInt256 } from "./services/Constants";
-import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken } from "./viewmodels/Types";
+import { IDistributionFeeRatios, ILoanPair, IRecordUI, IToken, InterestRateModelType } from "./viewmodels/Types";
 import { ethers, BigNumber, Contract } from "ethers";
 
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -10,7 +10,8 @@ import { abi as ERC20Abi } from "../contracts/ERC20Mock.json";
 import { EventEmitter } from "events";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
 import HomeViewModel from "./viewmodels/HomeViewModel";
-import { abi as InterestModelAbi } from "../contracts/InterestModel.json";
+import { abi as MappingInterestRateModelAbi } from "../contracts/MappingInterestRateModel.json";
+import { abi as LinearInterestRateModelAbi } from "../contracts/LinearInterestRateModel.json";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
@@ -34,7 +35,8 @@ export class ViewModelLocator extends EventEmitter {
   balance!: BigNumber;
   protocolInfo!: IProtocolInfo;
   protocol!: Contract;
-  interestModel!: Contract;
+  interestRateModel!: Contract;
+  interestRateModelType!: InterestRateModelType;
   nativeEther!: IPlainToken;
   tokens!: IToken[];
   depositTokens!: IToken[];
@@ -107,18 +109,29 @@ export class ViewModelLocator extends EventEmitter {
       this.network = 'rangersdev';
     }
 
+    await this.provider.getBalance(this.account);
+
     try {
       this.protocolInfo = require(`../../networks/${this.network}`) as IProtocolInfo;
     } catch (error) {
-      Notification.showErrorMessage(`Network error, [${this.network}] is not support.`)
+      Notification.showErrorMessage(`Network error, [${this.network}] is not support. (${(error as any).message})`);
       return false;
     }
 
-    await this.provider.getBalance(this.account);
-
     this.protocol = new Contract(this.protocolInfo.contracts.Protocol, ProtocolAbi as any, this.signer);
 
-    this.interestModel = new Contract(this.protocolInfo.contracts.InterestModel, InterestModelAbi as any, this.signer);
+    const interestRateModelAddress = await this.protocol.getInterestRateModelAddress();
+
+    if (this.protocolInfo.contracts.LinearInterestRateModel && interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.LinearInterestRateModel.toLowerCase()) {
+      this.interestRateModelType = InterestRateModelType.Linear;
+      this.interestRateModel = new Contract(interestRateModelAddress, LinearInterestRateModelAbi as any, this.signer);
+    } else if (this.protocolInfo.contracts.MappingInterestRateModel && interestRateModelAddress.toLowerCase() === this.protocolInfo.contracts.MappingInterestRateModel.toLowerCase()) {
+      this.interestRateModelType = InterestRateModelType.Mapping;
+      this.interestRateModel = new Contract(interestRateModelAddress, MappingInterestRateModelAbi as any, this.signer);
+    } else {
+      Notification.showErrorMessage("Interest Rate Model set error in network file");
+      return false;
+    }
 
     this.tokens = Object.getOwnPropertyNames(this.protocolInfo.tokens).map((t) => {
       const token = this.protocolInfo.tokens[t];
@@ -155,8 +168,9 @@ export class ViewModelLocator extends EventEmitter {
         token.allowance = await token.contract?.allowance(this.account, this.protocol.address);
         token.balance = await token.contract?.balanceOf(this.account);
         token.decimals = await token.contract?.decimals();
-        token.interestParams = await this.interestModel.getLoanParameters(token.address);
+        token.interestParams = this.interestRateModelType === InterestRateModelType.Linear ? await this.interestRateModel.getLoanParameters(token.address) : await this.interestRateModel.getAllRates(token.address);
         token.price = await this.protocol.getTokenPrice(token.address);
+        token.minCollateralCoverageRatio = await this.initMinCollateralCoverageRatio(token.address);
       })
     );
 
@@ -199,6 +213,17 @@ export class ViewModelLocator extends EventEmitter {
     this.balance = await this.provider.getBalance(this.account);
   }
 
+  private async initMinCollateralCoverageRatio(tokenAddress: string) {
+    const filter = await this.protocol.filters.SetLoanAndCollateralTokenPairSucceed();
+    const loanEvents = await this.protocol.queryFilter(filter);
+    for (let i = loanEvents.length - 1; i >= 0; i--) {
+        if (loanEvents[i]?.args!.collateralTokenAddress.toLowerCase() === tokenAddress.toLowerCase()) {
+            return loanEvents[i]?.args!.minCollateralCoverageRatio;
+        }
+    };
+    return BigNumber.from("0");
+  }
+
   private _homeVM?: HomeViewModel;
   get homeVM() {
     if (this._homeVM) {
@@ -213,7 +238,8 @@ export class ViewModelLocator extends EventEmitter {
       tokens: this.depositTokens,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       locator: this,
     });
 
@@ -222,7 +248,7 @@ export class ViewModelLocator extends EventEmitter {
 
   private _faucetVM?: FaucetViewModel;
   get faucetVM() {
-    if(this._faucetVM) {
+    if (this._faucetVM) {
       return this._faucetVM;
     }
 
@@ -234,7 +260,8 @@ export class ViewModelLocator extends EventEmitter {
       tokens: this.depositTokens,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       locator: this,
     });
 
@@ -256,7 +283,8 @@ export class ViewModelLocator extends EventEmitter {
       depositTerms: this.depositTerms,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       locator: this,
     });
 
@@ -282,7 +310,8 @@ export class ViewModelLocator extends EventEmitter {
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
       maxTerm,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       tokens: this.tokens,
       locator: this,
     });
@@ -300,7 +329,8 @@ export class ViewModelLocator extends EventEmitter {
       protocol: this.protocol,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       tokens: this.tokens,    // this.depositTokens
       locator: this,
     });
@@ -315,7 +345,8 @@ export class ViewModelLocator extends EventEmitter {
       protocol: this.protocol,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       tokens: this.tokens,    // this.depositTokens
       record,
       locator: this,
@@ -328,7 +359,8 @@ export class ViewModelLocator extends EventEmitter {
       protocol: this.protocol,
       distributionFeeRatios: this.maxDistributorFeeRatios,
       protocolReserveRatio: this.protocolReserveRatio,
-      interestModel: this.interestModel,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
       tokens: this.tokens,    // this.depositTokens
       locator: this,
       id,
@@ -341,7 +373,8 @@ export default ViewModelLocator.instance;
 interface IProtocolInfo {
   contracts: {
     Protocol: string;
-    InterestModel: string;
+    LinearInterestRateModel: string;
+    MappingInterestRateModel: string;
   };
 
   tokens: { [key: string]: IPlainToken };

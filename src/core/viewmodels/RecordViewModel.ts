@@ -310,8 +310,10 @@ export default class RecordViewModel extends BaseViewModel {
 
     const maxCollateralAmount = collateralToken ? utils.formatUnits(collateralToken.balance ?? "0", collateralToken.decimals) : "0";
 
+    const collateralRatioOverMin = collateralToken ? (parseFloat(utils.formatUnits(collateralToken!.minCollateralCoverageRatio!, 16)) + 1).toString() : "0";
+
     let maxWithdrawCollateralAmount = collateralToken
-      ? Number.parseFloat(collateralAmount) - calcCollateralAmount("151", remainingDebt, collateralToken!.price!, token.price!)
+      ? Number.parseFloat(collateralAmount) - calcCollateralAmount(collateralRatioOverMin, remainingDebt, collateralToken!.price!, token.price!)
       : 0;
 
     maxWithdrawCollateralAmount = maxWithdrawCollateralAmount < 0.0000001 ? 0 : maxWithdrawCollateralAmount;

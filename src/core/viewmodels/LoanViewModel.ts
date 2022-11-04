@@ -1,6 +1,7 @@
 import { BigNumber, ethers, utils } from "ethers";
 import { DistributorAddress, ETHAddress } from "../services/Constants";
 import type { ILoanPair, IPool, IToken, IViewModel } from "./Types";
+import { InterestRateModelType } from "./Types";
 import { computed, observable } from "mobx";
 
 import BaseViewModel from "./BaseViewModel";
@@ -19,6 +20,7 @@ interface ILoanViewModel extends IViewModel {
 export default class LoanViewModel extends BaseViewModel {
   private params: ILoanViewModel;
 
+  @observable interestRateModelType: InterestRateModelType;
   @observable loading = false;
   @observable term = 0;
   @observable apr = 0;
@@ -52,6 +54,8 @@ export default class LoanViewModel extends BaseViewModel {
     super(params);
 
     this.params = params;
+
+    this.interestRateModelType = params.interestRateModelType;
 
     this.maxDate.setDate(new Date().getDate() + params.maxTerm);
 
@@ -89,6 +93,8 @@ export default class LoanViewModel extends BaseViewModel {
       max = max.sub(gasFee);
     }
 
+    this.currentLoanPair.minCollateralCoverageRatio = this.selectedCollateralToken.minCollateralCoverageRatio!;
+
     this.maxCollateralAmount = utils.formatUnits(max, this.selectedCollateralToken.decimals!);
   };
 
@@ -108,6 +114,7 @@ export default class LoanViewModel extends BaseViewModel {
 
     this.term = accurate > 0 ? targetPool?.term ?? 0 : 0;
     this.apr = targetPool?.loanAPR ?? 0;
+
     this.maturityDate = dayjs(date).hour(dayjs().hour()).minute(dayjs().minute()).format("YYYY-MM-DD HH:mm");
 
     this.inputLoan(this.inputLoanValue);
@@ -153,6 +160,7 @@ export default class LoanViewModel extends BaseViewModel {
 
     if (!this.peekPool) return;
     this.debt = Number.parseFloat(value) * (1 + (this.peekPool.loanAPR / 365) * this.peekPool.term);
+
     this.interest = this.debt - Number.parseFloat(value);
 
     this.inputCollateral(this.inputCollateralValue);
@@ -197,7 +205,7 @@ export default class LoanViewModel extends BaseViewModel {
     );
 
 
-    if(this.collateralization < this.currentLoanPair.minCollateralCoverageRatio.div(BigNumber.from(10).pow(16)).toNumber()) {
+    if (this.collateralization < this.currentLoanPair.minCollateralCoverageRatio.div(BigNumber.from(10).pow(16)).toNumber()) {
       this.inputCollateralValueLegal = false;
       this.collateralValueErrorMsg = InputErrorMsg.COLLATERALIZATION_RATIO_TOO_LOW;
     }
