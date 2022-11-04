@@ -159,11 +159,8 @@ export default class LoanViewModel extends BaseViewModel {
     }
 
     if (!this.peekPool) return;
-    if(this.interestRateModelType === InterestRateModelType.Linear) {
-      this.debt = Number.parseFloat(value) * (1 + (this.peekPool.loanAPR / 365) * this.peekPool.term);
-    } else if(this.interestRateModelType === InterestRateModelType.Mapping) {
-      this.debt = Number.parseFloat(value) * (1 + this.peekPool.loanAPR);
-    }
+    this.debt = Number.parseFloat(value) * (1 + (this.peekPool.loanAPR / 365) * this.peekPool.term);
+
     this.interest = this.debt - Number.parseFloat(value);
 
     this.inputCollateral(this.inputCollateralValue);
