@@ -163,7 +163,7 @@ class Loan extends Component<IProps, State> {
               </div>
 
               <div className="item">
-                <span>{loading ? i18n.t("common_collateralization_ratio") : `${i18n.t("common_collateralization_ratio")}(≥${vm!.currentLoanPair.minCollateralCoverageRatio.div(BigNumber.from(10).pow(16)).toNumber()}%)`}:</span>
+                <span>{loading ? i18n.t("common_collateralization_ratio") : `${i18n.t("common_collateralization_ratio")}(≥${vm!.selectedCollateralToken.minCollateralCoverageRatio!.div(BigNumber.from(10).pow(16)).toNumber()}%)`}:</span>
                 <span>{loading ? <Loading /> : `${vm!.collateralization.toFixed(2)}%`}</span>
               </div>
 
