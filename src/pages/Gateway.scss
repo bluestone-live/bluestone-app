@@ -1,0 +1,71 @@
+.gateway.page {
+  text-align: center;
+
+  h1 {
+    margin-bottom: 12px;
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5vh 0;
+
+    >div {
+      width: 38%;
+      border: solid 1px gainsboro;
+      border-radius: 1rem;
+      padding: 0 5% 2% 5%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      h2 {
+        color: rgb(127, 127, 127);
+      }
+
+      >.items {
+        text-align: left;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        color: #849095;
+        font-size: 14px;
+        margin-bottom: 24px;
+
+        >.item {
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+
+          span:last-child {
+            font-weight: 600;
+          }
+
+          >div {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  >div.transactions {
+    margin-top: 50px;
+
+    table {
+      table-layout: fixed;
+
+      tbody {
+        font-size: 14px;
+
+        tr {
+          cursor: pointer;
+        }
+      }
+
+      td {
+        text-align: center;
+      }
+    }
+  }
+}

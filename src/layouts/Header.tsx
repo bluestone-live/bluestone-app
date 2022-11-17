@@ -43,6 +43,7 @@ class Header extends Component<IProps, IState> {
             <Link to="/lend">{i18n.t("header_deposit")}</Link>
             <Link to="/borrow">{i18n.t("header_borrow")}</Link>
             <Link to="/history">{i18n.t("header_history")}</Link>
+            <Link to="/gateway">{i18n.t("header_gateway")}</Link>
           </div>
 
           <WalletSelector />
