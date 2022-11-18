@@ -21,7 +21,7 @@ export default class GatewayViewModel extends BaseViewModel {
     @observable inputAmountLegal?: boolean;
     @observable transferLoading = false;
     @observable inputAmountErrorMsg?: string;
-    @observable maxAvailableAmount?: string = "0";
+    @observable maxAvailableAmount?: string;
     readonly tokenSymbols: string[];
 
     constructor(params: IGatewayViewModel) {
@@ -40,8 +40,8 @@ export default class GatewayViewModel extends BaseViewModel {
 
     inputAmountCheck = (value?: string) => {
         if (!value) {
-            console.log("value=", value)
             this.inputAmountLegal = false;
+            this.inputAmountErrorMsg = InputErrorMsg.NONE;
             return;
         }
         this.inputAmount = value;
