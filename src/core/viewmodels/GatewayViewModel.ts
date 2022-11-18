@@ -1,4 +1,4 @@
-import { Contract, ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { observable } from "mobx";
 
 import BaseViewModel from "./BaseViewModel";
@@ -7,6 +7,7 @@ import { checkNumber } from "../services/InputChecker";
 import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
 import { IViewModel } from "./Types";
 import type { IToken } from "./Types";
+import GatewayTransactions, { HistoryGatewayTx } from "../services/GatewayTransactions";
 
 interface IGatewayViewModel extends IViewModel {
     tokens: IToken[]
@@ -15,6 +16,8 @@ interface IGatewayViewModel extends IViewModel {
 export default class GatewayViewModel extends BaseViewModel {
     private params: IGatewayViewModel;
 
+    @observable gatewayAddress = "0x8CA7D5c07d658D7275C891119C762C7f82A875E2";
+    @observable allowance?: BigNumber;      // transfer from account to gateway wallet
     @observable loading = false;
     @observable currentToken!: IToken;
     @observable inputAmount?: string;
@@ -22,6 +25,8 @@ export default class GatewayViewModel extends BaseViewModel {
     @observable transferLoading = false;
     @observable inputAmountErrorMsg?: string;
     @observable maxAvailableAmount?: string;
+    @observable txs: HistoryGatewayTx[] = [];
+    private _gatewayTxs = new GatewayTransactions();
     readonly tokenSymbols: string[];
 
     constructor(params: IGatewayViewModel) {
@@ -30,11 +35,15 @@ export default class GatewayViewModel extends BaseViewModel {
 
         this.tokenSymbols = params.tokens.map((t) => t.name);
         this.selectToken(params.tokens[0].name);
+        this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress).then((v) => {
+            this.txs = v;
+        });
     }
 
     selectToken = async (name: string) => {
         this.currentToken = this.params.tokens.find((t) => t.name.toLowerCase() === name.toLowerCase())!;
         this.maxAvailableAmount = ethers.utils.formatUnits(this.currentToken.balance ?? "0", this.currentToken.decimals ?? 18);
+        this.allowance = await this.currentToken.contract?.allowance(this.account, this.gatewayAddress);
         this.loading = false;
     };
 
@@ -92,29 +101,39 @@ export default class GatewayViewModel extends BaseViewModel {
         }
     };
 
-    transfer = async () => {
-        let erc20Instance: Contract;
-        let index: any;
-        for (index in this.locator.tokens) {
-            if (this.locator.tokens[index].name === "sgc") {
-                erc20Instance = this.locator.tokens[index].contract!;
-                break;
+    transferToGateway = async () => {
+        const inputAmountWei = ethers.utils.parseUnits(this.inputAmount!, this.currentToken.decimals);
+        if (inputAmountWei.gte(this.allowance!)) {
+            try {
+                this.transferLoading = true;
+                const tx = await this.currentToken.contract?.approve(this.gatewayAddress, "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+                Notification.track(tx.hash);
+                await tx.wait();
+                this.allowance = BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+            } catch (error) {
+                Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
+                return;
+            } finally {
+                this.transferLoading = false;
             }
         }
         try {
             this.transferLoading = true;
-            const tx = await erc20Instance!.mint(
-                this.account,
-                ethers.utils.parseUnits(this.inputAmount!, this.locator.tokens[index].decimals)
+            const tx = await this.currentToken.contract?.transfer(
+                this.gatewayAddress,
+                inputAmountWei
             )
-
             Notification.track(tx.hash);
             await tx.wait();
         } catch (error) {
             Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
         } finally {
             this.transferLoading = false;
+            this.txs = await this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress);
         }
     };
 
+    openTx = (tx: HistoryGatewayTx) => {
+        window.open(`https://${this.locator.network}.etherscan.io/tx/${tx.transactionHash}`, "_blank");
+    };
 }
