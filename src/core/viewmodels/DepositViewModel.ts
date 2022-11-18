@@ -101,6 +101,11 @@ export default class DepositViewModel extends BaseViewModel {
   };
 
   inputBalance = (value: string) => {
+    if(!value) {
+      this.inputLegal = false;
+      this.inputErrorMsg = InputErrorMsg.NONE;
+      return;
+    }
     this.inputValue = value;
 
     if (checkNumber(value)) {

@@ -39,7 +39,11 @@ export default class GatewayViewModel extends BaseViewModel {
     };
 
     inputAmountCheck = (value?: string) => {
-        if (!value) return;
+        if (!value) {
+            console.log("value=", value)
+            this.inputAmountLegal = false;
+            return;
+        }
         this.inputAmount = value;
 
         if (checkNumber(value)) {
