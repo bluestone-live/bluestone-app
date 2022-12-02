@@ -9,6 +9,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding-top: 3%;
 
     >div {
       width: 38%;
@@ -69,7 +70,10 @@
         font-size: 14px;
 
         tr {
-          cursor: pointer;
+          &:hover {
+            cursor: pointer;
+            background-color: #ececec;
+          }
         }
       }
 

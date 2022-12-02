@@ -4,16 +4,17 @@ import { IToken } from "../viewmodels/Types";
 import dayjs from "dayjs";
 import { ZeroAddress } from "./Constants";
 
-enum Action {
-    Unknown = "Unknown",
-    Buy = "Buy",
-    Sell = "Sell"
+export enum Action {
+  Unknown = "Unknown",
+  ConvertToSGC = "Fiat to SGC",
+  ConvertToFiat = "SGC to Fiat"
 }
 
-enum Status {
-    Pending = "Pending",
-    Succeed = "Succeed",
-    Failed = "Failed"
+export enum Status {
+  Failed = 0,
+  Transfered = 1,
+  Pending = 2,
+  Succeed = 3,
 }
 
 export interface HistoryGatewayTx extends Event {
@@ -41,12 +42,12 @@ export default class GatewayTransactions {
         const timestamp = (await tx!.getBlock()).timestamp;
         const amount = tx!.args?.value;
         let action: Action;
-        if(tx?.args?.from.toLowerCase() === account.toLowerCase()) {
-            action = Action.Sell;
+        if (tx?.args?.from.toLowerCase() === account.toLowerCase()) {
+          action = Action.ConvertToFiat;
         } else if (tx?.args?.to.toLowerCase() === account.toLowerCase()) {
-            action = Action.Buy;
+          action = Action.ConvertToSGC;
         } else {
-            action = Action.Unknown;
+          action = Action.Unknown;
         }
 
         return {

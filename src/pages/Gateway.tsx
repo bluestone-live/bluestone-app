@@ -1,5 +1,6 @@
 import "./Gateway.scss";
 import React, { Component } from "react";
+import { Button as MaButton, Box, Stepper, Step, StepLabel, Typography, StepContent, Paper } from '@mui/material';
 import i18n from "../i18n";
 import NumBox from "../components/NumBox";
 import { ViewModelLocator } from "../core/ViewModelLocator";
@@ -17,6 +18,30 @@ interface IProps {
 
 interface IState {
   vm?: GatewayViewModel;
+}
+
+const progressSteps = [
+  'Transfered',
+  'Pending',
+  'Succeed',
+];
+
+const getSteps = (bankAccount?: string, account?: string) => {
+  return [
+    {
+      label: 'Transfer USD to Gateway',
+      description: `Please transfer USD from your verified bank account ${bankAccount ? bankAccount : ""} to the Gateway bank account.`,
+    },
+    {
+      label: 'Verify',
+      description:
+        'Waitting for fiat gateway verifying...',
+    },
+    {
+      label: 'Mint SGC to wallet',
+      description: `Gateway will mint tokens to your wallet ${account ? shortenAddress(account) : ""} soon.`,
+    },
+  ]
 }
 
 @inject("locator")
@@ -49,6 +74,7 @@ class Gateway extends Component<IProps, IState> {
     const { vm } = this.state;
     const loading = !vm || vm?.loading;
     const transferDisabled = loading || vm?.transferLoading || !vm?.inputAmountLegal;
+    const steps = getSteps(vm?.bankAccount, this.props.locator.account);
     const txs = vm?.txs;
 
     return (
@@ -58,13 +84,40 @@ class Gateway extends Component<IProps, IState> {
           <div>
             <h2>{i18n.t("gateway_buy")}</h2>
             <div className="text-space">
-              {i18n.t("gateway_buy_message", {
-                bankAccount: loading ? "..." : "**4152",
-                walletAccount: loading ? "..." : shortenAddress(this.props.locator.account)
-              })}
-            </div>
-            <div className="add-token-space" onClick={() => this.addToWallet("sgc")}>
-              Add token to wallet
+              <Box>
+                <Stepper activeStep={vm?.activeStep} orientation="vertical">
+                  {steps.map((step) => (
+                    <Step key={step.label}>
+                      <StepLabel>
+                        {step.label}
+                      </StepLabel>
+                      <StepContent>
+                        <Typography>{step.description}</Typography>
+                        <Box sx={{ mb: 2 }}>
+                        </Box>
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+                <Paper square elevation={0} sx={{ p: 3 }}>
+                  {
+                    vm?.activeStep === steps.length ?
+                      <MaButton
+                        variant="contained"
+                        onClick={() => { vm?.setActiveStep(0) }}
+                        sx={{ mt: 2, mb: 2 }}
+                      >
+                        {i18n.t("gateway_reset")}
+                      </MaButton>
+                      : undefined
+                  }
+                  <MaButton
+                    onClick={() => { this.addToWallet("sgc") }}
+                  >
+                    {i18n.t("common_add_to_wallet")}
+                  </MaButton>
+                </Paper>
+              </Box>
             </div>
           </div>
           <div>
@@ -124,7 +177,19 @@ class Gateway extends Component<IProps, IState> {
                     <td>{tx.time}</td>
                     <td>{tx.action}</td>
                     <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toFixed(4)} ${tx.token?.name}`}</td>
-                    <td>{tx.status}</td>
+                    {/* <td>{tx.status}</td> */}
+                    <td>{
+                      <Box>
+                        <Stepper activeStep={tx.status} alternativeLabel>
+                          {progressSteps.map((label) => (
+                            <Step key={label}>
+                              <StepLabel>{label}</StepLabel>
+                            </Step>
+                          ))}
+                        </Stepper>
+                      </Box>
+                    }
+                    </td>
                   </tr>
                 ))
               ) : (

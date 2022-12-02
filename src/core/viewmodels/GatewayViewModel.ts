@@ -17,6 +17,8 @@ export default class GatewayViewModel extends BaseViewModel {
     private params: IGatewayViewModel;
 
     @observable gatewayAddress = "0x8CA7D5c07d658D7275C891119C762C7f82A875E2";
+    @observable bankAccount = "**4152";
+    @observable activeStep = 3;
     @observable allowance?: BigNumber;      // transfer from account to gateway wallet
     @observable loading = false;
     @observable currentToken!: IToken;
@@ -38,6 +40,10 @@ export default class GatewayViewModel extends BaseViewModel {
         this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress).then((v) => {
             this.txs = v;
         });
+    }
+
+    setActiveStep(step: number) {
+        this.activeStep = step;
     }
 
     selectToken = async (name: string) => {
