@@ -52,7 +52,7 @@ class Footer extends Component {
 
             <ul>
               <li>
-                <a href="/">Bluestone</a>
+                <a href="https://nft.bluestone.dev/" target="_blank" rel="noreferrer">NFT Rental</a>
               </li>
             </ul>
           </div>
