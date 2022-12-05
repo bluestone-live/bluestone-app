@@ -62,10 +62,10 @@ class Footer extends Component {
 
             <ul>
               <li>
-                <a href="/assets/Bluestone_Whitepaper_v0.pdf">{i18n.t("footer_paper")}</a>
+                <a href="/assets/Bluestone_Whitepaper_v0.pdf" target="_blank" rel="noreferrer">{i18n.t("footer_paper")}</a>
               </li>
               <li>
-                <a href="https://docs.bluestone.dev/">{i18n.t("footer_documents")}</a>
+                <a href="https://github.com/bluestone-live/docs" target="_blank" rel="noreferrer">{i18n.t("footer_documents")}</a>
               </li>
             </ul>
           </div>
@@ -73,11 +73,11 @@ class Footer extends Component {
           <div className="section social">
             <h3>{i18n.t("footer_title_contacts")}</h3>
             <div>
-              <a href="https://twitter.com/BluestoneDefi">
+              <a href="https://twitter.com/BluestoneDefi" target="_blank" rel="noreferrer">
                 <img src={twitter} alt="Bluestone Twitter" />
               </a>
 
-              <a href="https://github.com/bluestone-live">
+              <a href="https://github.com/bluestone-live" target="_blank" rel="noreferrer">
                 <img src={github} alt="Bluestone Github" />
               </a>
             </div>
