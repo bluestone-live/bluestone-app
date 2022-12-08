@@ -11,10 +11,10 @@ export enum Action {
 }
 
 export enum Status {
-  Failed = 0,
-  Transfered = 1,
-  Pending = 2,
-  Succeed = 3,
+  Failed = "Failed",
+  Transfered = "Transfered",
+  Verify = "Verify",
+  Succeed = "Succeed",
 }
 
 export interface HistoryGatewayTx extends Event {

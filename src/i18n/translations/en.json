@@ -261,7 +261,7 @@
     "faucet_sgc_amount": "SGC Amount",
     "faucet_xbtc_amount": "xBTC Amount",
     "faucet_mint": "Mint",
-    "common_add_to_wallet": "Add To Wallet",
+    "common_add_to_wallet": "Add {{tokenName}} To Wallet",
     "loan_title": "Borrow",
     "lend_title": "Lend",
     "gateway_title": "Fiat Gateway",

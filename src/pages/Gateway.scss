@@ -1,8 +1,8 @@
 .gateway.page {
   text-align: center;
 
-  h1 {
-    margin-bottom: 12px;
+  .clickable {
+    cursor: pointer;
   }
 
   >.content {
@@ -10,12 +10,13 @@
     display: flex;
     justify-content: space-between;
     padding-top: 3%;
-
+  
     >div {
       width: 38%;
+      // min-height: 425px;
       border: solid 1px gainsboro;
       border-radius: 1rem;
-      padding: 0 5% 2% 5%;
+      padding: 0 5% 5% 5%;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -23,13 +24,18 @@
         color: rgb(127, 127, 127);
       }
       
-      >.text-space {
+      >.left-space {
+        min-height: 400px;
         text-align: left;
         font-size: 1.3rem;
         line-height: 2.2rem;
         font-weight: 600;
         font-family:sans-serif;
         color: rgb(36, 107, 158);
+
+        >.steps-space {
+          min-height: 380px;
+        }
       }
 
       >.add-token-space {
@@ -42,10 +48,10 @@
         font-weight: 500;
       }
 
-      >.sell-items {
+      >.right-space {
         color: #849095;
         font-size: 14px;
-        margin-bottom: 24px;
+        min-height: 400px;
         
         >.item {
           text-align: left;

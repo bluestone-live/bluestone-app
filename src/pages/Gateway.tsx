@@ -20,29 +20,35 @@ interface IState {
   vm?: GatewayViewModel;
 }
 
-const progressSteps = [
-  'Transfered',
-  'Pending',
-  'Succeed',
-];
+// const progressSteps = [
+//   'Transfered',
+//   'Pending',
+//   'Succeed',
+// ];
 
 const getSteps = (bankAccount?: string, account?: string) => {
   return [
     {
-      label: 'Transfer USD to Gateway',
-      description: `Please transfer USD from your verified bank account ${bankAccount ? bankAccount : ""} to the Gateway bank account.`,
+      label: 'Transfer USD to fiat gateway',
+      description: `Please transfer USD from your verified bank account ${bankAccount ? bankAccount : "******"} to the Gateway bank account.`,
     },
     {
       label: 'Verify',
       description:
-        'Waitting for fiat gateway verifying...',
+        'Waiting for fiat gateway verifying...',
     },
     {
       label: 'Mint SGC to wallet',
-      description: `Gateway will mint tokens to your wallet ${account ? shortenAddress(account) : ""} soon.`,
+      description: `Gateway will mint tokens to your wallet ${account ? shortenAddress(account) : "0x****...****"} soon.`,
     },
   ]
 }
+
+const redeemSteps = [
+  'Transfer SGC to fiat gateway',
+  'Waiting for fiat gateway verifying...',
+  'Redeem SGC to your verified bank account'
+]
 
 @inject("locator")
 @observer
@@ -83,12 +89,12 @@ class Gateway extends Component<IProps, IState> {
         <div className="content">
           <div>
             <h2>{i18n.t("gateway_buy")}</h2>
-            <div className="text-space">
-              <Box>
-                <Stepper activeStep={vm?.activeStep} orientation="vertical">
-                  {steps.map((step) => (
-                    <Step key={step.label}>
-                      <StepLabel>
+            <div className="left-space">
+              <div className="steps-space">
+                <Stepper activeStep={vm?.activeBuyStep} orientation="vertical">
+                  {steps.map((step, index) => (
+                    <Step key={step.label} onClick={() => { vm?.setActiveBuyStep(index) }}>
+                      <StepLabel className="clickable" >
                         {step.label}
                       </StepLabel>
                       <StepContent>
@@ -101,28 +107,30 @@ class Gateway extends Component<IProps, IState> {
                 </Stepper>
                 <Paper square elevation={0} sx={{ p: 3 }}>
                   {
-                    vm?.activeStep === steps.length ?
+                    vm?.activeBuyStep === steps.length ?
                       <MaButton
-                        variant="contained"
-                        onClick={() => { vm?.setActiveStep(0) }}
+                        onClick={() => { vm?.setActiveBuyStep(0) }}
                         sx={{ mt: 2, mb: 2 }}
                       >
                         {i18n.t("gateway_reset")}
                       </MaButton>
                       : undefined
                   }
-                  <MaButton
-                    onClick={() => { this.addToWallet("sgc") }}
-                  >
-                    {i18n.t("common_add_to_wallet")}
-                  </MaButton>
                 </Paper>
-              </Box>
+              </div>
             </div>
+            {loading ? (
+              <Skeleton height={37} />
+            ) : (
+              <Button
+                onClick={() => { this.addToWallet("sgc") }}
+              >
+                {i18n.t("common_add_to_wallet", { tokenName: "SGC" })}
+              </Button>)}
           </div>
           <div>
             <h2>{i18n.t("gateway_sell")}</h2>
-            <div className="sell-items">
+            <div className="right-space">
               <div className="item">
                 <TokenSelector
                   title={i18n.t("gateway_token")}
@@ -143,18 +151,28 @@ class Gateway extends Component<IProps, IState> {
               </div>
 
               <div className="item amount-count">
-                <div>↓</div>
-                <h1>{`${vm?.inputAmountLegal ? vm?.inputAmount : "0"} $`}</h1>
+                <h1>{`${vm?.inputAmountLegal ? vm?.inputAmount : "0"} USD`}</h1>
               </div>
 
-              {loading ? (
-                <Skeleton height={37} />
-              ) : (
-                <Button disabled={transferDisabled} onClick={() => this.transfer()} loading={vm?.transferLoading}>
-                  {vm?.allowance?.eq(0) ? `${i18n.t("button_approve")} ${vm?.currentToken?.name.toUpperCase()} & ${i18n.t("button_transfer")}` : i18n.t("button_transfer")}
-                </Button>
-              )}
+              <Box sx={{ mb: 3 }}>
+                <Stepper activeStep={vm?.activeRedeemStep} orientation="vertical">
+                  {redeemSteps.map((step) => (
+                    <Step key={step}>
+                      <StepLabel>
+                        {step}
+                      </StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Box>
             </div>
+            {loading ? (
+              <Skeleton height={37} />
+            ) : (
+              <Button disabled={transferDisabled} onClick={() => this.transfer()} loading={vm?.transferLoading}>
+                {vm?.allowance?.eq(0) ? `${i18n.t("button_approve")} ${vm?.currentToken?.name.toUpperCase()} & ${i18n.t("button_transfer")}` : i18n.t("button_transfer")}
+              </Button>
+            )}
           </div>
         </div>
 
@@ -176,9 +194,9 @@ class Gateway extends Component<IProps, IState> {
                   <tr key={tx.transactionHash} onClick={(_) => vm?.openTx(tx)}>
                     <td>{tx.time}</td>
                     <td>{tx.action}</td>
-                    <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toFixed(4)} ${tx.token?.name}`}</td>
-                    {/* <td>{tx.status}</td> */}
-                    <td>{
+                    <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toLocaleString()} ${tx.token?.name}`}</td>
+                    <td>{tx.status}</td>
+                    {/* <td>{
                       <Box>
                         <Stepper activeStep={tx.status} alternativeLabel>
                           {progressSteps.map((label) => (
@@ -189,7 +207,7 @@ class Gateway extends Component<IProps, IState> {
                         </Stepper>
                       </Box>
                     }
-                    </td>
+                    </td> */}
                   </tr>
                 ))
               ) : (

@@ -20,5 +20,6 @@ export enum InputErrorMsg {
     VALUE_OVER_COLLATERAL_MAXIMUM = "Exceeds the total collateral.",
     VALUE_OVER_REMAINING_DEBT = "Exceeds the remaining debt.",
     VALUE_OVER_ACCOUNT_BALANCE = "Exceeds the balance of account.",
+    VALUE_DECIMAL_NUMBER_INVALID = "Exceeds 2 decimal digits.",
     COLLATERALIZATION_RATIO_TOO_LOW = "Collateralization Ratio is too low.",
 }

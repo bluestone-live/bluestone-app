@@ -18,7 +18,8 @@ export default class GatewayViewModel extends BaseViewModel {
 
     @observable gatewayAddress = "0x8CA7D5c07d658D7275C891119C762C7f82A875E2";
     @observable bankAccount = "**4152";
-    @observable activeStep = 3;
+    @observable activeBuyStep = 0;
+    @observable activeRedeemStep = 0;
     @observable allowance?: BigNumber;      // transfer from account to gateway wallet
     @observable loading = false;
     @observable currentToken!: IToken;
@@ -42,8 +43,8 @@ export default class GatewayViewModel extends BaseViewModel {
         });
     }
 
-    setActiveStep(step: number) {
-        this.activeStep = step;
+    setActiveBuyStep(step: number) {
+        this.activeBuyStep = step;
     }
 
     selectToken = async (name: string) => {
@@ -64,8 +65,13 @@ export default class GatewayViewModel extends BaseViewModel {
         if (checkNumber(value)) {
             if (Number.parseFloat(value) > 0) {
                 if (Number.parseFloat(value) <= Number.parseFloat(this.maxAvailableAmount ?? "")) {
-                    this.inputAmountLegal = true;
-                    this.inputAmountErrorMsg = InputErrorMsg.NONE;
+                    if (value.toString().indexOf(".") > 0 && value.toString().indexOf(".") < value.toString().length - 3) {
+                        this.inputAmountLegal = false;
+                        this.inputAmountErrorMsg = InputErrorMsg.VALUE_DECIMAL_NUMBER_INVALID;
+                    } else {
+                        this.inputAmountLegal = true;
+                        this.inputAmountErrorMsg = InputErrorMsg.NONE;
+                    }
                 } else {
                     this.inputAmountLegal = false;
                     this.inputAmountErrorMsg = InputErrorMsg.VALUE_OVER_MAXIMUM;
