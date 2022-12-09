@@ -13,7 +13,6 @@
   
     >div {
       width: 38%;
-      // min-height: 425px;
       border: solid 1px gainsboro;
       border-radius: 1rem;
       padding: 0 5% 5% 5%;
@@ -25,7 +24,7 @@
       }
       
       >.left-space {
-        min-height: 400px;
+        min-height: 415px;
         text-align: left;
         font-size: 1.3rem;
         line-height: 2.2rem;
@@ -34,7 +33,7 @@
         color: rgb(36, 107, 158);
 
         >.steps-space {
-          min-height: 380px;
+          min-height: 415px;
         }
       }
 
@@ -51,7 +50,7 @@
       >.right-space {
         color: #849095;
         font-size: 14px;
-        min-height: 400px;
+        min-height: 415px;
         
         >.item {
           text-align: left;

@@ -10,11 +10,18 @@ export enum Action {
   ConvertToFiat = "SGC to Fiat"
 }
 
+// export enum Status {
+//   Succeed = "Succeed",
+//   Failed = "Failed",
+// }
+
 export enum Status {
-  Failed = "Failed",
-  Transfered = "Transfered",
-  Verify = "Verify",
-  Succeed = "Succeed",
+  None = -1,
+  Transfering = 0,
+  Verifying = 1,
+  Executing = 2,
+  Succeed = 3,
+  Failed = 4,
 }
 
 export interface HistoryGatewayTx extends Event {
@@ -42,12 +49,16 @@ export default class GatewayTransactions {
         const timestamp = (await tx!.getBlock()).timestamp;
         const amount = tx!.args?.value;
         let action: Action;
+        let status: Status;
         if (tx?.args?.from.toLowerCase() === account.toLowerCase()) {
           action = Action.ConvertToFiat;
+          status = await this.getGatewayRedeemStatus(account, tx?.transactionHash);
         } else if (tx?.args?.to.toLowerCase() === account.toLowerCase()) {
           action = Action.ConvertToSGC;
+          status = await this.getGatewayBuyStatus(account);
         } else {
           action = Action.Unknown;
+          status = Status.Failed;
         }
 
         return {
@@ -59,10 +70,20 @@ export default class GatewayTransactions {
           token,
           action,
           amount: utils.formatUnits(amount, token.decimals),
-          status: Status.Succeed,
+          status,
         } as HistoryGatewayTx;
       })
     );
+  }
+
+  async getGatewayBuyStatus(account: string) {
+    // TODO
+    return Status.Succeed;
+  }
+
+  async getGatewayRedeemStatus(account: string, transactionHash: string) {
+    //TODO
+    return Status.Succeed;
   }
 
   async queryGatewayHistory(token: IToken, account: string, gatewayAddress: string) {

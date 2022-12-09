@@ -7,7 +7,7 @@ import { checkNumber } from "../services/InputChecker";
 import { ErrorMsg, InputErrorMsg } from "../services/ErrorMsg";
 import { IViewModel } from "./Types";
 import type { IToken } from "./Types";
-import GatewayTransactions, { HistoryGatewayTx } from "../services/GatewayTransactions";
+import GatewayTransactions, { HistoryGatewayTx, Status } from "../services/GatewayTransactions";
 
 interface IGatewayViewModel extends IViewModel {
     tokens: IToken[]
@@ -17,9 +17,11 @@ export default class GatewayViewModel extends BaseViewModel {
     private params: IGatewayViewModel;
 
     @observable gatewayAddress = "0x8CA7D5c07d658D7275C891119C762C7f82A875E2";
-    @observable bankAccount = "**4152";
-    @observable activeBuyStep = 0;
-    @observable activeRedeemStep = 0;
+    @observable bankAccount?: string;
+    @observable activeBuyStep = Status.Transfering;
+    @observable failedBuyStep = Status.None;
+    @observable activeRedeemStep = Status.Transfering;
+    @observable failedRedeemStep = Status.None;
     @observable allowance?: BigNumber;      // transfer from account to gateway wallet
     @observable loading = false;
     @observable currentToken!: IToken;
@@ -38,9 +40,13 @@ export default class GatewayViewModel extends BaseViewModel {
 
         this.tokenSymbols = params.tokens.map((t) => t.name);
         this.selectToken(params.tokens[0].name);
+        this.queryBankAccountInfo().then((v) => {
+            this.bankAccount = v;
+        });
         this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress).then((v) => {
             this.txs = v;
         });
+        // this.listenBuyStatusFromGateway();
     }
 
     setActiveBuyStep(step: number) {
@@ -54,7 +60,14 @@ export default class GatewayViewModel extends BaseViewModel {
         this.loading = false;
     };
 
+    // TODO
+    queryBankAccountInfo = async () => {
+        return "**4152";
+    }
+
     inputAmountCheck = (value?: string) => {
+        this.failedRedeemStep = Status.None;
+
         if (!value) {
             this.inputAmountLegal = false;
             this.inputAmountErrorMsg = InputErrorMsg.NONE;
@@ -114,6 +127,7 @@ export default class GatewayViewModel extends BaseViewModel {
     };
 
     transferToGateway = async () => {
+        this.activeRedeemStep = Status.Transfering;
         const inputAmountWei = ethers.utils.parseUnits(this.inputAmount!, this.currentToken.decimals);
         if (inputAmountWei.gte(this.allowance!)) {
             try {
@@ -136,14 +150,51 @@ export default class GatewayViewModel extends BaseViewModel {
                 inputAmountWei
             )
             Notification.track(tx.hash);
-            await tx.wait();
+            try {
+                await tx.wait();
+            } catch (e) {
+                this.failedRedeemStep = this.activeRedeemStep;
+                throw e;
+            }
+            this.activeRedeemStep = Status.Verifying;
+            this.listenRedeemStatusFromGateway(tx.hash);
+            this.txs = await this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress);
         } catch (error) {
             Notification.showErrorMessage(ErrorMsg.filterRevertMsg((error as any).message));
         } finally {
             this.transferLoading = false;
-            this.txs = await this._gatewayTxs.queryGatewayHistory(this.currentToken, this.account, this.gatewayAddress);
         }
     };
+
+    // TODO
+    listenRedeemStatusFromGateway = async (txHash: any) => {
+        var step = this.activeRedeemStep;
+        while (step !== Status.Succeed) {
+            step = await this._gatewayTxs.getGatewayRedeemStatus(this.account, txHash)
+            if (step === Status.Failed) {
+                this.failedRedeemStep = this.activeRedeemStep;
+                break;
+            }
+            if (step !== this.activeRedeemStep) {
+                this.activeRedeemStep = step;
+            }
+        }
+    }
+
+    // TODO
+    listenBuyStatusFromGateway = async () => {
+        var step = this.activeBuyStep;
+        while (step !== Status.Succeed) {
+            step = await this._gatewayTxs.getGatewayBuyStatus(this.account);
+            if (step === Status.Failed) {
+                this.failedBuyStep = this.activeBuyStep;
+                break;
+            }
+            if (step !== this.activeBuyStep) {
+                this.activeBuyStep = step;
+            }
+        }
+    }
 
     openTx = (tx: HistoryGatewayTx) => {
         window.open(`https://${this.locator.network}.etherscan.io/tx/${tx.transactionHash}`, "_blank");

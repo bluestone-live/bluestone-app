@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import TokenSelector from "../components/TokenSelector";
 import Loading from "../components/Loading";
 import { shortenAddress } from "../core/services/Account";
+import { Status } from "../core/services/GatewayTransactions";
 
 interface IProps {
   locator: ViewModelLocator;
@@ -19,12 +20,6 @@ interface IProps {
 interface IState {
   vm?: GatewayViewModel;
 }
-
-// const progressSteps = [
-//   'Transfered',
-//   'Pending',
-//   'Succeed',
-// ];
 
 const getSteps = (bankAccount?: string, account?: string) => {
   return [
@@ -156,13 +151,25 @@ class Gateway extends Component<IProps, IState> {
 
               <Box sx={{ mb: 3 }}>
                 <Stepper activeStep={vm?.activeRedeemStep} orientation="vertical">
-                  {redeemSteps.map((step) => (
-                    <Step key={step}>
-                      <StepLabel>
-                        {step}
-                      </StepLabel>
-                    </Step>
-                  ))}
+                  {redeemSteps.map((step, index) => {
+                    const labelProps: {
+                      optional?: React.ReactNode;
+                      error?: boolean;
+                    } = {};
+                    if (index === vm?.failedRedeemStep) {
+                      labelProps.optional = (
+                        <Typography variant="caption" color="error">
+                        </Typography>
+                      );
+                      labelProps.error = true;
+                    }
+                    return (
+                      <Step key={step}>
+                        <StepLabel {...labelProps}>{step}</StepLabel>
+                      </Step>
+                    )
+                  })
+                  }
                 </Stepper>
               </Box>
             </div>
@@ -195,19 +202,7 @@ class Gateway extends Component<IProps, IState> {
                     <td>{tx.time}</td>
                     <td>{tx.action}</td>
                     <td className="uppercase">{`${Number.parseFloat(tx.amount || "0").toLocaleString()} ${tx.token?.name}`}</td>
-                    <td>{tx.status}</td>
-                    {/* <td>{
-                      <Box>
-                        <Stepper activeStep={tx.status} alternativeLabel>
-                          {progressSteps.map((label) => (
-                            <Step key={label}>
-                              <StepLabel>{label}</StepLabel>
-                            </Step>
-                          ))}
-                        </Stepper>
-                      </Box>
-                    }
-                    </td> */}
+                    <td>{Status[tx.status!]}</td>
                   </tr>
                 ))
               ) : (
