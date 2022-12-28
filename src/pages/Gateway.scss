@@ -1,0 +1,90 @@
+.gateway.page {
+  text-align: center;
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  >.content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3%;
+  
+    >div {
+      width: 38%;
+      border: solid 1px gainsboro;
+      border-radius: 1rem;
+      padding: 0 5% 5% 5%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      h2 {
+        color: rgb(127, 127, 127);
+      }
+      
+      >.left-space {
+        min-height: 415px;
+        text-align: left;
+        font-size: 1.3rem;
+        line-height: 2.2rem;
+        font-weight: 600;
+        font-family:sans-serif;
+        color: rgb(36, 107, 158);
+
+        >.steps-space {
+          min-height: 415px;
+        }
+      }
+
+      >.add-token-space {
+        cursor: pointer;
+        margin: 1rem 0;
+        text-align: right;
+        text-decoration:underline;
+        font-size: 0.9rem;
+        color: rgb(18, 74, 146);
+        font-weight: 500;
+      }
+
+      >.right-space {
+        color: #849095;
+        font-size: 14px;
+        min-height: 415px;
+        
+        >.item {
+          text-align: left;
+          margin-bottom: 15px;
+        }
+
+        >.amount-count {
+          text-align: right;
+          margin-top: 25px;
+        }
+      }
+    }
+  }
+
+  >div.transactions {
+    margin-top: 50px;
+
+    table {
+      table-layout: fixed;
+
+      tbody {
+        font-size: 14px;
+
+        tr {
+          &:hover {
+            cursor: pointer;
+            background-color: #ececec;
+          }
+        }
+      }
+
+      td {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -6,18 +6,20 @@ import { ethers, BigNumber, Contract } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import DepositViewModel from "./viewmodels/DepositViewModel";
-import { abi as ERC20Abi } from "../contracts/ERC20Mock.json";
-import { EventEmitter } from "events";
+import GatewayViewModel from "./viewmodels/GatewayViewModel";
 import HistoryViewModel from "./viewmodels/HistoryViewModel";
 import HomeViewModel from "./viewmodels/HomeViewModel";
+import RecordViewModel from "./viewmodels/RecordViewModel";
+import FaucetViewModel from "./viewmodels/FaucetViewModel";
+
+import { abi as ERC20Abi } from "../contracts/ERC20Mock.json";
+import { EventEmitter } from "events";
 import { abi as MappingInterestRateModelAbi } from "../contracts/MappingInterestRateModel.json";
 import { abi as LinearInterestRateModelAbi } from "../contracts/LinearInterestRateModel.json";
 import LoanViewModel from "./viewmodels/LoanViewModel";
 import Notification from "./services/Notify";
 import { abi as ProtocolAbi } from "../contracts/Protocol.json";
-import RecordViewModel from "./viewmodels/RecordViewModel";
 import { WalletType } from "../core/viewmodels/Types"
-import FaucetViewModel from "./viewmodels/FaucetViewModel";
 
 export class ViewModelLocator extends EventEmitter {
   static readonly instance = new ViewModelLocator();
@@ -335,6 +337,25 @@ export class ViewModelLocator extends EventEmitter {
       locator: this,
     });
     return this._historyVM;
+  }
+
+  private _gatewayVM?: GatewayViewModel;
+  get gatewayVM() {
+    if (this._gatewayVM) return this._gatewayVM;
+
+    if (!this.initFinished) return undefined;
+
+    this._gatewayVM = new GatewayViewModel({
+      account: this.account,
+      protocol: this.protocol,
+      distributionFeeRatios: this.maxDistributorFeeRatios,
+      protocolReserveRatio: this.protocolReserveRatio,
+      interestRateModel: this.interestRateModel,
+      interestRateModelType: this.interestRateModelType,
+      tokens: this.depositTokens,    
+      locator: this,
+    });
+    return this._gatewayVM;
   }
 
   recordVM?: RecordViewModel;

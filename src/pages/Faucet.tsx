@@ -102,7 +102,7 @@ class Faucet extends Component<IProps, IState> {
                                 )}
                                 <div className="inner-space" />
                                 <Button onClick={() => this.addToWallet("sgc")}>
-                                    {i18n.t("faucet_add_to_wallet")}
+                                    {i18n.t("common_add_to_wallet", { tokenName: "SGC" })}
                                 </Button>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ class Faucet extends Component<IProps, IState> {
                                 )}
                                 <div className="inner-space" />
                                 <Button onClick={() => this.addToWallet("xbtc")}>
-                                    {i18n.t("faucet_add_to_wallet")}
+                                    {i18n.t("common_add_to_wallet", { tokenName: "xBTC" })}
                                 </Button>
                             </div>
                         </div>

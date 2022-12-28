@@ -31,7 +31,11 @@ export default class FaucetViewModel extends BaseViewModel {
     }
 
     inputStable = (value?: string) => {
-        if (!value) return;
+        if (!value) {
+            this.inputStableCoinLegal = false;
+            this.stableCoinErrorMsg = InputErrorMsg.NONE;
+            return;
+        }
         this.inputStableCoin = value;
 
         if (checkNumber(value)) {
@@ -54,7 +58,11 @@ export default class FaucetViewModel extends BaseViewModel {
     };
 
     inputCollateral = (value?: string) => {
-        if (!value) return;
+        if (!value) {
+            this.inputCollateralCoinLegal = false;
+            this.collateralCoinErrorMsg = InputErrorMsg.NONE;
+            return;
+        }
         this.inputCollateralCoin = value;
 
         if (checkNumber(value)) {

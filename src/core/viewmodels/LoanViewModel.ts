@@ -137,7 +137,11 @@ export default class LoanViewModel extends BaseViewModel {
   };
 
   inputLoan = (value?: string) => {
-    if (!value) return;
+    if (!value) {
+      this.inputLoanValueLegal = false;
+      this.loanValueErrorMsg = InputErrorMsg.NONE;
+      return;
+    }
     this.inputLoanValue = value;
 
     if (checkNumber(value)) {
@@ -169,6 +173,8 @@ export default class LoanViewModel extends BaseViewModel {
   inputCollateral = (value?: string) => {
     if (!value) {
       this.collateralization = 0;
+      this.inputCollateralValueLegal = false;
+      this.collateralValueErrorMsg = InputErrorMsg.NONE;
       return;
     }
 

@@ -127,7 +127,11 @@ export default class RecordViewModel extends BaseViewModel {
       }
     } else {
       this.isWithdrawCollateralAmountLegal = false;
-      this.withdrawErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      if(value) {
+        this.withdrawErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      } else {
+        this.withdrawErrorMsg = InputErrorMsg.NONE;
+      }
     }
   };
 
@@ -150,7 +154,11 @@ export default class RecordViewModel extends BaseViewModel {
       }
     } else {
       this.isDepositCollateralAmountLegal = false;
-      this.depositErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      if(value) {
+        this.depositErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      } else {
+        this.depositErrorMsg = InputErrorMsg.NONE;
+      }
     }
   };
 
@@ -168,11 +176,19 @@ export default class RecordViewModel extends BaseViewModel {
         }
       } else {
         this.isRepayAmountLegal = false;
-        this.repayErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+        if(amount.length > 0) {
+          this.repayErrorMsg = InputErrorMsg.VALUE_LESS_THAN_ZERO;
+        } else {
+          this.repayErrorMsg = InputErrorMsg.NONE;
+        }
       }
     } else {
       this.isRepayAmountLegal = false;
-      this.repayErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      if(amount) {
+        this.repayErrorMsg = InputErrorMsg.VALUE_NOT_NUMBER;
+      } else {
+        this.repayErrorMsg = InputErrorMsg.NONE;
+      }
     }
   };
 
